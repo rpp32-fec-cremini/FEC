@@ -1,2 +1,2 @@
 # FEC
-Front End Capstone (Team Cremini)
+Front End Capstone Team Cremini
