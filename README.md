@@ -1,4 +1,4 @@
-# FEC
+# Setup Instructions
 
 ## Installing Dependencies
 In the terminal, run $ npm install
