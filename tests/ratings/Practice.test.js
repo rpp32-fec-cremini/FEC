@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEven } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import Practice from '../../client/src/Ratings/Practice';
 
 test('Practice component renders text content correctly', () => {
