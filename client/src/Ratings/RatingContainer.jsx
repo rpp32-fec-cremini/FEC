@@ -1,4 +1,5 @@
 import React from "react";
+import $ from "jquery";
 
 import ReviewsList from "./ReviewsList.jsx";
 import AddReview from "./AddReview.jsx";
@@ -6,23 +7,32 @@ import SortReviews from "./SortReviews.jsx";
 import RatingBreakdown from "./RatingBreakdown.jsx";
 import ProductBreakdown from "./ProductBreakdown.jsx";
 
-class ReviewModule extends React.Component {
+class RatingContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      reviews: []
     }
   }
 
-  componentDidMount() {
+  sortAndGet() {
+    $.get("/reviews", data => {
+      var reviews = JSON.parse(data).results;
+      this.setState({
+        reviews
+      })
+    })
+  }
 
+  componentDidMount() {
+    this.sortAndGet()
   }
 
   render() {
     return (
-      <div id="ReviewModule" data-testid="container">
-        ReviewModule
-        <ReviewsList/>
+      <div className="ReviewBox" data-testid="container">
+        <h4>Ratings/Review Container</h4>
+        <ReviewsList reviews={this.state.reviews}/>
         <AddReview/>
         <SortReviews/>
         <RatingBreakdown/>
@@ -32,4 +42,4 @@ class ReviewModule extends React.Component {
   }
 }
 
-export default ReviewModule;
+export default RatingContainer;
