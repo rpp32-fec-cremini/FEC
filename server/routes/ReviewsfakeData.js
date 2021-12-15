@@ -34,6 +34,18 @@ var fakeReviews = {
       "reviewer_name": "bigbrotherbenjamin",
       "helpfulness": 5,
       "photos": []
+    },
+    {
+      "review_id": 1,
+      "rating": 1,
+      "summary": "Yeah whatever",
+      "recommend": false,
+      "response": "Sorry to hear that",
+      "body": "These feel like cardboard",
+      "date": "2017-06-23T00:00:00.000Z",
+      "reviewer_name": "joejoe",
+      "helpfulness": 2,
+      "photos": []
     }
   ]
 }

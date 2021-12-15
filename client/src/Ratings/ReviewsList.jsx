@@ -1,11 +1,15 @@
 import { data } from "jquery";
 import React from "react";
+import { useState } from "react";
 import ReviewTile from "./ReviewTile.jsx";
 
-var ReviewsList = ({reviews}) => (
+var ReviewsList = ({reviews, shownReviews, addReview}) => {
+
+  var addBtn = shownReviews != reviews.length ? <button onClick={addReview}>More Reviews</button> : null;
+  return (
   <div className="ReviewBox">
     <h4>Review List</h4>
-    {reviews.map(review => {
+    {reviews.slice(0, shownReviews).map(review => {
       return (
         <ReviewTile
           id={`Tile ${review.review_id}`}
@@ -22,8 +26,10 @@ var ReviewsList = ({reviews}) => (
         />
       )})
     }
+    { addBtn }
   </div>
-)
+  )
+}
 
 var conformDate = (date) => {
   var months = {
