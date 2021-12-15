@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import RatingContainer from '../src/Ratings/RatingContainer.jsx';
+import "./index.css"
 
-var Test = (props) => (
-  <div>Hello World</div>
+var App = (props) => (
+  <RatingContainer/>
 )
 
-ReactDOM.render(<Test />, document.getElementById('root'));
+ReactDOM.render(<App className="App"/>, document.getElementById('root'));
