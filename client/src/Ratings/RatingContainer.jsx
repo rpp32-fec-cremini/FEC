@@ -7,6 +7,17 @@ import RatingBreakdown from "./RatingBreakdown.jsx";
 import ProductBreakdown from "./ProductBreakdown.jsx";
 
 class ReviewModule extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    }
+  }
+
+  componentDidMount() {
+
+  }
+
   render() {
     return (
       <div id="ReviewModule" data-testid="container">
