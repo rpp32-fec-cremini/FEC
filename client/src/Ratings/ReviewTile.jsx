@@ -1,7 +1,16 @@
 import React from "react";
 
-var ReviewTile = (props) => (
-  <div data-testid="practice-div">This is a Practice component</div>
+var ReviewTile = ({starRating, dateWritten, summary, body, images, recommend, name, response, helpfulness}) => (
+  <div className="ReviewBox">
+    <h4>Individual Review Tile</h4>
+    <div>starRating: {starRating}</div>
+    <div>dateWritten: {dateWritten}</div>
+    <div>summary: {summary}</div>
+    <div>body: {body}</div>
+    <div>recommend: {recommend}</div>
+    <div>name: {name}</div>
+    <div>helpfulness: {helpfulness}</div>
+  </div>
 )
 
 export default ReviewTile;

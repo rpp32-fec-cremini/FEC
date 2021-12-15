@@ -5,11 +5,13 @@ var token = process.env.TOKEN;
 
 
 router.get("/", (req, res) => {
-  res.send(JSON.stringify('got reviews'))
+  var exampleData = require("./ReviewsfakeData").fakeReviews;
+  res.send(JSON.stringify(exampleData))
 })
 
 router.get("/meta", (req, res) => {
-  res.send(JSON.stringify('here\'s some review metadata'))
+  var exampleData = require("./ReviewsfakeData").fakeMetaData;
+  res.send(JSON.stringify(exampleData))
 })
 
 router.post("/", (req, res) => {
