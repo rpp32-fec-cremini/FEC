@@ -17,3 +17,8 @@ html, body {
   border: solid;
   padding: 10px;
 }
+
+.ReviewBox button {
+  width: 30%;
+  height: 40px
+}

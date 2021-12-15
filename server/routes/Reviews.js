@@ -6,7 +6,6 @@ var url = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/";
 var axios = require("axios");
 
 router.get("/", (req, res) => {
-  console.log(req.query)
   var exampleData = require("./ReviewsfakeData").fakeReviews;
   res.send(JSON.stringify(exampleData))
   // var count = 4;
