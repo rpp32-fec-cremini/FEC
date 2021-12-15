@@ -8,6 +8,7 @@ var ReviewsList = ({reviews}) => (
     {reviews.map(review => {
       return (
         <ReviewTile
+          id={`Tile ${review.review_id}`}
           key={review.review_id}
           starRating={review.rating}
           dateWritten={conformDate(review.date)}
