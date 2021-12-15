@@ -16,5 +16,4 @@ test('Rating Container renders', () => {
   expect(getByTestId(/SortReviews/)).toBeInTheDocument()
   expect(getByTestId(/RatingBreakdown/)).toBeInTheDocument()
   expect(getByTestId(/ProductBreakdown/)).toBeInTheDocument()
-
 })
