@@ -41,8 +41,10 @@ class RatingContainer extends React.Component {
       contentType: "application/json",
       success: data => {
         var reviews = JSON.parse(data).results;
+        var shownReviews = reviews.length < 2 ? reviews.length : 2
         this.setState({
-          reviews
+          reviews,
+          shownReviews
         })
       }
     })
