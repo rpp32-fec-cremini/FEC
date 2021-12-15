@@ -18,6 +18,7 @@ class QA extends React.Component {
   render() {
     return (
       <div data-testid='QandA-div'>
+        <h3>QUESTION & ANSWERS</h3>
         This is a Question component
       </div>
       )
