@@ -51,7 +51,7 @@ class RatingContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.sortAndGet(0, "relevant")
+    this.sortAndGet(1, "relevant")
   }
 
   render() {
