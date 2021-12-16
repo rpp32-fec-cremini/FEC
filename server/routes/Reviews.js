@@ -1,12 +1,23 @@
 var express = require("express");
 var router = express.Router();
 require('dotenv').config();
-var token = process.env.TOKEN;
-
+var authorization = process.env.TOKEN;
+var url = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/";
+var axios = require("axios");
 
 router.get("/", (req, res) => {
   var exampleData = require("./ReviewsfakeData").fakeReviews;
   res.send(JSON.stringify(exampleData))
+  // var count = 4;
+  // axios.get(url + "reviews", { params: { ...req.query, count }, headers: { authorization }})
+  //   .then(reviews => {
+  //     console.log(reviews)
+  //     res.end()
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //     res.end()
+  //   })
 })
 
 router.get("/meta", (req, res) => {
