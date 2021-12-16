@@ -22,3 +22,26 @@ html, body {
   width: 30%;
   height: 40px
 }
+
+.related {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.relatedContainer {
+  border: solid;
+  padding: 10px;
+}
+
+.relatedCard {
+  padding: 1rem;
+  border: #ccc 1px dotted;
+  margin: 0.7rem 0;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+}
