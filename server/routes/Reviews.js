@@ -11,8 +11,8 @@ router.get("/", (req, res) => {
   // var count = 4;
   // axios.get(url + "reviews", { params: { ...req.query, count }, headers: { authorization }})
   //   .then(reviews => {
-  //     console.log(reviews)
-  //     res.end()
+  //     console.log(reviews.data)
+  //     res.end(JSON.stringify(reviews.data.results))
   //   })
   //   .catch(err => {
   //     console.log(err);
