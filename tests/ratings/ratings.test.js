@@ -26,7 +26,7 @@ test('ReviewsList renders components based on server response', async () => {
   var { getByTestId } = render(<RatingContainer/>)
 
   await waitFor(() => getByTestId(5))
-  expect(getByTestId(5).textContent).toBe("Individual Review TilestarRating: 3dateWritten: April 14, 2019summary: I'm enjoying wearing these shadesbody: Comfortable and practical.recommend: name: shortandsweeethelpfulness: 5")
+  expect(getByTestId(5).textContent).toBe("★★★★★shortandsweeet, April 14, 2019I'm enjoying wearing these shades wow this is such a goodiee oh what a good day me ...oh my this is a really long summaryComfortable and practical. but wow this is a good shirtrecommend: helpfulness: 5")
 })
 
 test('Only 2 reviews should be rendered initially until "More Reviews" button is clicked', async () => {
@@ -48,7 +48,7 @@ test('Scroll bar appears after review module contains more than 3 review tiles',
   expect(scrollEl.style._values).toEqual({})
   fireEvent.click(buttonEl)
   expect(scrollEl.style._values).toEqual({
-      "height": "700px",
+      "height": "650px",
       "overflow-y": "scroll",
   })
 })

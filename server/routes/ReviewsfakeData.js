@@ -6,20 +6,20 @@ var fakeReviews = {
     {
       "review_id": 5,
       "rating": 3,
-      "summary": "I'm enjoying wearing these shades",
+      "summary": "I'm enjoying wearing these shades wow this is such a goodiee oh what a good day me oh my this is a really long summary",
       "recommend": false,
       "response": null,
-      "body": "Comfortable and practical.",
+      "body": "Comfortable and practical. but wow this is a good shirt",
       "date": "2019-04-14T00:00:00.000Z",
       "reviewer_name": "shortandsweeet",
       "helpfulness": 5,
       "photos": [{
           "id": 1,
-          "url": "urlplaceholder/review_5_photo_number_1.jpg"
+          "url": "https://via.placeholder.com/150"
         },
         {
           "id": 2,
-          "url": "urlplaceholder/review_5_photo_number_2.jpg"
+          "url": "https://via.placeholder.com/150"
         }
       ]
     },
