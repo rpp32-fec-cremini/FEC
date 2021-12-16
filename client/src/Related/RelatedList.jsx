@@ -14,8 +14,6 @@ class RelatedList extends React.Component {
 
   componentDidMount() {
     this.getAllProducts();
-
-
   }
 
   getAllProducts = () => {
@@ -39,16 +37,15 @@ class RelatedList extends React.Component {
   render() {
     return (
       <div>
-        <h3>RELATED PRODUCTS</h3>
-        <div data-testid='container' className="relatedContainer grid-3 related">
+        <h3 data-testid='listHeader'>RELATED PRODUCTS</h3>
+        <div data-testid='container' className='related relatedContainer grid-3'>
           {this.state.products.map(product => (
-            <div key={product.id} className='relatedCard related'>
+            <div key={product.id} className='related relatedCard'>
               <h2>{product.name}</h2>
               <h3>{product.category}</h3>
             </div>
           ))
           }
-          {this.state.currentProduct.description}
         </div >
       </div>
     )
