@@ -2,10 +2,9 @@ import React from "react";
 import $ from "jquery";
 
 import ReviewsList from "./ReviewsList.jsx";
-import AddReview from "./AddReview.jsx";
-import SortReviews from "./SortReviews.jsx";
 import RatingBreakdown from "./RatingBreakdown.jsx";
 import ProductBreakdown from "./ProductBreakdown.jsx";
+import "./Ratings.css";
 
 class RatingContainer extends React.Component {
   constructor(props) {
@@ -17,7 +16,7 @@ class RatingContainer extends React.Component {
     this.productId = this.props.productId
   }
 
-  addReview() {
+  moreReviews() {
     if (this.state.reviews.length - this.state.shownReviews > 1) {
       this.setState({
         shownReviews: this.state.shownReviews + 2
@@ -56,17 +55,16 @@ class RatingContainer extends React.Component {
 
   render() {
     return (
-      <div className="ReviewBox" data-testid="container">
-        <h4>Ratings/Review Container</h4>
+      <div className="ReviewBox left-right">
+        <div className="ReviewBox">
+          <RatingBreakdown/>
+          <ProductBreakdown/>
+        </div>
         <ReviewsList
           reviews={this.state.reviews}
           shownReviews={this.state.shownReviews}
-          addReview={this.addReview.bind(this)}
+          moreReviews={this.moreReviews.bind(this)}
         />
-        <AddReview/>
-        <SortReviews/>
-        <RatingBreakdown/>
-        <ProductBreakdown/>
       </div>
     )
   }

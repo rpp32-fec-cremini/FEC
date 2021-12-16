@@ -1,7 +1,7 @@
 import React from "react";
 
 var ProductBreakdown = (props) => (
-  <div data-testid="practice-div">This is a Practice component</div>
+  <div>Product Breakdown</div>
 )
 
 export default ProductBreakdown;

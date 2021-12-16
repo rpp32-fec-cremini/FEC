@@ -2,13 +2,15 @@ import { data } from "jquery";
 import React from "react";
 import { useState } from "react";
 import ReviewTile from "./ReviewTile.jsx";
+import AddReview from "./AddReview.jsx";
+import SortReviews from "./SortReviews.jsx";
 
-var ReviewsList = ({reviews, shownReviews, addReview}) => {
+var ReviewsList = ({reviews, shownReviews, moreReviews}) => {
 
-  var addBtn = shownReviews != reviews.length ? <button onClick={addReview}>More Reviews</button> : null;
+  var addBtn = shownReviews != reviews.length ? <button onClick={moreReviews}>More Reviews</button> : null;
   return (
   <div className="ReviewBox">
-    <h4>Review List</h4>
+    <SortReviews numReviews={reviews.length}/>
     {reviews.slice(0, shownReviews).map(review => {
       return (
         <ReviewTile
@@ -26,7 +28,10 @@ var ReviewsList = ({reviews, shownReviews, addReview}) => {
         />
       )})
     }
-    { addBtn }
+    <div className="inline">
+      { addBtn }
+      <AddReview/>
+    </div>
   </div>
   )
 }

@@ -1,7 +1,7 @@
 import React from "react";
 
-var SortReviews = (props) => (
-  <div data-testid="practice-div">This is a Practice component</div>
+var SortReviews = ({numReviews}) => (
+  <div>{numReviews} reviews, sorted by</div>
 )
 
 export default SortReviews;

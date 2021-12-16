@@ -1,0 +1,20 @@
+.ReviewBox {
+  margin: 10px;
+  border: solid;
+  padding: 10px;
+}
+
+.left-right {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.ReviewBox button {
+  width: 100%;
+  height: 40px;
+}
+
+.ReviewBox .inline {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
