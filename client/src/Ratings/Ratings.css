@@ -29,3 +29,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
+
+.ReviewBox img {
+  max-height:100px;
+  max-width:100;
+}

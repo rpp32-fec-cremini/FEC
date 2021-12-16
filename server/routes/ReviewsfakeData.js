@@ -19,7 +19,7 @@ var fakeReviews = {
         },
         {
           "id": 2,
-          "url": "https://via.placeholder.com/150"
+          "url": "https://via.placeholder.com/300"
         }
       ]
     },
