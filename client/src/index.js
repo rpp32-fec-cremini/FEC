@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import RatingContainer from '../src/Ratings/RatingContainer.jsx';
-import QandA from '../src/Q&A/QandA.jsx';
+import RelatedList from '../src/Related/RelatedList.jsx';
 import "./index.css"
+import QandA from '../src/Q&A/QandA.jsx';
 
 var App = (props) => (
   <div id="app">
