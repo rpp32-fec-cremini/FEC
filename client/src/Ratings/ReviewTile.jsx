@@ -1,7 +1,7 @@
 import React from "react";
 
-var ReviewTile = ({starRating, dateWritten, summary, body, images, recommend, name, response, helpfulness}) => (
-  <div className="ReviewBox">
+var ReviewTile = ({id, starRating, dateWritten, summary, body, images, recommend, name, response, helpfulness}) => (
+  <div className="ReviewBox" data-testid={id}>
     <h4>Individual Review Tile</h4>
     <div>starRating: {starRating}</div>
     <div>dateWritten: {dateWritten}</div>

@@ -5,7 +5,10 @@ import QandA from '../src/Q&A/QandA.jsx';
 import "./index.css"
 
 var App = (props) => (
-  <RatingContainer/>
+  <div id="app">
+    <RelatedList />
+    <RatingContainer productId={2}/>
+  </div>
 )
 
 ReactDOM.render(<App className="App"/>, document.getElementById('root'));

@@ -1,14 +1,55 @@
 import React from 'react';
-import axios from 'axios';
+import $ from 'jquery';
 
-const RelatedList = (props) => {
-  //axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${props.id}/related`)
+class RelatedList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentProductID: 31,
+      currentProduct: {},
+      products: []
 
-  return (
-    <div data-testid='container'>
-      Related Products List
-    </div>
-  )
+    }
+  }
+
+  componentDidMount() {
+    this.getAllProducts();
+  }
+
+  getAllProducts = () => {
+    $.get(`/products`, data => {
+      let products = JSON.parse(data);
+      this.setState({ products: products });
+      console.log(this.state.products);
+    });
+  };
+
+  getCurentProduct = () => {
+    //may need to change syntax to `/?product_id=${this.state.currentProductID for API
+    $.get(`/products/${this.state.currentProductID}`, data => {
+      let currentProduct = JSON.parse(data);
+      console.log(currentProduct)
+      this.setState({ currentProduct: currentProduct });
+      // console.log(this.state.currentProduct.name);
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <h3 data-testid='listHeader'>RELATED PRODUCTS</h3>
+        <div data-testid='container' className='related relatedContainer grid-3'>
+          {this.state.products.map(product => (
+            <div key={product.id} className='related relatedCard'>
+              <h2>{product.name}</h2>
+              <h3>{product.category}</h3>
+            </div>
+          ))
+          }
+        </div >
+      </div>
+    )
+  }
 };
 
 export default RelatedList;
