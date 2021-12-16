@@ -6,12 +6,12 @@ import '@testing-library/jest-dom'
 
 import RatingContainer from '../../client/src/Ratings/RatingContainer';
 
-var exampleData = require("../../server/routes/ReviewsfakeData").fakeReviews;
+var mockReviews = require("../../server/routes/ReviewsfakeData").fakeReviews;
 
 var server = setupServer(
   rest.get("/reviews", (req, res, ctx) => {
     return res(
-      ctx.json(JSON.stringify(exampleData))
+      ctx.json(JSON.stringify(mockReviews))
     )
   })
 )
@@ -38,4 +38,17 @@ test('Only 2 reviews should be rendered initially until "More Reviews" button is
   expect(queryByTestId(1)).not.toBeInTheDocument()
   fireEvent.click(buttonEl)
   expect(queryByTestId(1)).toBeInTheDocument()
+})
+
+test('Scroll bar appears after review module contains more than 3 review tiles', async () => {
+  var { getByText, getByTestId, queryByTestId } = render(<RatingContainer/>)
+  await waitFor(() => getByTestId(5))
+  var buttonEl = getByText("More Reviews")
+  var scrollEl = getByTestId("scrolllist")
+  expect(scrollEl.style._values).toEqual({})
+  fireEvent.click(buttonEl)
+  expect(scrollEl.style._values).toEqual({
+      "height": "700px",
+      "overflow-y": "scroll",
+  })
 })

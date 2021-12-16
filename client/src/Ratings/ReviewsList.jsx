@@ -15,7 +15,7 @@ var ReviewsList = ({reviews, shownReviews, moreReviews}) => {
   return (
   <div className="ReviewBox">
     <SortReviews numReviews={reviews.length}/>
-    <div style={shownReviews > 3 ? scrollStyle : {}}>
+    <div style={shownReviews > 3 ? scrollStyle : {}} data-testid="scrolllist">
       {reviews.slice(0, shownReviews).map(review => {
         return (
           <ReviewTile
