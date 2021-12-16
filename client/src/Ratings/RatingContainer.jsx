@@ -55,7 +55,7 @@ class RatingContainer extends React.Component {
 
   render() {
     return (
-      <div className="ReviewBox left-right">
+      <div className="ReviewBox left-right container">
         <div className="ReviewBox">
           <RatingBreakdown/>
           <ProductBreakdown/>
