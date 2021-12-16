@@ -7,14 +7,15 @@ import SortReviews from "./SortReviews.jsx";
 
 var ReviewsList = ({reviews, shownReviews, moreReviews}) => {
 
-  var addBtn = shownReviews != reviews.length ? <button onClick={moreReviews}>More Reviews</button> : null;
+  var addBtn = reviews.length && shownReviews != reviews.length ? <button onClick={moreReviews}>More Reviews</button> : null;
+  var sortDropdown = reviews.length ? <SortReviews numReviews={reviews.length}/> : null;
   var scrollStyle = {
-    "height": "700px",
+    "height": "650px",
     "overflowY": "scroll"
   }
   return (
   <div className="ReviewBox">
-    <SortReviews numReviews={reviews.length}/>
+    {sortDropdown}
     <div style={shownReviews > 3 ? scrollStyle : {}} data-testid="scrolllist">
       {reviews.slice(0, shownReviews).map(review => {
         return (
