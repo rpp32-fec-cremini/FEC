@@ -46,6 +46,30 @@ var fakeReviews = {
       "reviewer_name": "joejoe",
       "helpfulness": 2,
       "photos": []
+    },
+    {
+      "review_id": 10,
+      "rating": 2,
+      "summary": "alright",
+      "recommend": false,
+      "response": "Sorry to hear that",
+      "body": "These feel like cardboard",
+      "date": "2016-09-23T00:00:00.000Z",
+      "reviewer_name": "tubes",
+      "helpfulness": 3,
+      "photos": []
+    },
+    {
+      "review_id": 20,
+      "rating": 5,
+      "summary": "Great stuff",
+      "recommend": true,
+      "response": "Yay so glad",
+      "body": "Real food stuff",
+      "date": "2016-06-23T00:00:00.000Z",
+      "reviewer_name": "alice",
+      "helpfulness": 5,
+      "photos": []
     }
   ]
 }

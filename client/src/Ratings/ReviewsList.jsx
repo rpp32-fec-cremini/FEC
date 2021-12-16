@@ -8,26 +8,32 @@ import SortReviews from "./SortReviews.jsx";
 var ReviewsList = ({reviews, shownReviews, moreReviews}) => {
 
   var addBtn = shownReviews != reviews.length ? <button onClick={moreReviews}>More Reviews</button> : null;
+  var scrollStyle = {
+    "height": "700px",
+    "overflowY": "scroll"
+  }
   return (
   <div className="ReviewBox">
     <SortReviews numReviews={reviews.length}/>
-    {reviews.slice(0, shownReviews).map(review => {
-      return (
-        <ReviewTile
-          id={review.review_id}
-          key={review.review_id}
-          starRating={review.rating}
-          dateWritten={conformDate(review.date)}
-          summary={review.summary}
-          body={review.body}
-          images={review.photos}
-          recommend={review.recommend}
-          name={review.reviewer_name}
-          response={review.response}
-          helpfulness={review.helpfulness}
-        />
-      )})
-    }
+    <div style={shownReviews > 3 ? scrollStyle : {}}>
+      {reviews.slice(0, shownReviews).map(review => {
+        return (
+          <ReviewTile
+            id={review.review_id}
+            key={review.review_id}
+            starRating={review.rating}
+            dateWritten={conformDate(review.date)}
+            summary={review.summary}
+            body={review.body}
+            images={review.photos}
+            recommend={review.recommend}
+            name={review.reviewer_name}
+            response={review.response}
+            helpfulness={review.helpfulness}
+          />
+        )})
+      }
+    </div>
     <div className="inline">
       { addBtn }
       <AddReview/>
