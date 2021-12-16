@@ -15,6 +15,7 @@ class ImageGallery extends React.Component {
     return (
       <div>
         <h2>IMAGE GALAREE</h2>
+        <div data-testid = 'practice-img'>This is a Practice component</div>
       </div>
     )
   }

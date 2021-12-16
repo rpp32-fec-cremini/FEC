@@ -12,7 +12,7 @@ class AddToCart extends React.Component {
 
   render () {
     return (
-      <h4>Cart</h4>
+      <h4 data-testid = 'cart'>Cart</h4>
       <CartItem />
 
     )

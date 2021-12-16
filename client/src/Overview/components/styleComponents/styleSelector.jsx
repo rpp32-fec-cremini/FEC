@@ -13,7 +13,7 @@ class StyleSelector extends React.Component {
   render () {
     return (
       <div>
-        <h1>STYLE SELECTOR HERE</h1>
+        <h1 data-testid = 'style'>STYLE SELECTOR HERE</h1>
       </div>
     )
   }

@@ -12,7 +12,7 @@ class ProductInfo extends React.Component {
   render() {
     return(
       <div>
-        <p>
+        <p data-testid = 'prodInfo'>
           ProductInfo here
         </p>
       </div>
