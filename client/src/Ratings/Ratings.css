@@ -7,6 +7,14 @@
   margin: 100px
 }
 
+.filledStar {
+  color: #000;
+}
+
+.emptyStar {
+  color: #ccc;
+}
+
 .left-right {
   display: grid;
   grid-template-columns: 1fr 3fr;
