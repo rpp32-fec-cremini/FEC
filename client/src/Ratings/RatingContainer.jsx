@@ -11,28 +11,58 @@ class RatingContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviews: []
+      reviews: [],
+      shownReviews: 2
+    };
+    this.productId = this.props.productId
+  }
+
+  addReview() {
+    if (this.state.reviews.length - this.state.shownReviews > 1) {
+      this.setState({
+        shownReviews: this.state.shownReviews + 2
+      })
+    } else {
+      this.setState({
+        shownReviews: this.state.shownReviews + 1
+      })
     }
   }
 
-  sortAndGet() {
-    $.get("/reviews", data => {
-      var reviews = JSON.parse(data).results;
-      this.setState({
-        reviews
-      })
+  sortAndGet(page, sort) {
+    $.ajax({
+      method: "GET",
+      url: "/reviews",
+      data: {
+        page,
+        sort,
+        product_id: this.productId
+      },
+      contentType: "application/json",
+      success: data => {
+        var reviews = JSON.parse(data).results;
+        var shownReviews = reviews.length < 2 ? reviews.length : 2
+        this.setState({
+          reviews,
+          shownReviews
+        })
+      }
     })
   }
 
   componentDidMount() {
-    this.sortAndGet()
+    this.sortAndGet(1, "relevant")
   }
 
   render() {
     return (
       <div className="ReviewBox" data-testid="container">
         <h4>Ratings/Review Container</h4>
-        <ReviewsList reviews={this.state.reviews}/>
+        <ReviewsList
+          reviews={this.state.reviews}
+          shownReviews={this.state.shownReviews}
+          addReview={this.addReview.bind(this)}
+        />
         <AddReview/>
         <SortReviews/>
         <RatingBreakdown/>
