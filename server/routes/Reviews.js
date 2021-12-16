@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-// require('dotenv').config();
+require('dotenv').config();
 var token = process.env.TOKEN;
 
 
