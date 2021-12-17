@@ -1,4 +1,5 @@
 import React from "react";
+import $ from "jquery";
 
 var StarRating = ({rating}) => {
   return (
@@ -20,8 +21,26 @@ var StarRating = ({rating}) => {
 
 var ReviewTile = ({id, starRating, dateWritten, summary, body, images, recommend, name, response, helpfulness}) => {
   var boldSummary = summary.length > 83 ? `${summary.substring(0,83)}...` : summary;
+  if (body.split(" ").length > 250) {
+    var reviewBody = <div>
+      <div className="reviewBody reviewBodyFull" id={`body${id}`}>{`${body.split(" ").slice(0,250).join(" ")}...`}</div>
+      <a
+        id={`link${id}`}
+        style={{
+          "fontSize": "14px"
+        }}
+        onClick={() => {
+          $(`#body${id}`).html(body)
+          $(`#body${id}`).removeClass("reviewBody")
+          $(`#link${id}`).remove()
+        }}
+    >Show More</a>
+    </div>
+  } else {
+    var reviewBody = <div className="reviewBodyFull">{body}</div>
+  }
   return (
-    <div className="ReviewBox" data-testid={id}>
+    <div className="ReviewBox ReviewTile" data-testid={id}>
       <div style={{
         "display":"grid",
         "gridTemplateColumns":"1fr 3fr 1fr",
@@ -37,22 +56,20 @@ var ReviewTile = ({id, starRating, dateWritten, summary, body, images, recommend
         "margin": "10px 0 5px 0"
       }}>{boldSummary}</div>
       <div style={{
-        "fontSize":"16px",
+        "fontSize":"14px",
         "margin": "0 0 10px 0"
-      }}>{summary.substring(83)}</div>
+      }}>{`...${summary.substring(83)}`}</div>
 
-      <div style={{
-        "fontSize":"16px",
-        "margin": "10px 0 10px 0"
-      }}>{body}</div>
+      {reviewBody}
 
       <div style={{
         "margin": "10px 0 10px 0px",
         "display":"grid",
-        "gridTemplateColumns":"repeat(5, 1fr)",
-        "gridColumnGap": "5px"
+        "justifyItems": "center"
       }}>
-        {images.map(image => <img key={image.id} src={image.url}></img>)}
+        <div>
+          {images.map(image => <img key={image.id} src={image.url} style={{"margin":"2px"}}></img>)}
+        </div>
       </div>
       <div>recommend: {recommend}</div>
       <div>helpfulness: {helpfulness}</div>

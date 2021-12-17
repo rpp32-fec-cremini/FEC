@@ -1,3 +1,6 @@
+var reviewBody1 = [...Array(255)].map(word => "hello").join(" ")
+var reviewBody2 = [...Array(10)].map(word => "goodbye").join(" ")
+
 var fakeReviews = {
   "product": "2",
   "page": 0,
@@ -9,7 +12,7 @@ var fakeReviews = {
       "summary": "I'm enjoying wearing these shades wow this is such a goodiee oh what a good day me oh my this is a really long summary",
       "recommend": false,
       "response": null,
-      "body": "Comfortable and practical. but wow this is a good shirt",
+      "body": reviewBody1,
       "date": "2019-04-14T00:00:00.000Z",
       "reviewer_name": "shortandsweeet",
       "helpfulness": 5,
@@ -41,7 +44,7 @@ var fakeReviews = {
       "summary": "Yeah whatever",
       "recommend": false,
       "response": "Sorry to hear that",
-      "body": "These feel like cardboard",
+      "body": reviewBody2,
       "date": "2017-06-23T00:00:00.000Z",
       "reviewer_name": "joejoe",
       "helpfulness": 2,
