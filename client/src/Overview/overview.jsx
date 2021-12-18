@@ -16,27 +16,23 @@ class Overview extends React.Component {
     this.state = {};
   }
 
-  getProducts() {
+ /*  getProducts() {
     axios.get(API_URL + '/products')
-  }
+  } */
 
   render() {
     return (
       <div>
-        <h1 data-testid = 'overview'>
-          Overview Here
-        </h1>
-        <ImageGallery />
-        <ProductInfo />
-        <StyleSelector />
+        <div className='related relatedContainer grid-3'>
+        <ImageGallery className=' related relatedCard '  />
+        <ProductInfo className=' related relatedCard'  />
         <AddToCart />
-
+        <br></br>
+      </div>
+      <StyleSelector className=' related relatedCard' />
       </div>
     );
   }
 }
 
-ReactDOM.render(
-  <Overview  />,
-  document.getElementById('overview')
-)
+export default Overview;

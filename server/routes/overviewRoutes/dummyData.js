@@ -1,4 +1,4 @@
-[
+let data = [
   {
       "id": 59553,
       "campus": "hr-rpp",
@@ -55,3 +55,5 @@
       "updated_at": "2021-10-18T22:50:41.839Z"
   }
 ]
+
+module.exports.data = data;

@@ -12,7 +12,7 @@ class StyleSelector extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className = 'related relatedCard ' style={{width: '100%'}}>
         <h1 data-testid = 'style'>STYLE SELECTOR HERE</h1>
       </div>
     )
