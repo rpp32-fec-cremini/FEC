@@ -10,15 +10,12 @@ var ReviewsList = ({reviews, shownReviews, moreReviews}) => {
   var addBtn = reviews.length && shownReviews != reviews.length ? <button onClick={moreReviews}>More Reviews</button> : null;
   var sortDropdown = reviews.length ? <SortReviews numReviews={reviews.length}/> : null;
   var scrollStyle = {
-    "height": "65%",
     "overflowY": "scroll"
   }
   return (
-  <div style={{
-
-  }}>
+  <div className="container-right">
     {sortDropdown}
-    <div style={shownReviews > 3 ? scrollStyle : {"height": "80%"}} data-testid="scrolllist">
+    <div style={shownReviews > 3 ? scrollStyle : {}} className="scrolllist" data-testid="scrolllist">
       {reviews.slice(0, shownReviews).map(review => {
         return (
           <ReviewTile
@@ -37,7 +34,7 @@ var ReviewsList = ({reviews, shownReviews, moreReviews}) => {
         )})
       }
     </div>
-    <div className="inline">
+    <div className="buttons">
       { addBtn }
       <AddReview/>
     </div>
