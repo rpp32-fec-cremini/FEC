@@ -45,7 +45,7 @@ var ReviewTile = ({id, starRating, dateWritten, summary, body, images, recommend
   return (
     <div className="ReviewTile" data-testid={id}>
 
-      <div style={{"display":"grid", "gridTemplateColumns":"1fr 3fr 1fr",
+      <div style={{"display":"grid", "gridTemplateColumns":"1fr 3fr 1fr", "margin": "10px"
       }}>
         <StarRating rating={starRating} />
         <div style={{"gridColumnStart":"4"}}>{`${name}, ${dateWritten}`}</div>
