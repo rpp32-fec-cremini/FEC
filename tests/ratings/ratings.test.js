@@ -49,8 +49,7 @@ test('Scroll bar appears after review module contains more than 3 review tiles',
   expect(scrollEl.style._values).toEqual({})
   fireEvent.click(buttonEl)
   expect(scrollEl.style._values).toEqual({
-      "height": "650px",
-      "overflow-y": "scroll",
+      "overflow-y": "scroll"
   })
 })
 
