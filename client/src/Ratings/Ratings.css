@@ -1,0 +1,36 @@
+.ReviewBox {
+  border: solid;
+  padding: 10px;
+}
+
+.container {
+  margin: 130px
+}
+
+.filledStar {
+  color: #000;
+}
+
+.emptyStar {
+  color: #ccc;
+}
+
+.left-right {
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+.ReviewBox button {
+  width: 80%;
+  height: 40px;
+}
+
+.ReviewBox .inline {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.ReviewBox img {
+  max-height:100px;
+  max-width:100;
+}

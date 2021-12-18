@@ -2,31 +2,43 @@ import { data } from "jquery";
 import React from "react";
 import { useState } from "react";
 import ReviewTile from "./ReviewTile.jsx";
+import AddReview from "./AddReview.jsx";
+import SortReviews from "./SortReviews.jsx";
 
-var ReviewsList = ({reviews, shownReviews, addReview}) => {
+var ReviewsList = ({reviews, shownReviews, moreReviews}) => {
 
-  var addBtn = shownReviews != reviews.length ? <button onClick={addReview}>More Reviews</button> : null;
+  var addBtn = reviews.length && shownReviews != reviews.length ? <button onClick={moreReviews}>More Reviews</button> : null;
+  var sortDropdown = reviews.length ? <SortReviews numReviews={reviews.length}/> : null;
+  var scrollStyle = {
+    "height": "650px",
+    "overflowY": "scroll"
+  }
   return (
   <div className="ReviewBox">
-    <h4>Review List</h4>
-    {reviews.slice(0, shownReviews).map(review => {
-      return (
-        <ReviewTile
-          id={`Tile ${review.review_id}`}
-          key={review.review_id}
-          starRating={review.rating}
-          dateWritten={conformDate(review.date)}
-          summary={review.summary}
-          body={review.body}
-          images={review.photos}
-          recommend={review.recommend}
-          name={review.reviewer_name}
-          response={review.response}
-          helpfulness={review.helpfulness}
-        />
-      )})
-    }
-    { addBtn }
+    {sortDropdown}
+    <div style={shownReviews > 3 ? scrollStyle : {}} data-testid="scrolllist">
+      {reviews.slice(0, shownReviews).map(review => {
+        return (
+          <ReviewTile
+            id={review.review_id}
+            key={review.review_id}
+            starRating={review.rating}
+            dateWritten={conformDate(review.date)}
+            summary={review.summary}
+            body={review.body}
+            images={review.photos}
+            recommend={review.recommend}
+            name={review.reviewer_name}
+            response={review.response}
+            helpfulness={review.helpfulness}
+          />
+        )})
+      }
+    </div>
+    <div className="inline">
+      { addBtn }
+      <AddReview/>
+    </div>
   </div>
   )
 }

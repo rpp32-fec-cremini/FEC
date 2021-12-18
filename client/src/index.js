@@ -8,7 +8,9 @@ import QandA from '../src/Q&A/QandA.jsx';
 var App = (props) => (
   <div id="app">
     <RelatedList />
+
     <RatingContainer productId={2}/>
+    <QandA />
   </div>
 )
 

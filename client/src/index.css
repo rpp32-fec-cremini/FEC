@@ -7,20 +7,6 @@ html, body {
   height: 100%;
   width: 100%;
   display: grid;
-  align-items: center;
-  justify-content: center;
-}
-
-.ReviewBox {
-  display: grid;
-  margin: 20px;
-  border: solid;
-  padding: 10px;
-}
-
-.ReviewBox button {
-  width: 30%;
-  height: 40px
 }
 
 .related {
