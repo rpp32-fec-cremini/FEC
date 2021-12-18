@@ -72,7 +72,15 @@ var fakeReviews = {
       "date": "2016-06-23T00:00:00.000Z",
       "reviewer_name": "alice",
       "helpfulness": 5,
-      "photos": []
+      "photos": [{
+          "id": 1,
+          "url": "https://via.placeholder.com/250"
+        },
+        {
+          "id": 2,
+          "url": "https://via.placeholder.com/1920"
+        }
+      ]
     }
   ]
 }
