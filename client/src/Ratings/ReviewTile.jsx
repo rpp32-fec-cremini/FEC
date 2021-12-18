@@ -65,16 +65,33 @@ var ReviewTile = ({id, starRating, dateWritten, summary, body, images, recommend
       {reviewBody}
 
       <div style={{
-        "margin": "10px 0 10px 0px",
         "display":"grid",
-        "justifyItems": "center"
+        "justifyItems": "right"
       }}>
         <Modal images={images}/>
       </div>
 
-      <div>response: {response}</div>
-      <div>recommend: {recommend}</div>
-      <div>helpfulness: {helpfulness}</div>
+      {recommend ? <div style={{
+        "margin": "5px 0 5px 0px",
+      }}>	&#10003; I recommend this product </div> : null}
+
+      {response ? <div style={{
+        "margin": "5px 0 5px 0px",
+        "fontSize":"14px",
+        "padding": "5px",
+        "backgroundColor": "#D3D3D3"
+      }}>
+        <div style={{"fontWeight": "bold"}}>Response: </div><br></br>
+        {response}
+      </div> : null}
+
+      <div>
+        Helpful? &nbsp;
+        <a style={{"textDecoration":"underline"}}>Yes</a>
+        {` (${helpfulness})`}
+        &nbsp; &nbsp; | &nbsp; &nbsp;
+        <a style={{"textDecoration":"underline"}}>Report</a>
+      </div>
     </div>
   )
 }
