@@ -42,7 +42,7 @@ var ReviewTile = ({id, starRating, dateWritten, summary, body, images, recommend
     var reviewBody = <div className="reviewBodyFull">{body}</div>
   }
   return (
-    <div className="ReviewBox ReviewTile" data-testid={id}>
+    <div className="ReviewTile" data-testid={id}>
       <div style={{
         "display":"grid",
         "gridTemplateColumns":"1fr 3fr 1fr",

@@ -1,6 +1,7 @@
 .ReviewBox {
   border: solid;
   padding: 10px;
+  height: 70%;
 }
 
 .container {
@@ -33,6 +34,11 @@
 .ReviewBox img {
   max-height:100px;
   max-width:100;
+}
+
+.ReviewTile {
+  border: solid;
+  height: 70%
 }
 
 .ReviewTile a:hover{

@@ -10,13 +10,15 @@ var ReviewsList = ({reviews, shownReviews, moreReviews}) => {
   var addBtn = reviews.length && shownReviews != reviews.length ? <button onClick={moreReviews}>More Reviews</button> : null;
   var sortDropdown = reviews.length ? <SortReviews numReviews={reviews.length}/> : null;
   var scrollStyle = {
-    "height": "650px",
+    "height": "65%",
     "overflowY": "scroll"
   }
   return (
-  <div className="ReviewBox">
+  <div style={{
+
+  }}>
     {sortDropdown}
-    <div style={shownReviews > 3 ? scrollStyle : {}} data-testid="scrolllist">
+    <div style={shownReviews > 3 ? scrollStyle : {"height": "80%"}} data-testid="scrolllist">
       {reviews.slice(0, shownReviews).map(review => {
         return (
           <ReviewTile
