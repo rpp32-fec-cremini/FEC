@@ -15,6 +15,7 @@ class AddToCart extends React.Component {
     return (
       <div>
       <h4 data-testid = 'cart'>Cart</h4>
+      <button>Add to Cart</button>
       </div>
 
     )
