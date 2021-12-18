@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-import $ from 'jquery';
 
 var Modal = ({images}) => {
   var [modal, setModal] = useState(null)
