@@ -1,11 +1,40 @@
-.ReviewBox {
-  border: solid;
-  padding: 10px;
-}
+/* Module Container */
 
 .container {
-  margin: 130px
+  margin: 10%;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  height: 90%;
 }
+
+.container a:hover{
+  color: blue;
+  cursor: pointer;
+}
+
+.container-right {
+  display: grid;
+  grid-template-rows: 5% 90% 5%;
+}
+
+/* .container-left {
+
+} */
+
+/* Individual Review Tile */
+
+.ReviewTile {
+  height: 49%;
+  display: grid;
+  border-bottom: 1px solid;
+}
+
+.ReviewTile .response {
+  padding: 5px;
+  background-color: #D3D3D3;
+}
+
+/* Tile Star Rating */
 
 .filledStar {
   color: #000;
@@ -15,22 +44,63 @@
   color: #ccc;
 }
 
-.left-right {
-  display: grid;
-  grid-template-columns: 30% 70%;
+/* Review Body expanion with Show More */
+
+.expandedBody {
+  font-size: 14px;
+  margin: 10px 0 4px 0;
 }
 
-.ReviewBox button {
-  width: 80%;
-  height: 40px;
+.collapsedBody {
+  font-size: 14px;
+  margin: 10px 0 2px 0;
+  position: relative;
 }
 
-.ReviewBox .inline {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+.collapsedBody:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1) 90%);
+  width: 100%;
+  height: 3em;
 }
 
-.ReviewBox img {
-  max-height:100px;
-  max-width:100;
+/* Image modal */
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+  height: 60%;
+  overflow: auto;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
