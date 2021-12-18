@@ -5,18 +5,17 @@ import ReviewTile from "./ReviewTile.jsx";
 import AddReview from "./AddReview.jsx";
 import SortReviews from "./SortReviews.jsx";
 
-var ReviewsList = ({reviews, shownReviews, moreReviews}) => {
+var ReviewsList = ({reviews, shownReviews, moreReviews, addToVoted, voted}) => {
 
   var addBtn = reviews.length && shownReviews != reviews.length ? <button onClick={moreReviews}>More Reviews</button> : null;
   var sortDropdown = reviews.length ? <SortReviews numReviews={reviews.length}/> : null;
   var scrollStyle = {
-    "height": "650px",
     "overflowY": "scroll"
   }
   return (
-  <div className="ReviewBox">
+  <div className="container-right">
     {sortDropdown}
-    <div style={shownReviews > 3 ? scrollStyle : {}} data-testid="scrolllist">
+    <div style={shownReviews > 3 ? scrollStyle : {}} className="scrolllist" data-testid="scrolllist">
       {reviews.slice(0, shownReviews).map(review => {
         return (
           <ReviewTile
@@ -31,11 +30,13 @@ var ReviewsList = ({reviews, shownReviews, moreReviews}) => {
             name={review.reviewer_name}
             response={review.response}
             helpfulness={review.helpfulness}
+            addToVoted={addToVoted}
+            voted={voted}
           />
         )})
       }
     </div>
-    <div className="inline">
+    <div className="buttons">
       { addBtn }
       <AddReview/>
     </div>
