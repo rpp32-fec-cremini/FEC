@@ -23,6 +23,7 @@ var StarRating = ({rating}) => {
 
 var ReviewTile = ({id, starRating, dateWritten, summary, body, images, recommend, name, response, helpfulness, addToVoted, voted}) => {
   var boldSummary = summary.length > 83 ? `${summary.substring(0,83)}...` : summary;
+  var extraSummary = summary.length > 83 ? <div>{`...${summary.substring(83)}`}</div> : null;
   if (body.split(" ").length > 250) {
     var reviewBody = <div>
       <div className="collapsedBody expandedBody" id={`body${id}`}>{`${body.split(" ").slice(0,250).join(" ")}...`}</div>
@@ -51,7 +52,7 @@ var ReviewTile = ({id, starRating, dateWritten, summary, body, images, recommend
       </div>
 
       <div style={{"fontWeight":"bold"}}>{boldSummary}</div>
-      <div>{`...${summary.substring(83)}`}</div>
+      {extraSummary}
 
       {reviewBody}
 
