@@ -2,6 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
+import ProductInfo from './components/productInformation.jsx';
+import StyleSelector from './components/styleComponents/styleSelector.jsx';
+import ImageGallery from './components/imageGallery.jsx';
+import AddToCart from './components/cartComponents/addToCart.jsx';
+
 //  //URL FOR API
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/';
 
@@ -11,27 +16,23 @@ class Overview extends React.Component {
     this.state = {};
   }
 
-  getProducts() {
+ /*  getProducts() {
     axios.get(API_URL + '/products')
-  }
+  } */
 
   render() {
     return (
       <div>
-        <h1>
-          Overview Here
-        </h1>
-        <ImageGallery />
-        <ProductInfo />
-        <StyleSelector />
+        <div className='related relatedContainer grid-3'>
+        <ImageGallery className=' related relatedCard '  />
+        <ProductInfo className=' related relatedCard'  />
         <AddToCart />
-
+        <br></br>
+      </div>
+      <StyleSelector className=' related relatedCard' />
       </div>
     );
   }
 }
 
-ReactDOM.render(
-  <Overview  />,
-  document.getElementById('overview')
-)
+export default Overview;

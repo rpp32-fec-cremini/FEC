@@ -14,7 +14,7 @@ class ImageGallery extends React.Component {
   render() {
     return (
       <div>
-        <h2>IMAGE GALAREE</h2>
+        <h2 className = 'related relatedCard' style = {{height: '100%'}}>IMAGE GALLERY</h2>
       </div>
     )
   }

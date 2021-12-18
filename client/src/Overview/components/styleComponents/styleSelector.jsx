@@ -6,14 +6,16 @@ class StyleSelector extends React.Component {
     super(props);
 
     this.state = {
-      styleList: []
+      styleList: [],
+      currentStyle: ''
     }
   }
 
   render () {
     return (
-      <div>
-        <h1>STYLE SELECTOR HERE</h1>
+      <div className = 'related relatedCard ' style={{width: '100%'}}>
+        <h1 data-testid = 'style'>STYLE SELECTOR HERE</h1>
+
       </div>
     )
   }
