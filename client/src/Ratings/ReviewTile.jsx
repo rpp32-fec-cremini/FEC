@@ -21,7 +21,7 @@ var StarRating = ({rating}) => {
 }
 
 
-var ReviewTile = ({id, starRating, dateWritten, summary, body, images, recommend, name, response, helpfulness}) => {
+var ReviewTile = ({id, starRating, dateWritten, summary, body, images, recommend, name, response, helpfulness, addToVoted, voted}) => {
   var boldSummary = summary.length > 83 ? `${summary.substring(0,83)}...` : summary;
   if (body.split(" ").length > 250) {
     var reviewBody = <div>
@@ -38,6 +38,8 @@ var ReviewTile = ({id, starRating, dateWritten, summary, body, images, recommend
   } else {
     var reviewBody = <div className="expandedBody">{body}</div>
   }
+
+  var voted = id in voted ? helpfulness + 1 : helpfulness
 
   return (
     <div className="ReviewTile" data-testid={id}>
@@ -66,8 +68,10 @@ var ReviewTile = ({id, starRating, dateWritten, summary, body, images, recommend
 
       <div style={{"padding":"4px 0 0 0"}}>
         Helpful? &nbsp;
-        <a style={{"textDecoration":"underline"}}>Yes</a>
-        {` (${helpfulness})`}
+        <a style={{"textDecoration":"underline"}} onClick={() => {
+          addToVoted(id)
+        }}>Yes</a>
+        {` (${voted})`}
         &nbsp; &nbsp; | &nbsp; &nbsp;
         <a style={{"textDecoration":"underline"}}>Report</a>
       </div>

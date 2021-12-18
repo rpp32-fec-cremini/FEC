@@ -11,10 +11,19 @@ class RatingContainer extends React.Component {
     super(props);
     this.state = {
       reviews: [],
-      shownReviews: 2
+      shownReviews: 2,
+      voted: {},
     };
     this.productId = this.props.productId
   }
+
+  addToVoted(id) {
+    this.setState({
+      voted: {...this.state.voted, [id]: true}
+    })
+    //replace this later on with put request to server
+  }
+
 
   moreReviews() {
     if (this.state.reviews.length - this.state.shownReviews > 1) {
@@ -64,6 +73,8 @@ class RatingContainer extends React.Component {
           reviews={this.state.reviews}
           shownReviews={this.state.shownReviews}
           moreReviews={this.moreReviews.bind(this)}
+          addToVoted={this.addToVoted.bind(this)}
+          voted={this.state.voted}
         />
       </div>
     )
