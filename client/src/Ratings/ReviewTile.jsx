@@ -1,4 +1,7 @@
 import React from "react";
+import $ from "jquery";
+
+import Modal from "./Modal.jsx"
 
 var StarRating = ({rating}) => {
   return (
@@ -18,44 +21,61 @@ var StarRating = ({rating}) => {
 }
 
 
-var ReviewTile = ({id, starRating, dateWritten, summary, body, images, recommend, name, response, helpfulness}) => {
+var ReviewTile = ({id, starRating, dateWritten, summary, body, images, recommend, name, response, helpfulness, addToVoted, voted}) => {
   var boldSummary = summary.length > 83 ? `${summary.substring(0,83)}...` : summary;
+  var extraSummary = summary.length > 83 ? <div>{`...${summary.substring(83)}`}</div> : null;
+  if (body.split(" ").length > 250) {
+    var reviewBody = <div>
+      <div className="collapsedBody expandedBody" id={`body${id}`}>{`${body.split(" ").slice(0,250).join(" ")}...`}</div>
+      <a
+        id={`link${id}`}
+        onClick={(e) => {
+          $(`#body${id}`).html(body)
+          $(`#body${id}`).removeClass("collapsedBody")
+          $(`#link${id}`).remove()
+        }}
+    >Show More</a>
+    </div>
+  } else {
+    var reviewBody = <div className="expandedBody">{body}</div>
+  }
+
+  var voted = id in voted ? helpfulness + 1 : helpfulness
+
   return (
-    <div className="ReviewBox" data-testid={id}>
-      <div style={{
-        "display":"grid",
-        "gridTemplateColumns":"1fr 3fr 1fr",
-        "margin": "10px 0 10px 0"
+    <div className="ReviewTile" data-testid={id}>
+
+      <div style={{"display":"grid", "gridTemplateColumns":"1fr 3fr 1fr",
       }}>
         <StarRating rating={starRating} />
         <div style={{"gridColumnStart":"4"}}>{`${name}, ${dateWritten}`}</div>
       </div>
 
-      <div style={{
-        "fontWeight":"bold",
-        "fontSize":"20px",
-        "margin": "10px 0 5px 0"
-      }}>{boldSummary}</div>
-      <div style={{
-        "fontSize":"16px",
-        "margin": "0 0 10px 0"
-      }}>{summary.substring(83)}</div>
+      <div style={{"fontWeight":"bold"}}>{boldSummary}</div>
+      {extraSummary}
 
-      <div style={{
-        "fontSize":"16px",
-        "margin": "10px 0 10px 0"
-      }}>{body}</div>
+      {reviewBody}
 
-      <div style={{
-        "margin": "10px 0 10px 0px",
-        "display":"grid",
-        "gridTemplateColumns":"repeat(5, 1fr)",
-        "gridColumnGap": "5px"
-      }}>
-        {images.map(image => <img key={image.id} src={image.url}></img>)}
+      <div style={{"display":"grid", "justifyItems": "right"}}>
+        <Modal images={images}/>
       </div>
-      <div>recommend: {recommend}</div>
-      <div>helpfulness: {helpfulness}</div>
+
+      {recommend ? <div style={{"margin": "5px 0 5px 0px"}}>&#10003; I recommend this product </div> : null}
+
+      {response ? <div className="response">
+        <div style={{"fontWeight":"bold"}}>Response: </div><br></br>
+        {response}
+      </div> : null}
+
+      <div style={{"padding":"4px 0 0 0"}}>
+        Helpful? &nbsp;
+        <a style={{"textDecoration":"underline"}} onClick={() => {
+          addToVoted(id)
+        }}>Yes</a>
+        {` (${voted})`}
+        &nbsp; &nbsp; | &nbsp; &nbsp;
+        <a style={{"textDecoration":"underline"}}>Report</a>
+      </div>
     </div>
   )
 }
