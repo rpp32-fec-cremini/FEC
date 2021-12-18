@@ -38,7 +38,7 @@ const AddAnswerModal = ({answer}) => {
         <div>
           {loading === false && size < 2 ? show(answer, true) : show(answer)}
         </div>
-        {showbutton()}
+        {loading === false ? showbutton() : null}
     </div>
   )
 
