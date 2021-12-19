@@ -1,13 +1,9 @@
 import React, {useState} from 'react';
 import AddAnswerModal from './AddAnswerModal.jsx';
 
-
-
-
 const IndividualQuestion = (props) => {
-
   return (
-    <div className = "Questions">
+    <div className = "Questions" style={{overflowY: 'scroll', height:'500px'}}>
       {props.question.map(question =>
         <div className="Question-row" key = {question.question_id} >
           <div className="Question-body" style={{float: "left"}}>Q: {question.question_body}</div>
