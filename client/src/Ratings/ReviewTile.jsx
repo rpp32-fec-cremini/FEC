@@ -1,7 +1,7 @@
 import React from "react";
 import $ from "jquery";
 
-import Modal from "./Modal.jsx"
+import ImageModal from "./ImageModal.jsx"
 
 var StarRating = ({rating}) => {
   return (
@@ -57,7 +57,7 @@ var ReviewTile = ({id, starRating, dateWritten, summary, body, images, recommend
       {reviewBody}
 
       <div style={{"display":"grid", "justifyItems": "right"}}>
-        <Modal images={images}/>
+        <ImageModal images={images}/>
       </div>
 
       {recommend ? <div style={{"margin": "5px 0 5px 0px"}}>&#10003; I recommend this product </div> : null}

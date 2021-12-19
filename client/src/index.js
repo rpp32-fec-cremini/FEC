@@ -10,7 +10,6 @@ var App = (props) => (
   <div id="app">
     <Overview className = 'relatedCard' />
     <RelatedList />
-
     <RatingContainer productId={2}/>
     <QandA />
   </div>
