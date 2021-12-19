@@ -37,11 +37,14 @@ class StyleSelector extends React.Component {
 
 
     return (
+      <div>
+         <h1 data-testid = 'style'>Available Styles</h1>
+        <br></br>
       <div className = 'related relatedCard grid-5' style={{width: '100%'}}>
-        <h1 data-testid = 'style'>STYLE SELECTOR HERE</h1>
         {this.state.styleList.map((style) =>
       <Style name={style.name} pic = {style.photos[0].thumbnail_url} />
     )}
+      </div>
       </div>
     )
   }
