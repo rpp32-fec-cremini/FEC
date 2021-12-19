@@ -11,13 +11,10 @@ app.use("/reviews", reviewsRouter);
 var relatedRouter = require('./routes/Related');
 app.use('/products', relatedRouter);
 
-<<<<<<< HEAD
 var overViewRouter = require('./routes/overviewRoutes/overviewProducts');
 app.use('/overview', overViewRouter);
-=======
 var questionRouter = require('./routes/QaA');
 app.use('/qa/questions', questionRouter);
->>>>>>> 2a128a08a4eea25d304838a747500c9732383f48
 
 app.listen(port, () => {
   console.log('App listening on port: ', port);

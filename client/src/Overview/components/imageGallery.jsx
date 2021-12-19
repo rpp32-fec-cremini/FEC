@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import $ from 'jquery';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -8,13 +9,36 @@ class ImageGallery extends React.Component {
       currentImage: '',
       imageList: []
     }
+
+    this.search =  this.search.bind(this);
   }
+
+  componentDidMount() {
+    this.search();
+  }
+
+
+  search = () => {
+    //console.log('I SEND THEE, ', userName , ' to the FUCKING MOON')
+    $.ajax({
+      type: "GET",
+      url: '/overview/styles',
+      success: data => {
+        //let products = JSON.parse(data)
+        console.log('Success!', data);
+        this.setState({imageList: data.results[0].photos, currentImage: data.results[0].photos[0].thumbnail_url});
+        console.log('STATE FUCKING HERE ', this.state);
+      }
+    })//console.log ('hardee har har, you thought you had me');
+  }
+
 
 
   render() {
     return (
       <div>
-        <h2 className = 'related relatedCard' style = {{height: '100%'}}>IMAGE GALLERY</h2>
+        <h2 className = 'related relatedCard' /* style = {{height: '100%'}} */>IMAGE GALLERY</h2>
+        <img src={this.state.currentImage} ></img>
       </div>
     )
   }
