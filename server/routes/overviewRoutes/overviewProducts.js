@@ -26,7 +26,9 @@ router.get('review/meta/:product_id', (req, res) => {
 
 })
 
-router.get('products/:product_id/styles', (req, res) => {
+//:product_id  add this to style route when implementing API!
+
+router.get('/styles', (req, res) => {
    let dummyStyles = styles;
    console.log(dummyStyles);
    res.send(dummyStyles);
