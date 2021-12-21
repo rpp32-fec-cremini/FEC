@@ -11,7 +11,7 @@ var Stars = (props) => {
     4: "Great",
   }
   return (
-    <div id="stars">
+    <div id="stars" style={{"width": "20px"}}>
       {[...Array(5)].map((star,i) => <span key={i} id={i} className="emptyStar" onClick={(e) => {
         e.stopPropagation()
         var id = e.target.id;
