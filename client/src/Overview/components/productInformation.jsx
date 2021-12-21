@@ -19,15 +19,13 @@ class ProductInfo extends React.Component {
 
 
   search = () => {
-    //console.log('I SEND THEE, ', userName , ' to the FUCKING MOON')
     $.ajax({
       type: "GET",
       url: '/overview',
       success: data => {
         //let products = JSON.parse(data)
-        console.log('Success!', data);
         this.setState({productList: data, default: data[0]});
-        console.log('STATE FUCKING HERE ', this.state);
+        //console.log('STATE HERE ', this.state);
       }
     })//console.log ('hardee har har, you thought you had me');
   }

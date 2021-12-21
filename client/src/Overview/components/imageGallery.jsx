@@ -19,15 +19,13 @@ class ImageGallery extends React.Component {
 
 
   search = () => {
-    //console.log('I SEND THEE, ', userName , ' to the FUCKING MOON')
     $.ajax({
       type: "GET",
       url: '/overview/styles',
       success: data => {
         //let products = JSON.parse(data)
-        console.log('Success!', data);
         this.setState({imageList: data.results[0].photos, currentImage: data.results[0].photos[0].thumbnail_url});
-        console.log('STATE FUCKING HERE ', this.state);
+        //console.log('STATE HERE ', this.state);
       }
     })//console.log ('hardee har har, you thought you had me');
   }

@@ -26,11 +26,10 @@ class StyleSelector extends React.Component {
       url: '/overview/styles',
       success: data => {
         //let products = JSON.parse(data)
-        console.log('Success!', data);
         this.setState({styleList: data.results, currentStyle: data.results[0]});
-        console.log('STATE FUCKING HERE ', this.state);
+        //console.log('STATE HERE ', this.state);
       }
-    })//console.log ('hardee har har, you thought you had me');
+    })
   }
 
   render () {

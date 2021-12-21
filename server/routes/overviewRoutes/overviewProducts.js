@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { data, styles, meta, product } = require('./dummyData');
+const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/';
 require('dotenv').config();
 const token = process.env.TOKEN;
 
@@ -14,14 +15,12 @@ router.get('/', (req, res) => {
 
 router.get('products/:product_id', (req, res) => {
    let dummyData = data;
-   console.log(dummyData);
    res.send(dummyData);
 
 })
 
 router.get('review/meta/:product_id', (req, res) => {
    let dummyMeta =  meta;
-   console.log(dummyMeta);
    res.send(dummyMeta);
 
 })
@@ -30,7 +29,6 @@ router.get('review/meta/:product_id', (req, res) => {
 
 router.get('/styles', (req, res) => {
    let dummyStyles = styles;
-   console.log(dummyStyles);
    res.send(dummyStyles);
 })
 
