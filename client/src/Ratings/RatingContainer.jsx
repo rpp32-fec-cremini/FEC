@@ -14,6 +14,7 @@ class RatingContainer extends React.Component {
       shownReviews: 2,
       voted: {},
       product: "",
+      meta: {}
     };
     this.productId = this.props.productId
   }
@@ -52,11 +53,24 @@ class RatingContainer extends React.Component {
         var product = JSON.parse(data).product
         var reviews = JSON.parse(data).results;
         var shownReviews = reviews.length < 2 ? reviews.length : 2
-        this.setState({
-          reviews,
-          shownReviews,
-          product
+        $.ajax({
+          method: "GET",
+          url: "/reviews/meta",
+          data: {
+            product_id: this.productId
+          },
+          contentType: "application/json",
+          success: data => {
+            var meta = JSON.parse(data);
+            this.setState({
+              reviews,
+              shownReviews,
+              product,
+              meta
+            })
+          }
         })
+
       }
     })
   }
@@ -79,6 +93,7 @@ class RatingContainer extends React.Component {
           addToVoted={this.addToVoted.bind(this)}
           voted={this.state.voted}
           product={this.state.product}
+          characteristics={this.state.meta.characteristics}
         />
       </div>
     )
