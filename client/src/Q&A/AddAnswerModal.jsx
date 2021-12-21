@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 const AddAnswerModal = ({answer}) => {
   const [loading, setloading] = useState(false);
   const [size, setsize] = useState(0);
+  const [vote, setvote] = useState(false);
 
 
   const showbutton = () => {
@@ -25,9 +26,13 @@ const AddAnswerModal = ({answer}) => {
     for (var item in answerarr) {
       answer.push([item, answerarr[item]]);
     }
-
+    // sort with helfulness
     answer.sort(function(a, b) {
-      return (a[1]['helpfulness']) - (b[1]['helpfulness'])
+      return (b[1]['helpfulness']) - (a[1]['helpfulness']);
+    });
+    // sort with sellers or other customers
+    answer.sort(function(a, b) {
+      return (b[1]['answerer_name'] === 'Seller') - (a[1]['answerer_name'] === 'Seller')
     });
 
     if (moreThanTwo === true) {
@@ -35,10 +40,29 @@ const AddAnswerModal = ({answer}) => {
     } else {
       var twoAnswer = answer
     }
-    console.log('this is the answer', twoAnswer);
+
+    const report = (e) => {
+      e.preventDefault()
+      e.target.innerText = 'Reported';
+    }
+
+    const helpful = (e) => {
+      // e.preventDefault()
+      setvote(true);
+
+      if (vote === false) {
+        var numberofHelpful = Number(e.target.innerText) + 1;
+        e.target.innerText = numberofHelpful;
+      }
+    }
     return twoAnswer.map(answer =>
       <div key={answer[1]['id']}> A: {answer[1]['body']}
-        <div>by {answer[1]['answerer_name']},{dateConvenver(answer[1]['date'])}  |  Helpful? YES({answer[1]['helpfulness']})</div>
+        <br />
+        {answer[1]['photos'].length !== 0 ?
+          answer[1]['photos'].map (pic =>
+            <img src = {pic} style={{width: '80px', height:'80px'}}></img>) : ''}
+        <div>by {answer[1]['answerer_name']},{dateConvenver(answer[1]['date'])}  |  Helpful? YES (<a style={{"textDecoration":"underline"}} onClick = {helpful}>{answer[1]['helpfulness']}</a>) | <a style={{"textDecoration":"underline"}} onClick = {report}>Report</a></div>
+        <br />
       </div>
     )
   }
