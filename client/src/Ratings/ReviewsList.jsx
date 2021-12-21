@@ -5,7 +5,7 @@ import ReviewTile from "./ReviewTile.jsx";
 import AddReview from "./AddReview.jsx";
 import SortReviews from "./SortReviews.jsx";
 
-var ReviewsList = ({reviews, shownReviews, moreReviews, addToVoted, voted}) => {
+var ReviewsList = ({reviews, shownReviews, moreReviews, addToVoted, voted, product}) => {
 
   var addBtn = reviews.length && shownReviews != reviews.length ? <button onClick={moreReviews}>More Reviews</button> : null;
   var sortDropdown = reviews.length ? <SortReviews numReviews={reviews.length}/> : null;
@@ -38,7 +38,7 @@ var ReviewsList = ({reviews, shownReviews, moreReviews, addToVoted, voted}) => {
     </div>
     <div className="buttons">
       { addBtn }
-      <AddReview/>
+      <AddReview product={product}/>
     </div>
   </div>
   )

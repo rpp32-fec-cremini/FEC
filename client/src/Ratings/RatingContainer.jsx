@@ -13,6 +13,7 @@ class RatingContainer extends React.Component {
       reviews: [],
       shownReviews: 2,
       voted: {},
+      product: "",
     };
     this.productId = this.props.productId
   }
@@ -48,11 +49,13 @@ class RatingContainer extends React.Component {
       },
       contentType: "application/json",
       success: data => {
+        var product = JSON.parse(data).product
         var reviews = JSON.parse(data).results;
         var shownReviews = reviews.length < 2 ? reviews.length : 2
         this.setState({
           reviews,
-          shownReviews
+          shownReviews,
+          product
         })
       }
     })
@@ -75,6 +78,7 @@ class RatingContainer extends React.Component {
           moreReviews={this.moreReviews.bind(this)}
           addToVoted={this.addToVoted.bind(this)}
           voted={this.state.voted}
+          product={this.state.product}
         />
       </div>
     )
