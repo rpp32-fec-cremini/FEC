@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 
+import NewReview from "./NewReview.jsx";
+
 var AddReviews = ({product}) => {
   var [modal, setModal] = useState(null)
   var [display, setDisplay] = useState("none")
@@ -22,7 +24,7 @@ var AddReviews = ({product}) => {
           }}>
             <h1>Write Your Review</h1>
             <h2>About product {product}</h2>
-
+            <NewReview/>
           </div>
         </div>
       </div>
