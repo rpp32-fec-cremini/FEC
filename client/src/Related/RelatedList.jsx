@@ -21,7 +21,7 @@ class RelatedList extends React.Component {
   }
 
   componentDidMount() {
-    this.getAllProducts();
+    // this.getAllProducts();
     // this.getCurrentProduct();
     this.getRelatedProducts();
   }
@@ -86,14 +86,14 @@ class RelatedList extends React.Component {
         <h3 data-testid='listHeader'>RELATED PRODUCTS</h3>
         <IoIosArrowBack className='related relatedScroll' />
         <div data-testid='container' className='related relatedList'>
-          {/*
+
           {this.state.products.map(product => (
             <div key={product.id} className='related relatedCard'>
               <h2>{product.name}</h2>
               <h3>{product.category}</h3>
             </div>
           ))
-          } */}
+          }
           {/* {
             <div key={this.state.currentProduct.id} className='related relatedCard'>
               <h2>{this.state.currentProduct.name}</h2>

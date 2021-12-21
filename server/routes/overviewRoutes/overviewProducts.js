@@ -20,7 +20,7 @@ router.get('products/:product_id', (req, res) => {
 })
 
 router.get('review/meta/:product_id', (req, res) => {
-   let dummyMeta =  meta;
+   let dummyMeta = meta;
    console.log(dummyMeta);
    res.send(dummyMeta);
 
