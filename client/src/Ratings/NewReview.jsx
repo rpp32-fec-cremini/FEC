@@ -30,7 +30,12 @@ var Stars = (props) => {
 
 var NewReview = (props) => {
   return <div>
-    <Stars/>
+    <label>Overall rating: <Stars/></label>
+    <label>Do you recommend this product?</label>
+    <input type="radio" id="recommended" name="recommended"/>
+    <label>Yes</label>
+    <input type="radio" id="notrecommended" name="recommended"/>
+    <label>No</label>
   </div>
 }
 
