@@ -1,9 +1,12 @@
 import React from "react";
 import { useState } from "react";
 
-var AddReviews = ({product}) => {
+import NewReview from "./NewReview.jsx";
+
+var AddReviews = ({product, characteristics}) => {
   var [modal, setModal] = useState(null)
   var [display, setDisplay] = useState("none")
+  var chars = !characteristics || Object.keys(characteristics)
   return (
     <button onClick={(e) => {
       setModal(e.target.src)
@@ -22,7 +25,7 @@ var AddReviews = ({product}) => {
           }}>
             <h1>Write Your Review</h1>
             <h2>About product {product}</h2>
-
+            <NewReview chars={chars}/>
           </div>
         </div>
       </div>

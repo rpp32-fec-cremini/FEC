@@ -19,7 +19,7 @@ class QA extends React.Component {
 
 
   search(value) {
-    console.log('seach value', value);
+    // console.log('seach value', value);
   };
 
 
@@ -34,7 +34,7 @@ class QA extends React.Component {
       self.setState ({
         question: question,
       }, () => {
-        console.log('the question', this.state.question);
+        // console.log('the question', this.state.question);
       })
     })
   }
