@@ -7,21 +7,21 @@ const token = process.env.TOKEN;
 
 router.get('/', (req, res) => {
    let dummyData = data;
-   console.log(dummyData);
+   // console.log(dummyData);
    res.send(dummyData);
 
 })
 
 router.get('products/:product_id', (req, res) => {
    let dummyData = data;
-   console.log(dummyData);
+   // console.log(dummyData);
    res.send(dummyData);
 
 })
 
 router.get('review/meta/:product_id', (req, res) => {
    let dummyMeta =  meta;
-   console.log(dummyMeta);
+   // console.log(dummyMeta);
    res.send(dummyMeta);
 
 })
@@ -30,7 +30,7 @@ router.get('review/meta/:product_id', (req, res) => {
 
 router.get('/styles', (req, res) => {
    let dummyStyles = styles;
-   console.log(dummyStyles);
+   // console.log(dummyStyles);
    res.send(dummyStyles);
 })
 

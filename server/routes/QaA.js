@@ -1,6 +1,8 @@
 const express = require('express');
 const { fakeQaA } = require('./QaAFakeData');
-const { getProducts } = require('../apiHelper/qandaAPI');
+// const { token } = require('../apiHelper/qandaAPI');
+require('dotenv').config();
+var token = process.env.TOKEN;
 // const { token } = require('../apiHelper/qandaAPI');
 const router = express.Router();
 // require('dotenv').config();
@@ -9,20 +11,11 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   // getProducts()
-  // // console.log('help', getProducts())
-  // console.log(config);
-  getProducts()
-  .then(question=> {
-    // console.log('data', question.data.results[0].answers);
-    res.send(JSON.stringify(question.data.results));
-  })
-  // .catch(err => {
-  //   console.log('err', err)
+  // .then(question=> {
+  //   // console.log('data', question.data.results[0].answers);
+  //   res.send(JSON.stringify(question.data.results));
   // })
-  // console.log(getProducts(token))
-  // let question = fakeQaA;
-  // console.log('this is question', question.results);
-  // res.send(JSON.stringify(question.results));
+  console.log('token', token)
 })
 
 router.get('/:question_id/answers', (req, res) => {
