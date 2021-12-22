@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const { fakeProducts, fakeProductStyles, fakeRelated } = require('./RelatedFakeData');
 const router = express.Router();
-require('dotenv').config();
+// require('dotenv').config();
 const authorization = process.env.TOKEN;
 
 
