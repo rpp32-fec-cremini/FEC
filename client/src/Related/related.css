@@ -1,0 +1,34 @@
+.related {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.relatedList {
+  display: inline-block;
+  width: 80%;
+  padding: 10px;
+  overflow: scroll;
+  white-space: nowrap;
+}
+
+.relatedCard {
+  display: inline-block;
+  padding: 1rem;
+  border: #ccc 1px dotted;
+  margin: 0.7rem 0;
+}
+
+.relatedBody {
+  margin-left: 10%;
+}
+
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+}
+
+.relatedScroll {
+  display: inline;
+}
