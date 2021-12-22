@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { data, styles, meta, product } = require('./dummyData');
-require('dotenv').config();
+// require('dotenv').config();
 const token = process.env.TOKEN;
 
 

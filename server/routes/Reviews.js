@@ -1,9 +1,9 @@
 var express = require("express");
 var router = express.Router();
-require('dotenv').config();
 var authorization = process.env.TOKEN;
 var url = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/";
 var axios = require("axios");
+console.log(authorization)
 
 router.get("/", (req, res) => {
   var exampleData = require("./ReviewsfakeData").fakeReviews;

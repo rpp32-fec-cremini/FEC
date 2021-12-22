@@ -1,6 +1,6 @@
 const axios = require('axios');
 // const config = require('../../.env/config');
-require('dotenv').config();
+// require('dotenv').config();
 var token = process.env.TOKEN;
 
 let getProducts = () => {
