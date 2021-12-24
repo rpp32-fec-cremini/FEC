@@ -8,7 +8,7 @@ module.exports.getProducts = () => {
   let options = {
     url: API_URL + 'products',
     headers: {
-      'Authorization': token
+      Authorization: token
     }
   };
 
@@ -19,28 +19,35 @@ module.exports.getProducts = () => {
   })
 }
 
-module.exports.getSingleProduct = () => {
+module.exports.getSingleProduct = (id) => {
   let options = {
-    url: API_URL + 'product/:product_id',
+    url: API_URL + `product/:product_id`,
     headers: {
       'Authorization': token
+    },
+    params: {
+      product_id: id
     }
   };
 
   return axios({
     method: 'GET',
     url: options.url,
-    headers: options.headers
+    headers: options.headers,
+    params: options.params
   })
 }
 
-modules.exports.getStyle = () => {
+module.exports.getStyle = (id) => {
+  console.log('THIS IS NOT THE ID YOU\'re looking for', id)
   let options = {
-    url: API_URL + 'product/:product_id/styles',
+    url: API_URL + `products/${id}/styles/`,
     headers: {
       'Authorization' : token
-    }
-  };
+    }/* params: {
+    product_id: id
+  } */
+}
 
   return axios ({
     method: 'GET',
@@ -50,11 +57,14 @@ modules.exports.getStyle = () => {
 
 }
 
-modules.exports.getMeta = () => {
+module.exports.getMeta = (id) => {
   let options = {
-    url: API_URL + 'review/meta',
+    url: API_URL + 'review/meta/:product_id',
     headers: {
       'Authorization': token
+    },
+    params: {
+      product_id: id
     }
   }
 

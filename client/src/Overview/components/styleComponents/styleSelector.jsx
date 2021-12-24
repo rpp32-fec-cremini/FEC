@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Style from './style.jsx';
 import $ from 'jquery';
 
+
 class StyleSelector extends React.Component {
   constructor(props) {
     super(props);
@@ -12,22 +13,24 @@ class StyleSelector extends React.Component {
       currentStyle: ''
     }
     this.search = this.search.bind(this);
+
   }
 
   componentDidMount() {
-    this.search();
+    console.log('When it mounted ', this.props.product_id);
+    this.search(this.props.product_id);
   }
 
 
-  search = () => {
-    //console.log('I SEND THEE, ', userName , ' to the FUCKING MOON')
+  search = (id) => {
     $.ajax({
       type: "GET",
-      url: '/overview/styles',
-      success: data => {
+      url: `products/${id}/styles`,
+      success: info => {
         //let products = JSON.parse(data)
-        this.setState({styleList: data.results, currentStyle: data.results[0]});
-        //console.log('STATE HERE ', this.state);
+        console.log('Data is here! ', info);
+        this.setState({styleList: info.results, currentStyle: info.results[0]});
+        console.log('STATE HERE ', this.state);
       }
     })
   }
@@ -41,7 +44,7 @@ class StyleSelector extends React.Component {
         <br></br>
       <div className = 'related relatedCard grid-5' style={{width: '100%'}}>
         {this.state.styleList.map((style) =>
-      <Style name={style.name} pic = {style.photos[0].thumbnail_url} />
+      <Style name={style.name} pic = {style.photos[0].thumbnail_url} key ={style.style_id} />
     )}
       </div>
       </div>
