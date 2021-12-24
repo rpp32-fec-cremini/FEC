@@ -1,34 +1,27 @@
 const express = require('express');
 const { fakeQaA } = require('./QaAFakeData');
-// const { token } = require('../apiHelper/qandaAPI');
-require('dotenv').config();
-var token = process.env.TOKEN;
-// const { token } = require('../apiHelper/qandaAPI');
+const getProducts = require('../apiHelper/qandaAPI');
 const router = express.Router();
-// require('dotenv').config();
-// const token = process.env.TOKEN;
-
 
 router.get('/', (req, res) => {
-  // getProducts()
-  // .then(question=> {
-  //   // console.log('data', question.data.results[0].answers);
-  //   res.send(JSON.stringify(question.data.results));
-  // })
-  console.log('token', token)
+  var endpoint = `?product_id=59553`;
+  getProducts(endpoint)
+  .then(question=> {
+    console.log('data', question.data.results);
+    res.send(JSON.stringify(question.data.results));
+  })
 })
 
 router.get('/:question_id/answers', (req, res) => {
-  getProducts()
+
+  var id = req.params.question_id;
+  console.log('this is id', req.params);
+    var endpoint = `/${id}/answers`;
+  getProducts(endpoint)
   .then(question=> {
+    console.log('this is answer', question.data.results)
     res.send(JSON.stringify(question.data.results));
   })
-  // getProductsQuestions()
-  // .then(question=> {
-  //   // res.send(JSON.stringify(question.results));
-  //   let answer = fakeQaA.answers;
-  //   res.send(JSON.stringify(answer));
-  // })
 })
 
 module.exports = router;

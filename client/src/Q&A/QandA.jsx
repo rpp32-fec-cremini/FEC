@@ -6,6 +6,7 @@ import AddAnswerModal from './AddAnswerModal.jsx';
 import AddQuestions from './AddQuestions.jsx';
 import IndividualQuestion from './IndividualQuestion.jsx';
 import SearchQuestions from './SearchQuestions.jsx';
+// import AddAnswerModal from './AddAnswerModal.jsx';
 import "./QaA.css";
 
 class QA extends React.Component {
@@ -13,7 +14,8 @@ class QA extends React.Component {
     super(props);
     this.state = {
       searchBar: '',
-      question: []
+      question: [],
+      answers:[]
     };
   }
 
@@ -39,7 +41,31 @@ class QA extends React.Component {
     })
   }
 
-  componentDidMount() {
+  individualAnswer(result) {
+    // console.log('answerss', result)
+    // var self = this;
+    // axios({
+    //   method: 'GET',
+    //   url: `/qa/questions/${result}/answers`
+    // })
+    // .then((results) => {
+    //   let answer = results.data;
+    //   // console.log('the answer', answer);
+    //   // // console.log('this is result', answer)
+    //   if (this.state.answers !== answer) {
+    //     self.setState ({
+    //       answers: answer
+    //     }, () => {
+    //       console.log('sssssssssssssssthe answer', this.state.answers);
+    //     })
+    //   }
+    // })
+            this.setState ({
+          answers: ['answer']
+        });
+  }
+
+  componentWillMount() {
     this.individualQuestion();
   }
 
@@ -48,7 +74,9 @@ class QA extends React.Component {
       <div className='QaABox'>
         <h3>QUESTION & ANSWERS</h3>
         <SearchQuestions searchBar = {this.state.searchBar} search = {(e) => this.search(e)}/>
-        <IndividualQuestion question = {this.state.question} />
+        {/* <IndividualQuestion question = {this.state.question} /> */}
+                <IndividualQuestion question = {this.state.question} answer = {(e) => this.individualAnswer(e)}/>
+        {/* <AddAnswerModal answers = {this.state.answer}/> */}
         <p>---------------------------------------------------------------------------------</p>
         This is a Question component
       </div>

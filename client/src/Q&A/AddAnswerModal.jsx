@@ -5,7 +5,8 @@ const AddAnswerModal = ({answer}) => {
   const [size, setsize] = useState(0);
   const [vote, setvote] = useState(false);
 
-
+  // console.log('this is answers', answers);
+  console.log('this is anwer', answer);
   const showbutton = () => {
     if (Object.keys(answer).length > 2) {
       return <button onClick={() => getMoreAnswer(answer)}>See more answers</button>
