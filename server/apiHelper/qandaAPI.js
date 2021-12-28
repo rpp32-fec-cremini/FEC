@@ -4,18 +4,19 @@ let getProducts = (endPoint) => {
     let options = {
         url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions${endPoint}`,
         // url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/553673/answers',
+        // url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products`,
         headers: {
             // 'Authorization': process.env.TOKEN
-            'Authorization': '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'
+            'Authorization': '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'
         }
     }
     return axios(options);
 };
 
-// getProducts()
+// getProducts('?product_id=59553')
 // .then(question=> {
 //     console.log('question', question.data)
-//   // console.log('data', question.data.results[0].answers);
+//   console.log('data', question.data.results[0].answers);
 // //   res.send(JSON.stringify(question.data.results));
 // })
 

@@ -4,7 +4,7 @@ const getProducts = require('../apiHelper/qandaAPI');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  var endpoint = `?product_id=59553`;
+  var endpoint = `?product_id=59555`;
   getProducts(endpoint)
   .then(question=> {
     console.log('data', question.data.results);
@@ -17,6 +17,7 @@ router.get('/:question_id/answers', (req, res) => {
   var id = req.params.question_id;
   console.log('this is id', req.params);
     var endpoint = `/${id}/answers`;
+    // var endpoint = '553673/answers';
   getProducts(endpoint)
   .then(question=> {
     console.log('this is answer', question.data.results)

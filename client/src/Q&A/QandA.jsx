@@ -15,8 +15,10 @@ class QA extends React.Component {
     this.state = {
       searchBar: '',
       question: [],
-      answers:[]
+      answers:[],
+      questionHelpfulList:[]
     };
+    this.individualAnswer = this.individualAnswer.bind(this);
   }
 
 
@@ -24,6 +26,27 @@ class QA extends React.Component {
     // console.log('seach value', value);
   };
 
+
+  individualAnswer(result) {
+    result = result[0]['question_id']
+    var self = this;
+    axios({
+      method: 'GET',
+      url: `/qa/questions/${result}/answers`
+    })
+    .then((results) => {
+      let answer = results.data;
+      // console.log('the answer', answer);
+      // // console.log('this is result', answer)
+      if (this.state.answers !== answer) {
+        self.setState ({
+          answers: answer
+        }, () => {
+          console.log('sssssssssssssssthe answer', this.state.answers);
+        })
+      }
+    })
+  }
 
   individualQuestion() {
     var self = this;
@@ -33,6 +56,8 @@ class QA extends React.Component {
     })
     .then((results) => {
       let question = results.data;
+      console.log('answersss', question);
+      self.individualAnswer(question);
       self.setState ({
         question: question,
       }, () => {
@@ -41,28 +66,13 @@ class QA extends React.Component {
     })
   }
 
-  individualAnswer(result) {
-    // console.log('answerss', result)
-    // var self = this;
-    // axios({
-    //   method: 'GET',
-    //   url: `/qa/questions/${result}/answers`
-    // })
-    // .then((results) => {
-    //   let answer = results.data;
-    //   // console.log('the answer', answer);
-    //   // // console.log('this is result', answer)
-    //   if (this.state.answers !== answer) {
-    //     self.setState ({
-    //       answers: answer
-    //     }, () => {
-    //       console.log('sssssssssssssssthe answer', this.state.answers);
-    //     })
-    //   }
-    // })
-            this.setState ({
-          answers: ['answer']
-        });
+  questionHelpful(questionId) {
+    var temp = this.state.questionHelpfulList;
+    temp.push(questionId);
+    this.setState ({
+      questionHelpfulList: temp
+    })
+    // console.log('questionIdsssss', questionId);
   }
 
   componentWillMount() {
@@ -75,7 +85,7 @@ class QA extends React.Component {
         <h3>QUESTION & ANSWERS</h3>
         <SearchQuestions searchBar = {this.state.searchBar} search = {(e) => this.search(e)}/>
         {/* <IndividualQuestion question = {this.state.question} /> */}
-                <IndividualQuestion question = {this.state.question} answer = {(e) => this.individualAnswer(e)}/>
+                <IndividualQuestion question = {this.state.question} questionHelpful = {(e) => this.questionHelpful(e)} questionHelpfulList = {this.state.questionHelpfulList}/>
         {/* <AddAnswerModal answers = {this.state.answer}/> */}
         <p>---------------------------------------------------------------------------------</p>
         This is a Question component
