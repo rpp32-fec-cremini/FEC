@@ -10,6 +10,7 @@ class StyleSelector extends React.Component {
 
     this.state = {
       styleList: [],
+      currentProduct: '',
       currentStyle: ''
     }
     this.search = this.search.bind(this);
@@ -18,18 +19,17 @@ class StyleSelector extends React.Component {
 
   componentDidMount() {
     console.log('When it mounted ', this.props.product_id);
-    this.search(this.props.product_id);
   }
 
 
-  search = (id) => {
+  search = () => {
     $.ajax({
       type: "GET",
-      url: `products/${id}/styles`,
+      url: `products/${this.props.product_id}/styles`,
       success: info => {
-        //let products = JSON.parse(data)
-        console.log('Data is here! ', info);
-        this.setState({styleList: info.results, currentStyle: info.results[0]});
+        let products = JSON.parse(data)
+        console.log('Data is here! ', products);
+        this.setState({styleList: products.results, currentStyle: products.results[0]});
         console.log('STATE HERE ', this.state);
       }
     })
