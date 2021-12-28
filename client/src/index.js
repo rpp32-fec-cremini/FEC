@@ -8,10 +8,10 @@ import QandA from '../src/Q&A/QandA.jsx';
 
 var App = (props) => (
   <div id="app">
-    {/* <Overview className = 'relatedCard' />
-    <RelatedList /> */}
+    <Overview className = 'relatedCard' />
+    <RelatedList />
     <RatingContainer productId={2}/>
-    {/* <QandA /> */}
+    <QandA />
   </div>
 )
 

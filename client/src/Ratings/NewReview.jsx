@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from "react";
-import $ from "jquery";
+import $, { error } from "jquery";
 
 var rating;
 var Stars = (props) => {
@@ -22,7 +22,7 @@ var Stars = (props) => {
           $(`#${i}`).removeClass("filledStar").addClass("emptyStar")
         };
         $(".level").remove();
-        $("#stars").append(`<span class="level">${ratings[id]}</span>`);
+        $("#stars").append(`<div class="level">${ratings[id]}</div>`);
         rating = parseInt(id) + 1;
       }}>&#9733;</span>)}
     </div>
@@ -47,8 +47,8 @@ var Character = ({choice, theme}) => {
   }
   return (
     <div>
-      <div>{meaning}</div>
-      <div>
+      <div style={{"height":"5px", "fontSize":"10px", "fontStyle":"italic"}}>{meaning}</div>
+      <div style={{"margin":"7px"}}>
         <label>{choice}</label>
         <input type="radio" id={choice + ',0'} name={theme} onClick={(e) => characterClick(e)}/>
         <input type="radio" id={choice + ',1'} name={theme} onClick={(e) => characterClick(e)}/>
@@ -79,11 +79,24 @@ var UploadImage = (props) => {
   )
 }
 
+var ReviewBody = (props) => {
+  var [count, setCount] = useState(0)
+  return (
+  <div>
+    <label>Review Body:</label><br></br>
+    <textarea id='writeBody' minLength="50" maxLength="1000" onChange={(e) => {
+      setCount(e.target.value.length)
+    }}/>
+    <div className='warning' id="counter">{count >= 50 ? "Minimum reached" : `Minimum required characters left: ${50 - count}`}</div>
+  </div>)
+}
+
 var NewReview = ({chars, product, product_id}) => {
+  var submitted = false;
   if (!Array.isArray(chars)) chars = [];
   return <div className='newReview'>
-    <h1>Write Your Review</h1>
-    <h2>About product {product}</h2>
+    <div className='title'>Write Your Review</div>
+    <div className='subtitle'>About product {product}</div>
 
     <div className='starVote'>
       <label>Overall rating:</label>
@@ -91,7 +104,7 @@ var NewReview = ({chars, product, product_id}) => {
     </div>
 
     <div className='recommend'>
-      <label>Do you recommend this product?</label>
+      <label>Do you recommend this product? </label>
       <label>Yes</label>
       <input type="radio" id="true" name="recommended"/>
       <label>No</label>
@@ -99,53 +112,80 @@ var NewReview = ({chars, product, product_id}) => {
     </div>
 
     <div className='characteristics'>
-      <label>Characteristics</label>
+      <label>Characteristics</label><br></br>
       {chars.map(char => <Character choice={char[0]} theme={char[1]} key={char[1]}/>)}
     </div>
 
     <div>
-      <label>Review summary: <textarea id='summary' maxLength="60"/></label>
+      <label>Review summary:</label><br></br>
+      <textarea id='summary' maxLength="60"/>
     </div>
 
     <div>
-      <label>Review Body: <textarea id='writeBody' minLength="50"/></label>
+      <ReviewBody/>
     </div>
 
     <div className='imageUpload'>
-      <label id="imageStatus">Add Images</label>
-      <UploadImage/>
+      <label id="imageStatus">Add Images: <UploadImage/></label>
     </div>
 
     <div>
-      <label>What is your nickname: <textarea maxLength="60" id='nickname' placeholder="Example: jackson11!"/></label>
-      <div>For privacy reasons, do not use your full name or email address</div>
+      <label>What is your nickname:</label><br></br>
+      <input type="text" maxLength="60" id='nickname' placeholder="Example: jackson11!"/>
+      <div className='warning'>For privacy reasons, do not use your full name or email address</div>
     </div>
 
     <div>
-      <label>Your email: <textarea maxLength="60" id='email' placeholder="Example: jackson11@email.com"/></label>
-      <div>For authentication reasons, you will not be emailed</div>
+    <label>Your email: </label><br></br>
+      <input type="text" maxLength="60" id='email' placeholder="Example: jackson11@email.com"/>
+      <div className='warning'>For authentication reasons, you will not be emailed</div>
     </div>
 
-    <div onClick={() => {
-      var recCheck = $('input[name=recommended]:checked')[0];
-      var recommend = recCheck ? recCheck.id : undefined;
-      var summary = $("#summary").val();
-      var body = $("#writeBody").val();
-      var email = $("#email").val();
-      var name = $("#nickname").val();
-      var data = {
-        product_id,
-        rating,
-        summary,
-        body,
-        recommend,
-        name,
-        email,
-        photos,
-        characteristics
-      };
-      console.log(data)
-    }}>Submit</div>
+    <div id='submission'>
+      <div id='btnBorder'>
+        <div id="submitBtn" onClick={() => {
+          var recCheck = $('input[name=recommended]:checked')[0];
+          var recommend = recCheck ? recCheck.id : undefined;
+          var summary = $("#summary").val();
+          var body = $("#writeBody").val();
+          var email = $("#email").val();
+          var name = $("#nickname").val();
+
+          if (rating === undefined || recommend === undefined || chars.length !== Object.keys(characteristics).length ||
+          body.length < 50 || !name.length || !email.length) {
+            if (!submitted) {
+              var errorMessage =
+                $(`<div id="error">
+                  <h5>You must enter the following:</h5>
+                  <div>This error will occur if:</div>
+                  <ul>
+                    <li>Any mandatory fields are blank</li>
+                    <li>The review body is less than 50 characters</li>
+                    <li>The email address provided is not in correct email format</li>
+                    <li>The images selected are invalid or unable to be uploaded</li>
+                  </ul>
+                </div>`)
+              errorMessage.addClass("error");
+              $("#submission").prepend(errorMessage)
+              submitted = true;
+            }
+          } else {
+            var data = {
+              product_id,
+              rating,
+              summary,
+              body,
+              recommend,
+              name,
+              email,
+              photos,
+              characteristics
+            };
+            console.log('success')
+          }
+        }}>Submit</div>
+      </div>
+    </div>
   </div>
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import NewReview from "./NewReview.jsx";
+import $ from "jquery";
 
 var AddReviews = ({product, characteristics, product_id}) => {
   var [display, setDisplay] = useState("none")
@@ -13,10 +14,11 @@ var AddReviews = ({product, characteristics, product_id}) => {
       setDisplay("block")
     }}>Add A Review
       <div className="modal" style={{display}}>
-        <div className="modal-content">
+        <div className="writing-modal">
           <span className="close" onClick={(e) => {
             e.stopPropagation()
             setDisplay("none")
+            $("#error").remove()
           }}>&times;</span>
           <div>
             <NewReview chars={chars} product={product} product_id={product_id}/>
