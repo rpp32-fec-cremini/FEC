@@ -46,10 +46,10 @@ router.get('review/meta/:product_id', (req, res) => {
 
 //:product_id  add this to style route when implementing API! >_>
 
-router.get('products/styles', (req, res) => {
+router.get('products/:product_id/styles', (req, res) => {
    console.log('Double bruh ', req)
    console.log("Bruh ", id);
-   var id = req.query.product_id;
+   let id = parseInt(req.params.product_id);
    getStyle(id)
    .then((data) => {
       /* console.log('What is the data? ', data.data) */

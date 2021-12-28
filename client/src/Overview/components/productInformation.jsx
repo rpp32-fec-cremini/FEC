@@ -48,8 +48,6 @@ class ProductInfo extends React.Component {
           <h3>{price}</h3>
           <h4>{desc}</h4>
       </div>
-      <StyleSelector product_id = {59553} />
-      {/* <ImageGallery className=' related relatedCard ' product_id = '59553' /> */}
       </div>
     )
   }
