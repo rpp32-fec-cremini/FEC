@@ -24,7 +24,7 @@ class ProductInfo extends React.Component {
   search = () => {
     $.ajax({
       type: "GET",
-      url: '/overview',
+      url: '/',
       success: data => {
         //let products = JSON.parse(data)
         this.setState({productList: data, current: data[0]});
@@ -48,7 +48,7 @@ class ProductInfo extends React.Component {
           <h3>{price}</h3>
           <h4>{desc}</h4>
       </div>
-      <StyleSelector product_id = {59553} />
+      {/* <StyleSelector product_id = {59553} /> */}
       {/* <ImageGallery className=' related relatedCard ' product_id = '59553' /> */}
       </div>
     )

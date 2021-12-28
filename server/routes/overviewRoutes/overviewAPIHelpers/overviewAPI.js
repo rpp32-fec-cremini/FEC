@@ -5,6 +5,7 @@ const token = process.env.TOKEN;
 
 
 module.exports.getProducts = () => {
+  console.log('TOKEN HERE ', token);
   let options = {
     url: API_URL + 'products',
     headers: {
@@ -17,7 +18,9 @@ module.exports.getProducts = () => {
     url: options.url,
     headers: options.headers
   })
+  .catch(err=> {console.log(err)});
 }
+
 
 module.exports.getSingleProduct = (id) => {
   let options = {
@@ -36,6 +39,7 @@ module.exports.getSingleProduct = (id) => {
     headers: options.headers,
     params: options.params
   })
+  .catch(err=> {console.log(err)});
 }
 
 module.exports.getStyle = (id) => {
@@ -54,7 +58,7 @@ module.exports.getStyle = (id) => {
     url: options.url,
     headers: options.headers
   })
-
+  .catch(err=> {console.log(err)});
 }
 
 module.exports.getMeta = (id) => {
@@ -73,4 +77,6 @@ module.exports.getMeta = (id) => {
     url: options.url,
     headers: options.headers
   })
+  .catch(err=> {console.log(err)});
 }
+

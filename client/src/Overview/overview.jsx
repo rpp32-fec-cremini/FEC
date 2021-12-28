@@ -26,7 +26,7 @@ class Overview extends React.Component {
         <div className='related relatedContainer grid-3'>
         {/* <ImageGallery className=' related relatedCard '  /> */}
         <ProductInfo className=' related relatedCard'  />
-        <AddToCart />
+        {/* <AddToCart /> */}
         <br></br>
       </div>
       {/* <StyleSelector className=' related relatedCard' /> */}

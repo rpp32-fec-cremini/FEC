@@ -13,11 +13,12 @@ router.get('/', (req, res) => {
    //let dummyData = data;
    getProducts()
    .then((data) => {
-      //console.log(data)
+      console.log(data)
       res.send(data.data);
    })
    .catch(error => {
       console.log('REE ERROR ' , error);
+      res.end()
     })
    //console.log(dummyData)
 
@@ -31,9 +32,10 @@ router.get('products/:product_id', (req, res) => {
    })
    .catch(error => {
       console.log('REEE ERROR HERE ', error);
+      res.end();
    })
    //let dummyData = data;
-   res.send(dummyData);
+   //res.send(dummyData);
 
 })
 

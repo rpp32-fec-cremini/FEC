@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
       res.send(JSON.stringify(products.data));
     })
     .catch(err => {
-      console.log(err);
+      //console.log(err);
       res.end()
     })
 })
@@ -31,7 +31,7 @@ router.get('/:product_id', (req, res) => {
       res.send(JSON.stringify(product.data));
     })
     .catch(err => {
-      console.log(err);
+      //console.log(err);
       res.end()
     })
 })
@@ -45,7 +45,7 @@ router.get('/:product_id/related', (req, res) => {
       res.send(JSON.stringify(products.data));
     })
     .catch(err => {
-      console.log(err);
+      //console.log(err);
       res.end()
     })
 })
