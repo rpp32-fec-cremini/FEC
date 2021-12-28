@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from "react";
 import $ from "jquery";
 
+var rating;
 var Stars = (props) => {
   var ratings = {
     0: "Poor",
@@ -16,17 +17,19 @@ var Stars = (props) => {
         var id = e.target.id;
         for (var i = 0; i <= parseInt(id); i++) {
           $(`#${i}`).removeClass("emptyStar").addClass("filledStar")
-        }
+        };
         for (var i = parseInt(id) + 1; i <= 5; i++) {
           $(`#${i}`).removeClass("filledStar").addClass("emptyStar")
-        }
-        $(".level").remove()
-        $("#stars").append(`<span class="level">${ratings[id]}</span>`)
+        };
+        $(".level").remove();
+        $("#stars").append(`<span class="level">${ratings[id]}</span>`);
+        rating = parseInt(id) + 1;
       }}>&#9733;</span>)}
     </div>
   )
 }
 
+var characteristics = {}
 var Character = ({choice, theme}) => {
   var charMap = {
     Size: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'],
@@ -40,6 +43,7 @@ var Character = ({choice, theme}) => {
   var characterClick = function(e) {
     var key = e.target.id.split(',');
     setMeaning(charMap[key[0]][key[1]])
+    characteristics[theme] = parseInt(key[1])+1
   }
   return (
     <div>
@@ -56,16 +60,16 @@ var Character = ({choice, theme}) => {
   )
 }
 
-var uploaded = [];
+var photos = [];
 var UploadImage = (props) => {
   return (
     <div>
       <input id="addImages" type='file' accept='image/png,image/jpg' onChange={() => {
         var imagePath = URL.createObjectURL($("#addImages")[0].files[0]);
-        uploaded.push(imagePath)
+        photos.push(imagePath)
         var img = $(`<img src=${imagePath} width="50px" height="50px"></img>`)
         img.appendTo($('#display_images'))
-        if (uploaded.length === 5) {
+        if (photos.length === 5) {
           $("#addImages").remove()
           $("#imageStatus").html("Max Images Uploaded")
         }
@@ -75,7 +79,7 @@ var UploadImage = (props) => {
   )
 }
 
-var NewReview = ({chars, product}) => {
+var NewReview = ({chars, product, product_id}) => {
   if (!Array.isArray(chars)) chars = [];
   return <div className='newReview'>
     <h1>Write Your Review</h1>
@@ -89,28 +93,59 @@ var NewReview = ({chars, product}) => {
     <div className='recommend'>
       <label>Do you recommend this product?</label>
       <label>Yes</label>
-      <input type="radio" name="recommended"/>
+      <input type="radio" id="true" name="recommended"/>
       <label>No</label>
-      <input type="radio" name="recommended"/>
+      <input type="radio" id="false" name="recommended"/>
     </div>
 
     <div className='characteristics'>
       <label>Characteristics</label>
-      {chars.map(char => <Character choice={char} theme={char} key={char}/>)}
+      {chars.map(char => <Character choice={char[0]} theme={char[1]} key={char[1]}/>)}
     </div>
 
-    <div className='summary'>
-      <label>Review summary: <textarea maxLength="60"/></label>
+    <div>
+      <label>Review summary: <textarea id='summary' maxLength="60"/></label>
     </div>
 
-    <div className='writeBody'>
-      <label>Review Body: <textarea minLength="50"/></label>
+    <div>
+      <label>Review Body: <textarea id='writeBody' minLength="50"/></label>
     </div>
 
     <div className='imageUpload'>
       <label id="imageStatus">Add Images</label>
       <UploadImage/>
     </div>
+
+    <div>
+      <label>What is your nickname: <textarea maxLength="60" id='nickname' placeholder="Example: jackson11!"/></label>
+      <div>For privacy reasons, do not use your full name or email address</div>
+    </div>
+
+    <div>
+      <label>Your email: <textarea maxLength="60" id='email' placeholder="Example: jackson11@email.com"/></label>
+      <div>For authentication reasons, you will not be emailed</div>
+    </div>
+
+    <div onClick={() => {
+      var recCheck = $('input[name=recommended]:checked')[0];
+      var recommend = recCheck ? recCheck.id : undefined;
+      var summary = $("#summary").val();
+      var body = $("#writeBody").val();
+      var email = $("#email").val();
+      var name = $("#nickname").val();
+      var data = {
+        product_id,
+        rating,
+        summary,
+        body,
+        recommend,
+        name,
+        email,
+        photos,
+        characteristics
+      };
+      console.log(data)
+    }}>Submit</div>
   </div>
 }
 

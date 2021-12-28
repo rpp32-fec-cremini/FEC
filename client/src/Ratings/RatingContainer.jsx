@@ -94,6 +94,7 @@ class RatingContainer extends React.Component {
           voted={this.state.voted}
           product={this.state.product}
           characteristics={this.state.meta.characteristics}
+          product_id={this.productId}
         />
       </div>
     )
