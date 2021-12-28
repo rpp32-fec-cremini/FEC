@@ -56,6 +56,25 @@ var Character = ({choice, theme}) => {
   )
 }
 
+var uploaded = [];
+var UploadImage = (props) => {
+  return (
+    <div>
+      <input id="addImages" type='file' accept='image/png,image/jpg' onChange={() => {
+        var imagePath = URL.createObjectURL($("#addImages")[0].files[0]);
+        uploaded.push(imagePath)
+        var img = $(`<img src=${imagePath} width="50px" height="50px"></img>`)
+        img.appendTo($('#display_images'))
+        if (uploaded.length === 5) {
+          $("#addImages").remove()
+          $("#imageStatus").html("Max Images Uploaded")
+        }
+      }}/>
+      <div id="display_images"></div>
+    </div>
+  )
+}
+
 var NewReview = ({chars, product}) => {
   if (!Array.isArray(chars)) chars = [];
   return <div className='newReview'>
@@ -86,6 +105,11 @@ var NewReview = ({chars, product}) => {
 
     <div className='writeBody'>
       <label>Review Body: <textarea minLength="50"/></label>
+    </div>
+
+    <div className='imageUpload'>
+      <label id="imageStatus">Add Images</label>
+      <UploadImage/>
     </div>
   </div>
 }
