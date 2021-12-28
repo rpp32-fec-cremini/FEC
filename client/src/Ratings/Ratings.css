@@ -107,3 +107,7 @@
 
 
 /* Write Review Module */
+.newReview {
+  display: grid;
+  row-gap: 5%;
+}

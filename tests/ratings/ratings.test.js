@@ -7,11 +7,17 @@ import '@testing-library/jest-dom'
 import RatingContainer from '../../client/src/Ratings/RatingContainer';
 
 var mockReviews = require("../../server/routes/ReviewsfakeData").fakeReviews;
+var mockMeta = require("../../server/routes/ReviewsfakeData").fakeMetaData;
 
 var server = setupServer(
   rest.get("/reviews", (req, res, ctx) => {
     return res(
       ctx.json(JSON.stringify(mockReviews))
+    )
+  }),
+  rest.get("/reviews/meta", (req, res, ctx) => {
+    return res(
+      ctx.json(JSON.stringify(mockMeta))
     )
   })
 )
