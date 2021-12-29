@@ -19,17 +19,17 @@ class StyleSelector extends React.Component {
 
   componentDidMount() {
     console.log('When it mounted ', this.props.product_id);
+    this.search();
   }
 
 
   search = () => {
     $.ajax({
       type: "GET",
-      url: `overview/products/${this.props.product_id}/styles`,
-      success: info => {
-        let products = JSON.parse(data)
+      url: `overview/products/styles`,
+      success: products => {
         console.log('STYLE Data is here! ', products);
-        this.setState({styleList: products.results, currentStyle: products.results});
+        this.setState({styleList: products.results, currentStyle: products.results[0]});
         console.log('STYLE STATE HERE ', this.state);
       }
     })

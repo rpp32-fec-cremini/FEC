@@ -45,16 +45,17 @@ router.get('review/meta/:product_id', (req, res) => {
 
 //:product_id  add this to style route when implementing API! >_>
 
-router.get('overview/products/:product_id/styles', (req, res) => {
-   console.log('Double bruh ', req)
+router.get('/products/styles', (req, res) => {
+   //console.log('Double bruh ', req)
+   var id = 59553;
    console.log("Bruh ", id);
-   var id = req.params.product_id;
    getStyle(id)
    .then((data) => {
-      res.send(data);
+      //res.send(data);
+      //console.log(data.data);
    })
    .catch(error => {
-      console.log('REEEE ERROR ', error)
+      console.log('REEEE STYLISH ERROR ', error)
    })
 })
 
