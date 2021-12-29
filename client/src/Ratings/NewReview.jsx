@@ -91,7 +91,7 @@ var ReviewBody = (props) => {
   </div>)
 }
 
-var NewReview = ({chars, product, product_id}) => {
+var NewReview = ({chars, product, product_id, submitReview, refreshModal}) => {
   var submitted = false;
   if (!Array.isArray(chars)) chars = [];
   return <div className='newReview'>
@@ -126,7 +126,8 @@ var NewReview = ({chars, product, product_id}) => {
     </div>
 
     <div className='imageUpload'>
-      <label id="imageStatus">Add Images: <UploadImage/></label>
+      <label id="imageStatus">Add Images:</label>
+      <UploadImage/>
     </div>
 
     <div>
@@ -143,9 +144,9 @@ var NewReview = ({chars, product, product_id}) => {
 
     <div id='submission'>
       <div id='btnBorder'>
-        <div id="submitBtn" onClick={() => {
+        <div id="submitBtn" onClick={(e) => {
           var recCheck = $('input[name=recommended]:checked')[0];
-          var recommend = recCheck ? recCheck.id : undefined;
+          var recommend = recCheck ? JSON.parse(recCheck.id) : undefined;
           var summary = $("#summary").val();
           var body = $("#writeBody").val();
           var email = $("#email").val();
@@ -181,7 +182,7 @@ var NewReview = ({chars, product, product_id}) => {
               photos,
               characteristics
             };
-            console.log('success')
+            submitReview(JSON.stringify(data))
           }
         }}>Submit</div>
       </div>

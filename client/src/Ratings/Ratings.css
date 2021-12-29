@@ -112,7 +112,14 @@
   display: grid;
   row-gap: 1%;
   height: 55em;
-  /* justify-content: center; */
+}
+
+.newReview .starVote {
+  height: 3em;
+}
+
+.newReview .imageUpload {
+  height: 7em;
 }
 
 .newReview .title {
