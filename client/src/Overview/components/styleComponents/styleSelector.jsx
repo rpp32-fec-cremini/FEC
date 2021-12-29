@@ -25,12 +25,12 @@ class StyleSelector extends React.Component {
   search = () => {
     $.ajax({
       type: "GET",
-      url: `products/${this.props.product_id}/styles`,
+      url: `overview/products/${this.props.product_id}/styles`,
       success: info => {
         let products = JSON.parse(data)
-        console.log('Data is here! ', products);
-        this.setState({styleList: products.results, currentStyle: products.results[0]});
-        console.log('STATE HERE ', this.state);
+        console.log('STYLE Data is here! ', products);
+        this.setState({styleList: products.results, currentStyle: products.results});
+        console.log('STYLE STATE HERE ', this.state);
       }
     })
   }

@@ -8,20 +8,17 @@ require('dotenv').config();
 const token = process.env.TOKEN;
 
 
-router.get('/', (req, res) => {
-
+router.get('/products', (req, res) => {
    //let dummyData = data;
+   console.log('REQUEST HERE');
    getProducts()
    .then((data) => {
-      console.log(data)
+      //console.log('HAHAHAHA IT COMES!', data.data);
       res.send(data.data);
    })
    .catch(error => {
-      console.log('REE ERROR ' , error);
-      res.end()
-    })
-   //console.log(dummyData)
-
+      console.log('ERROR!!', error)
+   })
 });
 
 router.get('products/:product_id', (req, res) => {
@@ -48,13 +45,12 @@ router.get('review/meta/:product_id', (req, res) => {
 
 //:product_id  add this to style route when implementing API! >_>
 
-router.get('products/:product_id/styles', (req, res) => {
+router.get('overview/products/:product_id/styles', (req, res) => {
    console.log('Double bruh ', req)
    console.log("Bruh ", id);
-   let id = parseInt(req.params.product_id);
+   var id = req.params.product_id;
    getStyle(id)
    .then((data) => {
-      /* console.log('What is the data? ', data.data) */
       res.send(data);
    })
    .catch(error => {

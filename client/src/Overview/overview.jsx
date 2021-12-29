@@ -29,7 +29,7 @@ class Overview extends React.Component {
         {/* <AddToCart /> */}
         <br></br>
       </div>
-      <StyleSelector className=' related relatedCard' />
+      {/* <StyleSelector className=' related relatedCard' /> */}
       </div>
     );
   }

@@ -18,6 +18,7 @@ class RelatedList extends React.Component {
       products: [],
       relatedProducts: []
     }
+
   }
 
   componentDidMount() {

@@ -17,21 +17,26 @@ class ProductInfo extends React.Component {
 
 
   componentDidMount() {
+    console.log('Gobble gobble');
     this.search();
   }
 
 
   search = () => {
+    console.log('IT RUNNETH');
     $.ajax({
       type: "GET",
-      url: '/',
+      url: 'overview/products',
       success: data => {
         //let products = JSON.parse(data)
+        //console.log('DAAAATA', data);
         this.setState({productList: data, current: data[0]});
-        //console.log('STATE HERE ', this.state);
+        console.log('STATE HERE ', this.state);
       }
     })//console.log ('hardee har har, you thought you had me');
   }
+
+
 
 
   render() {
@@ -40,7 +45,17 @@ class ProductInfo extends React.Component {
     var category = this.state.current.category;
     var price = this.state.current.default_price;
     var id = this.state.current.id;
-    console.log('BEHOLD, THE ID ', id);
+    //console.log('BEHOLD, THE ID ', id);
+    //console.log('STATE HERE', this.state)
+    if (!this.state.current) {
+      return (
+        <div>
+          <div className = 'related relatedCard'>
+            Aint no data here. Don't see shit, capn
+          </div>
+        </div>
+      )
+    } else {
     return(
       <div>
       <div className = 'related relatedCard'>
@@ -48,10 +63,10 @@ class ProductInfo extends React.Component {
           <h3>{price}</h3>
           <h4>{desc}</h4>
       </div>
-      {/* <StyleSelector product_id = {59553} /> */}
-      {/* <ImageGallery className=' related relatedCard ' product_id = '59553' /> */}
+      <StyleSelector product_id = {59553} />
+  {/*     <ImageGallery className=' related relatedCard ' product_id = '59553' /> */}
       </div>
-    )
+    )}
   }
 }
 

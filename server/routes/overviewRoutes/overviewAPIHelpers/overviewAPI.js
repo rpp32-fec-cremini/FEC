@@ -5,7 +5,18 @@ const token = process.env.TOKEN;
 
 
 module.exports.getProducts = () => {
-  console.log('TOKEN HERE ', token);
+/*
+  axios.get(API_URL + 'products', { headers: {Authorization: token}})
+  .then((response) => {
+    //console.log(response);
+    console.log('Gobble gobble ', response.data)
+    return response
+  })
+  .catch( function(error) {
+    console.log(error)
+  }) */
+
+
   let options = {
     url: API_URL + 'products',
     headers: {
@@ -18,7 +29,6 @@ module.exports.getProducts = () => {
     url: options.url,
     headers: options.headers
   })
-  .catch(err=> {console.log(err)});
 }
 
 
@@ -42,7 +52,7 @@ module.exports.getSingleProduct = (id) => {
 module.exports.getStyle = (id) => {
   console.log('THIS IS NOT THE ID YOU\'re looking for', id)
   let options = {
-    url: API_URL.concat(`products/${id}/styles/`),
+    url: API_URL + `products/${id}/styles/`,
     headers: {
       'Authorization' : token
     }
@@ -53,12 +63,8 @@ module.exports.getStyle = (id) => {
     url: options.url,
     headers: options.headers
   })
-<<<<<<< HEAD
-  .catch(err=> {console.log(err)});
-=======
-  
 
->>>>>>> ec0fdf2969eca178ef67c7a30e07ff1361dc4531
+
 }
 
 module.exports.getMeta = (id) => {
