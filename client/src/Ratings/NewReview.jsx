@@ -182,7 +182,7 @@ var NewReview = ({chars, product, product_id, submitReview, refreshModal}) => {
               photos,
               characteristics
             };
-            submitReview(JSON.stringify(data))
+            submitReview(data)
           }
         }}>Submit</div>
       </div>

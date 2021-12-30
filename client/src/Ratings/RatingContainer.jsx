@@ -13,6 +13,7 @@ class RatingContainer extends React.Component {
       reviews: [],
       shownReviews: 2,
       voted: {},
+      reported: {},
       product: "",
       meta: {}
     };
@@ -21,14 +22,31 @@ class RatingContainer extends React.Component {
 
   submitReview(data) {
     console.log(data)
-    location.reload();
+    $.ajax({
+      method: "POST",
+      url: "/reviews",
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      success: response => location.reload()
+    })
   }
 
-  addToVoted(id) {
-    this.setState({
-      voted: {...this.state.voted, [id]: true}
-    })
-    //replace this later on with put request to server
+  addToVoted(id, type) {
+    if (type === 'helpful') {
+      if (!this.state.voted[id]) {
+        //put request to server helpful
+        this.setState({
+          voted: {...this.state.voted, [id]: true}
+        })
+      }
+    } else if (type === 'report') {
+      if (!this.state.reported[id]) {
+        //put request to server for report
+        this.setState({
+          reported: {...this.state.reported, [id]: true}
+        })
+      }
+    }
   }
 
 
@@ -85,6 +103,8 @@ class RatingContainer extends React.Component {
   }
 
   render() {
+    console.log(this.state.voted)
+    console.log(this.state.reported)
     return (
       <div className="container">
         <div className="container-left">
@@ -92,6 +112,7 @@ class RatingContainer extends React.Component {
           <ProductBreakdown/>
         </div>
         <ReviewsList
+          sortAndGet={this.sortAndGet.bind(this)}
           reviews={this.state.reviews}
           shownReviews={this.state.shownReviews}
           moreReviews={this.moreReviews.bind(this)}
