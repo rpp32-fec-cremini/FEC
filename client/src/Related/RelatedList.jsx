@@ -3,7 +3,11 @@ import $ from 'jquery';
 import axios from 'axios';
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import { IoIosStarHalf } from "react-icons/io";
+import { IoIosStarOutline } from "react-icons/io";
+import { IoIosStar } from "react-icons/io";
 import './related.css';
+import Card from './Card.jsx';
 
 class RelatedList extends React.Component {
   constructor(props) {
@@ -18,6 +22,7 @@ class RelatedList extends React.Component {
       products: [],
       relatedProducts: []
     }
+
   }
 
   componentDidMount() {
@@ -52,18 +57,6 @@ class RelatedList extends React.Component {
 
   getRelatedProducts = () => {
     let relatedProducts = [];
-    // $.get(`/products/${this.state.currentProductID}/related`, data => {
-    //   let productIds = JSON.parse(data);
-    //   let relatedProducts = [];
-    //   productIds.forEach(id => {
-    //     $.get(`/products/${id}`, data => {
-    //       let product = JSON.parse(data);
-    //       relatedProducts.push(product);
-    //     })
-    //   })
-    //   this.setState({ relatedProducts: relatedProducts });
-    //   console.log('related products', this.state.relatedProducts);
-    // });
     axios.get(`/products/${this.state.currentProductID}/related`)
       .then(productIds => {
         productIds.data.forEach(id => {
@@ -82,36 +75,42 @@ class RelatedList extends React.Component {
 
   render() {
     return (
-      <div className='relatedBody' >
-        <h3 data-testid='listHeader'>RELATED PRODUCTS</h3>
-        <IoIosArrowBack className='related relatedScroll' />
-        <div data-testid='container' className='related relatedList'>
-
-          {this.state.products.map(product => (
-            <div key={product.id} className='related relatedCard'>
-              <h2>{product.name}</h2>
-              <h3>{product.category}</h3>
-            </div>
-          ))
-          }
-          {/* {
-            <div key={this.state.currentProduct.id} className='related relatedCard'>
-              <h2>{this.state.currentProduct.name}</h2>
-              <h3>{this.state.currentProduct.category}</h3>
-            </div>
-          } */}
+      <div className='related' >
+        <h4 data-testid='listHeader' className='related-title' >RELATED PRODUCTS</h4>
+        <IoIosArrowBack className='related-scroll' />
+        <div data-testid='container' className='related-list'>
           {this.state.relatedProducts.map(product => (
-            <div key={product.id} className='related relatedCard'>
-              <h2>{product.name}</h2>
-              <h3>{product.category}</h3>
-            </div>
+            <Card key={product.id} product={product} />
           ))
           }
         </div >
-        < IoIosArrowForward className='related relatedScroll' />
+        < IoIosArrowForward className='related related-scroll' />
       </div>
     )
   }
 };
 
 export default RelatedList;
+
+// {/*
+//           {this.state.products.map(product => (
+//             <div key={product.id} className='relatedCard'>
+//               <h2>{product.name}</h2>
+//               <h3>{product.category}</h3>
+//             </div>
+//           ))
+//           } */}
+          // {/* {
+          //   <div key={this.state.currentProduct.id} className='related relatedCard'>
+          //     <h2>{this.state.currentProduct.name}</h2>
+          //     <h3>{this.state.currentProduct.category}</h3>
+          //   </div>
+          // } */}
+
+          // {this.state.relatedProducts.map(product => (
+          //   <div key={product.id} className='related related-card'>
+          //     <h2>{product.name}</h2>
+          //     <h3>{product.category}</h3>
+          //   </div>
+          // ))
+          // }

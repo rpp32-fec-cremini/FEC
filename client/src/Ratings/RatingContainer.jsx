@@ -19,6 +19,11 @@ class RatingContainer extends React.Component {
     this.productId = this.props.productId
   }
 
+  submitReview(data) {
+    console.log(data)
+    location.reload();
+  }
+
   addToVoted(id) {
     this.setState({
       voted: {...this.state.voted, [id]: true}
@@ -94,6 +99,8 @@ class RatingContainer extends React.Component {
           voted={this.state.voted}
           product={this.state.product}
           characteristics={this.state.meta.characteristics}
+          product_id={this.productId}
+          submitReview={this.submitReview.bind(this)}
         />
       </div>
     )

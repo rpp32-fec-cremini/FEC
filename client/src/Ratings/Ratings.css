@@ -4,7 +4,7 @@
   margin: 10%;
   display: grid;
   grid-template-columns: 30% 70%;
-  height: 32%;
+  height: 25%;
 }
 
 .container a:hover{
@@ -15,6 +15,7 @@
 .container-right {
   display: grid;
   grid-template-rows: 5% 90% 5%;
+  max-height: 90%;
 }
 
 /* .container-left {
@@ -107,3 +108,69 @@
 
 
 /* Write Review Module */
+.newReview {
+  display: grid;
+  row-gap: 1%;
+  height: 55em;
+}
+
+.newReview .starVote {
+  height: 3em;
+}
+
+.newReview .imageUpload {
+  height: 7em;
+}
+
+.newReview .title {
+  font-size: 24px;
+  font-weight: bolder;
+}
+
+.newReview .subtitle {
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.newReview label {
+  font-style: oblique;
+}
+
+#btnBorder {
+  display: grid;
+  justify-content: center;
+}
+
+#submitBtn {
+  border: solid;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.error {
+  color:red;
+}
+
+.error h5,.error div {
+  margin: 2px;
+}
+
+.error ul {
+  display: inline-block;
+  text-align: left;
+}
+
+.writing-modal {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+  height: 84%;
+  overflow: auto;
+}
+
+.warning {
+  font-size: 12px;
+  font-weight: lighter;
+}

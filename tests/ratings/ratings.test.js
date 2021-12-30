@@ -7,11 +7,17 @@ import '@testing-library/jest-dom'
 import RatingContainer from '../../client/src/Ratings/RatingContainer';
 
 var mockReviews = require("../../server/routes/ReviewsfakeData").fakeReviews;
+var mockMeta = require("../../server/routes/ReviewsfakeData").fakeMetaData;
 
 var server = setupServer(
   rest.get("/reviews", (req, res, ctx) => {
     return res(
       ctx.json(JSON.stringify(mockReviews))
+    )
+  }),
+  rest.get("/reviews/meta", (req, res, ctx) => {
+    return res(
+      ctx.json(JSON.stringify(mockMeta))
     )
   })
 )
@@ -46,11 +52,9 @@ test('Scroll bar appears after review module contains more than 3 review tiles',
   await waitFor(() => getByTestId(5))
   var buttonEl = getByText("More Reviews")
   var scrollEl = getByTestId("scrolllist")
-  expect(scrollEl.style._values).toEqual({})
+  expect(scrollEl.style._values['overflow-y']).toEqual(undefined)
   fireEvent.click(buttonEl)
-  expect(scrollEl.style._values).toEqual({
-      "overflow-y": "scroll"
-  })
+  expect(scrollEl.style._values['overflow-y']).toEqual("scroll")
 })
 
 test("Modal window pops up when user clicks on an image, and closes when the close button is clicked", async () => {
