@@ -51,8 +51,8 @@ router.get('/products/styles', (req, res) => {
    console.log("Bruh ", id);
    getStyle(id)
    .then((data) => {
-      //res.send(data);
-      //console.log(data.data);
+      res.send(data.data);
+      //console.log(data.data.results);
    })
    .catch(error => {
       console.log('REEEE STYLISH ERROR ', error)
