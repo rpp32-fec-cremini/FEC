@@ -75,16 +75,16 @@ class RelatedList extends React.Component {
 
   render() {
     return (
-      <div data-testid='listContainer' className='related' >
+      <div data-testid='listContainer' className='related-container' >
         <h4 data-testid='listHeader' className='related-title' >RELATED PRODUCTS</h4>
         <IoIosArrowBack className='related-scroll' />
-        <div data-testid='list' className='related-list'>
+        <div data-testid='list' className='left-scroll related-list'>
           {this.state.relatedProducts.map(product => (
             <Card key={product.id} product={product} />
           ))
           }
         </div >
-        < IoIosArrowForward className='related related-scroll' />
+        < IoIosArrowForward className='right-scroll related-scroll' />
       </div>
     )
   }

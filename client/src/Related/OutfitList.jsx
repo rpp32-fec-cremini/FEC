@@ -39,16 +39,16 @@ class OutfitList extends React.Component {
 
   render() {
     return (
-      <div data-testid='outfitContainer' className='related' >
+      <div data-testid='outfitContainer' className='related-container' >
         <h4 data-testid='outfitHeader' className='related-title' >YOUR OUTFIT</h4>
-        <IoIosArrowBack className='related-scroll' />
+        <IoIosArrowBack className='related-scroll left-scroll' />
         <div data-testid='outfitList' className='related-list'>
           {this.state.outfits.map(outfit => (
             <Card key={outfit.id} product={outfit} />
           ))
           }
         </div >
-        < IoIosArrowForward className='related related-scroll' />
+        < IoIosArrowForward className='related-scroll right-scroll' />
       </div>
     )
   }

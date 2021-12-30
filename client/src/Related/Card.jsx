@@ -12,7 +12,7 @@ class Card extends React.Component {
   render() {
     return (
       <div data-testid='card' className='related-card'>
-        <img src='https://source.unsplash.com/160x200/?joggers' className='related-img' />
+        <img src='https://source.unsplash.com/160x200/?sweatpants' className='related-img' />
         <div className='card-text'>
           <p>{this.props.product.category.toUpperCase()} </p>
           <h4>{this.props.product.name}</h4>
