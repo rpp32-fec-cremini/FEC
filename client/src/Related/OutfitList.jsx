@@ -31,7 +31,7 @@ class OutfitList extends React.Component {
         outfits.data.forEach(outfit => {
           // console.log(outfit);
           outfitArr.push(outfit);
-          console.log(outfitArr);
+          // console.log(outfitArr);
         })
         this.setState({ outfits: outfitArr });
       })
