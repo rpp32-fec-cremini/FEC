@@ -70,11 +70,13 @@ var ReviewTile = ({id, starRating, dateWritten, summary, body, images, recommend
       <div style={{"padding":"4px 0 0 0"}}>
         Helpful? &nbsp;
         <a style={{"textDecoration":"underline"}} onClick={() => {
-          addToVoted(id)
+          addToVoted(id, 'helpful')
         }}>Yes</a>
         {` (${voted})`}
         &nbsp; &nbsp; | &nbsp; &nbsp;
-        <a style={{"textDecoration":"underline"}}>Report</a>
+        <a style={{"textDecoration":"underline"}} onClick={() => {
+          addToVoted(id, 'report')
+        }}>Report</a>
       </div>
     </div>
   )
