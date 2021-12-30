@@ -21,7 +21,7 @@ class RatingContainer extends React.Component {
 
   submitReview(data) {
     console.log(data)
-    location.reload();
+    // location.reload();
   }
 
   addToVoted(id) {
