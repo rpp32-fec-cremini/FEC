@@ -22,22 +22,33 @@ class StyleSelector extends React.Component {
     this.search();
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.search();
+    }
+  }
+
 
   search = () => {
     $.ajax({
       type: "GET",
-      url: `overview/products/styles`,
+      url: `overview/products/${this.props.product_id}/styles`,
       success: products => {
-        console.log('STYLE Data is here! ', products);
+        //console.log('STYLE Data is here! ', products);
         this.setState({styleList: products.results, currentStyle: products.results[0]});
-        console.log('STYLE STATE HERE ', this.state);
+        //console.log('STYLE STATE HERE ', this.state);
       }
     })
   }
 
   render () {
-
-
+    if(!this.props.product_id) {
+      return (
+        <div>
+          <h1>NO DATA HERE NANANANANAN BATMAN</h1>
+        </div>
+      )
+    } else {
     return (
       <div>
          <h1 data-testid = 'style'>Available Styles</h1>
@@ -50,6 +61,7 @@ class StyleSelector extends React.Component {
       </div>
     )
   }
+}
 
 }
 

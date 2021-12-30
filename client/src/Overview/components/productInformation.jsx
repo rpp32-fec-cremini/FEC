@@ -29,9 +29,7 @@ class ProductInfo extends React.Component {
       url: 'overview/products',
       success: data => {
         //let products = JSON.parse(data)
-        //console.log('DAAAATA', data);
-        this.setState({productList: data, current: data[0]});
-        console.log('STATE HERE ', this.state);
+        this.setState({productList: data, current: data[2]});
       }
     })//console.log ('hardee har har, you thought you had me');
   }
@@ -45,7 +43,7 @@ class ProductInfo extends React.Component {
     var category = this.state.current.category;
     var price = this.state.current.default_price;
     var id = this.state.current.id;
-    //console.log('BEHOLD, THE ID ', id);
+    console.log('BEHOLD, THE ID ', id);
     //console.log('STATE HERE', this.state)
     if (!this.state.current) {
       return (
@@ -58,13 +56,13 @@ class ProductInfo extends React.Component {
     } else {
     return(
       <div>
+        <ImageGallery className=' related relatedCard ' product_id = {this.state.current.id} />
       <div className = 'related relatedCard'>
           <h3>{category} ::: {product}</h3>
           <h3>{price}</h3>
           <h4>{desc}</h4>
       </div>
-      <StyleSelector product_id = {59553} />
-  {/*     <ImageGallery className=' related relatedCard ' product_id = '59553' /> */}
+      <StyleSelector product_id = {this.state.current.id} />
       </div>
     )}
   }

@@ -50,7 +50,6 @@ module.exports.getSingleProduct = (id) => {
 }
 
 module.exports.getStyle = (id) => {
-  console.log('THIS IS NOT THE ID YOU\'re looking for', id)
   let options = {
     url: API_URL + `products/${id}/styles/`,
     headers: {

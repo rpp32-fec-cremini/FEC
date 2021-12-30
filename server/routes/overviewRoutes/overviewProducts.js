@@ -10,7 +10,7 @@ const token = process.env.TOKEN;
 
 router.get('/products', (req, res) => {
    //let dummyData = data;
-   console.log('REQUEST HERE');
+  //console.log('REQUEST HERE');
    getProducts()
    .then((data) => {
       //console.log('HAHAHAHA IT COMES!', data.data);
@@ -22,7 +22,7 @@ router.get('/products', (req, res) => {
 });
 
 router.get('products/:product_id', (req, res) => {
-   //var id = req.params.product_id;
+   var id = req.params['product_id'];
    getSingleProduct()
    .then((data) => {
       console.log(data.data)
@@ -38,6 +38,8 @@ router.get('products/:product_id', (req, res) => {
 
 router.get('review/meta/:product_id', (req, res) => {
    //var id = req.params.product_id;
+   var id = req.params['product_id'];
+
    let dummyMeta =  meta;
    res.send(dummyMeta);
 
@@ -45,17 +47,17 @@ router.get('review/meta/:product_id', (req, res) => {
 
 //:product_id  add this to style route when implementing API! >_>
 
-router.get('/products/styles', (req, res) => {
+router.get('/products/:product_id/styles', (req, res) => {
    //console.log('Double bruh ', req)
-   var id = 59553;
-   console.log("Bruh ", id);
+   var id = req.params['product_id'];
    getStyle(id)
    .then((data) => {
       res.send(data.data);
       //console.log(data.data.results);
    })
    .catch(error => {
-      console.log('REEEE STYLISH ERROR ', error)
+      //console.log('REEEE STYLISH ERROR ', error)
+      res.send(error);
    })
 })
 
