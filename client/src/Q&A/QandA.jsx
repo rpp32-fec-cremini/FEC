@@ -16,7 +16,8 @@ class QA extends React.Component {
       searchBar: '',
       question: [],
       answers:[],
-      questionHelpfulList:[]
+      questionHelpfulList:[],
+      answerHelpfulList:[]
     };
     this.individualAnswer = this.individualAnswer.bind(this);
   }
@@ -42,7 +43,7 @@ class QA extends React.Component {
         self.setState ({
           answers: answer
         }, () => {
-          console.log('sssssssssssssssthe answer', this.state.answers);
+          // console.log('sssssssssssssssthe answer', this.state.answers);
         })
       }
     })
@@ -56,7 +57,6 @@ class QA extends React.Component {
     })
     .then((results) => {
       let question = results.data;
-      console.log('answersss', question);
       self.individualAnswer(question);
       self.setState ({
         question: question,
@@ -72,8 +72,16 @@ class QA extends React.Component {
     this.setState ({
       questionHelpfulList: temp
     })
-    // console.log('questionIdsssss', questionId);
   }
+
+  answerHelpful(answerId) {
+    var temp = this.state.answerHelpfulList;
+    temp.push(answerId);
+    this.setState ({
+      answerHelpfulList: temp
+    })
+  }
+
 
   componentWillMount() {
     this.individualQuestion();
@@ -84,9 +92,8 @@ class QA extends React.Component {
       <div className='QaABox'>
         <h3>QUESTION & ANSWERS</h3>
         <SearchQuestions searchBar = {this.state.searchBar} search = {(e) => this.search(e)}/>
-        {/* <IndividualQuestion question = {this.state.question} /> */}
-                <IndividualQuestion question = {this.state.question} questionHelpful = {(e) => this.questionHelpful(e)} questionHelpfulList = {this.state.questionHelpfulList}/>
-        {/* <AddAnswerModal answers = {this.state.answer}/> */}
+                <IndividualQuestion question = {this.state.question} questionHelpful = {(e) => this.questionHelpful(e)} answerHelpful = {(e) => this.answerHelpful(e)}
+                questionHelpfulList = {this.state.questionHelpfulList} answerHelpfulList = {this.state.answerHelpfulList}/>
         <p>---------------------------------------------------------------------------------</p>
         This is a Question component
       </div>

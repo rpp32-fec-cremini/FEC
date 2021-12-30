@@ -38,7 +38,7 @@ const IndividualQuestion = (props) => {
       e.target.innerText = numberofHelpful;
       props.questionHelpful(questionId);
     }
-      console.log('this question', props.questionHelpfulList, questionId);
+      // console.log('this question', props.questionHelpfulList, questionId);
   }
 
   const show = (props, moreThanTwo) => {
@@ -47,11 +47,11 @@ const IndividualQuestion = (props) => {
       return (b['question_helpfulness']) - (a['question_helpfulness']);
     });
 
-    console.log('this two quesion', loadingQuestion, moreThanTwo)
+    // console.log('this two quesion', loadingQuestion, moreThanTwo)
     // setloadingQuestion(loadingQuestion + 2);
     if (moreThanTwo === true) {
       var twoQuestion = question.slice(0, loadingQuestion);
-      console.log('this is two question', question);
+      // console.log('this is two question', question);
     } else {
       // var loadTwoMoreQuestion = setloadingQuestion(loadingQuestion + 2);
       // var twoQuestion = question.slice(0, loadTwoMoreQuestion);
@@ -66,7 +66,7 @@ const IndividualQuestion = (props) => {
           <div className="Question-helpful" style={{float: "right"}}>Helpful? YES(<a style={{"textDecoration":"underline"}} onClick = {(e) => helpful(e, props, question.question_id)}>{question.question_helpfulness}</a>)</div>
           <br />
             <div>
-              <AddAnswerModal answer = {question.answers}/>
+              <AddAnswerModal answer = {question.answers} answerHelpfulList = {props.answerHelpfulList} answerHelpful = {(e) => props.answerHelpful(e)}/>
               <br />
             </div>
         </div>
