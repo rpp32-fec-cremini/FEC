@@ -39,10 +39,10 @@ class OutfitList extends React.Component {
 
   render() {
     return (
-      <div className='related' >
-        <h4 data-testid='listHeader' className='related-title' >YOUR OUTFIT</h4>
+      <div data-testid='outfitContainer' className='related' >
+        <h4 data-testid='outfitHeader' className='related-title' >YOUR OUTFIT</h4>
         <IoIosArrowBack className='related-scroll' />
-        <div data-testid='container' className='related-list'>
+        <div data-testid='outfitList' className='related-list'>
           {this.state.outfits.map(outfit => (
             <Card key={outfit.id} product={outfit} />
           ))

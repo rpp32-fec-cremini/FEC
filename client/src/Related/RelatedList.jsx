@@ -75,10 +75,10 @@ class RelatedList extends React.Component {
 
   render() {
     return (
-      <div className='related' >
+      <div data-testid='listContainer' className='related' >
         <h4 data-testid='listHeader' className='related-title' >RELATED PRODUCTS</h4>
         <IoIosArrowBack className='related-scroll' />
-        <div data-testid='container' className='related-list'>
+        <div data-testid='list' className='related-list'>
           {this.state.relatedProducts.map(product => (
             <Card key={product.id} product={product} />
           ))
@@ -91,26 +91,3 @@ class RelatedList extends React.Component {
 };
 
 export default RelatedList;
-
-// {/*
-//           {this.state.products.map(product => (
-//             <div key={product.id} className='relatedCard'>
-//               <h2>{product.name}</h2>
-//               <h3>{product.category}</h3>
-//             </div>
-//           ))
-//           } */}
-          // {/* {
-          //   <div key={this.state.currentProduct.id} className='related relatedCard'>
-          //     <h2>{this.state.currentProduct.name}</h2>
-          //     <h3>{this.state.currentProduct.category}</h3>
-          //   </div>
-          // } */}
-
-          // {this.state.relatedProducts.map(product => (
-          //   <div key={product.id} className='related related-card'>
-          //     <h2>{product.name}</h2>
-          //     <h3>{product.category}</h3>
-          //   </div>
-          // ))
-          // }
