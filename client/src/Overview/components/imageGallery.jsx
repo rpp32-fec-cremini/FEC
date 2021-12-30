@@ -10,24 +10,25 @@ class ImageGallery extends React.Component {
       imageList: []
     }
 
-    this.search =  this.search.bind(this);
+    this.grabStyle =  this.grabStyle.bind(this);
   }
 
   componentDidMount() {
-    this.search();
+    this.grabStyle();
   }
 
 
-  search = () => {
-    //console.log('I SEND THEE, ', userName , ' to the FUCKING MOON')
+  grabStyle = (product_id) => {
     $.ajax({
       type: "GET",
-      url: '/overview/styles',
+      url: 'products/styles',
       success: data => {
         //let products = JSON.parse(data)
-        console.log('Success!', data);
-        this.setState({imageList: data.results[0].photos, currentImage: data.results[0].photos[0].thumbnail_url});
-        console.log('STATE FUCKING HERE ', this.state);
+        this.setState({
+          imageList: data.results[0].photos,
+          currentImage: data.results[0].photos[0].thumbnail_url
+        });
+        //console.log('STATE HERE ', this.state);
       }
     })//console.log ('hardee har har, you thought you had me');
   }

@@ -24,12 +24,12 @@ class Overview extends React.Component {
     return (
       <div>
         <div className='related relatedContainer grid-3'>
-        <ImageGallery className=' related relatedCard '  />
+        {/* <ImageGallery className=' related relatedCard '  /> */}
         <ProductInfo className=' related relatedCard'  />
-        <AddToCart />
+        {/* <AddToCart /> */}
         <br></br>
       </div>
-      <StyleSelector className=' related relatedCard' />
+      {/* <StyleSelector className=' related relatedCard' /> */}
       </div>
     );
   }
