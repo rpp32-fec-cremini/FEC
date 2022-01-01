@@ -36,9 +36,17 @@ router.get('products/:product_id', (req, res) => {
 
 })
 
-router.get('review/meta/:product_id', (req, res) => {
+router.get('reviews/meta/', (req, res) => {
    //var id = req.params.product_id;
-   var id = req.params['product_id'];
+   var id = req.query['product_id'];
+   console.log('QUERY ID HERE ', id)
+   getMeta()
+   .then((data) => {
+      console.log('METADATA ', data);
+   })
+   .catch(error => {
+      res.send(error);
+   })
 
    let dummyMeta =  meta;
    res.send(dummyMeta);

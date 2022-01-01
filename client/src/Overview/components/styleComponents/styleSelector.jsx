@@ -16,11 +16,11 @@ class StyleSelector extends React.Component {
     this.search = this.search.bind(this);
 
   }
-
+/*
   componentDidMount() {
     console.log('When it mounted ', this.props.product_id);
     this.search();
-  }
+  } */
 
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
@@ -53,7 +53,7 @@ class StyleSelector extends React.Component {
       <div>
          <h1 data-testid = 'style'>Available Styles</h1>
         <br></br>
-      <div className = 'related relatedCard grid-5' style={{width: '100%'}}>
+      <div className = 'grid-4'>
         {this.state.styleList.map((style) =>
       <Style name={style.name} pic = {style.photos[0].thumbnail_url} key ={style.style_id} />
     )}

@@ -3,67 +3,81 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import StyleSelector from './styleComponents/styleSelector.jsx';
 import ImageGallery from './imageGallery.jsx'
+import ProductRating from './productRating.jsx'
 
 
 class ProductInfo extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
+
       productList: [],
-      current: {}
+      current: {},
+      productMeta: {}
+
     }
-    this.search = this.search.bind(this);
+
+    this.getProducts = this.getProducts.bind(this);
+
   }
 
 
   componentDidMount() {
-    console.log('Gobble gobble');
-    this.search();
+
+    this.getProducts();
+
   }
 
+  getProducts = () => {
 
-  search = () => {
     console.log('IT RUNNETH');
     $.ajax({
       type: "GET",
       url: 'overview/products',
       success: data => {
-        //let products = JSON.parse(data)
-        this.setState({productList: data, current: data[2]});
+
+        this.setState({productList: data, current: data[0]});
       }
-    })//console.log ('hardee har har, you thought you had me');
+    })
   }
 
 
 
 
   render() {
+
     var product = this.state.current.name;
     var desc = this.state.current.description;
     var category = this.state.current.category;
     var price = this.state.current.default_price;
     var id = this.state.current.id;
     console.log('BEHOLD, THE ID ', id);
-    //console.log('STATE HERE', this.state)
+
     if (!this.state.current) {
       return (
+
         <div>
           <div className = 'related relatedCard'>
             Aint no data here. Don't see shit, capn
           </div>
         </div>
+
       )
     } else {
+
     return(
+
       <div>
-        <ImageGallery className=' related relatedCard ' product_id = {this.state.current.id} />
-      <div className = 'related relatedCard'>
-          <h3>{category} ::: {product}</h3>
+      <div className = "flexContainer">
+        <ImageGallery className='flexItem' product_id = {this.state.current.id} />
+      </div> <br></br>
+          <h3>{category} ::: {product} <ProductRating product_id = {this.state.current.id}/></h3>
           <h3>{price}</h3>
           <h4>{desc}</h4>
-      </div>
       <StyleSelector product_id = {this.state.current.id} />
       </div>
+
     )}
   }
 }
