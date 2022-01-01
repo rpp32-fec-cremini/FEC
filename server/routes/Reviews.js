@@ -25,6 +25,10 @@ router.get("/meta", (req, res) => {
 })
 
 router.post("/", (req, res) => {
+  var data = req.body;
+  axios.post(url + "reviews", data, { headers: { authorization } })
+    .then((response) => console.log(response))
+    .catch((error) => console.log(error))
   res.send(JSON.stringify("posted"))
 })
 

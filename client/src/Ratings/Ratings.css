@@ -4,7 +4,7 @@
   margin: 10%;
   display: grid;
   grid-template-columns: 30% 70%;
-  height: 25%;
+  height: 27%;
 }
 
 .container a:hover{
