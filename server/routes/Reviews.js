@@ -5,18 +5,17 @@ var url = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/";
 var axios = require("axios");
 
 router.get("/", (req, res) => {
-  var exampleData = require("./ReviewsfakeData").fakeReviews;
-  res.send(JSON.stringify(exampleData))
-  // var count = 4;
-  // axios.get(url + "reviews", { params: { ...req.query, count }, headers: { authorization }})
-  //   .then(reviews => {
-  //     console.log(reviews.data)
-  //     res.end(JSON.stringify(reviews.data.results))
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //     res.end()
-  //   })
+  // var exampleData = require("./ReviewsfakeData").fakeReviews;
+  // res.send(JSON.stringify(exampleData))
+  var count = 4;
+  axios.get(url + "reviews", { params: { ...req.query, count }, headers: { authorization }})
+    .then(reviews => {
+      res.end(JSON.stringify(reviews.data))
+    })
+    .catch(err => {
+      console.log(err);
+      res.end()
+    })
 })
 
 router.get("/meta", (req, res) => {
@@ -32,14 +31,15 @@ router.post("/", (req, res) => {
   res.send(JSON.stringify("posted"))
 })
 
-router.put("/:review_id/helpful", (req, res) => {
-  var reviewId = req.params.review_id;
-  res.send(JSON.stringify(reviewId + ' marked as helpful'))
+router.post("/helpful", (req, res) => {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${req.body.id}/helpful`, {}, { headers: { authorization } })
+  res.end()
+  //not in a then block because we want client to immediately update even before server request is fulfilled
 })
 
-router.put("/:review_id/report", (req, res) => {
-  var reviewId = req.params.review_id;
-  res.send(JSON.stringify(reviewId + ' reported'))
+router.post("/report", (req, res) => {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${req.body.id}/report`, {}, { headers: { authorization } })
+  res.end()
 })
 
 module.exports = router;
