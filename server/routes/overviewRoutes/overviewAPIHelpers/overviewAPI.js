@@ -68,12 +68,7 @@ module.exports.getStyle = (id) => {
 
 module.exports.getMeta = (id) => {
   let options = {
-    url: API_URL + `reviews/meta/`,
-
-    /* params: {
-      product_id: id
-    }, */
-
+    url: API_URL + `reviews/meta/?product_id=${id}`,
     headers: {
       'Authorization': token
     }

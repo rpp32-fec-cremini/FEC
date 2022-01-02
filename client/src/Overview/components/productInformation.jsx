@@ -24,9 +24,7 @@ class ProductInfo extends React.Component {
 
 
   componentDidMount() {
-
     this.getProducts();
-
   }
 
   getProducts = () => {

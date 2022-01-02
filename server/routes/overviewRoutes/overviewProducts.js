@@ -36,24 +36,21 @@ router.get('products/:product_id', (req, res) => {
 
 })
 
-router.get('reviews/meta/', (req, res) => {
+router.get('/reviews/meta/', (req, res) => {
    //var id = req.params.product_id;
-   var id = req.query['product_id'];
-   console.log('QUERY ID HERE ', id)
-   getMeta()
+   let id = req.query.product_id;
+
+   getMeta(id)
    .then((data) => {
-      console.log('METADATA ', data);
+      res.send(data.data);
    })
    .catch(error => {
       res.send(error);
    })
 
-   let dummyMeta =  meta;
-   res.send(dummyMeta);
-
 })
 
-//:product_id  add this to style route when implementing API! >_>
+
 
 router.get('/products/:product_id/styles', (req, res) => {
    //console.log('Double bruh ', req)
