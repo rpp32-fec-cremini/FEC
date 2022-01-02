@@ -7,7 +7,8 @@ var axios = require("axios");
 router.get("/", (req, res) => {
   // var exampleData = require("./ReviewsfakeData").fakeReviews;
   // res.send(JSON.stringify(exampleData))
-  var count = 4;
+  var count = 15;
+  //limit to 15 reviews for speed
   axios.get(url + "reviews", { params: { ...req.query, count }, headers: { authorization }})
     .then(reviews => {
       res.end(JSON.stringify(reviews.data))
@@ -19,26 +20,34 @@ router.get("/", (req, res) => {
 })
 
 router.get("/meta", (req, res) => {
-  var exampleData = require("./ReviewsfakeData").fakeMetaData;
-  res.send(JSON.stringify(exampleData))
+  // var exampleData = require("./ReviewsfakeData").fakeMetaData;
+  // res.send(JSON.stringify(exampleData))
+  axios.get(url + "reviews/meta", { params: req.query, headers: { authorization }})
+    .then(reviews => {
+      res.end(JSON.stringify(reviews.data))
+    })
+    .catch(err => {
+      console.log(err);
+      res.end()
+    })
 })
 
 router.post("/", (req, res) => {
   var data = req.body;
+  console.log(data)
   axios.post(url + "reviews", data, { headers: { authorization } })
-    .then((response) => console.log(response))
+    .then((response) => res.end())
     .catch((error) => console.log(error))
-  res.send(JSON.stringify("posted"))
 })
 
 router.post("/helpful", (req, res) => {
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${req.body.id}/helpful`, {}, { headers: { authorization } })
+  axios.put(url + `reviews/${req.body.id}/helpful`, {}, { headers: { authorization } })
   res.end()
   //not in a then block because we want client to immediately update even before server request is fulfilled
 })
 
 router.post("/report", (req, res) => {
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${req.body.id}/report`, {}, { headers: { authorization } })
+  axios.put(url + `reviews/${req.body.id}/report`, {}, { headers: { authorization } })
   res.end()
 })
 

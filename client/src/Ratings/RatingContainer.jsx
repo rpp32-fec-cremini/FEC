@@ -27,9 +27,8 @@ class RatingContainer extends React.Component {
       url: "/reviews",
       data: JSON.stringify(data),
       contentType: "application/json",
-      success: response => console.log(JSON.stringify(response))
+      success: response => location.reload()
     })
-    // location.reload()
   }
 
   postVote(route, id, callback) {
