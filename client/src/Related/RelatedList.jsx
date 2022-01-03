@@ -13,6 +13,7 @@ class RelatedList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      type: 'related',
       currentProductID: 59556,
       currentProduct: {
         id: 123,
@@ -20,7 +21,8 @@ class RelatedList extends React.Component {
         category: 'example'
       },
       products: [],
-      relatedProducts: []
+      relatedProducts: [],
+      relatedStyles: []
     }
 
   }
@@ -63,6 +65,26 @@ class RelatedList extends React.Component {
           axios.get(`/products/${id}`)
             .then(product => {
               relatedProducts.push(product.data)
+            })
+            .catch(err => console.log(err))
+        })
+        this.setState({ relatedProducts: relatedProducts });
+        // console.log('related products', this.state.relatedProducts);
+      })
+      .catch(err => console.log(err))
+  };
+
+  //Finish writing--call style for each product and add img key to the product
+  getStyles = () => {
+    this.state.relatedProducts.forEach(product => {
+
+    })
+    axios.get(`/products/${this.state.currentProductID}/styles`)
+      .then(styles => {
+        styles.data.forEach(style => {
+          axios.get(`/products/${id}`)
+            .then(product => {
+              relatedProducts.push(product.data)
               this.setState({ relatedProducts: relatedProducts });
               // console.log('related products', this.state.relatedProducts);
             })
@@ -70,21 +92,22 @@ class RelatedList extends React.Component {
         })
       })
       .catch(err => console.log(err))
-
-  };
+  }
 
   render() {
     return (
-      <div data-testid='listContainer' className='related-container' >
-        <h4 data-testid='listHeader' className='related-title' >RELATED PRODUCTS</h4>
-        <IoIosArrowBack className='related-scroll' />
-        <div data-testid='list' className='left-scroll related-list'>
-          {this.state.relatedProducts.map(product => (
-            <Card key={product.id} product={product} />
-          ))
-          }
-        </div >
-        < IoIosArrowForward className='right-scroll related-scroll' />
+      <div>
+        <div data-testid='listContainer' className='related-container' >
+          <h4 data-testid='listHeader' className='related-title' >RELATED PRODUCTS</h4>
+          <div data-testid='list' className='related-list'>
+            {this.state.relatedProducts.map(product => (
+              <Card key={product.id} product={product} type={this.state.type} />
+            ))
+            }
+          </div >
+          <IoIosArrowBack className='related-scroll left-scroll' />
+          < IoIosArrowForward className='right-scroll related-scroll' />
+        </div>
       </div>
     )
   }

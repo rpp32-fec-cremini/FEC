@@ -55,7 +55,6 @@ router.get('/:product_id/styles', (req, res) => {
 
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${id}/styles`, { headers: { authorization } })
     .then(styles => {
-      // console.log('RELATED PRODUCTS: ', products);
       res.send(JSON.stringify(styles.data));
     })
     .catch(err => {

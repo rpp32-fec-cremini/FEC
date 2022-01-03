@@ -16,18 +16,18 @@
   color: rgb(86, 86, 86);
   position: relative;
   max-width: 80%;
-  margin-left: 10%;
+  margin-left: 8%;
   margin-bottom: 0;
   overflow-x: hidden;
-  /* background-color: #fff;
-    box-shadow:  0px 100px 50px -50px #ffffff inset,
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 1) 240px, rgba(255, 255, 255, 1) 290px);
+   background-color: #fff;
+   /* box-shadow:  0px 100px 50px -50px #ffffff inset,
         -10px 0px 10px -5px rgba(0,0,0,0.5) inset; */
-
-
 }
 
 .related-list {
   /* display: inline-block; */
+  position: relative;
   margin-bottom: 0;
   box-sizing: border-box;
   white-space: nowrap;
@@ -40,42 +40,66 @@
 
 .related-title {
   font-weight: lighter;
-  font-size: 70%;
+  font-size: xx-small;
   margin-top: 5%;
 }
 
 .related-card {
+  position: relative;
   display: inline-block;
-  width: 200px;
-  height: 100%;
+  width: 154px;
+  height: 231px;
   padding: 0;
-  margin: 0 8px;
+  margin: 0 6.5px;
   border: 1px solid black;
 }
 
 .related-img {
-  /* object-fit: cover; */
+  height: 153px;
   width: 100%;
 }
 
 .card-text {
-  padding: 5px;
+  padding: 4px;
+  overflow-x: hidden;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
-.card-text p {
+.card-category {
+  line-height: 50%;
+  font-size: 0.01em;
+  font-weight: lighter;
+}
+
+.card-productInfo {
   line-height: 20%;
+  font-weight: bolder;
   font-size: x-small;
 }
 
-.card-text h4 {
-  line-height: 0;
-  font-size: small;
+.card-price {
+  font-size: xx-small;
+  font-weight: lighter;
+  margin-bottom: 0.5em;
+  font-size-adjust: 0.5;
+}
+
+/* .card-stars {
+
+} */
+
+.card-star {
+  transform:scale(0.9);
+  margin: 0;
+  padding: 0;
 }
 
 .related-scroll {
   position: absolute;
 	top: 50%;
 	width: 3em;
+  color: black;
 }
 
 .left-scroll {
@@ -86,6 +110,13 @@
 }
 .hidden {
 	display: none;
+}
+
+.action-btn {
+  position: absolute;
+	top: 5px;
+  right: 5px;
+  color: black;
 }
 
 .grid3 {

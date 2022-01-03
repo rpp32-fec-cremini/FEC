@@ -14,14 +14,14 @@ class OutfitList extends React.Component {
     super(props);
     this.state = {
       user: 123,
-      outfits: []
+      outfits: [],
+      type: 'outfit'
     }
   }
 
   componentDidMount() {
     this.getOutfits();
   }
-
 
   getOutfits = () => {
     let outfitArr = [];
@@ -37,17 +37,34 @@ class OutfitList extends React.Component {
       })
   }
 
+  getListPos = () => {
+
+
+  }
+
+  showArrows = () => {
+
+  }
+
+  leftPaddleScroll = () => {
+
+  }
+
+  rightPaddleScroll = () => {
+
+  }
+
   render() {
     return (
       <div data-testid='outfitContainer' className='related-container' >
         <h4 data-testid='outfitHeader' className='related-title' >YOUR OUTFIT</h4>
-        <IoIosArrowBack className='related-scroll left-scroll' />
         <div data-testid='outfitList' className='related-list'>
           {this.state.outfits.map(outfit => (
-            <Card key={outfit.id} product={outfit} />
+            <Card key={outfit.id} product={outfit} type={this.state.type} />
           ))
           }
         </div >
+        <IoIosArrowBack className='related-scroll left-scroll' />
         < IoIosArrowForward className='related-scroll right-scroll' />
       </div>
     )
