@@ -61,30 +61,14 @@ class RelatedList extends React.Component {
     let relatedProducts = [];
     axios.get(`/products/${this.state.currentProductID}/related`)
       .then(productIds => {
+        // console.log('PRODUCT IDS ', productIds.data);
         productIds.data.forEach(id => {
           axios.get(`/products/${id}`)
             .then(product => {
-              relatedProducts.push(product.data)
-            })
-            .catch(err => console.log(err))
-        })
-        this.setState({ relatedProducts: relatedProducts });
-        // console.log('related products', this.state.relatedProducts);
-      })
-      .catch(err => console.log(err))
-  };
-
-  //Finish writing--call style for each product and add img key to the product
-  getStyles = () => {
-    this.state.relatedProducts.forEach(product => {
-
-    })
-    axios.get(`/products/${this.state.currentProductID}/styles`)
-      .then(styles => {
-        styles.data.forEach(style => {
-          axios.get(`/products/${id}`)
-            .then(product => {
-              relatedProducts.push(product.data)
+              let currentProduct = product.data;
+              // console.log('PRODUCT ', currentProduct);
+              currentProduct = this.getStyles(id, currentProduct);
+              relatedProducts.push(currentProduct);
               this.setState({ relatedProducts: relatedProducts });
               // console.log('related products', this.state.relatedProducts);
             })
@@ -92,16 +76,36 @@ class RelatedList extends React.Component {
         })
       })
       .catch(err => console.log(err))
+  };
+
+  getStyles = (id, product) => {
+    // console.log('related in getStyles', this.state.relatedProducts);
+    axios.get(`/products/${id}/styles`)
+      .then(styles => {
+        // console.log('styles id ', id);
+        // console.log('styles.data.results ', styles.data.results[0].photos[0].thumbnail_url);
+        if (styles.data.results[0].photos[0].thumbnail_url) {
+          product.img = styles.data.results[0].photos[0].thumbnail_url;
+        } else {
+          let productLabel = product.name.toLowerCase().split(' ');
+          product.img = `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}`;
+        }
+
+      })
+      .catch(err => console.log(err))
+    return product;
   }
 
   render() {
     return (
       <div>
+        {/* {this.getStyles()} */}
         <div data-testid='listContainer' className='related-container' >
           <h4 data-testid='listHeader' className='related-title' >RELATED PRODUCTS</h4>
           <div data-testid='list' className='related-list'>
             {this.state.relatedProducts.map(product => (
-              <Card key={product.id} product={product} type={this.state.type} />
+              // console.log('in render ', product.hasOwnProperty('img'))
+              < Card key={product.id} product={product} type={this.state.type} />
             ))
             }
           </div >
