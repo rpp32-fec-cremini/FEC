@@ -14,14 +14,14 @@ class OutfitList extends React.Component {
     super(props);
     this.state = {
       user: 123,
-      outfits: []
+      outfits: [],
+      type: 'outfit'
     }
   }
 
   componentDidMount() {
     this.getOutfits();
   }
-
 
   getOutfits = () => {
     let outfitArr = [];
@@ -31,24 +31,41 @@ class OutfitList extends React.Component {
         outfits.data.forEach(outfit => {
           // console.log(outfit);
           outfitArr.push(outfit);
-          console.log(outfitArr);
+          // console.log(outfitArr);
         })
         this.setState({ outfits: outfitArr });
       })
   }
 
+  getListPos = () => {
+
+
+  }
+
+  showArrows = () => {
+
+  }
+
+  leftPaddleScroll = () => {
+
+  }
+
+  rightPaddleScroll = () => {
+
+  }
+
   render() {
     return (
-      <div className='related' >
-        <h4 data-testid='listHeader' className='related-title' >YOUR OUTFIT</h4>
-        <IoIosArrowBack className='related-scroll' />
-        <div data-testid='container' className='related-list'>
+      <div data-testid='outfitContainer' className='related-container' >
+        <h4 data-testid='outfitHeader' className='related-title' >YOUR OUTFIT</h4>
+        <div data-testid='outfitList' className='related-list'>
           {this.state.outfits.map(outfit => (
-            <Card key={outfit.id} product={outfit} />
+            <Card key={outfit.id} product={outfit} type={this.state.type} />
           ))
           }
         </div >
-        < IoIosArrowForward className='related related-scroll' />
+        <IoIosArrowBack className='related-scroll left-scroll' />
+        < IoIosArrowForward className='related-scroll right-scroll' />
       </div>
     )
   }
