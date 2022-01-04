@@ -13,6 +13,7 @@ class RelatedList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      type: 'related',
       currentProductID: 59556,
       currentProduct: {
         id: 123,
@@ -20,7 +21,8 @@ class RelatedList extends React.Component {
         category: 'example'
       },
       products: [],
-      relatedProducts: []
+      relatedProducts: [],
+      relatedStyles: []
     }
 
   }
@@ -59,10 +61,14 @@ class RelatedList extends React.Component {
     let relatedProducts = [];
     axios.get(`/products/${this.state.currentProductID}/related`)
       .then(productIds => {
+        // console.log('PRODUCT IDS ', productIds.data);
         productIds.data.forEach(id => {
           axios.get(`/products/${id}`)
             .then(product => {
-              relatedProducts.push(product.data)
+              let currentProduct = product.data;
+              // console.log('PRODUCT ', currentProduct);
+              currentProduct = this.getStyles(id, currentProduct);
+              relatedProducts.push(currentProduct);
               this.setState({ relatedProducts: relatedProducts });
               // console.log('related products', this.state.relatedProducts);
             })
@@ -70,47 +76,45 @@ class RelatedList extends React.Component {
         })
       })
       .catch(err => console.log(err))
-
   };
+
+  getStyles = (id, product) => {
+    // console.log('related in getStyles', this.state.relatedProducts);
+    axios.get(`/products/${id}/styles`)
+      .then(styles => {
+        // console.log('styles id ', id);
+        // console.log('styles.data.results ', styles.data.results[0].photos[0].thumbnail_url);
+        if (styles.data.results[0].photos[0].thumbnail_url) {
+          product.img = styles.data.results[0].photos[0].thumbnail_url;
+        } else {
+          let productLabel = product.name.toLowerCase().split(' ');
+          product.img = `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}`;
+        }
+
+      })
+      .catch(err => console.log(err))
+    return product;
+  }
 
   render() {
     return (
-      <div className='related' >
-        <h4 data-testid='listHeader' className='related-title' >RELATED PRODUCTS</h4>
-        <IoIosArrowBack className='related-scroll' />
-        <div data-testid='container' className='related-list'>
-          {this.state.relatedProducts.map(product => (
-            <Card key={product.id} product={product} />
-          ))
-          }
-        </div >
-        < IoIosArrowForward className='related related-scroll' />
+      <div>
+        {/* {this.getStyles()} */}
+        <div data-testid='listContainer' className='related-container' >
+          <h4 data-testid='listHeader' className='related-title' >RELATED PRODUCTS</h4>
+          <div data-testid='list' className='related-list'>
+            {this.state.relatedProducts.map(product => (
+              // console.log('in render ', product.hasOwnProperty('img'))
+              < Card key={product.id} product={product} type={this.state.type} />
+            ))
+            }
+          </div >
+          <IoIosArrowBack className='related-scroll left-scroll' />
+          < IoIosArrowForward className='right-scroll related-scroll' />
+        </div>
       </div>
     )
   }
 };
 
 export default RelatedList;
-
-// {/*
-//           {this.state.products.map(product => (
-//             <div key={product.id} className='relatedCard'>
-//               <h2>{product.name}</h2>
-//               <h3>{product.category}</h3>
-//             </div>
-//           ))
-//           } */}
-          // {/* {
-          //   <div key={this.state.currentProduct.id} className='related relatedCard'>
-          //     <h2>{this.state.currentProduct.name}</h2>
-          //     <h3>{this.state.currentProduct.category}</h3>
-          //   </div>
-          // } */}
-
-          // {this.state.relatedProducts.map(product => (
-          //   <div key={product.id} className='related related-card'>
-          //     <h2>{product.name}</h2>
-          //     <h3>{product.category}</h3>
-          //   </div>
-          // ))
-          // }
