@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
   // getProducts()
   // // console.log('help', getProducts())
   // console.log(config);
-  getProducts()
+ /*  getProducts()
   .then(question=> {
     // console.log('data', question.data.results[0].answers);
     //res.send(JSON.stringify(question.data.results));
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
   })
   .catch(err => {
     console.log(err);
-  })
+  }) */
   // .catch(err => {
   //   console.log('err', err)
   // })
@@ -32,14 +32,14 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:question_id/answers', (req, res) => {
-  getProducts()
+ /*  getProducts()
   .then(question=> {
     //res.send(JSON.stringify(question.data.results));
     console.log('Hello');
   })
   .catch(err => {
     console.log(err);
-  })
+  }) */
   // getProductsQuestions()
   // .then(question=> {
   //   // res.send(JSON.stringify(question.results));
