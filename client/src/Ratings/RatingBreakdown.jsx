@@ -1,8 +1,10 @@
 import React from "react";
 import $ from 'jquery';
 
+var numVotes = 0;
+
 var getAverage = function(ratings={}) {
-  var numVotes = 0;
+  // var numVotes = 0;
   var sumVotes = 0;
   for (var num in ratings) {
     numVotes += parseInt(ratings[num]);
@@ -31,17 +33,39 @@ var FractinalStars = ({avg}) => {
   )
 }
 
+var RatingBars = ({rating, count}) => {
+  var perc = (count/numVotes) * 100;
+  return (
+    <div className="barBreakdown" id={`bar${rating}`} onClick={(e) => {
+      if (e.target.className === 'barBreakdown') {
+        console.log(e.target.id)
+      } else {
+        console.log(e.target.parentNode.id)
+      }
+    }}>
+      <div className="ratingType">{`${rating} stars`}</div>
+      <div className="bar-outer">
+        <div className="bar-inner" style={{"width": `${perc}%`}}></div>
+      </div>
+      <div className="ratingCount">{count}</div>
+    </div>)
+}
+
 var RatingBreakdown = ({meta}) => {
   var average = getAverage(meta.ratings);
+  var rec = meta.recommended;
+  var recPerc = rec ? ( parseInt(rec.true) / (parseInt(rec.true) + parseInt(rec.false)) ) * 100 : null
   return (
     <div>
       <div>Rating & Reviews</div>
       <div className="ratingBreakdown">
-        <div>{average}</div>
+        <div className="ratingHeader">{average}</div>
         <FractinalStars avg={average}/>
       </div>
-      <div style={{"fontSize":"10px"}}>100% of reviews recommend this product</div>
-      <div>bars</div>
+      <div>
+        {!meta.ratings ? null : Object.keys(meta.ratings).map(num => <RatingBars rating={num} count={meta.ratings[num]} key={num}/>)}
+      </div>
+      <div className="numRecommend">{recPerc}% of reviews recommend this product</div>
     </div>
   )
 }

@@ -189,6 +189,12 @@
 
 }
 
+.ratingHeader {
+  font-size: 50px;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
 .stars-outer::before {
   content: "\f005 \f005 \f005 \f005 \f005";
   font-family: "Font Awesome 5 Free";
@@ -212,3 +218,41 @@
   color: #f8ce0b;
 }
 
+.bar-outer {
+  height: 0.5em;
+  width: 13em;
+  background-color: grey;
+}
+
+.bar-inner {
+  height: 0.5em;
+  width: 13em;
+  background-color: #8FBC8F;
+}
+
+.barBreakdown {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 1px;
+}
+
+.barBreakdown:hover {
+  background-color: black;
+  color: white;
+}
+
+.ratingType {
+  margin-right: 0.5em;
+  text-decoration: underline;
+  font-size: 18px;
+}
+
+.ratingCount {
+  margin-left: 0.5em;
+}
+
+.numRecommend {
+  margin: 1em 0 1em 0;
+  font-size: 12px;
+}
