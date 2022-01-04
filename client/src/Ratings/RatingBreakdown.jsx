@@ -62,7 +62,6 @@ var FilterInfo = ({filters, changeFilter}) => {
 }
 
 var RatingBreakdown = ({meta, changeFilter, filters}) => {
-  console.log(filters)
   var average = getAverage(meta.ratings);
   var rec = meta.recommended;
   var recPerc = rec ? ( parseInt(rec.true) / (parseInt(rec.true) + parseInt(rec.false)) ) * 100 : null
@@ -72,7 +71,7 @@ var RatingBreakdown = ({meta, changeFilter, filters}) => {
       <div className="ratingBreakdown">
         <div className="ratingHeader">{average}</div>
         <FractinalStars avg={average}/>
-      </div>
+      </div><br></br>
       {filters.length ? <FilterInfo filters={filters} changeFilter={changeFilter}/> : <div className="filterInfo"></div>}
       <div>
         {!meta.ratings ? null : Object.keys(meta.ratings).map(num => <RatingBars rating={num} count={meta.ratings[num]} key={num} changeFilter={changeFilter}/>)}

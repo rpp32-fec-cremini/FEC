@@ -177,6 +177,18 @@
 }
 
 
+/* sort dropdown */
+.sort-dropdown span{
+  margin-right: 0.1em;
+}
+
+.sort-dropdown select{
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
 /* Rating Breakdown */
 .ratingBreakdown {
   display: inline-flex;
@@ -258,7 +270,7 @@
 }
 
 .filterInfo {
-  height: 1em;
+  height: 0.5em;
   font-size: 0.8em;
   margin: 0.2em;
   display: inline-flex;
