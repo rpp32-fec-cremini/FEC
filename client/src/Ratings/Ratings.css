@@ -256,3 +256,15 @@
   margin: 1em 0 1em 0;
   font-size: 12px;
 }
+
+.filterInfo {
+  height: 1em;
+  font-size: 0.8em;
+  margin: 0.2em;
+  display: inline-flex;
+}
+
+.removeFilters {
+  margin-left: 1em;
+  text-decoration: underline;
+}

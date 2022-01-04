@@ -4,7 +4,7 @@ import $ from 'jquery';
 var numVotes = 0;
 
 var getAverage = function(ratings={}) {
-  // var numVotes = 0;
+  numVotes = 0;
   var sumVotes = 0;
   for (var num in ratings) {
     numVotes += parseInt(ratings[num]);
@@ -33,15 +33,16 @@ var FractinalStars = ({avg}) => {
   )
 }
 
-var RatingBars = ({rating, count}) => {
+var RatingBars = ({rating, count, changeFilter}) => {
   var perc = (count/numVotes) * 100;
   return (
     <div className="barBreakdown" id={`bar${rating}`} onClick={(e) => {
       if (e.target.className === 'barBreakdown') {
-        console.log(e.target.id)
+        var selected = e.target.id;
       } else {
-        console.log(e.target.parentNode.id)
+        var selected = e.target.parentNode.id;
       }
+      changeFilter(selected)
     }}>
       <div className="ratingType">{`${rating} stars`}</div>
       <div className="bar-outer">
@@ -51,7 +52,17 @@ var RatingBars = ({rating, count}) => {
     </div>)
 }
 
-var RatingBreakdown = ({meta}) => {
+var FilterInfo = ({filters, changeFilter}) => {
+  return (<div className="filterInfo">
+    <div>{`Filters Applied: stars ${filters.reduce((string, filter) => string + filter.substring(3) + ' ', '')}`}</div>
+    <a className="removeFilters" onClick={() => {
+      changeFilter('removeAll')
+    }}>Remove All filters</a>
+  </div>)
+}
+
+var RatingBreakdown = ({meta, changeFilter, filters}) => {
+  console.log(filters)
   var average = getAverage(meta.ratings);
   var rec = meta.recommended;
   var recPerc = rec ? ( parseInt(rec.true) / (parseInt(rec.true) + parseInt(rec.false)) ) * 100 : null
@@ -62,8 +73,9 @@ var RatingBreakdown = ({meta}) => {
         <div className="ratingHeader">{average}</div>
         <FractinalStars avg={average}/>
       </div>
+      {filters.length ? <FilterInfo filters={filters} changeFilter={changeFilter}/> : <div className="filterInfo"></div>}
       <div>
-        {!meta.ratings ? null : Object.keys(meta.ratings).map(num => <RatingBars rating={num} count={meta.ratings[num]} key={num}/>)}
+        {!meta.ratings ? null : Object.keys(meta.ratings).map(num => <RatingBars rating={num} count={meta.ratings[num]} key={num} changeFilter={changeFilter}/>)}
       </div>
       <div className="numRecommend">{recPerc}% of reviews recommend this product</div>
     </div>

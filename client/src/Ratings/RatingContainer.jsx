@@ -15,9 +15,27 @@ class RatingContainer extends React.Component {
       voted: {},
       reported: {},
       product: "",
-      meta: {}
+      meta: {},
+      filters: [],
     };
     this.productId = this.props.productId
+  }
+
+  changeFilter(filter) {
+    if (filter === 'removeAll') {
+      this.setState({filters: []})
+    } else {
+      if (filter === '') return;
+      var filters = [...this.state.filters];
+      if (filters.includes(filter)) {
+        filters.splice(filters.indexOf(filter), 1)
+      } else {
+        filters.push(filter)
+      }
+      this.setState({
+        filters
+      })
+    }
   }
 
   submitReview(data) {
@@ -118,7 +136,7 @@ class RatingContainer extends React.Component {
     return (
       <div className="container">
         <div className="container-left">
-          <RatingBreakdown meta={this.state.meta}/>
+          <RatingBreakdown meta={this.state.meta} changeFilter={this.changeFilter.bind(this)} filters={this.state.filters}/>
           <ProductBreakdown/>
         </div>
         <ReviewsList
