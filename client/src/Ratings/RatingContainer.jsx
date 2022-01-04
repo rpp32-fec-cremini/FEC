@@ -118,7 +118,7 @@ class RatingContainer extends React.Component {
     return (
       <div className="container">
         <div className="container-left">
-          <RatingBreakdown/>
+          <RatingBreakdown meta={this.state.meta}/>
           <ProductBreakdown/>
         </div>
         <ReviewsList

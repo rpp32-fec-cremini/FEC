@@ -4,8 +4,8 @@
   margin: 10%;
   display: grid;
   grid-template-columns: 30% 70%;
-  height: 27%;
-  /* height: 80%; */
+  /* height: 27%; */
+  height: 80%;
 }
 
 .container a:hover{
@@ -174,4 +174,15 @@
 .warning {
   font-size: 12px;
   font-weight: lighter;
+}
+
+
+/* Rating Breakdown */
+.ratingBreakdown {
+  display: inline-flex;
+  align-items: center;
+}
+
+.starOuter {
+  color: black
 }
