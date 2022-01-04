@@ -1,4 +1,5 @@
 import React from "react";
+import $ from 'jquery';
 
 var getAverage = function(ratings={}) {
   var numVotes = 0;
@@ -21,14 +22,11 @@ var getAverage = function(ratings={}) {
 
 var FractinalStars = ({avg}) => {
   var average = avg - (avg % 0.25);
-  console.log(average)
+  var starPerc = (average/5) * 100;
+  $(".stars-inner").css('width', `${starPerc}%`)
   return (
-    <div className="starOuter">
-      {[...Array(5)].map((x, i) => {
-        return (
-          <span key={i}>&#9734;</span>
-        )
-      })}
+    <div className="stars-outer">
+      <div className="stars-inner"></div>
     </div>
   )
 }
