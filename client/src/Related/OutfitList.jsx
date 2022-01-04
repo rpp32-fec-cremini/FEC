@@ -23,36 +23,50 @@ class OutfitList extends React.Component {
     this.getOutfits();
   }
 
-  getOutfits = () => {
-    let outfitArr = [];
-    axios.get(`/products/${this.state.user}/outfits`)
-      .then(outfits => {
-        // console.log(outfits);
-        outfits.data.forEach(outfit => {
-          // console.log(outfit);
-          outfitArr.push(outfit);
-          // console.log(outfitArr);
-        })
-        this.setState({ outfits: outfitArr });
-      })
+  getOutfits = async () => {
+    try {
+      let outfits = await axios.get(`/products/${this.state.user}/outfits`);
+      let data = outfits.data;
+      data.forEach(outfit => {
+        // this.getStyles(outfit.id, outfit);
+        this.setState({ outfits: [...this.state.outfits, outfit] })
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  getListPos = () => {
-
-
+  getStyles = async (id, product) => {
+    try {
+      let styles = await axios.get(`/products/${id}/styles`);
+      if (styles.data.results[0].photos[0].thumbnail_url) {
+        product['img'] = styles.data.results[0].photos[0].thumbnail_url;
+      } else {
+        let productLabel = product.name.toLowerCase().split(' ');
+        product['img'] = `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}`;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    return product;
   }
 
-  showArrows = () => {
+  // getListPos = () => {
 
-  }
 
-  leftPaddleScroll = () => {
+  // }
 
-  }
+  // showArrows = () => {
 
-  rightPaddleScroll = () => {
+  // }
 
-  }
+  // leftPaddleScroll = () => {
+
+  // }
+
+  // rightPaddleScroll = () => {
+
+  // }
 
   render() {
     return (
@@ -60,7 +74,7 @@ class OutfitList extends React.Component {
         <h4 data-testid='outfitHeader' className='related-title' >YOUR OUTFIT</h4>
         <div data-testid='outfitList' className='related-list'>
           {this.state.outfits.map(outfit => (
-            <Card key={outfit.id} product={outfit} type={this.state.type} />
+            < Card key={outfit.id} product={outfit} type={this.state.type} />
           ))
           }
         </div >
