@@ -31,20 +31,32 @@ class RatingContainer extends React.Component {
     })
   }
 
+  postVote(route, id, callback) {
+    $.ajax({
+      method: "POST",
+      url: route,
+      data: JSON.stringify({id}),
+      contentType: "application/json",
+      success: response => callback()
+    })
+  }
+
   addToVoted(id, type) {
     if (type === 'helpful') {
       if (!this.state.voted[id]) {
-        //put request to server helpful
-        this.setState({
-          voted: {...this.state.voted, [id]: true}
-        })
+        this.postVote("/reviews/helpful", id, () => {
+          this.setState({
+            voted: {...this.state.voted, [id]: true}
+          })
+        });
       }
     } else if (type === 'report') {
       if (!this.state.reported[id]) {
-        //put request to server for report
-        this.setState({
-          reported: {...this.state.reported, [id]: true}
-        })
+        this.postVote("/reviews/report", id, () => {
+          this.setState({
+            reported: {...this.state.reported, [id]: true}
+          })
+        });
       }
     }
   }
@@ -103,12 +115,10 @@ class RatingContainer extends React.Component {
   }
 
   render() {
-    console.log(this.state.voted)
-    console.log(this.state.reported)
     return (
       <div className="container">
         <div className="container-left">
-          <RatingBreakdown/>
+          <RatingBreakdown meta={this.state.meta}/>
           <ProductBreakdown/>
         </div>
         <ReviewsList
