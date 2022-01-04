@@ -38,6 +38,12 @@ html, body, #root {
   grid-gap: 1rem;
 }
 
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1px;
+}
+
 .grid-5 {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -45,9 +51,13 @@ html, body, #root {
 }
 
 
+.flexContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  flex-direction: row;
+}
 
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1rem;
+.flexItem {
+  flex-basis: auto;
 }

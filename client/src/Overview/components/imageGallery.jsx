@@ -13,35 +13,56 @@ class ImageGallery extends React.Component {
     this.grabStyle =  this.grabStyle.bind(this);
   }
 
-  componentDidMount() {
+ /*  componentDidMount() {
     this.grabStyle();
+  } */
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.grabStyle();
+    }
   }
 
 
-  grabStyle = (product_id) => {
+
+  grabStyle = () => {
     $.ajax({
+
       type: "GET",
-      url: 'products/styles',
+      url: `overview/products/${this.props.product_id}/styles`,
       success: data => {
-        //let products = JSON.parse(data)
+
         this.setState({
-          imageList: data.results[0].photos,
-          currentImage: data.results[0].photos[0].thumbnail_url
+
+          imageList: data['results'][0]['photos'],
+          currentImage: data['results'][0]['photos'][0]['url']
+
         });
-        //console.log('STATE HERE ', this.state);
+
       }
-    })//console.log ('hardee har har, you thought you had me');
+    })
   }
 
 
 
   render() {
-    return (
+    if (!this.state.currentImage) {
+      return (
+
+        <div>
+          <h1>Boooo, no image here</h1>
+        </div>
+
+      )
+    } else {
+      return (
+
       <div>
-        <h2 className = 'related relatedCard' /* style = {{height: '100%'}} */>IMAGE GALLERY</h2>
-        <img src={this.state.currentImage} ></img>
+        <h2 className = 'related relatedCard'>IMAGE GALLERY</h2>
+        <img src={this.state.currentImage} style = {{height: '500px', width: '500px'}} ></img>
       </div>
-    )
+
+    )}
   }
 }
 

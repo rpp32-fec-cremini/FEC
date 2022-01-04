@@ -50,7 +50,6 @@ module.exports.getSingleProduct = (id) => {
 }
 
 module.exports.getStyle = (id) => {
-  console.log('THIS IS NOT THE ID YOU\'re looking for', id)
   let options = {
     url: API_URL + `products/${id}/styles/`,
     headers: {
@@ -69,12 +68,9 @@ module.exports.getStyle = (id) => {
 
 module.exports.getMeta = (id) => {
   let options = {
-    url: API_URL + 'review/meta/:product_id',
+    url: API_URL + `reviews/meta/?product_id=${id}`,
     headers: {
       'Authorization': token
-    },
-    params: {
-      product_id: id
     }
   }
 
