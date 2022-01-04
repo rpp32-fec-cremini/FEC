@@ -8,25 +8,21 @@ class ProductRating extends React.Component {
     super(props);
     this.state = {
       reviewMeta: {},
-      avgRating: {
-        rating: 0,
-        stars: []
-      },
+      stars: []
     }
 
-    this.getMetadata = this.getMetadata.bind(this);
+    //this.getMetadata = this.getMetadata.bind(this);
     this.makeRatings = this.makeRatings.bind(this);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
-      this.getMetadata(this.props.product_id);
-      //this.makeRatings();
+      this.makeRatings();
     }
   }
 
 
-  getMetadata = (id) => {
+  /* getMetadata = (id) => {
 
 
     $.ajax({
@@ -36,32 +32,27 @@ class ProductRating extends React.Component {
       success: data => {
 
         this.setState({reviewMeta: data.ratings});
-        console.log(this.state)
         this.makeRatings();
 
       }
     })
 
-  }
+  } */
 
   makeRatings = () => {
 
     var weight = 0;
     var total = 0;
-    console.log('DOES THIS FUNCTION EVEN RUN???')
 
-    for (const key in this.state.reviewMeta) {
-      console.log('Is this loop even running??');
-      var val = parseInt(this.state.reviewMeta[key]);
-      weight += (key * val);
+    for (const key in this.props.reviewMeta) {
+      var val = parseInt(this.props.reviewMeta[key]);
+      weight += (parseInt(key) * val);
       total += val;
     }
 
 
     var rating = weight / total;
-    this.setState({avgRating : rating})
     console.log('Average rating here! ', rating);
-    console.log()
 
     var rateString = []
     for (var i = rating; i > 0; i--) {
@@ -69,7 +60,6 @@ class ProductRating extends React.Component {
         rateString.push(<IoIosStarOutline key ={i} />)
         break;
       }else if (i >.5 && i < 1) {
-        console.log ('HALF STAR BABY')
         rateString.push(<IoIosStarHalf key ={i} />);
       } else {
         rateString.push(<IoIosStar key = {i} />);
@@ -79,8 +69,8 @@ class ProductRating extends React.Component {
       rateString.push(<IoIosStarOutline key = {j} />)
     }
 
-    console.log(rateString);
     this.setState({stars: rateString})
+    console.log(this.state.stars)
 
   }
 

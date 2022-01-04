@@ -11,45 +11,110 @@ class ProductInfo extends React.Component {
     super(props);
 
     this.state = {
-
       productList: [],
       current: {},
+      currentStyle: {},
       productMeta: {}
-
     }
-
-    this.getProducts = this.getProducts.bind(this);
+    /* this.getProducts = this.getProducts.bind(this);
+    this.getCurrentStyle = this.getCurrentStyle.bind(this); */
 
   }
+/*
+  componentDidUpdate() {
+    console.log('Here be your props ', this.props)
+    if(this.props.current === {}) {
+      this.props.getProducts;
+    }
+  } */
 
 
-  componentDidMount() {
-    this.getProducts();
-  }
+  /* componentDidUpdate(prevProps) {
+    if(prevProps !== this.props) {
+      this.props.getProducts;
+      /* this.setState({
+        productList: this.props.productList,
+        reviewMeta: this.props.reviewMeta
+      }); */
+   // }
+  //}
 
-  getProducts = () => {
+ /*  componentDidUpdate() {
+    if(!this.state.currentStyle) {
+      this.getCurrentStyle();
+    }
+  } */
 
-    console.log('IT RUNNETH');
+ /*  getProducts = () => {
+
     $.ajax({
       type: "GET",
       url: 'overview/products',
       success: data => {
-
         this.setState({productList: data, current: data[0]});
+        this.getCurrentStyle();
+      }
+    })
+
+  } */
+
+ /*  getStyles = () => {
+    $.ajax({
+      type: "GET",
+      url: `overview/products/${this.props.product_id}/styles`,
+      success: products => {
+        //console.log('STYLE Data is here! ', products);
+        this.setState({styleList: products.results, currentStyle: products.results[0]});
+        //console.log('STYLE STATE HERE ', this.state);
       }
     })
   }
 
 
 
+  getCurrentStyle = () => {
+    $.ajax({
+      type: "GET",
+      url: `overview/products/${this.state.current.id}/styles`,
+      success: products => {
+        //console.log('STYLE Data is here! ', products);
+        for (var i = 0; i < products.results.length; i++) {
+          if(products.results[i]['default?'] === true) {
+            this.setState({currentStyle: products.results[i]})
+          }
+        }
+        //this.setState({currentStyle: product.results.style_id});
+        console.log('STYLE STATE HERE ', this.state);
+      }
+    })
+  }
+
+  getMetadata = (id) => {
+
+
+    $.ajax({
+      type: 'GET',
+      url: `overview/reviews/meta/`,
+      data: {product_id: id},
+      success: data => {
+
+        this.setState({reviewMeta: data.ratings});
+        this.makeRatings();
+
+      }
+    })
+
+  } */
+
+
 
   render() {
-
-    var product = this.state.current.name;
-    var desc = this.state.current.description;
-    var category = this.state.current.category;
-    var price = this.state.current.default_price;
-    var id = this.state.current.id;
+    var product = this.props.current.name;
+    var desc = this.props.current.description;
+    var category = this.props.current.category;
+    var price = this.props.current.default_price;
+    var id = this.props.current.id;
+    console.log('Props??', this.props)
     console.log('BEHOLD, THE ID ', id);
 
     if (!this.state.current) {
@@ -63,21 +128,16 @@ class ProductInfo extends React.Component {
 
       )
     } else {
+      return(
 
-    return(
+        <div>
+            <h3>{category} ::: {product} <ProductRating reviewMeta={this.props.reviewMeta} /></h3>
+            <h3>{price}</h3>
+            <h4>{desc}</h4>
+        </div>
 
-      <div>
-      <div className = "flexContainer">
-        <ImageGallery className='flexItem' product_id = {this.state.current.id} />
-      </div> <br></br>
-          <h3>{category} ::: {product} <ProductRating product_id = {this.state.current.id}/></h3>
-          <h3>{price}</h3>
-          <h4>{desc}</h4>
-      <StyleSelector product_id = {this.state.current.id} />
-      </div>
-
-    )}
-  }
+      )}
+    }
 }
 
 export default ProductInfo;
