@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
       res.send(JSON.stringify(products.data));
     })
     .catch(err => {
-      //console.log(err);
+      console.log(err.data);
       res.end()
     })
 })
@@ -31,7 +31,7 @@ router.get('/:product_id', (req, res) => {
       res.send(JSON.stringify(product.data));
     })
     .catch(err => {
-      //console.log(err);
+      console.log(err.data);
       res.end()
     })
 })
@@ -45,7 +45,7 @@ router.get('/:product_id/related', (req, res) => {
       res.send(JSON.stringify(products.data));
     })
     .catch(err => {
-      //console.log(err);
+      console.log(err.data);
       res.end()
     })
 })
@@ -55,11 +55,10 @@ router.get('/:product_id/styles', (req, res) => {
 
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${id}/styles`, { headers: { authorization } })
     .then(styles => {
-      // console.log('RELATED PRODUCTS: ', products);
       res.send(JSON.stringify(styles.data));
     })
     .catch(err => {
-      console.log(err);
+      console.log(err.data);
       res.end()
     })
 })

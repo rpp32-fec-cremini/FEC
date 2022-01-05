@@ -15,9 +15,27 @@ class RatingContainer extends React.Component {
       voted: {},
       reported: {},
       product: "",
-      meta: {}
+      meta: {},
+      filters: [],
     };
     this.productId = this.props.productId
+  }
+
+  changeFilter(filter) {
+    if (filter === 'removeAll') {
+      this.setState({filters: []})
+    } else {
+      if (filter === '') return;
+      var filters = [...this.state.filters];
+      if (filters.includes(filter)) {
+        filters.splice(filters.indexOf(filter), 1)
+      } else {
+        filters.push(filter)
+      }
+      this.setState({
+        filters
+      })
+    }
   }
 
   submitReview(data) {
@@ -31,20 +49,32 @@ class RatingContainer extends React.Component {
     })
   }
 
+  postVote(route, id, callback) {
+    $.ajax({
+      method: "POST",
+      url: route,
+      data: JSON.stringify({id}),
+      contentType: "application/json",
+      success: response => callback()
+    })
+  }
+
   addToVoted(id, type) {
     if (type === 'helpful') {
       if (!this.state.voted[id]) {
-        //put request to server helpful
-        this.setState({
-          voted: {...this.state.voted, [id]: true}
-        })
+        this.postVote("/reviews/helpful", id, () => {
+          this.setState({
+            voted: {...this.state.voted, [id]: true}
+          })
+        });
       }
     } else if (type === 'report') {
       if (!this.state.reported[id]) {
-        //put request to server for report
-        this.setState({
-          reported: {...this.state.reported, [id]: true}
-        })
+        this.postVote("/reviews/report", id, () => {
+          this.setState({
+            reported: {...this.state.reported, [id]: true}
+          })
+        });
       }
     }
   }
@@ -103,17 +133,23 @@ class RatingContainer extends React.Component {
   }
 
   render() {
-    console.log(this.state.voted)
-    console.log(this.state.reported)
+    if (!this.state.filters.length) {
+      var filteredReviews = [...this.state.reviews];
+    } else {
+      var filteredReviews = this.state.reviews.filter(review => this.state.filters.includes('bar' + review.rating));
+    }
+
+    //metadata doesnt match actual data
+
     return (
       <div className="container">
         <div className="container-left">
-          <RatingBreakdown/>
+          <RatingBreakdown meta={this.state.meta} changeFilter={this.changeFilter.bind(this)} filters={this.state.filters}/>
           <ProductBreakdown/>
         </div>
         <ReviewsList
           sortAndGet={this.sortAndGet.bind(this)}
-          reviews={this.state.reviews}
+          reviews={filteredReviews}
           shownReviews={this.state.shownReviews}
           moreReviews={this.moreReviews.bind(this)}
           addToVoted={this.addToVoted.bind(this)}

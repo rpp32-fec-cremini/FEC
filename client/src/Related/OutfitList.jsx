@@ -14,7 +14,8 @@ class OutfitList extends React.Component {
     super(props);
     this.state = {
       user: 123,
-      outfits: []
+      outfits: [{ id: '000' }],
+      type: 'outfit'
     }
   }
 
@@ -22,33 +23,79 @@ class OutfitList extends React.Component {
     this.getOutfits();
   }
 
+  getOutfits = async () => {
+    try {
+      let outfits = await axios.get(`/products/${this.state.user}/outfits`);
+      let data = outfits.data;
+      data.forEach(outfit => {
+        // this.getStyles(outfit.id, outfit);
+        this.setState({ outfits: [...this.state.outfits, outfit] })
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
-  getOutfits = () => {
-    let outfitArr = [];
-    axios.get(`/products/${this.state.user}/outfits`)
-      .then(outfits => {
-        // console.log(outfits);
-        outfits.data.forEach(outfit => {
-          // console.log(outfit);
-          outfitArr.push(outfit);
-          console.log(outfitArr);
-        })
-        this.setState({ outfits: outfitArr });
-      })
+  getStyles = async (id, product) => {
+    try {
+      let styles = await axios.get(`/products/${id}/styles`);
+      if (styles.data.results[0].photos[0].thumbnail_url) {
+        product['img'] = styles.data.results[0].photos[0].thumbnail_url;
+      } else {
+        let productLabel = product.name.toLowerCase().split(' ');
+        product['img'] = `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}`;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    return product;
+  }
+
+  // getListPos = () => {
+
+
+  // }
+
+  // showArrows = () => {
+
+  // }
+
+  // leftPaddleScroll = () => {
+
+  // }
+
+  // rightPaddleScroll = () => {
+
+  // }
+
+  xClick = (id) => {
+    let outfit = this.state.outfits.find(obj => obj.id === id);
+    let filteredOutfits = this.state.outfits.filter(outfit => outfit.id !== id);
+    this.setState({ outfits: filteredOutfits });
+  }
+
+  addClick = (outfit) => {
+    console.log(outfit.id);
+    console.log('BEFORE ', this.state.outfits.length);
+    if (!this.state.outfits.find(obj => obj.id === outfit.id)) {
+      this.setState({ outfits: [...this.state.outfits, outfit] });
+    }
+    console.log('AFTER ', this.state.outfits.length);
   }
 
   render() {
     return (
-      <div className='related' >
-        <h4 data-testid='listHeader' className='related-title' >YOUR OUTFIT</h4>
-        <IoIosArrowBack className='related-scroll' />
-        <div data-testid='container' className='related-list'>
+      <div data-testid='outfitContainer' className='related-container' >
+        <h4 data-testid='outfitHeader' className='related-title' >YOUR OUTFIT</h4>
+        <ul data-testid='outfitList' className='related-list'>
           {this.state.outfits.map(outfit => (
-            <Card key={outfit.id} product={outfit} />
+            < Card key={outfit.id} product={outfit} type={this.state.type}
+              actionClick={this.xClick} addClick={this.addClick} />
           ))
           }
-        </div >
-        < IoIosArrowForward className='related related-scroll' />
+        </ul >
+        <IoIosArrowBack className='related-scroll left-scroll' />
+        < IoIosArrowForward className='related-scroll right-scroll' />
       </div>
     )
   }

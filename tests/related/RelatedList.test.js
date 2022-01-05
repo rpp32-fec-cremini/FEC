@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, within } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import RelatedList from '../../client/src/Related/RelatedList.jsx';
 
 const exampleData = require('../../server/routes/RelatedFakeData').fakeProducts;
@@ -11,8 +11,8 @@ test('should output *RELATED PRODUCTS*', () => {
   expect(listHeader.textContent).toBe('RELATED PRODUCTS');
 })
 
-// test('should output *Related Products List*', () => {
-//   let { getByTestId } = render(<RelatedList />);
-//   let container = getByTestId('container');
-//   expect(container.textContent).toBe('RELATED PRODUCTS');
-// })
+test('relatedList component renders to the page', () => {
+  const { getByText, getByTestId } = render(<RelatedList />);
+  getByTestId('listContainer');
+  getByTestId('list');
+});

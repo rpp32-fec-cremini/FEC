@@ -16,7 +16,7 @@ var ReviewsList = ({sortAndGet, reviews, shownReviews, moreReviews, addToVoted, 
   return (
   <div className="container-right">
     {sortDropdown}
-    <div style={shownReviews > 3 ? scrollStyle : {"height": "48em"}} data-testid="scrolllist">
+    <div style={shownReviews >= 3 ? scrollStyle : {"height": "48em"}} data-testid="scrolllist">
       {reviews.slice(0, shownReviews).map(review => {
         return (
           <ReviewTile

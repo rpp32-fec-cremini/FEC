@@ -61,11 +61,14 @@ var Character = ({choice, theme}) => {
 }
 
 var photos = [];
+// var form_data = new FormData();
 var UploadImage = (props) => {
   return (
     <div>
       <input id="addImages" type='file' accept='image/png,image/jpg' onChange={() => {
         var imagePath = URL.createObjectURL($("#addImages")[0].files[0]);
+
+        // form_data.append("file", $("#addImages")[0].files[0]);
         photos.push(imagePath)
         var img = $(`<img src=${imagePath} width="50px" height="50px"></img>`)
         img.appendTo($('#display_images'))
