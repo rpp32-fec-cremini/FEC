@@ -21,6 +21,7 @@ class RelatedList extends React.Component {
         category: 'example'
       },
       products: [],
+      relatedIDs: [],
       relatedProducts: [],
       relatedStyles: []
     }
@@ -28,83 +29,81 @@ class RelatedList extends React.Component {
   }
 
   componentDidMount() {
-    // this.getAllProducts();
-    // this.getCurrentProduct();
-    this.getRelatedProducts();
+    this.getRelatedIDs();
   }
 
-  getAllProducts = () => {
-    $.get(`/products`, data => {
-      let products = JSON.parse(data);
-      this.setState({ products: products });
-      // console.log(this.state.products);
-    });
-  };
+  // getAllProducts = () => {
+  //   $.get(`/products`, data => {
+  //     let products = JSON.parse(data);
+  //     this.setState({ products: products });
+  //     // console.log(this.state.products);
+  //   });
+  // };
 
-  getSingleProduct = (id) => {
-    $.get(`/products/${id}`, data => {
-      // console.log(JSON.parse(data));
-      return JSON.parse(data);
-    })
-  };
+  // getSingleProduct = (id) => {
+  //   $.get(`/products/${id}`, data => {
+  //     // console.log(JSON.parse(data));
+  //     return JSON.parse(data);
+  //   })
+  // };
 
-  getCurrentProduct = () => {
-    $.get(`/products/${this.state.currentProductID}`, data => {
-      let currentProduct = JSON.parse(data);
-      this.setState({ currentProduct: currentProduct });
-      // console.log(currentProduct);
-      return currentProduct;
-    })
-  };
+  // getCurrentProduct = () => {
+  //   $.get(`/products/${this.state.currentProductID}`, data => {
+  //     let currentProduct = JSON.parse(data);
+  //     this.setState({ currentProduct: currentProduct });
+  //     // console.log(currentProduct);
+  //     return currentProduct;
+  //   })
+  // };
 
-  getRelatedProducts = () => {
-    let relatedProducts = [];
-    axios.get(`/products/${this.state.currentProductID}/related`)
-      .then(productIds => {
-        // console.log('PRODUCT IDS ', productIds.data);
-        productIds.data.forEach(id => {
-          axios.get(`/products/${id}`)
-            .then(product => {
-              let currentProduct = product.data;
-              // console.log('PRODUCT ', currentProduct);
-              currentProduct = this.getStyles(id, currentProduct);
-              relatedProducts.push(currentProduct);
-              this.setState({ relatedProducts: relatedProducts });
-              // console.log('related products', this.state.relatedProducts);
-            })
-            .catch(err => console.log(err))
-        })
+  getRelatedIDs = async () => {
+    let relatedIDs = [];
+    try {
+      let IDs = await axios.get(`/products/${this.state.currentProductID}/related`);
+      let data = IDs.data;
+      data.forEach(id => {
+        relatedIDs.push(id);
+        this.setRelatedProducts(id);
       })
-      .catch(err => console.log(err))
+      this.setState({ relatedIDs: relatedIDs });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  getStyles = (id, product) => {
-    // console.log('related in getStyles', this.state.relatedProducts);
-    axios.get(`/products/${id}/styles`)
-      .then(styles => {
-        // console.log('styles id ', id);
-        // console.log('styles.data.results ', styles.data.results[0].photos[0].thumbnail_url);
-        if (styles.data.results[0].photos[0].thumbnail_url) {
-          product.img = styles.data.results[0].photos[0].thumbnail_url;
-        } else {
-          let productLabel = product.name.toLowerCase().split(' ');
-          product.img = `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}`;
-        }
+  setRelatedProducts = async (id) => {
+    try {
+      let product = await axios.get(`/products/${id}`);
+      let data = product.data;
+      // this.getStyles(id, data);
+      this.setState({ relatedProducts: [...this.state.relatedProducts, data] });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-      })
-      .catch(err => console.log(err))
+  getStyles = async (id, product) => {
+    try {
+      let styles = await axios.get(`/products/${id}/styles`);
+      if (styles.data.results[0].photos[0].thumbnail_url) {
+        product.img = styles.data.results[0].photos[0].thumbnail_url;
+      } else {
+        let productLabel = product.name.toLowerCase().split(' ');
+        product['img'] = `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}`;
+      }
+    } catch (err) {
+      console.log(err);
+    }
     return product;
   }
 
   render() {
     return (
       <div>
-        {/* {this.getStyles()} */}
         <div data-testid='listContainer' className='related-container' >
           <h4 data-testid='listHeader' className='related-title' >RELATED PRODUCTS</h4>
           <div data-testid='list' className='related-list'>
             {this.state.relatedProducts.map(product => (
-              // console.log('in render ', product.hasOwnProperty('img'))
               < Card key={product.id} product={product} type={this.state.type} />
             ))
             }

@@ -11,7 +11,7 @@ class Card extends React.Component {
     super(props);
     this.state = {
       action: <TiDeleteOutline className='action-btn' />,
-      actionName: TiDeleteOutline,
+      // actionName: TiDeleteOutline,
       currentImage: null,
       currentPrice: null
     }
@@ -20,39 +20,50 @@ class Card extends React.Component {
   componentDidMount() {
     // this.displayWidth();
     this.getType();
+    this.getStyleInfo(this.props.product.id, this.props.product.name);
   }
 
-  displayWidth = () => {
-    console.log(window.getComputedStyle(this.refs.card).getPropertyValue("width"));
-  }
+  // displayWidth = () => {
+  //   console.log(window.getComputedStyle(this.refs.card).getPropertyValue("width"));
+  // }
 
   getType = () => {
     this.props.type === 'outfit' ? this.setState({ action: <TiDeleteOutline className='action-btn' /> }) :
       this.setState({ action: <IoIosStarOutline className='action-btn' /> })
   }
 
-  getStyleInfo = (id, name) => {
-    axios.get(`/products/${id}/styles`)
-      .then(styles => {
-        if (styles.data.results[0].photos[0].thumbnail_url) {
-          this.setState({ currentImage: styles.data.results[0].photos[0].thumbnail_url });
-        } else {
-          let productLabel = name.toLowerCase().split(' ');
-          this.setState({ currentImage: `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}` });
-        }
-        // if (styles.data.results[0].photos[0].thumbnail_url)
+  // getStyleInfo = (id, name) => {
+  //   axios.get(`/products/${id}/styles`)
+  //     .then(styles => {
+  //       if (styles.data.results[0].photos[0].thumbnail_url) {
+  //         this.setState({ currentImage: styles.data.results[0].photos[0].thumbnail_url })
+  //       } else {
+  //         let productLabel = name.toLowerCase().split(' ');
+  //         this.setState({ currentImage: `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}` });
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
-      })
-      .catch(err => console.log(err))
+  getStyleInfo = async (id, name) => {
+    try {
+      let styles = await axios.get(`/products/${id}/styles`);
+      if (styles.data.results[0].photos[0].thumbnail_url) {
+        this.setState({ currentImage: styles.data.results[0].photos[0].thumbnail_url })
+      } else {
+        let productLabel = name.toLowerCase().split(' ');
+        this.setState({ currentImage: `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}` });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {
-    let id = this.props.product.id;
-    let name = this.props.product.name;
-
     return (
-      <div data-testid='card' ref={'card'} className='related-card'>
-        {this.getStyleInfo(id, name)}
+      <div data-testid='card' className='related-card'>
         <img src={this.state.currentImage} className='related-img' />
         {this.state.action}
         <div className='card-text'>
