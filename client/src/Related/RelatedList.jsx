@@ -8,6 +8,7 @@ import { IoIosStarOutline } from "react-icons/io";
 import { IoIosStar } from "react-icons/io";
 import './related.css';
 import Card from './Card.jsx';
+import Compare from './Compare.jsx';
 
 class RelatedList extends React.Component {
   constructor(props) {
@@ -20,6 +21,11 @@ class RelatedList extends React.Component {
         name: 'Sample Product',
         category: 'example'
       },
+      compProduct: {
+        id: 456,
+        name: 'Sample Comp Product',
+        category: 'example'
+      },
       products: [],
       relatedIDs: [],
       relatedProducts: [],
@@ -30,6 +36,8 @@ class RelatedList extends React.Component {
 
   componentDidMount() {
     this.getRelatedIDs();
+    this.setCurrentProduct();
+    this.setCompProduct(59553);
   }
 
   // getAllProducts = () => {
@@ -40,21 +48,26 @@ class RelatedList extends React.Component {
   //   });
   // };
 
-  // getSingleProduct = (id) => {
-  //   $.get(`/products/${id}`, data => {
-  //     // console.log(JSON.parse(data));
-  //     return JSON.parse(data);
-  //   })
-  // };
+  getSingleProduct = (id) => {
+    $.get(`/products/${id}`, data => {
+      console.log(JSON.parse(data).name.toUpperCase());
+      return JSON.parse(data);
+    })
+  };
 
-  // getCurrentProduct = () => {
-  //   $.get(`/products/${this.state.currentProductID}`, data => {
-  //     let currentProduct = JSON.parse(data);
-  //     this.setState({ currentProduct: currentProduct });
-  //     // console.log(currentProduct);
-  //     return currentProduct;
-  //   })
-  // };
+  setCurrentProduct = () => {
+    $.get(`/products/${this.state.currentProductID}`, data => {
+      let currentProduct = JSON.parse(data);
+      this.setState({ currentProduct: currentProduct });
+    })
+  };
+
+  setCompProduct = (id) => {
+    $.get(`/products/${id}`, data => {
+      let compProduct = JSON.parse(data);
+      this.setState({ compProduct: compProduct });
+    })
+  };
 
   getRelatedIDs = async () => {
     let relatedIDs = [];
@@ -67,7 +80,7 @@ class RelatedList extends React.Component {
       })
       this.setState({ relatedIDs: relatedIDs });
     } catch (err) {
-      console.log(err);
+      console.log(data, err);
     }
   };
 
@@ -97,19 +110,36 @@ class RelatedList extends React.Component {
     return product;
   }
 
+  starClick = (id) => {
+    this.setCompProduct(id);
+    $('.compare').removeClass('hide');
+    $('.compare').addClass('show');
+    $('.related-container').parents('#root, body, html').css({ 'height': '100%', 'overflow': 'hidden', 'scrollbar': 'none' });
+  }
+
+  hideModal = () => {
+    $('.compare').removeClass('show');
+    $('.compare').addClass('hide');
+  }
+
   render() {
     return (
       <div>
-        <div data-testid='listContainer' className='related-container' >
+        <div data-testid='listContainer' className='related-container top-container' >
           <h4 data-testid='listHeader' className='related-title' >RELATED PRODUCTS</h4>
-          <div data-testid='list' className='related-list'>
+          <ul data-testid='list' className='related-list'>
             {this.state.relatedProducts.map(product => (
-              < Card key={product.id} product={product} type={this.state.type} />
+              < Card key={product.id} product={product} type={this.state.type}
+                actionClick={this.starClick} unClick={this.hideModal} />
             ))
             }
-          </div >
+          </ul >
           <IoIosArrowBack className='related-scroll left-scroll' />
           < IoIosArrowForward className='right-scroll related-scroll' />
+          <div className='compare hide'>
+            <Compare className='show' currentItem={this.state.currentProduct} compProduct={this.state.compProduct} />
+          </div>
+
         </div>
       </div>
     )
