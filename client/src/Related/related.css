@@ -134,6 +134,13 @@ th {
   font-size-adjust: 0.5;
 }
 
+.sale {
+  color: red;
+}
+.reg-price {
+  text-decoration: line-through;
+}
+
 /* .card-stars {
 
 } */
