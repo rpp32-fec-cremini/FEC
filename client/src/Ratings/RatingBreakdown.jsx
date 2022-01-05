@@ -39,6 +39,8 @@ var RatingBars = ({rating, count, changeFilter}) => {
     <div className="barBreakdown" id={`bar${rating}`} onClick={(e) => {
       if (e.target.className === 'barBreakdown') {
         var selected = e.target.id;
+      } else if (e.target.className === 'bar-inner') {
+        var selected = e.target.parentNode.parentNode.id;
       } else {
         var selected = e.target.parentNode.id;
       }
