@@ -13,16 +13,70 @@ class RatingContainer extends React.Component {
       reviews: [],
       shownReviews: 2,
       voted: {},
+      reported: {},
       product: "",
+      meta: {},
+      filters: [],
     };
     this.productId = this.props.productId
   }
 
-  addToVoted(id) {
-    this.setState({
-      voted: {...this.state.voted, [id]: true}
+  changeFilter(filter) {
+    if (filter === 'removeAll') {
+      this.setState({filters: []})
+    } else {
+      if (filter === '') return;
+      var filters = [...this.state.filters];
+      if (filters.includes(filter)) {
+        filters.splice(filters.indexOf(filter), 1)
+      } else {
+        filters.push(filter)
+      }
+      this.setState({
+        filters
+      })
+    }
+  }
+
+  submitReview(data) {
+    console.log(data)
+    $.ajax({
+      method: "POST",
+      url: "/reviews",
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      success: response => location.reload()
     })
-    //replace this later on with put request to server
+  }
+
+  postVote(route, id, callback) {
+    $.ajax({
+      method: "POST",
+      url: route,
+      data: JSON.stringify({id}),
+      contentType: "application/json",
+      success: response => callback()
+    })
+  }
+
+  addToVoted(id, type) {
+    if (type === 'helpful') {
+      if (!this.state.voted[id]) {
+        this.postVote("/reviews/helpful", id, () => {
+          this.setState({
+            voted: {...this.state.voted, [id]: true}
+          })
+        });
+      }
+    } else if (type === 'report') {
+      if (!this.state.reported[id]) {
+        this.postVote("/reviews/report", id, () => {
+          this.setState({
+            reported: {...this.state.reported, [id]: true}
+          })
+        });
+      }
+    }
   }
 
 
@@ -52,11 +106,24 @@ class RatingContainer extends React.Component {
         var product = JSON.parse(data).product
         var reviews = JSON.parse(data).results;
         var shownReviews = reviews.length < 2 ? reviews.length : 2
-        this.setState({
-          reviews,
-          shownReviews,
-          product
+        $.ajax({
+          method: "GET",
+          url: "/reviews/meta",
+          data: {
+            product_id: this.productId
+          },
+          contentType: "application/json",
+          success: data => {
+            var meta = JSON.parse(data);
+            this.setState({
+              reviews,
+              shownReviews,
+              product,
+              meta
+            })
+          }
         })
+
       }
     })
   }
@@ -66,19 +133,31 @@ class RatingContainer extends React.Component {
   }
 
   render() {
+    if (!this.state.filters.length) {
+      var filteredReviews = [...this.state.reviews];
+    } else {
+      var filteredReviews = this.state.reviews.filter(review => this.state.filters.includes('bar' + review.rating));
+    }
+
+    //metadata doesnt match actual data
+
     return (
       <div className="container">
         <div className="container-left">
-          <RatingBreakdown/>
+          <RatingBreakdown meta={this.state.meta} changeFilter={this.changeFilter.bind(this)} filters={this.state.filters}/>
           <ProductBreakdown/>
         </div>
         <ReviewsList
-          reviews={this.state.reviews}
+          sortAndGet={this.sortAndGet.bind(this)}
+          reviews={filteredReviews}
           shownReviews={this.state.shownReviews}
           moreReviews={this.moreReviews.bind(this)}
           addToVoted={this.addToVoted.bind(this)}
           voted={this.state.voted}
           product={this.state.product}
+          characteristics={this.state.meta.characteristics}
+          product_id={this.productId}
+          submitReview={this.submitReview.bind(this)}
         />
       </div>
     )

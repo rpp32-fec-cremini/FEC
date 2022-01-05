@@ -10,37 +10,59 @@ class ImageGallery extends React.Component {
       imageList: []
     }
 
-    this.search =  this.search.bind(this);
+    this.grabStyle =  this.grabStyle.bind(this);
   }
 
-  componentDidMount() {
-    this.search();
+ /*  componentDidMount() {
+    this.grabStyle();
+  } */
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.grabStyle();
+    }
   }
 
 
-  search = () => {
-    //console.log('I SEND THEE, ', userName , ' to the FUCKING MOON')
+
+  grabStyle = () => {
     $.ajax({
+
       type: "GET",
-      url: '/overview/styles',
+      url: `overview/products/${this.props.product_id}/styles`,
       success: data => {
-        //let products = JSON.parse(data)
-        console.log('Success!', data);
-        this.setState({imageList: data.results[0].photos, currentImage: data.results[0].photos[0].thumbnail_url});
-        console.log('STATE FUCKING HERE ', this.state);
+
+        this.setState({
+
+          imageList: data['results'][0]['photos'],
+          currentImage: data['results'][0]['photos'][0]['url']
+
+        });
+
       }
-    })//console.log ('hardee har har, you thought you had me');
+    })
   }
 
 
 
   render() {
-    return (
+    if (!this.state.currentImage) {
+      return (
+
+        <div>
+          <h1>Boooo, no image here</h1>
+        </div>
+
+      )
+    } else {
+      return (
+
       <div>
-        <h2 className = 'related relatedCard' /* style = {{height: '100%'}} */>IMAGE GALLERY</h2>
-        <img src={this.state.currentImage} ></img>
+        <h2 className = 'related relatedCard'>IMAGE GALLERY</h2>
+        <img src={this.state.currentImage} style = {{height: '500px', width: '500px'}} ></img>
       </div>
-    )
+
+    )}
   }
 }
 
