@@ -66,7 +66,7 @@ var FilterInfo = ({filters, changeFilter}) => {
 var RatingBreakdown = ({meta, changeFilter, filters}) => {
   var average = getAverage(meta.ratings);
   var rec = meta.recommended;
-  var recPerc = rec ? ( parseInt(rec.true) / (parseInt(rec.true) + parseInt(rec.false)) ) * 100 : null
+  var recPerc = rec ? Math.floor((parseInt(rec.true) / (parseInt(rec.true) + parseInt(rec.false))) * 100) : null
   return (
     <div>
       <div>Rating & Reviews</div>

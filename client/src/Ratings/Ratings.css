@@ -4,8 +4,8 @@
   margin: 10%;
   display: grid;
   grid-template-columns: 30% 70%;
-  height: 32%;
-  /* height: 80%; */
+  /* height: 32%; */
+  height: 80%;
 }
 
 .container a:hover{
@@ -17,6 +17,7 @@
   display: grid;
   grid-template-rows: 5% 90% 5%;
   max-height: 90%;
+  margin-left: 3em;
 }
 
 /* .container-left {
@@ -279,4 +280,35 @@
 .removeFilters {
   margin-left: 1em;
   text-decoration: underline;
+}
+
+/* Product Breakdown */
+.productBars {
+  display: inline-flex;
+  position: relative;
+}
+
+.iconBar {
+  height: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.charBar {
+  height: 0.5em;
+  width: 7em;
+  background-color: grey;
+  margin-right: 0.4em;
+}
+
+.charDescription {
+  margin-top: 2%;
+  margin-bottom: 5%;
+  height: 0.5em;
+  width: 7em;
+  margin-right: 0.4em;
+  display: flex;
+  justify-content: center;
 }
