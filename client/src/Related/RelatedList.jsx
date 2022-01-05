@@ -26,8 +26,6 @@ class RelatedList extends React.Component {
   }
 
   componentDidMount() {
-    // this.getAllProducts();
-    // this.getCurrentProduct();
     this.getRelatedProducts();
   }
 

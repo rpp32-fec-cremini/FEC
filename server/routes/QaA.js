@@ -1,51 +1,40 @@
 const express = require('express');
 const { fakeQaA } = require('./QaAFakeData');
-const { getProducts } = require('../apiHelper/qandaAPI');
-// const { token } = require('../apiHelper/qandaAPI');
+const {getProducts, postQuestion} = require('../apiHelper/qandaAPI');
+// const postQuestion = require('../apiHelper/qandaAPI');
 const router = express.Router();
-// require('dotenv').config();
-// const token = process.env.TOKEN;
-
 
 router.get('/', (req, res) => {
-  // getProducts()
-  // // console.log('help', getProducts())
-  // console.log(config);
-  getProducts()
+  // console.log('this is product', getProducts.getProducts());
+  var endpoint = `?product_id=59555`;
+  getProducts(endpoint)
   .then(question=> {
-    // console.log('data', question.data.results[0].answers);
-    //res.send(JSON.stringify(question.data.results));
-    console.log('Hello');
+    res.send(JSON.stringify(question.data.results));
   })
-  .catch(err => {
-    console.log(err);
-  })
-  // .catch(err => {
-  //   console.log('err', err)
-  // })
-  // console.log(getProducts(token))
-  // let question = fakeQaA;
-  // console.log('this is question', question.results);
-  // res.send(JSON.stringify(question.results));
-
-  console.log('Werd');
 })
 
 router.get('/:question_id/answers', (req, res) => {
-  getProducts()
+
+  var id = req.params.question_id;
+    var endpoint = `/${id}/answers`;
+    getProducts(endpoint)
+    .then(question=> {
+    res.send(JSON.stringify(question.data.results));
+  })
+})
+
+router.post('/', (req, res) => {
+  var questionBody = req.body;
+  postQuestion(questionBody)
   .then(question=> {
-    //res.send(JSON.stringify(question.data.results));
-    console.log('Hello');
+      console.log('question create', res.statusCode)
+  //   console.log('data', question.data.results[0].answers);
+  //   res.send(JSON.stringify(question.data.results));
   })
-  .catch(err => {
-    console.log(err);
-  })
-  // getProductsQuestions()
-  // .then(question=> {
-  //   // res.send(JSON.stringify(question.results));
-  //   let answer = fakeQaA.answers;
-  //   res.send(JSON.stringify(answer));
-  // })
+  .catch(() => {
+    console.log('post question error');
+  });
+  // console.log('result', req.body);
 })
 
 module.exports = router;

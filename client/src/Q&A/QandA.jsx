@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import $ from 'jquery';
 
-import AddAnswerModal from './AddAnswerModal.jsx';
+import AnswerModal from './AnswerModal.jsx';
 import AddQuestions from './AddQuestions.jsx';
 import IndividualQuestion from './IndividualQuestion.jsx';
 import SearchQuestions from './SearchQuestions.jsx';
@@ -82,6 +82,25 @@ class QA extends React.Component {
     })
   }
 
+  questionParmer(data) {
+    // console.log('question parmer', data);
+    var self = this;
+    axios({
+      method: 'POST',
+      url: '/qa/questions',
+      data: {question: data[0],
+             nickName: data[1],
+             email: data[2],
+             product_id: '59555',
+            }
+    })
+    .then((results) => {
+      console.log('data send')
+    })
+    .catch((err) => {
+      console.log('err');
+    })
+  }
 
   componentWillMount() {
     this.individualQuestion();
@@ -92,10 +111,8 @@ class QA extends React.Component {
       <div className='QaABox'>
         <h3>QUESTION & ANSWERS</h3>
         <SearchQuestions searchBar = {this.state.searchBar} search = {(e) => this.search(e)}/>
-                <IndividualQuestion question = {this.state.question} questionHelpful = {(e) => this.questionHelpful(e)} answerHelpful = {(e) => this.answerHelpful(e)}
-                questionHelpfulList = {this.state.questionHelpfulList} answerHelpfulList = {this.state.answerHelpfulList}/>
-        <p>---------------------------------------------------------------------------------</p>
-        This is a Question component
+        <IndividualQuestion question = {this.state.question} questionHelpful = {(e) => this.questionHelpful(e)} answerHelpful = {(e) => this.answerHelpful(e)}
+        questionHelpfulList = {this.state.questionHelpfulList} answerHelpfulList = {this.state.answerHelpfulList} questionParmer = {(e) => this.questionParmer(e)}/>
       </div>
       )
 

@@ -1,9 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import AddAnswerModal from './AddAnswerModal.jsx';
+import AnswerModal from './AnswerModal.jsx';
+import AskNewQuestion from './AskNewQuestion.jsx';
+import AddNewAnswer from './AddNewAnswer.jsx';
 
 const IndividualQuestion = (props) => {
   const [loading, setloading] = useState(false);
   const [loadingQuestion, setloadingQuestion] = useState(2);
+  const [buttonPopup, setbuttonPopup] = useState(false);
+  const [answerPopup, setanswerPopup] = useState(false);
   // const answerForEachQuestion = (res) => {
   //   props.answer(res);
   // }
@@ -47,8 +51,6 @@ const IndividualQuestion = (props) => {
       return (b['question_helpfulness']) - (a['question_helpfulness']);
     });
 
-    // console.log('this two quesion', loadingQuestion, moreThanTwo)
-    // setloadingQuestion(loadingQuestion + 2);
     if (moreThanTwo === true) {
       var twoQuestion = question.slice(0, loadingQuestion);
       // console.log('this is two question', question);
@@ -63,23 +65,24 @@ const IndividualQuestion = (props) => {
         <div className="Question-row" key = {question.question_id} >
           {/* {answerForEachQuestion(question.question_id)} */}
           <div className="Question-body" style={{float: "left"}}>Q: {question.question_body}</div>
-          <div className="Question-helpful" style={{float: "right"}}>Helpful? YES(<a style={{"textDecoration":"underline"}} onClick = {(e) => helpful(e, props, question.question_id)}>{question.question_helpfulness}</a>)</div>
+          <div className="Question-helpful" style={{float: "right"}}>Helpful? YES(<a style={{"textDecoration":"underline"}} onClick = {(e) => helpful(e, props, question.question_id)}>{question.question_helpfulness}</a>)   |  <a style={{"textDecoration":"underline"}} onClick ={() => setanswerPopup(true)}>Add Answer</a>
+          <AddNewAnswer trigger={answerPopup} setTrigger={setanswerPopup} questionParmer = {props.questionParmer}></AddNewAnswer></div>
           <br />
             <div>
-              <AddAnswerModal answer = {question.answers} answerHelpfulList = {props.answerHelpfulList} answerHelpful = {(e) => props.answerHelpful(e)}/>
+              <AnswerModal answer = {question.answers} answerHelpfulList = {props.answerHelpfulList} answerHelpful = {(e) => props.answerHelpful(e)}/>
               <br />
             </div>
         </div>
       )
     )
-
   };
 
   return (
     <div className = "Questions" style={{overflowY: 'scroll', height:'500px'}}>
-
       {props.question.length > loadingQuestion || props.question.length <= 2? show(props, true) : show(props)}
       {loading === false  ? showbutton(props) : collaspseButton()}
+      <button onClick ={() => setbuttonPopup(true)}>Add A Question</button>
+      <AskNewQuestion trigger={buttonPopup} setTrigger={setbuttonPopup} questionParmer = {props.questionParmer}></AskNewQuestion>
     </div>
   )
 };
