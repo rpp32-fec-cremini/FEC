@@ -14,7 +14,7 @@ class OutfitList extends React.Component {
     super(props);
     this.state = {
       user: 123,
-      outfits: [],
+      outfits: [{ id: '000' }],
       type: 'outfit'
     }
   }
@@ -68,16 +68,32 @@ class OutfitList extends React.Component {
 
   // }
 
+  xClick = (id) => {
+    let outfit = this.state.outfits.find(obj => obj.id === id);
+    let filteredOutfits = this.state.outfits.filter(outfit => outfit.id !== id);
+    this.setState({ outfits: filteredOutfits });
+  }
+
+  addClick = (outfit) => {
+    console.log(outfit.id);
+    console.log('BEFORE ', this.state.outfits.length);
+    if (!this.state.outfits.find(obj => obj.id === outfit.id)) {
+      this.setState({ outfits: [...this.state.outfits, outfit] });
+    }
+    console.log('AFTER ', this.state.outfits.length);
+  }
+
   render() {
     return (
       <div data-testid='outfitContainer' className='related-container' >
         <h4 data-testid='outfitHeader' className='related-title' >YOUR OUTFIT</h4>
-        <div data-testid='outfitList' className='related-list'>
+        <ul data-testid='outfitList' className='related-list'>
           {this.state.outfits.map(outfit => (
-            < Card key={outfit.id} product={outfit} type={this.state.type} />
+            < Card key={outfit.id} product={outfit} type={this.state.type}
+              actionClick={this.xClick} addClick={this.addClick} />
           ))
           }
-        </div >
+        </ul >
         <IoIosArrowBack className='related-scroll left-scroll' />
         < IoIosArrowForward className='related-scroll right-scroll' />
       </div>
