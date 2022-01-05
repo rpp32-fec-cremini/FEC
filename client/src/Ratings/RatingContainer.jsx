@@ -17,8 +17,17 @@ class RatingContainer extends React.Component {
       product: "",
       meta: {},
       filters: [],
+      productName: ''
     };
-    this.productId = this.props.productId
+    this.productId = this.props.productId;
+    this.charMap = {
+      Size: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'],
+      Width: ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'],
+      Comfort: ['Uncomfortable', 'Slightly uncomfortable', 'Ok', 'Comfortable', 'Perfect'],
+      Quality: ['Poor', 'Below Average', 'What I expected', 'Pretty great', 'Perfect'],
+      Length: ['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
+      Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'],
+    }
   }
 
   changeFilter(filter) {
@@ -115,12 +124,22 @@ class RatingContainer extends React.Component {
           contentType: "application/json",
           success: data => {
             var meta = JSON.parse(data);
-            this.setState({
-              reviews,
-              shownReviews,
-              product,
-              meta
+            $.ajax({
+              method: "GET",
+              url: `/products/${this.productId}`,
+              contentType: "application/json",
+              success: data => {
+                var productName = JSON.parse(data).name
+                this.setState({
+                  reviews,
+                  shownReviews,
+                  product,
+                  meta,
+                  productName
+                })
+              }
             })
+
           }
         })
 
@@ -140,12 +159,11 @@ class RatingContainer extends React.Component {
     }
 
     //metadata doesnt match actual data
-
     return (
       <div className="container">
         <div className="container-left">
           <RatingBreakdown meta={this.state.meta} changeFilter={this.changeFilter.bind(this)} filters={this.state.filters}/>
-          <ProductBreakdown/>
+          <ProductBreakdown characteristics={this.state.meta.characteristics} charMap={this.charMap}/>
         </div>
         <ReviewsList
           sortAndGet={this.sortAndGet.bind(this)}
@@ -158,6 +176,8 @@ class RatingContainer extends React.Component {
           characteristics={this.state.meta.characteristics}
           product_id={this.productId}
           submitReview={this.submitReview.bind(this)}
+          charMap={this.charMap}
+          productName={this.state.productName}
         />
       </div>
     )
