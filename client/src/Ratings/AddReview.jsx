@@ -3,7 +3,7 @@ import { useState } from "react";
 import NewReview from "./NewReview.jsx";
 import $ from "jquery";
 
-var AddReviews = ({charMap, product, characteristics, product_id, submitReview}) => {
+var AddReviews = ({productName, charMap, product, characteristics, product_id, submitReview}) => {
   var [display, setDisplay] = useState("none")
 
   //Will load relevant characteristics from API
@@ -25,7 +25,7 @@ var AddReviews = ({charMap, product, characteristics, product_id, submitReview})
             refreshModal(e)
           }}>&times;</span>
           <div>
-            <NewReview charMap={charMap} chars={chars} product={product} product_id={product_id} submitReview={submitReview} refreshModal={refreshModal}/>
+            <NewReview productName={productName} charMap={charMap} chars={chars} product={product} product_id={product_id} submitReview={submitReview} refreshModal={refreshModal}/>
           </div>
         </div>
       </div>

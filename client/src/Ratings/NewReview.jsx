@@ -86,12 +86,12 @@ var ReviewBody = (props) => {
   </div>)
 }
 
-var NewReview = ({chars, product, product_id, submitReview, refreshModal, charMap}) => {
+var NewReview = ({productName, chars, product, product_id, submitReview, refreshModal, charMap}) => {
   var submitted = false;
   if (!Array.isArray(chars)) chars = [];
   return <div className='newReview'>
     <div className='title'>Write Your Review</div>
-    <div className='subtitle'>About product {product}</div>
+    <div className='subtitle'>About {productName}</div>
 
     <div className='starVote'>
       <label>Overall rating:</label>

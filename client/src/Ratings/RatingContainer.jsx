@@ -17,6 +17,7 @@ class RatingContainer extends React.Component {
       product: "",
       meta: {},
       filters: [],
+      productName: ''
     };
     this.productId = this.props.productId;
     this.charMap = {
@@ -123,12 +124,22 @@ class RatingContainer extends React.Component {
           contentType: "application/json",
           success: data => {
             var meta = JSON.parse(data);
-            this.setState({
-              reviews,
-              shownReviews,
-              product,
-              meta
+            $.ajax({
+              method: "GET",
+              url: `/products/${this.productId}`,
+              contentType: "application/json",
+              success: data => {
+                var productName = JSON.parse(data).name
+                this.setState({
+                  reviews,
+                  shownReviews,
+                  product,
+                  meta,
+                  productName
+                })
+              }
             })
+
           }
         })
 
@@ -166,6 +177,7 @@ class RatingContainer extends React.Component {
           product_id={this.productId}
           submitReview={this.submitReview.bind(this)}
           charMap={this.charMap}
+          productName={this.state.productName}
         />
       </div>
     )
