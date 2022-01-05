@@ -5,6 +5,7 @@ var ProductBar = ({desc, meta, charMap}) => {
   var descriptions = charMap[desc]
   return (
     <div>
+      <div>{desc}</div>
       <div className="productBars">
         <div className="charBar"></div>
         <div className="charBar"></div>
