@@ -114,12 +114,20 @@ class RelatedList extends React.Component {
     this.setCompProduct(id);
     $('.compare').removeClass('hide');
     $('.compare').addClass('show');
-    $('.related-container').parents('#root, body, html').css({ 'height': '100%', 'overflow': 'hidden', 'scrollbar': 'none' });
+    $('.related-container').parents('#root, body, html').css({ 'overflow': 'hidden' });
+    this.hideModal();
   }
 
   hideModal = () => {
-    $('.compare').removeClass('show');
-    $('.compare').addClass('hide');
+    $('.related-container').parents('body').click((e) => {
+      console.log(e.target.value);
+
+      if (!$(e.target).hasClass('action-btn')) {
+        $('.compare').removeClass('show');
+        $('.compare').addClass('hide');
+        $('.related-container').parents('#root, body, html').css({ 'overflow': 'auto' });
+      }
+    })
   }
 
   render() {
