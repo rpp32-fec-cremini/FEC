@@ -133,6 +133,14 @@ class RatingContainer extends React.Component {
   }
 
   render() {
+    if (!this.state.filters.length) {
+      var filteredReviews = [...this.state.reviews];
+    } else {
+      var filteredReviews = this.state.reviews.filter(review => this.state.filters.includes('bar' + review.rating));
+    }
+
+    //metadata doesnt match actual data
+
     return (
       <div className="container">
         <div className="container-left">
@@ -141,7 +149,7 @@ class RatingContainer extends React.Component {
         </div>
         <ReviewsList
           sortAndGet={this.sortAndGet.bind(this)}
-          reviews={this.state.reviews}
+          reviews={filteredReviews}
           shownReviews={this.state.shownReviews}
           moreReviews={this.moreReviews.bind(this)}
           addToVoted={this.addToVoted.bind(this)}

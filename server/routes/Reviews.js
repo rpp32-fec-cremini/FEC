@@ -7,7 +7,7 @@ var axios = require("axios");
 router.get("/", (req, res) => {
   // var exampleData = require("./ReviewsfakeData").fakeReviews;
   // res.send(JSON.stringify(exampleData))
-  var count = 10;
+  var count = 250;
   //limit to 10 reviews for speed
   axios.get(url + "reviews", { params: { ...req.query, count }, headers: { authorization }})
     .then(reviews => {
