@@ -33,7 +33,7 @@ class StyleSelector extends React.Component {
         <br></br>
       <div className = 'grid-4'>
         {this.props.styleList.map((style) =>
-      <Style name={this.props.currentStyle.name} pic = {this.props.currentStyle.photos[0].thumbnail_url} key ={this.props.currentStyle.style_id} />
+      <Style name={style.name} pic = {style.photos[0].thumbnail_url} key ={style.style_id} />
     )}
       </div>
       </div>

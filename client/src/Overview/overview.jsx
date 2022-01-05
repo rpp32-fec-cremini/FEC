@@ -89,7 +89,7 @@ class Overview extends React.Component {
       return (
       <div>
         <div className='related relatedContainer'>
-        {/* <ImageGallery className=' related relatedCard ' data={}   /> */}
+        <ImageGallery className=' related relatedCard ' data={}   />
         <ProductInfo className=' related relatedCard' productList={this.state.productList} styleList ={this.state.styleList} reviewMeta= {this.state.reviewMeta} current={this.state.current} currentStyle ={this.state.currentStyle}/>
         {/* <AddToCart /> */}
         <br></br>

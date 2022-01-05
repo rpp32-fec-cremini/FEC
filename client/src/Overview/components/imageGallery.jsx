@@ -13,35 +13,7 @@ class ImageGallery extends React.Component {
     this.grabStyle =  this.grabStyle.bind(this);
   }
 
- /*  componentDidMount() {
-    this.grabStyle();
-  } */
 
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
-      this.grabStyle();
-    }
-  }
-
-
-
-  grabStyle = () => {
-    $.ajax({
-
-      type: "GET",
-      url: `overview/products/${this.props.product_id}/styles`,
-      success: data => {
-
-        this.setState({
-
-          imageList: data['results'][0]['photos'],
-          currentImage: data['results'][0]['photos'][0]['url']
-
-        });
-
-      }
-    })
-  }
 
 
 
