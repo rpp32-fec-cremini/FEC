@@ -22,39 +22,25 @@ class ProductRating extends React.Component {
   }
 
 
-  /* getMetadata = (id) => {
-
-
-    $.ajax({
-      type: 'GET',
-      url: `overview/reviews/meta/`,
-      data: {product_id: id},
-      success: data => {
-
-        this.setState({reviewMeta: data.ratings});
-        this.makeRatings();
-
-      }
-    })
-
-  } */
-
   makeRatings = () => {
 
     var weight = 0;
     var total = 0;
 
-    for (const key in this.props.reviewMeta) {
-      var val = parseInt(this.props.reviewMeta[key]);
-      weight += (parseInt(key) * val);
-      total += val;
+    ////BLOCK TO CALCULATE AVERAGE RATING///////////////////
+    for (const key in this.props.reviewMeta.ratings) {
+      var intKey = Number(key);
+      var val = Number(this.props.reviewMeta.ratings[key]);
+      weight = weight + (intKey * val);
+      total = total + val;
     }
 
-
     var rating = weight / total;
-    console.log('Average rating here! ', rating);
+    ///END AVERAGE RATING BLOCK/////////////////////////////
 
     var rateString = []
+
+    ///BLOCK TO BUILD RATING COMPONENTS////////////////////
     for (var i = rating; i > 0; i--) {
       if (i < 0.5) {
         rateString.push(<IoIosStarOutline key ={i} />)
@@ -68,9 +54,9 @@ class ProductRating extends React.Component {
     for (var j = rateString.length; j < 5; j++) {
       rateString.push(<IoIosStarOutline key = {j} />)
     }
+    ///////////////////////////////////////
 
     this.setState({stars: rateString})
-    console.log(this.state.stars)
 
   }
 
