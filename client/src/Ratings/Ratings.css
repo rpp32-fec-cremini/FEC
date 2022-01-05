@@ -4,8 +4,8 @@
   margin: 10%;
   display: grid;
   grid-template-columns: 30% 70%;
-  /* height: 27%; */
-  height: 80%;
+  height: 32%;
+  /* height: 80%; */
 }
 
 .container a:hover{
@@ -163,7 +163,7 @@
 
 .writing-modal {
   background-color: #fefefe;
-  margin: 5% auto;
+  margin: 2% auto;
   padding: 20px;
   border: 1px solid #888;
   width: 60%;
@@ -177,12 +177,106 @@
 }
 
 
+/* sort dropdown */
+.sort-dropdown span{
+  margin-right: 0.1em;
+}
+
+.sort-dropdown select{
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
 /* Rating Breakdown */
 .ratingBreakdown {
   display: inline-flex;
   align-items: center;
 }
 
-.starOuter {
-  color: black
+.stars-outer {
+  position: relative;
+  display: inline-block;
+
+}
+
+.ratingHeader {
+  font-size: 50px;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.stars-outer::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #ccc;
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #f8ce0b;
+}
+
+.bar-outer {
+  height: 0.5em;
+  width: 13em;
+  background-color: grey;
+}
+
+.bar-inner {
+  height: 0.5em;
+  width: 13em;
+  background-color: #8FBC8F;
+}
+
+.barBreakdown {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 1px;
+}
+
+.barBreakdown:hover {
+  background-color: black;
+  color: white;
+}
+
+.ratingType {
+  margin-right: 0.5em;
+  text-decoration: underline;
+  font-size: 18px;
+}
+
+.ratingCount {
+  margin-left: 0.5em;
+}
+
+.numRecommend {
+  margin: 1em 0 1em 0;
+  font-size: 12px;
+}
+
+.filterInfo {
+  height: 0.5em;
+  font-size: 0.8em;
+  margin: 0.2em;
+  display: inline-flex;
+}
+
+.removeFilters {
+  margin-left: 1em;
+  text-decoration: underline;
 }
