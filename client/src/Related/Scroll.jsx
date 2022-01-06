@@ -8,6 +8,7 @@ const Scroll extends React.Component{
     super(props);
     this.state = {
       scrollMargin: 20,
+      list: null,
       viewSize: null,
       listSize: null,
       invisibleSize: null,
@@ -15,9 +16,13 @@ const Scroll extends React.Component{
     }
   }
 
+setList = () => {
+  let list = this.props.
+}
+
 setlistSize = () => {
-  let list = this.props.itemWidth * this.props.listLength;
-  this.setState({ listSize: list });
+  let listSize = this.props.itemWidth * this.props.listLength;
+  this.setState({ listSize: listSize });
 }
 
 setViewSize = () => {
@@ -35,7 +40,7 @@ setListPos = () => {
   this.setState({ listPos: pos });
 }
 
-scrollList = () => {
+showArrows = () => {
   const list = this.props.list;
   $(list).scroll(() => {
     let { scrollMargin, viewSize, listSize, invisibleSize, listPos } = this.state;
@@ -48,28 +53,18 @@ scrollList = () => {
     } else if (list < listOffset) {
       $('.right-scroll').removeClass('hide');
       $('.left-scroll').removeClass('hide');
+    } else if (listPos >= listOffset) {
+      $('.right-scroll').addClass('hide');
+      $('.left-scroll').removeClass('hide');
     }
-  }
+  });
 
-  })
-
-
-}
-
-
-
-
-// let listSize = #items * itemWidth || list.width
-// let visibleSize =
-
-showArrows = () => {
-  if (listPos <= scrollMargin) {
-    $('.left-scroll').addClass('hide');
-  }
 }
 
 leftPaddleScroll = () => {
-
+  $('.left-scroll').click(() => {
+    $(list)
+  });
 }
 
 rightPaddleScroll = () => {
@@ -85,6 +80,11 @@ render() {
     </div>
   )
 }
-};
+
+
+
+}
+
+
 
 export default Scroll;

@@ -5,17 +5,6 @@ const token = process.env.TOKEN;
 
 
 module.exports.getProducts = () => {
-/*
-  axios.get(API_URL + 'products', { headers: {Authorization: token}})
-  .then((response) => {
-    //console.log(response);
-    console.log('Gobble gobble ', response.data)
-    return response
-  })
-  .catch( function(error) {
-    console.log(error)
-  }) */
-
 
   let options = {
     url: API_URL + 'products',

@@ -10,43 +10,20 @@ class ImageGallery extends React.Component {
       imageList: []
     }
 
-    this.grabStyle =  this.grabStyle.bind(this);
   }
 
- /*  componentDidMount() {
-    this.grabStyle();
-  } */
-
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
-      this.grabStyle();
-    }
+  componentDidMount() {
+    console.log('ImageGallery ', this.props)
+    console.log('Photos? ', this.props.currentUrl)
   }
 
-
-
-  grabStyle = () => {
-    $.ajax({
-
-      type: "GET",
-      url: `overview/products/${this.props.product_id}/styles`,
-      success: data => {
-
-        this.setState({
-
-          imageList: data['results'][0]['photos'],
-          currentImage: data['results'][0]['photos'][0]['url']
-
-        });
-
-      }
-    })
-  }
 
 
 
   render() {
-    if (!this.state.currentImage) {
+
+    var imgSrc = this.props.currentUrl.photos?.length && this.props.currentUrl.photos[0].url
+    if (!this.props) {
       return (
 
         <div>
@@ -55,11 +32,15 @@ class ImageGallery extends React.Component {
 
       )
     } else {
+      //console.log('Photo render block? ', JSON.stringify(this.props.currentUrl.photos[0]))
+      console.log('Photo render block?', this.props.currentUrl.photos?.length && this.props.currentUrl.photos[0].url)
+
+
       return (
 
       <div>
         <h2 className = 'related relatedCard'>IMAGE GALLERY</h2>
-        <img src={this.state.currentImage} style = {{height: '500px', width: '500px'}} ></img>
+        <img src={imgSrc} style = {{height: '500px', width: '500px'}} ></img>
       </div>
 
     )}
