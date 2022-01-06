@@ -26,7 +26,7 @@ class StyleSelector extends React.Component {
         </div>
       )
     } else {
-      console.log('Where props? ', this.props)
+      //console.log('Where props? ', this.props)
     return (
       <div>
          <h1 data-testid = 'style'>Available Styles</h1>
