@@ -35,13 +35,9 @@ class RelatedList extends React.Component {
   }
 
   componentDidMount() {
-<<<<<<< HEAD
-    this.getRelatedProducts();
-=======
     this.getRelatedIDs();
     this.setCurrentProduct();
     this.setCompProduct(59553);
->>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
   }
 
   // getAllProducts = () => {
