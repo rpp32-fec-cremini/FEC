@@ -30,15 +30,7 @@ var Stars = (props) => {
 }
 
 var characteristics = {}
-var Character = ({choice, theme}) => {
-  var charMap = {
-    Size: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'],
-    Width: ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'],
-    Comfort: ['Uncomfortable', 'Slightly uncomfortable', 'Ok', 'Comfortable', 'Perfect'],
-    Quality: ['Poor', 'Below Average', 'What I expected', 'Pretty great', 'Perfect'],
-    Length: ['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
-    Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'],
-  }
+var Character = ({choice, theme, charMap}) => {
   var [meaning, setMeaning] = useState(null)
   var characterClick = function(e) {
     var key = e.target.id.split(',');
@@ -94,12 +86,12 @@ var ReviewBody = (props) => {
   </div>)
 }
 
-var NewReview = ({chars, product, product_id, submitReview, refreshModal}) => {
+var NewReview = ({productName, chars, product, product_id, submitReview, refreshModal, charMap}) => {
   var submitted = false;
   if (!Array.isArray(chars)) chars = [];
   return <div className='newReview'>
     <div className='title'>Write Your Review</div>
-    <div className='subtitle'>About product {product}</div>
+    <div className='subtitle'>About {productName}</div>
 
     <div className='starVote'>
       <label>Overall rating:</label>
@@ -116,7 +108,7 @@ var NewReview = ({chars, product, product_id, submitReview, refreshModal}) => {
 
     <div className='characteristics'>
       <label>Characteristics</label><br></br>
-      {chars.map(char => <Character choice={char[0]} theme={char[1]} key={char[1]}/>)}
+      {chars.map(char => <Character choice={char[0]} theme={char[1]} key={char[1]} charMap={charMap}/>)}
     </div>
 
     <div>
