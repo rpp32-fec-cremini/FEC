@@ -25,7 +25,7 @@ router.get('/:question_id/answers', (req, res) => {
 
 router.post('/', (req, res) => {
   var questionBody = req.body;
-  // console.log('questionbody1', req.body);
+  console.log('questionbody1', req.body);
   // postQuestion(questionBody)
   // getProducts()
   // // console.log('help', getProducts())
@@ -57,7 +57,7 @@ router.post('/:question_id/answers', (req, res) => {
   var id = req.params.question_id;
   var endpoint = `/${id}/answers`;
   var questionBody = req.body;
-  // console.log('questionbody2', req.body, endpoint);
+  console.log('questionbody2', req.body, endpoint);
   // postAnswer(questionBody, endpoint)
   // .then(question=> {
   //     console.log('question create', res.statusCode)
