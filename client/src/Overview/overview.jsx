@@ -20,6 +20,9 @@ class Overview extends React.Component {
       styleList: [],
       currentStyle: {},
       reviewMeta: {},
+      currentPhotoUrl: {
+        photos: [{url: 'yeah whatever'}]
+      }
 
     }
 
@@ -52,7 +55,8 @@ class Overview extends React.Component {
                 current: data[0],
                 styleList: stylish.results,
                 currentStyle: stylish.results[0],
-                reviewMeta: metaData
+                reviewMeta: metaData,
+                currentPhotoUrl: stylish.results[0]
               },
                 ()=>{ //callback function to verify everything done
                   console.log('Muahahahah done');
@@ -89,8 +93,10 @@ class Overview extends React.Component {
       return (
       <div>
         <div className='related relatedContainer'>
-        <ImageGallery className=' related relatedCard ' data={}   />
+        <ImageGallery className=' related relatedCard ' currentUrl={this.state.currentPhotoUrl}   />
+
         <ProductInfo className=' related relatedCard' productList={this.state.productList} styleList ={this.state.styleList} reviewMeta= {this.state.reviewMeta} current={this.state.current} currentStyle ={this.state.currentStyle}/>
+
         {/* <AddToCart /> */}
         <br></br>
       </div>
