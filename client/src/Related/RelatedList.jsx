@@ -111,6 +111,7 @@ class RelatedList extends React.Component {
   }
 
   starClick = (id) => {
+    console.log(e.target)
     this.setCompProduct(id);
     $('.compare').removeClass('hide');
     $('.compare').addClass('show');
@@ -138,7 +139,7 @@ class RelatedList extends React.Component {
           <ul data-testid='list' className='related-list'>
             {this.state.relatedProducts.map(product => (
               < Card key={product.id} product={product} type={this.state.type}
-                actionClick={this.starClick} unClick={this.hideModal} />
+                actionClick={(e) = this.starClick} unClick={this.hideModal} />
             ))
             }
           </ul >
