@@ -1,6 +1,6 @@
 const express = require('express');
 const { fakeQaA } = require('./QaAFakeData');
-const {getProducts, postQuestion} = require('../apiHelper/qandaAPI');
+const {getProducts, postQuestion, postAnswer} = require('../apiHelper/qandaAPI');
 // const postQuestion = require('../apiHelper/qandaAPI');
 const router = express.Router();
 
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 
 router.get('/:question_id/answers', (req, res) => {
 
-  var id = req.params.question_id;
+    var id = req.params.question_id;
     var endpoint = `/${id}/answers`;
     getProducts(endpoint)
     .then(question=> {
@@ -25,16 +25,35 @@ router.get('/:question_id/answers', (req, res) => {
 
 router.post('/', (req, res) => {
   var questionBody = req.body;
-  postQuestion(questionBody)
-  .then(question=> {
-      console.log('question create', res.statusCode)
-  //   console.log('data', question.data.results[0].answers);
+  // console.log('questionbody1', req.body);
+  // postQuestion(questionBody)
+  // .then(question=> {
+  //     console.log('question create', res.statusCode)
+  // })
+  // .catch(() => {
+  //   console.log('post question error');
+  // });
+})
+
+router.post('/:question_id/answers', (req, res) => {
+
+  // var id = 513735;
+  var id = req.params.question_id;
+  var endpoint = `/${id}/answers`;
+  var questionBody = req.body;
+  // console.log('questionbody2', req.body, endpoint);
+  // postAnswer(questionBody, endpoint)
+  // .then(question=> {
+  //     console.log('question create', res.statusCode)
+  // })
+  // .catch((err) => {
+  //   console.log('post question error');
+  // });
+  //   var endpoint = `/${id}/answers`;
+  //   getProducts(endpoint)
+  //   .then(question=> {
   //   res.send(JSON.stringify(question.data.results));
-  })
-  .catch(() => {
-    console.log('post question error');
-  });
-  // console.log('result', req.body);
+  // })
 })
 
 module.exports = router;

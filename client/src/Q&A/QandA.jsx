@@ -83,23 +83,42 @@ class QA extends React.Component {
   }
 
   questionParmer(data) {
-    // console.log('question parmer', data);
     var self = this;
-    axios({
-      method: 'POST',
-      url: '/qa/questions',
-      data: {question: data[0],
-             nickName: data[1],
-             email: data[2],
-             product_id: '59555',
-            }
-    })
-    .then((results) => {
-      console.log('data send')
-    })
-    .catch((err) => {
-      console.log('err');
-    })
+    var questionId = data['questionId'];
+    console.log('question parmer', questionId);
+
+    if (questionId === 0) {
+      axios({
+        method: 'POST',
+        url: '/qa/questions',
+        data: {question: data['question'],
+               nickName: data['nickName'],
+               email: data['email'],
+               product_id: '59555',
+              }
+      })
+      .then((results) => {
+        console.log('data send')
+      })
+      .catch((err) => {
+        console.log('err');
+      })
+    } else {
+      axios({
+        method: 'POST',
+        url: `/qa/questions/${questionId}/answers`,
+        data: {question: data['question'],
+          nickName: data['nickName'],
+          email: data['email'],
+        }
+      })
+      .then((results) => {
+        console.log('data send')
+      })
+      .catch((err) => {
+        console.log('err');
+      })
+    }
   }
 
   componentWillMount() {

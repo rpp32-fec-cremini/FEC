@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import AnswerModal from './AnswerModal.jsx';
 import AskNewQuestion from './AskNewQuestion.jsx';
-import AddNewAnswer from './AddNewAnswer.jsx';
 
 const IndividualQuestion = (props) => {
   const [loading, setloading] = useState(false);
   const [loadingQuestion, setloadingQuestion] = useState(2);
   const [buttonPopup, setbuttonPopup] = useState(false);
   const [answerPopup, setanswerPopup] = useState(false);
+  const [typeofbutton, settypeofbutton] = useState('');
+  const [questionId, setquestionId] = useState(0);
   // const answerForEachQuestion = (res) => {
   //   props.answer(res);
   // }
@@ -65,8 +66,8 @@ const IndividualQuestion = (props) => {
         <div className="Question-row" key = {question.question_id} >
           {/* {answerForEachQuestion(question.question_id)} */}
           <div className="Question-body" style={{float: "left"}}>Q: {question.question_body}</div>
-          <div className="Question-helpful" style={{float: "right"}}>Helpful? YES(<a style={{"textDecoration":"underline"}} onClick = {(e) => helpful(e, props, question.question_id)}>{question.question_helpfulness}</a>)   |  <a style={{"textDecoration":"underline"}} onClick ={() => setanswerPopup(true)}>Add Answer</a>
-          <AddNewAnswer trigger={answerPopup} setTrigger={setanswerPopup} questionParmer = {props.questionParmer}></AddNewAnswer></div>
+          <div className="Question-helpful" style={{float: "right"}}>Helpful? YES(<a style={{"textDecoration":"underline"}} onClick = {(e) => helpful(e, props, question.question_id)}>{question.question_helpfulness}</a>)   |  <a style={{"textDecoration":"underline"}} onClick ={() => {setbuttonPopup(true); settypeofbutton('answer'); setquestionId(question.question_id)}}>Add Answer</a>
+          </div>
           <br />
             <div>
               <AnswerModal answer = {question.answers} answerHelpfulList = {props.answerHelpfulList} answerHelpful = {(e) => props.answerHelpful(e)}/>
@@ -81,8 +82,8 @@ const IndividualQuestion = (props) => {
     <div className = "Questions" style={{overflowY: 'scroll', height:'500px'}}>
       {props.question.length > loadingQuestion || props.question.length <= 2? show(props, true) : show(props)}
       {loading === false  ? showbutton(props) : collaspseButton()}
-      <button onClick ={() => setbuttonPopup(true)}>Add A Question</button>
-      <AskNewQuestion trigger={buttonPopup} setTrigger={setbuttonPopup} questionParmer = {props.questionParmer}></AskNewQuestion>
+      <button onClick ={() => {setbuttonPopup(true); settypeofbutton('question')}}>Add A Question</button>
+      <AskNewQuestion trigger={buttonPopup} setTrigger={setbuttonPopup} questionParmer = {props.questionParmer} typeofbutton = {typeofbutton} questionId = {questionId}></AskNewQuestion>
     </div>
   )
 };
