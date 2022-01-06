@@ -1,13 +1,32 @@
 const express = require('express');
 const { fakeQaA } = require('./QaAFakeData');
-const { getProducts } = require('../apiHelper/qandaAPI');
-// const { token } = require('../apiHelper/qandaAPI');
+const {getProducts, postQuestion, postAnswer} = require('../apiHelper/qandaAPI');
+// const postQuestion = require('../apiHelper/qandaAPI');
 const router = express.Router();
-// require('dotenv').config();
-// const token = process.env.TOKEN;
-
 
 router.get('/', (req, res) => {
+  // console.log('this is product', getProducts.getProducts());
+  var endpoint = `?product_id=59555`;
+  getProducts(endpoint)
+  .then(question=> {
+    res.send(JSON.stringify(question.data.results));
+  })
+})
+
+router.get('/:question_id/answers', (req, res) => {
+
+    var id = req.params.question_id;
+    var endpoint = `/${id}/answers`;
+    getProducts(endpoint)
+    .then(question=> {
+    res.send(JSON.stringify(question.data.results));
+  })
+})
+
+router.post('/', (req, res) => {
+  var questionBody = req.body;
+  console.log('questionbody1', req.body);
+  // postQuestion(questionBody)
   // getProducts()
   // // console.log('help', getProducts())
   // console.log(config);
@@ -31,21 +50,36 @@ router.get('/', (req, res) => {
   console.log('Werd');
 })
 
-router.get('/:question_id/answers', (req, res) => {
- /*  getProducts()
-  .then(question=> {
-    //res.send(JSON.stringify(question.data.results));
-    console.log('Hello');
-  })
-  .catch(err => {
-    console.log(err);
-  }) */
-  // getProductsQuestions()
-  // .then(question=> {
-  //   // res.send(JSON.stringify(question.results));
-  //   let answer = fakeQaA.answers;
-  //   res.send(JSON.stringify(answer));
-  // })
+
+router.post('/:question_id/answers', (req, res) => {
+
+  // var id = 513735;
+  var id = req.params.question_id;
+  var endpoint = `/${id}/answers`;
+  var questionBody = req.body;
+  console.log('questionbody2', req.body, endpoint);
+  // postAnswer(questionBody, endpoint)
+// router.get('/:question_id/answers', (req, res) => {
+//  /*  getProducts()
+//   .then(question=> {
+//     //res.send(JSON.stringify(question.data.results));
+//     console.log('Hello');
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   }) */
+//   // getProductsQuestions()
+//   // .then(question=> {
+//   //     console.log('question create', res.statusCode)
+//   // })
+//   // .catch((err) => {
+//   //   console.log('post question error');
+//   // });
+//   //   var endpoint = `/${id}/answers`;
+//   //   getProducts(endpoint)
+//   //   .then(question=> {
+//   //   res.send(JSON.stringify(question.data.results));
+//   // })
 })
 
 module.exports = router;
