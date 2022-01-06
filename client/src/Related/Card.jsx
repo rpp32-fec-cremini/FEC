@@ -78,8 +78,8 @@ class Card extends React.Component {
     }
   };
 
-  actionClick = () => {
-    this.props.actionClick(this.props.product.id);
+  actionClick = (e) => {
+    this.props.actionClick(this.props.product.id, e);
   }
 
   render() {
@@ -101,7 +101,7 @@ class Card extends React.Component {
       return (
         <li data-testid='card' className='related-card'>
           <img src={this.state.currentImage} className='related-img' />
-          <button className='action-btn' onClick={this.actionClick}>
+          <button className='action-btn' onClick={(e) => this.actionClick(e)}>
             <Action />
           </button>
           <div className='card-text'>
