@@ -110,7 +110,7 @@ class RelatedList extends React.Component {
     return product;
   }
 
-  starClick = (id) => {
+  starClick = (id, e) => {
     this.setCompProduct(id);
     $('.compare').removeClass('hide');
     $('.compare').addClass('show');
@@ -120,9 +120,14 @@ class RelatedList extends React.Component {
 
   hideModal = () => {
     $('.related-container').parents('body').click((e) => {
-      console.log(e.target.value);
+      if (e.target.parentNode.className === "action-btn") {
+        var selected = 'star'
+      } else {
+        selected = 'other'
+        console.log('other clicked')
+      }
 
-      if (!$(e.target).hasClass('action-btn')) {
+      if (selected != "star") {
         $('.compare').removeClass('show');
         $('.compare').addClass('hide');
         $('.related-container').parents('#root, body, html').css({ 'overflow': 'auto' });

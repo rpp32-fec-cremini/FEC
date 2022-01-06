@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">54.54% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/11</span>
+                <span class='fraction'>6/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>9/10</span>
+                <span class='fraction'>4/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>1/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">54.54% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/11</span>
+                <span class='fraction'>6/11</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -139,18 +139,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -178,7 +178,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -192,9 +192,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { data } from "jquery";
@@ -204,10 +204,10 @@ import ReviewTile from "./ReviewTile.jsx";
 import AddReview from "./AddReview.jsx";
 import SortReviews from "./SortReviews.jsx";
 &nbsp;
-var ReviewsList = ({sortAndGet, reviews, shownReviews, moreReviews, addToVoted, voted, product, characteristics, product_id, submitReview}) =&gt; {
+var ReviewsList = ({productName, charMap, sortAndGet, reviews, shownReviews, moreReviews, addToVoted, voted, product, characteristics, product_id, submitReview}) =&gt; {
 &nbsp;
-  var addBtn = reviews.length &amp;&amp; shownReviews != reviews.length ? &lt;button onClick={moreReviews}&gt;More Reviews&lt;/button&gt; : null;
-  var sortDropdown = reviews.length ? &lt;SortReviews numReviews={reviews.length} sortAndGet={sortAndGet}/&gt; : null;
+  var addBtn = reviews.length &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >shownReviews != reviews.length </span>? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;button onClick={moreReviews}&gt;More Reviews&lt;/button&gt; </span>: null;
+  var sortDropdown = reviews.length ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;SortReviews numReviews={reviews.length} sortAndGet={sortAndGet}/&gt; </span>: null;
   var scrollStyle = {
     "height": "48em",
     "overflowY": "scroll",
@@ -215,13 +215,9 @@ var ReviewsList = ({sortAndGet, reviews, shownReviews, moreReviews, addToVoted, 
   return (
   &lt;div className="container-right"&gt;
     {sortDropdown}
-<<<<<<< HEAD
-    &lt;div style={shownReviews &gt; 3 ? scrollStyle : {"height": "48em"}} data-testid="scrolllist"&gt;
-=======
-    &lt;div style={shownReviews &gt;= 3 ? scrollStyle : {"height": "48em"}} data-testid="scrolllist"&gt;
->>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
-      {reviews.slice(0, shownReviews).map(review =&gt; {
-        return (
+    &lt;div style={shownReviews &gt;= 3 ? <span class="branch-0 cbranch-no" title="branch not covered" >scrollStyle </span>: {"height": "48em"}} data-testid="scrolllist"&gt;
+      {reviews.slice(0, shownReviews).map(<span class="fstat-no" title="function not covered" >re</span>view =&gt; {
+<span class="cstat-no" title="statement not covered" >        return (</span>
           &lt;ReviewTile
             id={review.review_id}
             key={review.review_id}
@@ -242,14 +238,14 @@ var ReviewsList = ({sortAndGet, reviews, shownReviews, moreReviews, addToVoted, 
     &lt;/div&gt;
     &lt;div className="buttons"&gt;
       { addBtn }
-      &lt;AddReview product={product} characteristics={characteristics} product_id={product_id} submitReview={submitReview}/&gt;
+      &lt;AddReview productName={productName} charMap={charMap} product={product} characteristics={characteristics} product_id={product_id} submitReview={submitReview}/&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   )
 }
 &nbsp;
-var conformDate = (date) =&gt; {
-  var months = {
+var conformDate = <span class="fstat-no" title="function not covered" >(d</span>ate) =&gt; {
+  var months = <span class="cstat-no" title="statement not covered" >{</span>
     "01": "January",
     "02": "February",
     "03": "March",
@@ -263,9 +259,9 @@ var conformDate = (date) =&gt; {
     "11": "November",
     "12": "December",
   }
-  var d = date.substring(0, 10);
-  var [year, month, day] = d.split("-");
-  return `${months[month]} ${day[0] !== 0 ? day : <span class="branch-1 cbranch-no" title="branch not covered" >day[1]}</span>, ${year}`
+  var d = <span class="cstat-no" title="statement not covered" >date.substring(0, 10);</span>
+  var [year, month, day] = <span class="cstat-no" title="statement not covered" >d.split("-");</span>
+<span class="cstat-no" title="statement not covered" >  return `${months[month]} ${day[0] !== 0 ? day : day[1]}, ${year}`</span>
 }
 &nbsp;
 export default ReviewsList;</pre></td></tr></table></pre>
@@ -275,11 +271,7 @@ export default ReviewsList;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener">istanbul</a>
-<<<<<<< HEAD
-                at Mon Jan 03 2022 17:29:34 GMT-0500 (Eastern Standard Time)
-=======
-                at Tue Jan 04 2022 19:45:11 GMT-0800 (Pacific Standard Time)
->>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
+                at Wed Jan 05 2022 19:07:55 GMT-0800 (Pacific Standard Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>
