@@ -5,7 +5,7 @@ import ReviewTile from "./ReviewTile.jsx";
 import AddReview from "./AddReview.jsx";
 import SortReviews from "./SortReviews.jsx";
 
-var ReviewsList = ({sortAndGet, reviews, shownReviews, moreReviews, addToVoted, voted, product, characteristics, product_id, submitReview}) => {
+var ReviewsList = ({productName, charMap, sortAndGet, reviews, shownReviews, moreReviews, addToVoted, voted, product, characteristics, product_id, submitReview}) => {
 
   var addBtn = reviews.length && shownReviews != reviews.length ? <button onClick={moreReviews}>More Reviews</button> : null;
   var sortDropdown = reviews.length ? <SortReviews numReviews={reviews.length} sortAndGet={sortAndGet}/> : null;
@@ -16,7 +16,7 @@ var ReviewsList = ({sortAndGet, reviews, shownReviews, moreReviews, addToVoted, 
   return (
   <div className="container-right">
     {sortDropdown}
-    <div style={shownReviews > 3 ? scrollStyle : {"height": "48em"}} data-testid="scrolllist">
+    <div style={shownReviews >= 3 ? scrollStyle : {"height": "48em"}} data-testid="scrolllist">
       {reviews.slice(0, shownReviews).map(review => {
         return (
           <ReviewTile
@@ -39,7 +39,7 @@ var ReviewsList = ({sortAndGet, reviews, shownReviews, moreReviews, addToVoted, 
     </div>
     <div className="buttons">
       { addBtn }
-      <AddReview product={product} characteristics={characteristics} product_id={product_id} submitReview={submitReview}/>
+      <AddReview productName={productName} charMap={charMap} product={product} characteristics={characteristics} product_id={product_id} submitReview={submitReview}/>
     </div>
   </div>
   )

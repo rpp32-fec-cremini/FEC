@@ -15,9 +15,36 @@ class RatingContainer extends React.Component {
       voted: {},
       reported: {},
       product: "",
-      meta: {}
+      meta: {},
+      filters: [],
+      productName: ''
     };
-    this.productId = this.props.productId
+    this.productId = this.props.productId;
+    this.charMap = {
+      Size: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'],
+      Width: ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'],
+      Comfort: ['Uncomfortable', 'Slightly uncomfortable', 'Ok', 'Comfortable', 'Perfect'],
+      Quality: ['Poor', 'Below Average', 'What I expected', 'Pretty great', 'Perfect'],
+      Length: ['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
+      Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'],
+    }
+  }
+
+  changeFilter(filter) {
+    if (filter === 'removeAll') {
+      this.setState({filters: []})
+    } else {
+      if (filter === '') return;
+      var filters = [...this.state.filters];
+      if (filters.includes(filter)) {
+        filters.splice(filters.indexOf(filter), 1)
+      } else {
+        filters.push(filter)
+      }
+      this.setState({
+        filters
+      })
+    }
   }
 
   submitReview(data) {
@@ -31,20 +58,32 @@ class RatingContainer extends React.Component {
     })
   }
 
+  postVote(route, id, callback) {
+    $.ajax({
+      method: "POST",
+      url: route,
+      data: JSON.stringify({id}),
+      contentType: "application/json",
+      success: response => callback()
+    })
+  }
+
   addToVoted(id, type) {
     if (type === 'helpful') {
       if (!this.state.voted[id]) {
-        //put request to server helpful
-        this.setState({
-          voted: {...this.state.voted, [id]: true}
-        })
+        this.postVote("/reviews/helpful", id, () => {
+          this.setState({
+            voted: {...this.state.voted, [id]: true}
+          })
+        });
       }
     } else if (type === 'report') {
       if (!this.state.reported[id]) {
-        //put request to server for report
-        this.setState({
-          reported: {...this.state.reported, [id]: true}
-        })
+        this.postVote("/reviews/report", id, () => {
+          this.setState({
+            reported: {...this.state.reported, [id]: true}
+          })
+        });
       }
     }
   }
@@ -85,12 +124,22 @@ class RatingContainer extends React.Component {
           contentType: "application/json",
           success: data => {
             var meta = JSON.parse(data);
-            this.setState({
-              reviews,
-              shownReviews,
-              product,
-              meta
+            $.ajax({
+              method: "GET",
+              url: `/products/${this.productId}`,
+              contentType: "application/json",
+              success: data => {
+                var productName = JSON.parse(data).name
+                this.setState({
+                  reviews,
+                  shownReviews,
+                  product,
+                  meta,
+                  productName
+                })
+              }
             })
+
           }
         })
 
@@ -103,17 +152,22 @@ class RatingContainer extends React.Component {
   }
 
   render() {
-    console.log(this.state.voted)
-    console.log(this.state.reported)
+    if (!this.state.filters.length) {
+      var filteredReviews = [...this.state.reviews];
+    } else {
+      var filteredReviews = this.state.reviews.filter(review => this.state.filters.includes('bar' + review.rating));
+    }
+
+    //metadata doesnt match actual data
     return (
       <div className="container">
         <div className="container-left">
-          <RatingBreakdown/>
-          <ProductBreakdown/>
+          <RatingBreakdown meta={this.state.meta} changeFilter={this.changeFilter.bind(this)} filters={this.state.filters}/>
+          <ProductBreakdown characteristics={this.state.meta.characteristics} charMap={this.charMap}/>
         </div>
         <ReviewsList
           sortAndGet={this.sortAndGet.bind(this)}
-          reviews={this.state.reviews}
+          reviews={filteredReviews}
           shownReviews={this.state.shownReviews}
           moreReviews={this.moreReviews.bind(this)}
           addToVoted={this.addToVoted.bind(this)}
@@ -122,6 +176,8 @@ class RatingContainer extends React.Component {
           characteristics={this.state.meta.characteristics}
           product_id={this.productId}
           submitReview={this.submitReview.bind(this)}
+          charMap={this.charMap}
+          productName={this.state.productName}
         />
       </div>
     )

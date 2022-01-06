@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <coverage generated="1641248974568" clover="3.2.0">
   <project timestamp="1641248974568" name="All files">
     <metrics statements="319" coveredstatements="112" conditionals="84" coveredconditionals="27" methods="135" coveredmethods="36" elements="538" coveredelements="175" complexity="0" loc="319" ncloc="319" packages="5" files="20" classes="20"/>
     <package name="client.src.Overview">
       <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="Practice.js" path="/home/yytt77/HackReactor/FEC/client/src/Overview/Practice.js">
+=======
+<coverage generated="1641354311873" clover="3.2.0">
+  <project timestamp="1641354311873" name="All files">
+    <metrics statements="376" coveredstatements="143" conditionals="113" coveredconditionals="37" methods="136" coveredmethods="44" elements="625" coveredelements="224" complexity="0" loc="376" ncloc="376" packages="5" files="20" classes="20"/>
+    <package name="client.src.Overview">
+      <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="Practice.js" path="/Users/josephnahm/HackReactor/FEC/client/src/Overview/Practice.js">
+>>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
         <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
       </file>
     </package>
     <package name="client.src.Q&A">
+<<<<<<< HEAD
       <metrics statements="134" coveredstatements="6" conditionals="30" coveredconditionals="0" methods="64" coveredmethods="0"/>
       <file name="AddAnswerModal.jsx" path="/home/yytt77/HackReactor/FEC/client/src/Q&A/AddAnswerModal.jsx">
+=======
+      <metrics statements="106" coveredstatements="5" conditionals="28" coveredconditionals="0" methods="49" coveredmethods="0"/>
+      <file name="AddAnswerModal.jsx" path="/Users/josephnahm/HackReactor/FEC/client/src/Q&A/AddAnswerModal.jsx">
+>>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
         <metrics statements="43" coveredstatements="1" conditionals="14" coveredconditionals="0" methods="16" coveredmethods="0"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="0" type="stmt"/>
@@ -58,12 +72,17 @@
         <line num="80" count="0" type="stmt"/>
         <line num="83" count="0" type="stmt"/>
       </file>
+<<<<<<< HEAD
       <file name="AddQuestions.jsx" path="/home/yytt77/HackReactor/FEC/client/src/Q&A/AddQuestions.jsx">
+=======
+      <file name="AddQuestions.jsx" path="/Users/josephnahm/HackReactor/FEC/client/src/Q&A/AddQuestions.jsx">
+>>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
         <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="3" count="1" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
       </file>
+<<<<<<< HEAD
       <file name="AskNewQuestion.jsx" path="/home/yytt77/HackReactor/FEC/client/src/Q&A/AskNewQuestion.jsx">
         <metrics statements="21" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="10" coveredmethods="0"/>
         <line num="4" count="1" type="stmt"/>
@@ -114,6 +133,33 @@
         <line num="47" count="0" type="stmt"/>
         <line num="48" count="0" type="stmt"/>
         <line num="49" count="0" type="stmt"/>
+=======
+      <file name="IndividualQuestion.jsx" path="/Users/josephnahm/HackReactor/FEC/client/src/Q&A/IndividualQuestion.jsx">
+        <metrics statements="31" coveredstatements="1" conditionals="12" coveredconditionals="0" methods="13" coveredmethods="0"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="36" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+>>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
         <line num="52" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="53" count="0" type="stmt"/>
         <line num="58" count="0" type="stmt"/>
@@ -121,11 +167,18 @@
         <line num="63" count="0" type="stmt"/>
         <line num="66" count="0" type="stmt"/>
         <line num="69" count="0" type="stmt"/>
+<<<<<<< HEAD
         <line num="77" count="0" type="stmt"/>
         <line num="81" count="0" type="stmt"/>
       </file>
       <file name="QandA.jsx" path="/home/yytt77/HackReactor/FEC/client/src/Q&A/QandA.jsx">
         <metrics statements="29" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="19" coveredmethods="0"/>
+=======
+        <line num="78" count="0" type="stmt"/>
+      </file>
+      <file name="QandA.jsx" path="/Users/josephnahm/HackReactor/FEC/client/src/Q&A/QandA.jsx">
+        <metrics statements="24" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="15" coveredmethods="0"/>
+>>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
@@ -147,6 +200,7 @@
         <line num="79" count="0" type="stmt"/>
         <line num="80" count="0" type="stmt"/>
         <line num="87" count="0" type="stmt"/>
+<<<<<<< HEAD
         <line num="88" count="0" type="stmt"/>
         <line num="97" count="0" type="stmt"/>
         <line num="100" count="0" type="stmt"/>
@@ -157,6 +211,13 @@
         <line num="114" count="0" type="stmt"/>
       </file>
       <file name="SearchQuestions.jsx" path="/home/yytt77/HackReactor/FEC/client/src/Q&A/SearchQuestions.jsx">
+=======
+        <line num="91" count="0" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+      </file>
+      <file name="SearchQuestions.jsx" path="/Users/josephnahm/HackReactor/FEC/client/src/Q&A/SearchQuestions.jsx">
+>>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
         <metrics statements="5" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
@@ -166,8 +227,13 @@
       </file>
     </package>
     <package name="client.src.Ratings">
+<<<<<<< HEAD
       <metrics statements="139" coveredstatements="79" conditionals="54" coveredconditionals="27" methods="50" coveredmethods="30"/>
       <file name="AddReview.jsx" path="/home/yytt77/HackReactor/FEC/client/src/Ratings/AddReview.jsx">
+=======
+      <metrics statements="186" coveredstatements="103" conditionals="77" coveredconditionals="37" methods="64" coveredmethods="34"/>
+      <file name="AddReview.jsx" path="/Users/josephnahm/HackReactor/FEC/client/src/Ratings/AddReview.jsx">
+>>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
         <metrics statements="10" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="2"/>
         <line num="6" count="1" type="stmt"/>
         <line num="7" count="10" type="stmt"/>
@@ -180,7 +246,11 @@
         <line num="20" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
       </file>
+<<<<<<< HEAD
       <file name="ImageModal.jsx" path="/home/yytt77/HackReactor/FEC/client/src/Ratings/ImageModal.jsx">
+=======
+      <file name="ImageModal.jsx" path="/Users/josephnahm/HackReactor/FEC/client/src/Ratings/ImageModal.jsx">
+>>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
         <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="18" type="stmt"/>
@@ -191,7 +261,11 @@
         <line num="11" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
       </file>
+<<<<<<< HEAD
       <file name="NewReview.jsx" path="/home/yytt77/HackReactor/FEC/client/src/Ratings/NewReview.jsx">
+=======
+      <file name="NewReview.jsx" path="/Users/josephnahm/HackReactor/FEC/client/src/Ratings/NewReview.jsx">
+>>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
         <metrics statements="59" coveredstatements="21" conditionals="18" coveredconditionals="3" methods="17" coveredmethods="7"/>
         <line num="6" count="1" type="stmt"/>
         <line num="7" count="10" type="stmt"/>
@@ -220,6 +294,7 @@
         <line num="56" count="0" type="stmt"/>
         <line num="57" count="0" type="stmt"/>
         <line num="63" count="1" type="stmt"/>
+<<<<<<< HEAD
         <line num="64" count="1" type="stmt"/>
         <line num="65" count="10" type="stmt"/>
         <line num="68" count="0" type="stmt"/>
@@ -259,10 +334,47 @@
         <line num="4" count="10" type="stmt"/>
       </file>
       <file name="RatingBreakdown.jsx" path="/home/yytt77/HackReactor/FEC/client/src/Ratings/RatingBreakdown.jsx">
+=======
+        <line num="65" count="1" type="stmt"/>
+        <line num="66" count="10" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="75" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="85" count="1" type="stmt"/>
+        <line num="86" count="10" type="stmt"/>
+        <line num="87" count="10" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="97" count="1" type="stmt"/>
+        <line num="98" count="10" type="stmt"/>
+        <line num="99" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="100" count="10" type="stmt"/>
+        <line num="119" count="18" type="stmt"/>
+        <line num="151" count="0" type="stmt"/>
+        <line num="152" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="153" count="0" type="stmt"/>
+        <line num="154" count="0" type="stmt"/>
+        <line num="155" count="0" type="stmt"/>
+        <line num="156" count="0" type="stmt"/>
+        <line num="158" count="0" type="cond" truecount="0" falsecount="8"/>
+        <line num="160" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="162" count="0" type="stmt"/>
+        <line num="172" count="0" type="stmt"/>
+        <line num="173" count="0" type="stmt"/>
+        <line num="174" count="0" type="stmt"/>
+        <line num="177" count="0" type="stmt"/>
+        <line num="188" count="0" type="stmt"/>
+      </file>
+      <file name="ProductBreakdown.jsx" path="/Users/josephnahm/HackReactor/FEC/client/src/Ratings/ProductBreakdown.jsx">
+>>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="10" type="stmt"/>
       </file>
+<<<<<<< HEAD
       <file name="RatingContainer.jsx" path="/home/yytt77/HackReactor/FEC/client/src/Ratings/RatingContainer.jsx">
         <metrics statements="26" coveredstatements="16" conditionals="12" coveredconditionals="2" methods="10" coveredmethods="7"/>
         <line num="11" count="4" type="stmt"/>
@@ -293,6 +405,90 @@
         <line num="108" count="10" type="stmt"/>
       </file>
       <file name="ReviewTile.jsx" path="/home/yytt77/HackReactor/FEC/client/src/Ratings/ReviewTile.jsx">
+=======
+      <file name="RatingBreakdown.jsx" path="/Users/josephnahm/HackReactor/FEC/client/src/Ratings/RatingBreakdown.jsx">
+        <metrics statements="36" coveredstatements="26" conditionals="15" coveredconditionals="9" methods="9" coveredmethods="5"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="7" count="10" type="stmt"/>
+        <line num="8" count="10" type="stmt"/>
+        <line num="9" count="10" type="stmt"/>
+        <line num="10" count="18" type="stmt"/>
+        <line num="11" count="18" type="stmt"/>
+        <line num="14" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="17" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="6" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="26" count="10" type="stmt"/>
+        <line num="27" count="10" type="stmt"/>
+        <line num="28" count="10" type="stmt"/>
+        <line num="29" count="10" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="37" count="18" type="stmt"/>
+        <line num="38" count="18" type="stmt"/>
+        <line num="40" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="67" count="10" type="stmt"/>
+        <line num="68" count="10" type="stmt"/>
+        <line num="69" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="70" count="10" type="stmt"/>
+        <line num="79" count="18" type="cond" truecount="2" falsecount="0"/>
+      </file>
+      <file name="RatingContainer.jsx" path="/Users/josephnahm/HackReactor/FEC/client/src/Ratings/RatingContainer.jsx">
+        <metrics statements="39" coveredstatements="16" conditionals="20" coveredconditionals="3" methods="16" coveredmethods="7"/>
+        <line num="11" count="4" type="stmt"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="21" count="4" type="stmt"/>
+        <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="28" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="63" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="64" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="71" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="72" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="84" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="85" count="2" type="stmt"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="96" count="4" type="stmt"/>
+        <line num="106" count="4" type="stmt"/>
+        <line num="107" count="4" type="stmt"/>
+        <line num="108" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="109" count="4" type="stmt"/>
+        <line num="117" count="4" type="stmt"/>
+        <line num="118" count="4" type="stmt"/>
+        <line num="132" count="4" type="stmt"/>
+        <line num="136" count="10" type="cond" truecount="1" falsecount="1"/>
+        <line num="137" count="10" type="stmt"/>
+        <line num="139" count="0" type="stmt"/>
+        <line num="144" count="10" type="stmt"/>
+      </file>
+      <file name="ReviewTile.jsx" path="/Users/josephnahm/HackReactor/FEC/client/src/Ratings/ReviewTile.jsx">
+>>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
         <metrics statements="17" coveredstatements="12" conditionals="12" coveredconditionals="11" methods="7" coveredmethods="4"/>
         <line num="6" count="1" type="stmt"/>
         <line num="7" count="16" type="stmt"/>
@@ -312,7 +508,11 @@
         <line num="73" count="0" type="stmt"/>
         <line num="78" count="0" type="stmt"/>
       </file>
+<<<<<<< HEAD
       <file name="ReviewsList.jsx" path="/home/yytt77/HackReactor/FEC/client/src/Ratings/ReviewsList.jsx">
+=======
+      <file name="ReviewsList.jsx" path="/Users/josephnahm/HackReactor/FEC/client/src/Ratings/ReviewsList.jsx">
+>>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
         <metrics statements="11" coveredstatements="11" conditionals="10" coveredconditionals="9" methods="3" coveredmethods="3"/>
         <line num="8" count="1" type="stmt"/>
         <line num="10" count="10" type="cond" truecount="4" falsecount="0"/>
@@ -326,6 +526,7 @@
         <line num="64" count="16" type="stmt"/>
         <line num="65" count="16" type="cond" truecount="1" falsecount="1"/>
       </file>
+<<<<<<< HEAD
       <file name="SortReviews.jsx" path="/home/yytt77/HackReactor/FEC/client/src/Ratings/SortReviews.jsx">
         <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
         <line num="3" count="1" type="stmt"/>
@@ -369,11 +570,101 @@
         <line num="72" count="0" type="stmt"/>
         <line num="77" count="1" type="stmt"/>
         <line num="83" count="0" type="stmt"/>
+=======
+      <file name="SortReviews.jsx" path="/Users/josephnahm/HackReactor/FEC/client/src/Ratings/SortReviews.jsx">
+        <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="client.src.Related">
+      <metrics statements="66" coveredstatements="18" conditionals="8" coveredconditionals="0" methods="20" coveredmethods="8"/>
+      <file name="Card.jsx" path="/Users/josephnahm/HackReactor/FEC/client/src/Related/Card.jsx">
+        <metrics statements="15" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+      </file>
+      <file name="OutfitList.jsx" path="/Users/josephnahm/HackReactor/FEC/client/src/Related/OutfitList.jsx">
+        <metrics statements="21" coveredstatements="8" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="4"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="27" count="2" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="72" count="2" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+      </file>
+      <file name="RelatedList.jsx" path="/Users/josephnahm/HackReactor/FEC/client/src/Related/RelatedList.jsx">
+        <metrics statements="30" coveredstatements="10" conditionals="2" coveredconditionals="0" methods="8" coveredmethods="4"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="59" count="2" type="stmt"/>
+        <line num="60" count="2" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
+        <line num="62" count="2" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="74" count="2" type="stmt"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="85" count="2" type="stmt"/>
+        <line num="86" count="0" type="stmt"/>
+        <line num="87" count="0" type="stmt"/>
+        <line num="88" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
+        <line num="101" count="2" type="stmt"/>
+        <line num="107" count="0" type="stmt"/>
+>>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
       </file>
     </package>
     <package name="server.routes">
       <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+<<<<<<< HEAD
       <file name="RelatedFakeData.js" path="/home/yytt77/HackReactor/FEC/server/routes/RelatedFakeData.js">
+=======
+      <file name="RelatedFakeData.js" path="/Users/josephnahm/HackReactor/FEC/server/routes/RelatedFakeData.js">
+>>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
         <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="58" count="1" type="stmt"/>
@@ -386,7 +677,11 @@
         <line num="1646" count="1" type="stmt"/>
         <line num="1647" count="1" type="stmt"/>
       </file>
+<<<<<<< HEAD
       <file name="ReviewsfakeData.js" path="/home/yytt77/HackReactor/FEC/server/routes/ReviewsfakeData.js">
+=======
+      <file name="ReviewsfakeData.js" path="/Users/josephnahm/HackReactor/FEC/server/routes/ReviewsfakeData.js">
+>>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="255" type="stmt"/>
         <line num="2" count="10" type="stmt"/>

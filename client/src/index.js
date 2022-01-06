@@ -12,7 +12,7 @@ var App = (props) => (
     <Overview className='relatedCard' />
     <RelatedList />
     <OutfitList />
-    <RatingContainer productId={2} />
+    <RatingContainer productId={59553} />
     <QandA />
   </div>
 )

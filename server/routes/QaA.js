@@ -59,17 +59,27 @@ router.post('/:question_id/answers', (req, res) => {
   var questionBody = req.body;
   console.log('questionbody2', req.body, endpoint);
   // postAnswer(questionBody, endpoint)
-  // .then(question=> {
-  //     console.log('question create', res.statusCode)
-  // })
-  // .catch((err) => {
-  //   console.log('post question error');
-  // });
-  //   var endpoint = `/${id}/answers`;
-  //   getProducts(endpoint)
-  //   .then(question=> {
-  //   res.send(JSON.stringify(question.data.results));
-  // })
+// router.get('/:question_id/answers', (req, res) => {
+//  /*  getProducts()
+//   .then(question=> {
+//     //res.send(JSON.stringify(question.data.results));
+//     console.log('Hello');
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   }) */
+//   // getProductsQuestions()
+//   // .then(question=> {
+//   //     console.log('question create', res.statusCode)
+//   // })
+//   // .catch((err) => {
+//   //   console.log('post question error');
+//   // });
+//   //   var endpoint = `/${id}/answers`;
+//   //   getProducts(endpoint)
+//   //   .then(question=> {
+//   //   res.send(JSON.stringify(question.data.results));
+//   // })
 })
 
 module.exports = router;
