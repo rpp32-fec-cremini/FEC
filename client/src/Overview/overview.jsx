@@ -20,77 +20,61 @@ class Overview extends React.Component {
       styleList: [],
       currentStyle: {},
       reviewMeta: {},
+      currentPhotoUrl: {
+        photos: [{url: 'yeah whatever'}]
+      }
 
     }
 
-    this.getProducts = this.getProducts.bind(this);
+  /*   this.getProducts = this.getProducts.bind(this);
     this.getStyles = this.getStyles.bind(this);
     this.getMetadata = this.getMetadata.bind(this);
-    this.runAll = this.runAll.bind(this);
+    this.runAll = this.runAll.bind(this); */
   }
 
   componentDidMount() {
-    this.getProducts();
-  }
-
-  getProducts = () => {
-    axios.get('overview/products')
+    return axios.get('overview/products')
     .then(response => {
-      let data = response.data
-      this.setState({productList: data, current: data[0]})
-      console.log('Parent state! ', this.state);
-    })
-    .catch(error => {
-      console.log(error)
-    })
-  }
+      let data = response.data;
 
+      //Styles API Call
+      return axios.get(`overview/products/${data[0].id}/styles`)
+        .then((styles) => {
+          let stylish = styles.data
+          console.log('WE GOT STYLE ', stylish)
 
+          //Metadata API Call
+            return axios.get(`overview/reviews/meta/`, {params: {product_id: data[0].id}})
+              .then(meta => {
+              let metaData = meta.data
+              //this.setState({reviewMeta: data.ratings});
+              //console.log('OSHIT ITS METAKNIGHT ', metaData)
 
+              this.setState({
+                productList: data,
+                current: data[0],
+                styleList: stylish.results,
+                currentStyle: stylish.results[0],
+                reviewMeta: metaData,
+                currentPhotoUrl: stylish.results[0]
+              },
+                ()=>{ //callback function to verify everything done
+                  console.log('Muahahahah done');
+              })
 
-  /* getProducts = () => {
-    $.ajax({
-      type: "GET",
-      url: 'overview/products',
-      success: data => {
-        this.setState({productList: data, current: data[0]});
-        console.log('Parent state! ', this.state)
-      }
-    })
-  } */
-
-  getStyles = () => {
-    axios.get(`overview/products/${this.state.current.id}/styles`)
-    .then(products => {
-        //console.log('STYLE Data is here! ', products);
-        let data = products.data
-        this.setState({styleList: products.results, currentStyle: products.results[0]});
-        //console.log('STYLE STATE HERE ', this.state);
+              console.log('BEHOLD, THIS FRANKENSTEIN OF A STATE ', this.state)
+            })
+              .catch(error => { //error block for metadata call
+                console.log(error);
+              })
+        })
+        .catch(error => { //error block for style call
+          console.log(error);
+        })
       })
-      .catch(error =>{
-        console.log(error)
-      })
-  }
-
-  getMetadata = () => {
-      axios.get(`overview/reviews/meta/`, {params: {product_id: this.state.current.id}})
-      .then(response => {
-        let data = response.data
-        this.setState({reviewMeta: data.ratings});
-      })
-      .catch(error => {
+      .then(error => { //error block for productList call
         console.log(error);
       })
-
-
-        //this.makeRatings();
-
-  }
-
-  runAll = () => {
-    this.getProducts();
-    this.getMetadata();
-    this.getStyles();
   }
 
 
@@ -109,12 +93,14 @@ class Overview extends React.Component {
       return (
       <div>
         <div className='related relatedContainer'>
-        {/* <ImageGallery className=' related relatedCard ' data={}   /> */}
-        <ProductInfo className=' related relatedCard' productList={this.state.productList} styleList ={this.state.styleList} reviewMeta= {this.state.reviewMeta} current={this.state.current}/>
+        <ImageGallery className=' related relatedCard ' currentUrl={this.state.currentPhotoUrl}   />
+
+        <ProductInfo className=' related relatedCard' productList={this.state.productList} styleList ={this.state.styleList} reviewMeta= {this.state.reviewMeta} current={this.state.current} currentStyle ={this.state.currentStyle}/>
+
         {/* <AddToCart /> */}
         <br></br>
       </div>
-      {/* <StyleSelector className=' related relatedCard' data={}  /> */}
+      <StyleSelector className=' related relatedCard' styleList={this.state.styleList} currentStyle = {this.state.currentStyle} />}
       </div>
     );}
   }
