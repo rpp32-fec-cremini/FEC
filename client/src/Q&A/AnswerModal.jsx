@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-const AddAnswerModal = ({answer, answerHelpfulList, answerHelpful}) => {
+const AnswerModal = ({answer, answerHelpfulList, answerHelpful}) => {
   const [loading, setloading] = useState(false);
   const [size, setsize] = useState(0);
   const [vote, setvote] = useState(false);
@@ -91,4 +91,4 @@ const AddAnswerModal = ({answer, answerHelpfulList, answerHelpful}) => {
 
 };
 
-export default AddAnswerModal;
+export default AnswerModal;

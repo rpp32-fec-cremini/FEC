@@ -10,7 +10,7 @@ var ProductBar = ({desc, meta, charMap}) => {
         <div className="charBar"></div>
         <div className="charBar"></div>
         <div className="charBar"></div>
-        <div className="iconBar" style={{"width": `${perc}%`}}><i className="fas fa-caret-up" style={{"fontSize": "1.5em"}}></i></div>
+        <div className="iconBar" style={{"width": `${perc}%`}}><i className="fas fa-caret-down" style={{"fontSize": "1.5em"}}></i></div>
       </div>
       <div className="productBars">
         <div className="charDescription"><span style={{"fontSize":"12px"}}>{descriptions[0]}</span></div>

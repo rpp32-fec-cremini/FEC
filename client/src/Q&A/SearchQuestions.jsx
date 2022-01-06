@@ -11,7 +11,7 @@ const SearchQuestion = (props) => {
     <div className = "searchBox">
       <form>
         <label >
-          <input type="text" id="searchBar" defaultValue = "Have a question? Search for answers..." onChange = {(e) => handleSearch(e, props) } style={{width: "80%", height:"30px",}}/>
+          <input type="text" id="searchBar" placeholder = "Have a question? Search for answers..." onChange = {(e) => handleSearch(e, props) } style={{width: "80%", height:"30px",}}/>
         </label>
       </form>
     </div>
