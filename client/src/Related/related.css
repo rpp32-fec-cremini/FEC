@@ -23,8 +23,8 @@
   margin-left: 5%;
   margin-bottom: 0;
   overflow-x: hidden;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 1) 240px, rgba(255, 255, 255, 1) 290px);
-   background-color: white;
+  /* background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 1) 240px, rgba(255, 255, 255, 1) 290px); */
+  background-color: lavender;
    /* box-shadow:  0px 100px 50px -50px #ffffff inset,
         -10px 0px 10px -5px rgba(0,0,0,0.5) inset; */
 }
@@ -49,6 +49,7 @@
   box-sizing: border-box;
   white-space: nowrap;
   overflow-x: auto;
+  background-color: aqua;
 }
 
 .related-list::-webkit-scrollbar {
@@ -134,6 +135,13 @@ th {
   font-size-adjust: 0.5;
 }
 
+.sale {
+  color: red;
+}
+.reg-price {
+  text-decoration: line-through;
+}
+
 /* .card-stars {
 
 } */
@@ -157,6 +165,11 @@ th {
 .right-scroll {
 	right: 0;
 }
+
+/* .hidden {
+
+} */
+
 .hide {
 	display: none;
   z-index: -1;
