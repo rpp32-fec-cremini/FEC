@@ -1,4 +1,19 @@
 import React from 'react';
+import $ from 'jquery';
+
+var timerId;
+
+//this function prevents enormous amounts of API calls if clicks occur too fast in a row
+var throttle = (func, delay) => {
+  if (timerId) {
+    return
+  }
+
+  timerId = setTimeout(() => {
+    func();
+    timerId = undefined;
+  }, delay)
+}
 
 var getClicks = WrappedComponent => props => {
   var componentMap = {
@@ -17,7 +32,12 @@ var getClicks = WrappedComponent => props => {
     var element = WrappedComponent.name;
     var date = new Date();
     var widget = componentMap[WrappedComponent.name];
-    console.log(element, date, widget)
+    throttle(() => $.ajax({
+      method: "POST",
+      url: "/interactions",
+      data: JSON.stringify({element, date, widget}),
+      contentType: "application/json"
+    }), 1000)
   }
   return <WrappedComponent {...props} clicked={clicked}/>
 }
