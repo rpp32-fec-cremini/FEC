@@ -8,7 +8,7 @@
   /* height: 80%; */
 }
 
-.container a:hover{
+.container a:hover {
   color: blue;
   cursor: pointer;
 }
@@ -18,8 +18,30 @@
   grid-template-rows: 5% 90% 5%;
   max-height: 90%;
   margin-left: 3em;
+  border-radius: 6px;
+  box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);
+  border: 1px solid #d6dee1;
+  padding: 1rem;
 }
 
+.scrollStyle::-webkit-scrollbar {
+  width: 20px;
+}
+
+.scrollStyle::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.scrollStyle::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+.scrollStyle::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}
 /* .container-left {
 
 } */
@@ -34,7 +56,7 @@
 
 .ReviewTile .response {
   padding: 5px;
-  background-color: #D3D3D3;
+  background-color: #d3d3d3;
 }
 
 /* Tile Star Rating */
@@ -65,7 +87,11 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1) 90%);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1) 90%
+  );
   width: 100%;
   height: 3em;
 }
@@ -73,14 +99,16 @@
 /* Image modal */
 
 .modal {
+  color: black;
+  cursor: auto;
   position: fixed;
   z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
@@ -101,13 +129,11 @@
 }
 
 .close:hover,
-
 .close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
 }
-
 
 /* Write Review Module */
 .newReview {
@@ -150,10 +176,11 @@
 }
 
 .error {
-  color:red;
+  color: red;
 }
 
-.error h5,.error div {
+.error h5,
+.error div {
   margin: 2px;
 }
 
@@ -177,20 +204,38 @@
   font-weight: lighter;
 }
 
-
 /* sort dropdown */
-.sort-dropdown span{
+.sort-dropdown span {
   margin-right: 0.1em;
 }
 
-.sort-dropdown select{
+.sort-dropdown select {
   border: none;
   text-decoration: underline;
   cursor: pointer;
 }
 
-
 /* Rating Breakdown */
+.Rating-Title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  width: 160px;
+  text-align: center;
+  white-space: nowrap;
+  padding-bottom: 13px;
+}
+
+.Rating-Title:before {
+  background-color: #c50000;
+  content: "";
+  display: block;
+  height: 3px;
+  width: 75px;
+  margin-bottom: 5px;
+}
+
 .ratingBreakdown {
   display: inline-flex;
   align-items: center;
@@ -199,7 +244,6 @@
 .stars-outer {
   position: relative;
   display: inline-block;
-
 }
 
 .ratingHeader {
@@ -234,13 +278,15 @@
 .bar-outer {
   height: 0.5em;
   width: 13em;
-  background-color: grey;
+  background-color: #333333;
+  border: 1px solid;
+  box-shadow: 1.5px 2.5px rgba(123, 151, 158, 0.5);
 }
 
 .bar-inner {
   height: 0.5em;
   width: 13em;
-  background-color: #8FBC8F;
+  background-color: #8fbc8f;
 }
 
 .barBreakdown {
@@ -294,14 +340,16 @@
   justify-content: end;
   align-items: center;
   position: absolute;
-  bottom:0;
+  bottom: 0;
 }
 
 .charBar {
   height: 0.5em;
   width: 7em;
-  background-color: grey;
+  background-color: #cccccc;
   margin-right: 0.4em;
+  border: 1px solid;
+  box-shadow: 1.5px 2.5px rgba(123, 151, 158, 0.5);
 }
 
 .charDescription {
@@ -312,4 +360,33 @@
   margin-right: 0.4em;
   display: flex;
   justify-content: center;
+}
+
+/* buttons */
+
+.RatingBtn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #ffffff;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: white;
+  background-color: black;
+  text-align: center;
+  transition: all 0.2s;
+}
+/* .RatingBtn:hover {
+  color: white;
+  background-color: #7fdbff;
+} */
+@media all and (max-width: 30em) {
+  a.RatingBtn {
+    display: block;
+    margin: 0.4em auto;
+  }
 }
