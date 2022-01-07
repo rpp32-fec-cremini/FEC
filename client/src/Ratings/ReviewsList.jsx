@@ -7,7 +7,7 @@ import SortReviews from "./SortReviews.jsx";
 
 var ReviewsList = ({productName, charMap, sortAndGet, reviews, shownReviews, moreReviews, addToVoted, voted, product, characteristics, product_id, submitReview}) => {
 
-  var addBtn = reviews.length && shownReviews != reviews.length ? <button onClick={moreReviews}>More Reviews</button> : null;
+  var addBtn = reviews.length && shownReviews != reviews.length ? <button className="RatingBtn" onClick={moreReviews}>+  More Reviews</button> : null;
   var sortDropdown = reviews.length ? <SortReviews numReviews={reviews.length} sortAndGet={sortAndGet}/> : null;
   var scrollStyle = {
     "height": "48em",
@@ -16,7 +16,7 @@ var ReviewsList = ({productName, charMap, sortAndGet, reviews, shownReviews, mor
   return (
   <div className="container-right">
     {sortDropdown}
-    <div style={shownReviews >= 3 ? scrollStyle : {"height": "48em"}} data-testid="scrolllist">
+    <div className="scrollStyle" style={shownReviews >= 3 ? scrollStyle : {"height": "48em"}} data-testid="scrolllist">
       {reviews.slice(0, shownReviews).map(review => {
         return (
           <ReviewTile

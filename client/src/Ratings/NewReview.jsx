@@ -139,7 +139,7 @@ var NewReview = ({productName, chars, product, product_id, submitReview, refresh
 
     <div id='submission'>
       <div id='btnBorder'>
-        <div id="submitBtn" onClick={(e) => {
+        <div id="submitBtn" className="RatingBtn" onClick={(e) => {
           var recCheck = $('input[name=recommended]:checked')[0];
           var recommend = recCheck ? JSON.parse(recCheck.id) : undefined;
           var summary = $("#summary").val();
@@ -179,7 +179,7 @@ var NewReview = ({productName, chars, product, product_id, submitReview, refresh
             };
             submitReview(data)
           }
-        }}>Submit</div>
+        }}> Submit Review </div>
       </div>
     </div>
   </div>

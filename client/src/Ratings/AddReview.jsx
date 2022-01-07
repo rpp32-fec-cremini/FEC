@@ -16,7 +16,7 @@ var AddReviews = ({productName, charMap, product, characteristics, product_id, s
   }
 
   return (
-    <button onClick={(e) => {
+    <button className="RatingBtn" onClick={(e) => {
       setDisplay("block")
     }}>Add A Review
       <div className="modal" style={{display}} id="newModal">
