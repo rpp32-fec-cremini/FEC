@@ -22,7 +22,7 @@ var Modal = ({images}) => {
           }}>
             <img style={{
               "maxHeight":"80%",
-              "maxWidth":"80%"
+              "maxWidth":"80%",
             }}src={modal}></img>
           </div>
         </div>

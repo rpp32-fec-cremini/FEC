@@ -69,7 +69,7 @@ var RatingBreakdown = ({meta, changeFilter, filters}) => {
   var recPerc = rec ? Math.floor((parseInt(rec.true) / (parseInt(rec.true) + parseInt(rec.false))) * 100) : null
   return (
     <div>
-      <div>Rating & Reviews</div>
+      <h1 className="Rating-Title">Rating & Reviews</h1>
       <div className="ratingBreakdown">
         <div className="ratingHeader">{average || 0}</div>
         <FractinalStars avg={average}/>
