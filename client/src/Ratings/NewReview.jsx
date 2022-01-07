@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from "react";
 import $, { error } from "jquery";
+import getClicks from "../getClicks.jsx";
 
 var rating;
 var Stars = (props) => {
@@ -185,4 +186,4 @@ var NewReview = ({productName, chars, product, product_id, submitReview, refresh
   </div>
 }
 
-export default NewReview;
+export default getClicks(NewReview);

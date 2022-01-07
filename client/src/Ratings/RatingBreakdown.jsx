@@ -1,5 +1,6 @@
 import React from "react";
 import $ from 'jquery';
+import getClicks from "../getClicks.jsx";
 
 var numVotes = 0;
 
@@ -83,4 +84,4 @@ var RatingBreakdown = ({meta, changeFilter, filters}) => {
   )
 }
 
-export default RatingBreakdown;
+export default getClicks(RatingBreakdown);

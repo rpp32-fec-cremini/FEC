@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import getClicks from "../getClicks.jsx";
 
 var Modal = ({images}) => {
   var [modal, setModal] = useState(null)
@@ -31,4 +32,4 @@ var Modal = ({images}) => {
   )
 }
 
-export default Modal;
+export default getClicks(Modal);

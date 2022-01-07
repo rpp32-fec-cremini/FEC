@@ -5,6 +5,7 @@ import ReviewsList from "./ReviewsList.jsx";
 import RatingBreakdown from "./RatingBreakdown.jsx";
 import ProductBreakdown from "./ProductBreakdown.jsx";
 import "./Ratings.css";
+import getClicks from "../getClicks.jsx";
 
 class RatingContainer extends React.Component {
   constructor(props) {
@@ -184,4 +185,4 @@ class RatingContainer extends React.Component {
   }
 }
 
-export default RatingContainer;
+export default getClicks(RatingContainer);

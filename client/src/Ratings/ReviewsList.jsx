@@ -4,6 +4,7 @@ import { useState } from "react";
 import ReviewTile from "./ReviewTile.jsx";
 import AddReview from "./AddReview.jsx";
 import SortReviews from "./SortReviews.jsx";
+import getClicks from "../getClicks.jsx";
 
 var ReviewsList = ({productName, charMap, sortAndGet, reviews, shownReviews, moreReviews, addToVoted, voted, product, characteristics, product_id, submitReview}) => {
 
@@ -65,4 +66,4 @@ var conformDate = (date) => {
   return `${months[month]} ${day[0] !== 0 ? day : day[1]}, ${year}`
 }
 
-export default ReviewsList;
+export default getClicks(ReviewsList);

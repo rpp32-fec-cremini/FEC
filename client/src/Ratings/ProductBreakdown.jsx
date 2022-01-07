@@ -1,4 +1,5 @@
 import React from "react";
+import getClicks from "../getClicks.jsx";
 
 var ProductBar = ({desc, meta, charMap}) => {
   var perc = (meta.value/5) * 100
@@ -30,4 +31,4 @@ var ProductBreakdown = ({characteristics, charMap}) => {
   )
 }
 
-export default ProductBreakdown;
+export default getClicks(ProductBreakdown);

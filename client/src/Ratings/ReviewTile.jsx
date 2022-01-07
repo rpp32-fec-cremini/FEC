@@ -1,5 +1,6 @@
 import React from "react";
 import $ from "jquery";
+import getClicks from "../getClicks.jsx";
 
 import ImageModal from "./ImageModal.jsx"
 
@@ -82,4 +83,4 @@ var ReviewTile = ({id, starRating, dateWritten, summary, body, images, recommend
   )
 }
 
-export default ReviewTile;
+export default getClicks(ReviewTile);

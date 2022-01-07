@@ -1,4 +1,5 @@
 import React from "react";
+import getClicks from "../getClicks.jsx";
 
 var SortReviews = ({numReviews, sortAndGet}) => (
   <div className="sort-dropdown">
@@ -14,4 +15,4 @@ var SortReviews = ({numReviews, sortAndGet}) => (
   </div>
 )
 
-export default SortReviews;
+export default getClicks(SortReviews);
