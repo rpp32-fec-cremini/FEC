@@ -7,7 +7,7 @@ var Modal = ({images, clicked}) => {
   var [display, setDisplay] = useState("none")
   return (
     <div onClick={(e) => clicked(e)}>
-      {images.map(image => <img key={image.id} src={image.url} style={{"margin":"1px 20px 0 0", "height": "28px", "cursor":"pointer"}} onClick={(e) => {
+      {images.map(image => <img key={image.id} src={image.url} style={{"margin":"1px 20px 0 0", "height": "28px", "cursor":"pointer", "borderRadius": "8px"}} onClick={(e) => {
         setModal(e.target.src)
         setDisplay("block")
       }}></img>)}

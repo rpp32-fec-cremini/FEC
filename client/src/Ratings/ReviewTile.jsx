@@ -22,7 +22,7 @@ var StarRating = ({rating}) => {
 }
 
 
-var ReviewTile = ({clicked, id, starRating, dateWritten, summary, body, images, recommend, name, response, helpfulness, addToVoted, voted}) => {
+var ReviewTile = ({clicked, flagColor, id, starRating, dateWritten, summary, body, images, recommend, name, response, helpfulness, addToVoted, voted}) => {
   var boldSummary = summary.length > 83 ? `${summary.substring(0,83)}...` : summary;
   var extraSummary = summary.length > 83 ? <div>{`...${summary.substring(83)}`}</div> : null;
   if (body.split(" ").length > 250) {
@@ -77,7 +77,7 @@ var ReviewTile = ({clicked, id, starRating, dateWritten, summary, body, images, 
         &nbsp; &nbsp; | &nbsp; &nbsp;
         <a style={{"textDecoration":"underline"}} onClick={() => {
           addToVoted(id, 'report')
-        }}>Report</a>
+        }}>Report</a><i style={{"marginLeft": "1em", "color": flagColor}} className="fas fa-flag"></i>
       </div>
     </div>
   )

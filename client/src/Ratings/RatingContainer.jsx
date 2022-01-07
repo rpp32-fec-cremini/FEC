@@ -179,6 +179,7 @@ class RatingContainer extends React.Component {
           submitReview={this.submitReview.bind(this)}
           charMap={this.charMap}
           productName={this.state.productName}
+          reported={this.state.reported}
         />
       </div>
     )

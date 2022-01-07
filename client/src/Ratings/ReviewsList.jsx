@@ -6,7 +6,7 @@ import AddReview from "./AddReview.jsx";
 import SortReviews from "./SortReviews.jsx";
 import getClicks from "../getClicks.jsx";
 
-var ReviewsList = ({clicked, productName, charMap, sortAndGet, reviews, shownReviews, moreReviews, addToVoted, voted, product, characteristics, product_id, submitReview}) => {
+var ReviewsList = ({clicked, reported, productName, charMap, sortAndGet, reviews, shownReviews, moreReviews, addToVoted, voted, product, characteristics, product_id, submitReview}) => {
 
   var addBtn = reviews.length && shownReviews != reviews.length ? <button className="RatingBtn" onClick={moreReviews}>+  More Reviews</button> : null;
   var sortDropdown = reviews.length ? <SortReviews numReviews={reviews.length} sortAndGet={sortAndGet}/> : null;
@@ -19,6 +19,7 @@ var ReviewsList = ({clicked, productName, charMap, sortAndGet, reviews, shownRev
     {sortDropdown}
     <div className="scrollStyle" style={shownReviews >= 3 ? scrollStyle : {"height": "48em"}} data-testid="scrolllist">
       {reviews.slice(0, shownReviews).map(review => {
+        var flagColor = reported[review.review_id] ? 'red': 'grey';
         return (
           <ReviewTile
             id={review.review_id}
@@ -34,6 +35,7 @@ var ReviewsList = ({clicked, productName, charMap, sortAndGet, reviews, shownRev
             helpfulness={review.helpfulness}
             addToVoted={addToVoted}
             voted={voted}
+            flagColor={flagColor}
           />
         )})
       }
