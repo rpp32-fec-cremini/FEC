@@ -4,8 +4,9 @@ import { useState } from "react";
 import ReviewTile from "./ReviewTile.jsx";
 import AddReview from "./AddReview.jsx";
 import SortReviews from "./SortReviews.jsx";
+import getClicks from "../getClicks.jsx";
 
-var ReviewsList = ({productName, charMap, sortAndGet, reviews, shownReviews, moreReviews, addToVoted, voted, product, characteristics, product_id, submitReview}) => {
+var ReviewsList = ({clicked, productName, charMap, sortAndGet, reviews, shownReviews, moreReviews, addToVoted, voted, product, characteristics, product_id, submitReview}) => {
 
   var addBtn = reviews.length && shownReviews != reviews.length ? <button className="RatingBtn" onClick={moreReviews}>+  More Reviews</button> : null;
   var sortDropdown = reviews.length ? <SortReviews numReviews={reviews.length} sortAndGet={sortAndGet}/> : null;
@@ -14,7 +15,7 @@ var ReviewsList = ({productName, charMap, sortAndGet, reviews, shownReviews, mor
     "overflowY": "scroll",
   }
   return (
-  <div className="container-right">
+  <div className="container-right" onClick={(e) => clicked(e)}>
     {sortDropdown}
     <div className="scrollStyle" style={shownReviews >= 3 ? scrollStyle : {"height": "48em"}} data-testid="scrolllist">
       {reviews.slice(0, shownReviews).map(review => {
@@ -65,4 +66,4 @@ var conformDate = (date) => {
   return `${months[month]} ${day[0] !== 0 ? day : day[1]}, ${year}`
 }
 
-export default ReviewsList;
+export default getClicks(ReviewsList);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from "react";
 import $, { error } from "jquery";
+import getClicks from "../getClicks.jsx";
 
 var rating;
 var Stars = (props) => {
@@ -86,10 +87,10 @@ var ReviewBody = (props) => {
   </div>)
 }
 
-var NewReview = ({productName, chars, product, product_id, submitReview, refreshModal, charMap}) => {
+var NewReview = ({clicked, productName, chars, product, product_id, submitReview, refreshModal, charMap}) => {
   var submitted = false;
   if (!Array.isArray(chars)) chars = [];
-  return <div className='newReview'>
+  return <div className='newReview' onClick={(e) => clicked(e)}>
     <div className='title'>Write Your Review</div>
     <div className='subtitle'>About {productName}</div>
 
@@ -185,4 +186,4 @@ var NewReview = ({productName, chars, product, product_id, submitReview, refresh
   </div>
 }
 
-export default NewReview;
+export default getClicks(NewReview);

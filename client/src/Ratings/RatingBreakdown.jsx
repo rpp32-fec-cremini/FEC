@@ -1,5 +1,6 @@
 import React from "react";
 import $ from 'jquery';
+import getClicks from "../getClicks.jsx";
 
 var numVotes = 0;
 
@@ -63,12 +64,12 @@ var FilterInfo = ({filters, changeFilter}) => {
   </div>)
 }
 
-var RatingBreakdown = ({meta, changeFilter, filters}) => {
+var RatingBreakdown = ({meta, changeFilter, filters, clicked}) => {
   var average = getAverage(meta.ratings);
   var rec = meta.recommended;
   var recPerc = rec ? Math.floor((parseInt(rec.true) / (parseInt(rec.true) + parseInt(rec.false))) * 100) : null
   return (
-    <div>
+    <div onClick={(e) => clicked(e)}>
       <h1 className="Rating-Title">Rating & Reviews</h1>
       <div className="ratingBreakdown">
         <div className="ratingHeader">{average || 0}</div>
@@ -83,4 +84,4 @@ var RatingBreakdown = ({meta, changeFilter, filters}) => {
   )
 }
 
-export default RatingBreakdown;
+export default getClicks(RatingBreakdown);
