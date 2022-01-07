@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import NewReview from "./NewReview.jsx";
 import $ from "jquery";
-import getClicks from "../getClicks.jsx";
 
 var AddReviews = ({productName, charMap, product, characteristics, product_id, submitReview}) => {
   var [display, setDisplay] = useState("none")
@@ -34,5 +33,5 @@ var AddReviews = ({productName, charMap, product, characteristics, product_id, s
   )
 }
 
-export default getClicks(AddReviews);
+export default AddReviews;
 

@@ -11,12 +11,13 @@ import React from 'react';
 //   </div>
 // )
 
-var getClicks = WrappedComponent => props => (
-  React.cloneElement(<WrappedComponent/>, {
-    ...props,
-    onClick: () => { console.log('hello') }
-  })
-);
+var getClicks = WrappedComponent => props => {
+  var clicked = (e) => {
+    console.log(e.target)
+  }
+  return <WrappedComponent {...props} clicked={clicked}/>
+}
+
 
 
 

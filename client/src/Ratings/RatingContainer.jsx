@@ -161,7 +161,7 @@ class RatingContainer extends React.Component {
 
     //metadata doesnt match actual data
     return (
-      <div className="container">
+      <div className="container" onClick={(e) => this.props.clicked(e)}>
         <div className="container-left">
           <RatingBreakdown meta={this.state.meta} changeFilter={this.changeFilter.bind(this)} filters={this.state.filters}/>
           <ProductBreakdown characteristics={this.state.meta.characteristics} charMap={this.charMap}/>
