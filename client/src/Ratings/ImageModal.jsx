@@ -1,12 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
+import getClicks from "../getClicks.jsx";
 
-var Modal = ({images}) => {
+var Modal = ({images, clicked}) => {
   var [modal, setModal] = useState(null)
   var [display, setDisplay] = useState("none")
   return (
-    <div>
-      {images.map(image => <img key={image.id} src={image.url} style={{"margin":"1px 20px 0 0", "height": "28px", "cursor":"pointer"}} onClick={(e) => {
+    <div onClick={(e) => clicked(e)}>
+      {images.map(image => <img key={image.id} src={image.url} style={{"margin":"1px 20px 0 0", "height": "28px", "cursor":"pointer", "borderRadius": "8px"}} onClick={(e) => {
         setModal(e.target.src)
         setDisplay("block")
       }}></img>)}
@@ -22,7 +23,7 @@ var Modal = ({images}) => {
           }}>
             <img style={{
               "maxHeight":"80%",
-              "maxWidth":"80%"
+              "maxWidth":"80%",
             }}src={modal}></img>
           </div>
         </div>
@@ -31,4 +32,4 @@ var Modal = ({images}) => {
   )
 }
 
-export default Modal;
+export default getClicks(Modal);

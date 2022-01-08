@@ -2,8 +2,9 @@ import React from "react";
 import { useState } from "react";
 import NewReview from "./NewReview.jsx";
 import $ from "jquery";
+import getClicks from "../getClicks.jsx";
 
-var AddReviews = ({productName, charMap, product, characteristics, product_id, submitReview}) => {
+var AddReviews = ({clicked, productName, charMap, product, characteristics, product_id, submitReview}) => {
   var [display, setDisplay] = useState("none")
 
   //Will load relevant characteristics from API
@@ -16,7 +17,8 @@ var AddReviews = ({productName, charMap, product, characteristics, product_id, s
   }
 
   return (
-    <button onClick={(e) => {
+    <button className="RatingBtn" onClick={(e) => {
+      clicked(e)
       setDisplay("block")
     }}>Add A Review
       <div className="modal" style={{display}} id="newModal">
@@ -33,5 +35,5 @@ var AddReviews = ({productName, charMap, product, characteristics, product_id, s
   )
 }
 
-export default AddReviews;
+export default getClicks(AddReviews);
 

@@ -1,7 +1,8 @@
 import React from "react";
+import getClicks from "../getClicks.jsx";
 
-var SortReviews = ({numReviews, sortAndGet}) => (
-  <div className="sort-dropdown">
+var SortReviews = ({numReviews, sortAndGet, clicked}) => (
+  <div className="sort-dropdown" onClick={(e) => clicked(e)}>
     <span>{numReviews} reviews, sorted by</span>
     <select name="sortDropdown" id="sortDropdown" onChange={(e) => {
       var selection = e.target.value.toLowerCase();
@@ -14,4 +15,4 @@ var SortReviews = ({numReviews, sortAndGet}) => (
   </div>
 )
 
-export default SortReviews;
+export default getClicks(SortReviews);
