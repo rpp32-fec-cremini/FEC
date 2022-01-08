@@ -77,6 +77,10 @@ class Overview extends React.Component {
       })
   }
 
+ /*  selectStyle() {
+
+  }
+ */
 
   render() {
     if (!this.state.current) {
@@ -102,8 +106,8 @@ class Overview extends React.Component {
       </div>
       <StyleSelector className=' related relatedCard' styleList={this.state.styleList} currentStyle = {this.state.currentStyle} />}
       </div>
-    );}
+    );
   }
-}
+}}
 
 export default Overview;

@@ -48,7 +48,7 @@ class ProductInfo extends React.Component {
       return(
 
         <div>
-            <h3>{category} ::: {product} <ProductRating reviewMeta={this.props.reviewMeta} /><a target = 'container' style ={{'font-size': '12px'}}>Read all reviews</a></h3>
+            <h3>{category} ::: {product} <ProductRating reviewMeta={this.props.reviewMeta} /><a href = '#container' style ={{'font-size': '12px'}}>Read all reviews</a></h3>
             <b>{price}</b>
             <h4>{desc}</h4>
         </div>

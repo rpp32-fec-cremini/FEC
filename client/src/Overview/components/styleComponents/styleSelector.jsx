@@ -14,6 +14,13 @@ class StyleSelector extends React.Component {
       currentStyle: ''
     }
 
+    this.onClick = this.onClick.bind(this);
+
+  }
+
+  onClick(e) {
+    console.log(e.props)
+    console.log(e.target.value)
   }
 
 
@@ -33,7 +40,7 @@ class StyleSelector extends React.Component {
         <br></br>
       <div className = 'grid-4'>
         {this.props.styleList.map((style) =>
-      <Style name={style.name} pic = {style.photos[0].thumbnail_url} key ={style.style_id} />
+      <Style product = {style} onClick = {this.onClick} name={style.name} pic = {style.photos[0].thumbnail_url} key ={style.style_id} />
     )}
       </div>
       </div>
