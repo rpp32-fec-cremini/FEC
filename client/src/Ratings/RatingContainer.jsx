@@ -5,6 +5,7 @@ import ReviewsList from "./ReviewsList.jsx";
 import RatingBreakdown from "./RatingBreakdown.jsx";
 import ProductBreakdown from "./ProductBreakdown.jsx";
 import "./Ratings.css";
+import getClicks from "../getClicks.jsx";
 
 class RatingContainer extends React.Component {
   constructor(props) {
@@ -160,7 +161,7 @@ class RatingContainer extends React.Component {
 
     //metadata doesnt match actual data
     return (
-      <div className="container">
+      <div className="container" onClick={(e) => this.props.clicked(e)}>
         <div className="container-left">
           <RatingBreakdown meta={this.state.meta} changeFilter={this.changeFilter.bind(this)} filters={this.state.filters}/>
           <ProductBreakdown characteristics={this.state.meta.characteristics} charMap={this.charMap}/>
@@ -178,10 +179,11 @@ class RatingContainer extends React.Component {
           submitReview={this.submitReview.bind(this)}
           charMap={this.charMap}
           productName={this.state.productName}
+          reported={this.state.reported}
         />
       </div>
     )
   }
 }
 
-export default RatingContainer;
+export default getClicks(RatingContainer);

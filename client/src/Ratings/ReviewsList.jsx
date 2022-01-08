@@ -4,20 +4,22 @@ import { useState } from "react";
 import ReviewTile from "./ReviewTile.jsx";
 import AddReview from "./AddReview.jsx";
 import SortReviews from "./SortReviews.jsx";
+import getClicks from "../getClicks.jsx";
 
-var ReviewsList = ({productName, charMap, sortAndGet, reviews, shownReviews, moreReviews, addToVoted, voted, product, characteristics, product_id, submitReview}) => {
+var ReviewsList = ({clicked, reported, productName, charMap, sortAndGet, reviews, shownReviews, moreReviews, addToVoted, voted, product, characteristics, product_id, submitReview}) => {
 
-  var addBtn = reviews.length && shownReviews != reviews.length ? <button onClick={moreReviews}>More Reviews</button> : null;
+  var addBtn = reviews.length && shownReviews != reviews.length ? <button className="RatingBtn" onClick={moreReviews}>+  More Reviews</button> : null;
   var sortDropdown = reviews.length ? <SortReviews numReviews={reviews.length} sortAndGet={sortAndGet}/> : null;
   var scrollStyle = {
     "height": "48em",
     "overflowY": "scroll",
   }
   return (
-  <div className="container-right">
+  <div className="container-right" onClick={(e) => clicked(e)}>
     {sortDropdown}
-    <div style={shownReviews >= 3 ? scrollStyle : {"height": "48em"}} data-testid="scrolllist">
+    <div className="scrollStyle" style={shownReviews >= 3 ? scrollStyle : {"height": "48em"}} data-testid="scrolllist">
       {reviews.slice(0, shownReviews).map(review => {
+        var flagColor = reported[review.review_id] ? 'red': 'grey';
         return (
           <ReviewTile
             id={review.review_id}
@@ -33,6 +35,7 @@ var ReviewsList = ({productName, charMap, sortAndGet, reviews, shownReviews, mor
             helpfulness={review.helpfulness}
             addToVoted={addToVoted}
             voted={voted}
+            flagColor={flagColor}
           />
         )})
       }
@@ -65,4 +68,4 @@ var conformDate = (date) => {
   return `${months[month]} ${day[0] !== 0 ? day : day[1]}, ${year}`
 }
 
-export default ReviewsList;
+export default getClicks(ReviewsList);
