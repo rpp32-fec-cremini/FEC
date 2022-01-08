@@ -38,7 +38,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.16.5",
+    "aws-sdk": "^2.1053.0",
     "axios": "^0.24.0",
+    "crypto": "^1.0.1",
     "express": "^4.17.1",
     "jquery": "^3.6.0",
     "react": "^17.0.2",

@@ -54,15 +54,13 @@ var Character = ({choice, theme, charMap}) => {
 }
 
 var photos = [];
-// var form_data = new FormData();
 var UploadImage = (props) => {
   return (
     <div>
-      <input id="addImages" type='file' accept='image/png,image/jpg' onChange={() => {
-        var imagePath = URL.createObjectURL($("#addImages")[0].files[0]);
-
-        // form_data.append("file", $("#addImages")[0].files[0]);
-        photos.push(imagePath)
+      <input id="addImages" type='file' accept='image/png,image/jpg' onChange={(e) => {
+        //Displaying thumbnail and implementing max photo limitation
+        var imagePath = URL.createObjectURL(e.target.files[0]);
+        photos.push(e.target.files[0])
         var img = $(`<img src=${imagePath} width="50px" height="50px"></img>`)
         img.appendTo($('#display_images'))
         if (photos.length === 5) {
@@ -140,7 +138,7 @@ var NewReview = ({clicked, productName, chars, product, product_id, submitReview
 
     <div id='submission'>
       <div id='btnBorder'>
-        <div id="submitBtn" className="RatingBtn" onClick={(e) => {
+        <div id="submitBtn" className="RatingBtn" onClick={async (e) => {
           var recCheck = $('input[name=recommended]:checked')[0];
           var recommend = recCheck ? JSON.parse(recCheck.id) : undefined;
           var summary = $("#summary").val();
@@ -167,6 +165,24 @@ var NewReview = ({clicked, productName, chars, product, product_id, submitReview
               submitted = true;
             }
           } else {
+            //Image to URL (S3 Bucket approach)
+            //get secure url from our server
+            //post image directly to S3 bucket
+            // var file = photos[0];
+            // var { url } = await fetch("/reviews/url").then(res => res.json())
+            // console.log(url)
+
+            // await fetch(url, {
+            //   method: "PUT",
+            //   headers: {
+            //     "Content-Type": "multipart/form-data"
+            //   },
+            //   body: file
+            // })
+
+            // var imageUrl = url.split('?')[0]
+            // console.log(imageUrl)
+
             var data = {
               product_id,
               rating,
@@ -178,7 +194,8 @@ var NewReview = ({clicked, productName, chars, product, product_id, submitReview
               photos,
               characteristics
             };
-            submitReview(data)
+            console.log(data)
+            // submitReview(data)
           }
         }}> Submit Review </div>
       </div>

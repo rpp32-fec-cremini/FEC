@@ -3,6 +3,7 @@ var router = express.Router();
 var authorization = process.env.TOKEN;
 var url = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/";
 var axios = require("axios");
+var generateUploadURL = require('./S3');
 
 router.get("/", (req, res) => {
   // var exampleData = require("./ReviewsfakeData").fakeReviews;
@@ -30,6 +31,11 @@ router.get("/meta", (req, res) => {
       console.log(err);
       res.end()
     })
+})
+
+router.get("/url", async (req, res) => {
+  var url = await generateUploadURL()
+  res.send({url})
 })
 
 router.post("/", (req, res) => {
