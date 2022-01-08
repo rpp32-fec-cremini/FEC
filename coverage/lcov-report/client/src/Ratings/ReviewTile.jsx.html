@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70.58% </span>
+                <span class="strong">11.76% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/17</span>
+                <span class='fraction'>2/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">91.66% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>11/12</span>
+                <span class='fraction'>0/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/7</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70.58% </span>
+                <span class="strong">11.76% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/17</span>
+                <span class='fraction'>2/17</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -153,15 +153,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -171,10 +171,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -186,12 +186,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -236,16 +236,16 @@ import $ from "jquery";
 &nbsp;
 import ImageModal from "./ImageModal.jsx"
 &nbsp;
-var StarRating = ({rating}) =&gt; {
-  return (
+var StarRating = <span class="fstat-no" title="function not covered" >({</span>rating}) =&gt; {
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;div&gt;
-      {[...Array(rating)].map((filledStar, i) =&gt; {
-        return (
+      {[...Array(rating)].map(<span class="fstat-no" title="function not covered" >(f</span>illedStar, i) =&gt; {
+<span class="cstat-no" title="statement not covered" >        return (</span>
           &lt;span key={i} className="filledStar"&gt;&amp;#9733;&lt;/span&gt;
         )
       })}
-      {[...Array(5 - rating)].map((emptyStar, i) =&gt; {
-        return (
+      {[...Array(5 - rating)].map(<span class="fstat-no" title="function not covered" >(e</span>mptyStar, i) =&gt; {
+<span class="cstat-no" title="statement not covered" >        return (</span>
           &lt;span key={i} className="emptyStar"&gt;&amp;#9733;&lt;/span&gt;
         )
       })}
@@ -254,11 +254,11 @@ var StarRating = ({rating}) =&gt; {
 }
 &nbsp;
 &nbsp;
-var ReviewTile = ({id, starRating, dateWritten, summary, body, images, recommend, name, response, helpfulness, addToVoted, voted}) =&gt; {
-  var boldSummary = summary.length &gt; 83 ? `${summary.substring(0,83)}...` : summary;
-  var extraSummary = summary.length &gt; 83 ? &lt;div&gt;{`...${summary.substring(83)}`}&lt;/div&gt; : null;
-  if (body.split(" ").length &gt; 250) {
-    var reviewBody = &lt;div&gt;
+var ReviewTile = <span class="fstat-no" title="function not covered" >({</span>id, starRating, dateWritten, summary, body, images, recommend, name, response, helpfulness, addToVoted, voted}) =&gt; {
+  var boldSummary = <span class="cstat-no" title="statement not covered" >summary.length &gt; 83 ? `${summary.substring(0,83)}...` : summary;</span>
+  var extraSummary = <span class="cstat-no" title="statement not covered" >summary.length &gt; 83 ? &lt;div&gt;{`...${summary.substring(83)}`}&lt;/div&gt; : null;</span>
+<span class="cstat-no" title="statement not covered" >  if (body.split(" ").length &gt; 250) {</span>
+    var reviewBody = <span class="cstat-no" title="statement not covered" >&lt;div&gt;</span>
       &lt;div className="collapsedBody expandedBody" id={`body${id}`}&gt;{`${body.split(" ").slice(0,250).join(" ")}...`}&lt;/div&gt;
       &lt;a
         id={`link${id}`}
@@ -270,12 +270,12 @@ var ReviewTile = ({id, starRating, dateWritten, summary, body, images, recommend
     &gt;Show More&lt;/a&gt;
     &lt;/div&gt;
   } else {
-    var reviewBody = &lt;div className="expandedBody"&gt;{body}&lt;/div&gt;
+    var reviewBody = <span class="cstat-no" title="statement not covered" >&lt;div className="expandedBody"&gt;{body}&lt;/div&gt;</span>
   }
 &nbsp;
-  var voted = id in voted ? <span class="branch-0 cbranch-no" title="branch not covered" >helpfulness + 1 </span>: helpfulness
+  var voted = <span class="cstat-no" title="statement not covered" >id in voted ? helpfulness + 1 : helpfulness</span>
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;div className="ReviewTile" data-testid={id}&gt;
 &nbsp;
       &lt;div style={{"display":"grid", "gridTemplateColumns":"1fr 3fr 1fr", "margin": "10px"
@@ -322,11 +322,7 @@ export default ReviewTile;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener">istanbul</a>
-<<<<<<< HEAD
-                at Mon Jan 03 2022 17:29:34 GMT-0500 (Eastern Standard Time)
-=======
-                at Tue Jan 04 2022 19:45:11 GMT-0800 (Pacific Standard Time)
->>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
+                at Wed Jan 05 2022 22:40:58 GMT-0500 (Eastern Standard Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

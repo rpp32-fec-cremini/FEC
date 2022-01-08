@@ -9,12 +9,8 @@ const IndividualQuestion = (props) => {
   const [answerPopup, setanswerPopup] = useState(false);
   const [typeofbutton, settypeofbutton] = useState('');
   const [questionId, setquestionId] = useState(0);
-  // const answerForEachQuestion = (res) => {
-  //   props.answer(res);
-  // }
 
   const showbutton = (props) => {
-    // setloadingQuestion(loadingQuestion + 2);
     if (props.question.length > loadingQuestion) {
       return <button onClick={() => getMoreQuestion()}>More Answered Questions</button>
     }
@@ -31,9 +27,7 @@ const IndividualQuestion = (props) => {
 
   const getMoreQuestion = (question) => {
     setloadingQuestion(loadingQuestion + 2);
-    // if (props.question.length <= loadingQuestion) {
-      setloading(true);
-    // }
+    setloading(true);
   }
 
   const helpful = (e, props, questionId) => {
@@ -45,6 +39,16 @@ const IndividualQuestion = (props) => {
     }
       // console.log('this question', props.questionHelpfulList, questionId);
   }
+
+  const questionReport = (props, questionId) => {
+    props.questionReport(questionId);
+    console.log('quesion id', questionId);
+  }
+  // const questionReport = (props, question.question_id) => {
+  //   // e.preventDefault()
+  //   console.log('quesion id', question.question_id);
+  //     // console.log('this question', props.questionHelpfulList, questionId);
+  // }
 
   const show = (props, moreThanTwo) => {
     var question = props.question;
@@ -62,24 +66,46 @@ const IndividualQuestion = (props) => {
     }
 
     return (
-        twoQuestion.map(question =>
-        <div className="Question-row" key = {question.question_id} >
-          {/* {answerForEachQuestion(question.question_id)} */}
-          <div className="Question-body" style={{float: "left"}}>Q: {question.question_body}</div>
-          <div className="Question-helpful" style={{float: "right"}}>Helpful? YES(<a style={{"textDecoration":"underline"}} onClick = {(e) => helpful(e, props, question.question_id)}>{question.question_helpfulness}</a>)   |  <a style={{"textDecoration":"underline"}} onClick ={() => {setbuttonPopup(true); settypeofbutton('answer'); setquestionId(question.question_id)}}>Add Answer</a>
-          </div>
-          <br />
-            <div>
-              <AnswerModal answer = {question.answers} answerHelpfulList = {props.answerHelpfulList} answerHelpful = {(e) => props.answerHelpful(e)}/>
-              <br />
+      twoQuestion.filter((question) => {
+        if (props.searchTerm === '') {
+          return question;
+        } else if (question.question_body.toLowerCase().includes(props.searchTerm.toLowerCase())) {
+          return question;
+        }
+      }).map(question =>
+          <div className="Question-row" key = {question.question_id} >
+            {/* {answerForEachQuestion(question.question_id)} */}
+            <div className="Question-body" style={{float: "left"}}>Q: {question.question_body}</div>
+            <div className="Question-helpful" style={{float: "right"}}>Helpful? YES(<a style={{"textDecoration":"underline"}} onClick = {(e) => helpful(e, props, question.question_id)}>{question.question_helpfulness}</a>)   |  <a style={{"textDecoration":"underline"}} onClick ={() => {setbuttonPopup(true); settypeofbutton('answer'); setquestionId(question.question_id)}}>Add Answer</a>
+              |  <a style={{"textDecoration":"underline"}} onClick = {() => questionReport(props, question.question_id)}>Report</a>
             </div>
-        </div>
-      )
+            <br />
+              <div>
+                <AnswerModal answer = {question.answers} answerHelpfulList = {props.answerHelpfulList} answerHelpful = {(e) => props.answerHelpful(e)} answerReport = {(e) => props.answerReport(e)}/>
+                <br />
+              </div>
+          </div>
+        )
+      //   twoQuestion.map(question =>
+      //   <div className="Question-row" key = {question.question_id} >
+      //     {/* {answerForEachQuestion(question.question_id)} */}
+      //     <div className="Question-body" style={{float: "left"}}>Q: {question.question_body}</div>
+      //     <div className="Question-helpful" style={{float: "right"}}>Helpful? YES(<a style={{"textDecoration":"underline"}} onClick = {(e) => helpful(e, props, question.question_id)}>{question.question_helpfulness}</a>)   |  <a style={{"textDecoration":"underline"}} onClick ={() => {setbuttonPopup(true); settypeofbutton('answer'); setquestionId(question.question_id)}}>Add Answer</a>
+      //       |  <a style={{"textDecoration":"underline"}} onClick = {() => questionReport(props, question.question_id)}>Report</a>
+      //     </div>
+      //     <br />
+      //       <div>
+      //         <AnswerModal answer = {question.answers} answerHelpfulList = {props.answerHelpfulList} answerHelpful = {(e) => props.answerHelpful(e)} answerReport = {(e) => props.answerReport(e)}/>
+      //         <br />
+      //       </div>
+      //   </div>
+      // )
     )
   };
 
   return (
     <div className = "Questions" style={{overflowY: 'scroll', height:'500px'}}>
+      {/* <input type="text" id="searchBar" placeholder = "Have a question? Search for answers..." onChange = {(e) => handleSearch(e, props) } style={{width: "80%", height:"30px",}}/> */}
       {props.question.length > loadingQuestion || props.question.length <= 2? show(props, true) : show(props)}
       {loading === false  ? showbutton(props) : collaspseButton()}
       <button onClick ={() => {setbuttonPopup(true); settypeofbutton('question')}}>Add A Question</button>

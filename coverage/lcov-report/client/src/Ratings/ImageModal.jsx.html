@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">12.5% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>1/8</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">12.5% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>1/8</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -100,17 +100,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">18x</span>
-<span class="cline-any cline-yes">18x</span>
-<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -132,41 +132,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import { useState } from 'react';
 &nbsp;
-var Modal = ({images}) =&gt; {
-  var [modal, setModal] = useState(null)
-  var [display, setDisplay] = useState("none")
-  return (
+var Modal = <span class="fstat-no" title="function not covered" >({</span>images}) =&gt; {
+  var [modal, setModal] = <span class="cstat-no" title="statement not covered" >useState(null)</span>
+  var [display, setDisplay] = <span class="cstat-no" title="statement not covered" >useState("none")</span>
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;div&gt;
-<<<<<<< HEAD
-      {images.map(image =&gt; &lt;img key={image.id} src={image.url} style={{"margin":"1px 20px 0 0", "height": "28px"}} onClick={(e) =&gt; {
-=======
-      {images.map(image =&gt; &lt;img key={image.id} src={image.url} style={{"margin":"1px 20px 0 0", "height": "28px", "cursor":"pointer"}} onClick={(e) =&gt; {
->>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
-        setModal(e.target.src)
-        setDisplay("block")
+      {images.map(<span class="fstat-no" title="function not covered" >im</span>age =&gt; <span class="cstat-no" title="statement not covered" >&lt;img key={image.id} src={image.url} style={{"margin":"1px 20px 0 0", "height": "28px", "cursor":"pointer"}} onClick={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        setModal(e.target.src)</span>
+<span class="cstat-no" title="statement not covered" >        setDisplay("block")</span>
       }}&gt;&lt;/img&gt;)}
       &lt;div className="modal" style={{display}} data-testid="modal"&gt;
         &lt;div className="modal-content"&gt;
-          &lt;span className="close" onClick={() =&gt; setDisplay("none")} data-testid="close"&gt;&amp;times;&lt;/span&gt;
+          &lt;span className="close" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setDisplay("none")}</span> data-testid="close"&gt;&amp;times;&lt;/span&gt;
           &lt;div style={{
             'height': '80%',
             'width': '100%',
-<<<<<<< HEAD
-            'display': 'grid',
-=======
             'display': 'flex',
->>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
             'justifyContent': 'center',
             'alignItems': 'center',
           }}&gt;
             &lt;img style={{
-<<<<<<< HEAD
-              "maxHeight":"100%",
-              "maxWidth":"100%"
-=======
               "maxHeight":"80%",
               "maxWidth":"80%"
->>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
             }}src={modal}&gt;&lt;/img&gt;
           &lt;/div&gt;
         &lt;/div&gt;
@@ -182,11 +169,7 @@ export default Modal;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener">istanbul</a>
-<<<<<<< HEAD
-                at Mon Jan 03 2022 17:29:34 GMT-0500 (Eastern Standard Time)
-=======
-                at Tue Jan 04 2022 19:45:11 GMT-0800 (Pacific Standard Time)
->>>>>>> f87575ec8258c2be54148f81a49b7351f7302acc
+                at Wed Jan 05 2022 22:40:58 GMT-0500 (Eastern Standard Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

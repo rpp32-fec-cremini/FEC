@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">38.09% </span>
+                <span class="strong">32.35% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/21</span>
+                <span class='fraction'>11/34</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">41.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/7</span>
+                <span class='fraction'>5/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">38.09% </span>
+                <span class="strong">35.48% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/21</span>
+                <span class='fraction'>11/31</span>
             </div>
         
             
@@ -150,7 +150,23 @@
 <a name='L85'></a><a href='#L85'>85</a>
 <a name='L86'></a><a href='#L86'>86</a>
 <a name='L87'></a><a href='#L87'>87</a>
-<a name='L88'></a><a href='#L88'>88</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -220,13 +236,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -253,7 +285,7 @@ class OutfitList extends React.Component {
     super(props);
     this.state = {
       user: 123,
-      outfits: [],
+      outfits: [{ id: '000' }],
       type: 'outfit'
     }
   }
@@ -307,16 +339,32 @@ class OutfitList extends React.Component {
 &nbsp;
   // }
 &nbsp;
+  xClick = <span class="fstat-no" title="function not covered" >(i</span>d) =&gt; {
+    let outfit = <span class="cstat-no" title="statement not covered" >this.state.outfits.find(<span class="fstat-no" title="function not covered" >ob</span>j =&gt; <span class="cstat-no" title="statement not covered" >obj.id === id)</span>;</span>
+    let filteredOutfits = <span class="cstat-no" title="statement not covered" >this.state.outfits.filter(<span class="fstat-no" title="function not covered" >ou</span>tfit =&gt; <span class="cstat-no" title="statement not covered" >outfit.id !== id)</span>;</span>
+<span class="cstat-no" title="statement not covered" >    this.setState({ outfits: filteredOutfits });</span>
+  }
+&nbsp;
+  addClick = <span class="fstat-no" title="function not covered" >(o</span>utfit) =&gt; {
+<span class="cstat-no" title="statement not covered" >    console.log(outfit.id);</span>
+<span class="cstat-no" title="statement not covered" >    console.log('BEFORE ', this.state.outfits.length);</span>
+<span class="cstat-no" title="statement not covered" >    if (!this.state.outfits.find(<span class="fstat-no" title="function not covered" >ob</span>j =&gt; <span class="cstat-no" title="statement not covered" >obj.id === outfit.id)</span>) {</span>
+<span class="cstat-no" title="statement not covered" >      this.setState({ outfits: [...this.state.outfits, outfit] });</span>
+    }
+<span class="cstat-no" title="statement not covered" >    console.log('AFTER ', this.state.outfits.length);</span>
+  }
+&nbsp;
   render() {
     return (
       &lt;div data-testid='outfitContainer' className='related-container' &gt;
         &lt;h4 data-testid='outfitHeader' className='related-title' &gt;YOUR OUTFIT&lt;/h4&gt;
-        &lt;div data-testid='outfitList' className='related-list'&gt;
-          {this.state.outfits.map(<span class="fstat-no" title="function not covered" >ou</span>tfit =&gt; (
-<span class="cstat-no" title="statement not covered" >            &lt; Card key={outfit.id} product={outfit} type={this.state.type} /&gt;</span>
+        &lt;ul data-testid='outfitList' className='related-list'&gt;
+          {this.state.outfits.map(outfit =&gt; (
+            &lt; Card key={outfit.id} product={outfit} type={this.state.type}
+              actionClick={this.xClick} addClick={this.addClick} /&gt;
           ))
           }
-        &lt;/div &gt;
+        &lt;/ul &gt;
         &lt;IoIosArrowBack className='related-scroll left-scroll' /&gt;
         &lt; IoIosArrowForward className='related-scroll right-scroll' /&gt;
       &lt;/div&gt;
@@ -331,7 +379,7 @@ export default OutfitList;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener">istanbul</a>
-                at Tue Jan 04 2022 19:45:11 GMT-0800 (Pacific Standard Time)
+                at Wed Jan 05 2022 22:40:58 GMT-0500 (Eastern Standard Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

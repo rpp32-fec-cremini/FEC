@@ -8,6 +8,7 @@ const AskNewQuestion = (props) => {
   const [nickName, setnickName] = useState('');
   const [email, setemail] = useState('');
   const [image, setimage] = useState([]);
+  const [files, setfiles] = useState([]);
   const [emailError, setemailError] = useState('');
   const [nameError, setnameError] = useState('');
   const [questionError, setquestionError] = useState('');
@@ -62,11 +63,13 @@ const AskNewQuestion = (props) => {
   }
 
   const sendData = (e, props) => {
+    // e.preventDefault();
     var id = props.questionId;
     const isValid = validate();
     if (isValid) {
-      // console.log()
-      props.questionParmer({'question': question, 'nickName': nickName, 'email': email, 'questionId': id});
+      // e.preventDefault();
+      props.questionParmer({'question': question, 'nickName': nickName, 'email': email, 'questionId': id, 'files': files});
+      console.log('sssssssssssssssssss')
     } else {
       e.preventDefault();
     }
@@ -74,10 +77,14 @@ const AskNewQuestion = (props) => {
 
   const handleImageChange = (e) => {
     e.preventDefault();
-    var file = e.target.files[0];
-    const localUrl = URL.createObjectURL(file)
-    // console.log('file', localUrl)
-    // console.log('file', file)
+    var file = e.target.files;
+    var img = [];
+    for (let i =0; i < file.length; i++) {
+      img.push(file[i])
+    }
+    setfiles([...files, img]);
+    console.log('file', img)
+
   }
 
   return (props.trigger) ? (
