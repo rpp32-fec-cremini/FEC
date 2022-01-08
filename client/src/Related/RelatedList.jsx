@@ -118,7 +118,7 @@ class RelatedList extends React.Component {
     this.hideModal();
   }
 
-  hideModal = () => {
+  hideModal = (e) => {
     $('.related-container').parents('body').click((e) => {
       if (e.target.parentNode.className === "action-btn") {
         var selected = 'star'
@@ -143,7 +143,7 @@ class RelatedList extends React.Component {
           <ul data-testid='list' className='related-list'>
             {this.state.relatedProducts.map(product => (
               < Card key={product.id} product={product} type={this.state.type}
-                actionClick={this.starClick} unClick={this.hideModal} />
+                actionClick={this.starClick} />
             ))
             }
           </ul >
