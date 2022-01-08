@@ -115,4 +115,3 @@ module.exports = {
     questionHelpfulandReport,
     answerHelpfulandReport,
 }
-// module.exports = postQuestion;

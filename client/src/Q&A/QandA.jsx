@@ -96,8 +96,6 @@ class QA extends React.Component {
             }
           }).then(function(res) {
             allImages.push(res.data.url);
-            // console.log('akkua', allImages)
-            // console.log(res.data.url)
           }).catch(function(err){
             console.error(err);
           })
@@ -229,7 +227,7 @@ class QA extends React.Component {
   render() {
     return (
       <div className='QaABox'>
-        <h3>QUESTION & ANSWERS</h3>
+        <h2 className = 'Title'>QUESTION & ANSWERS</h2>
         <SearchQuestions searchBar = {this.state.searchBar} search = {(e) => this.search(e)}/>
         <IndividualQuestion question = {this.state.question} questionHelpful = {(e) => this.questionHelpful(e)} questionReport = {(e) => this.questionReport(e)}
         answerHelpful = {(e) => this.answerHelpful(e)} questionHelpfulList = {this.state.questionHelpfulList}

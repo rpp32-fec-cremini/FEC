@@ -1,0 +1,90 @@
+.moreAnswerBtn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #ffffff;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: white;
+  background-color: black;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.collaspedBtn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #ffffff;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: white;
+  background-color: black;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.addQuestionbtn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #ffffff;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: white;
+  background-color: black;
+  text-align: center;
+  transition: all 0.2s;
+}
+.Question-row {
+  padding: 12px;
+}
+
+.Question-body {
+  font-weight: bold;
+  font-family: "Font Awesome 5 Free";
+  font-size: 20px;
+}
+
+.Question-helpful {
+  padding: 5px;
+  font-family: "Font Awesome 5 Free";
+  font-size: 14px;
+  color: rgb(82, 88, 92)
+}
+
+.question-help-btn {
+  cursor: pointer;
+}
+
+.question-help-btn:hover {
+  color:blue;
+}
+
+.question-add-answer-btn {
+  cursor: pointer;
+}
+
+.question-add-answer-btn:hover {
+  color:blue;
+}
+
+.question-report-btn {
+  cursor: pointer;
+}
+
+.question-report-btn:hover {
+  color:blue;
+}

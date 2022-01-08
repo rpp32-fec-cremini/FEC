@@ -1,0 +1,75 @@
+.answer-body {
+  left: 0;
+}
+
+.answer-body {
+  font-family: "Font Awesome 5 Free";
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.answer-title-button {
+  font-family: "Font Awesome 5 Free";
+  font-size: 14px;
+  color: rgb(82, 88, 92);
+  margin-top: 3px;
+}
+
+.answer-btn, .answer-collaspse-btn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid black;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: black;
+  /* background-color: black; */
+  text-align: center;
+  transition: all 0.5s;
+  margin-top: 15px;
+}
+
+.answer-btn span, .answer-collaspse-btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.answer-btn span:after, .answer-collaspse-btn span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.answer-btn:hover span, .answer-collaspse-btn:hover span {
+  padding-right: 25px;
+}
+
+.answer-btn:hover span:after, .answer-collaspse-btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.answer-helpful-btn {
+  cursor: pointer;
+}
+
+.answer-helpful-btn:hover{
+  color:blue;
+}
+
+.answer-report-btn {
+  cursor: pointer;
+}
+
+.answer-report-btn:hover{
+  color:blue;
+}

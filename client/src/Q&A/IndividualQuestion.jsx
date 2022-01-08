@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import AnswerModal from './AnswerModal.jsx';
 import AskNewQuestion from './AskNewQuestion.jsx';
+import './IndividualQuestion.css';
 
 const IndividualQuestion = (props) => {
   const [loading, setloading] = useState(false);
@@ -12,12 +13,12 @@ const IndividualQuestion = (props) => {
 
   const showbutton = (props) => {
     if (props.question.length > loadingQuestion) {
-      return <button onClick={() => getMoreQuestion()}>More Answered Questions</button>
+      return <button className = 'moreAnswerBtn' onClick={() => getMoreQuestion()}>+ More Answered Questions</button>
     }
   }
 
   const collaspseButton = () => {
-    return <button onClick={() => collapsedQuestion()}>Collasped Questions</button>
+    return <button className = 'collaspedBtn' onClick={() => collapsedQuestion()}>Collasped Questions</button>
   }
 
   const collapsedQuestion = () => {
@@ -76,13 +77,14 @@ const IndividualQuestion = (props) => {
           <div className="Question-row" key = {question.question_id} >
             {/* {answerForEachQuestion(question.question_id)} */}
             <div className="Question-body" style={{float: "left"}}>Q: {question.question_body}</div>
-            <div className="Question-helpful" style={{float: "right"}}>Helpful? YES(<a style={{"textDecoration":"underline"}} onClick = {(e) => helpful(e, props, question.question_id)}>{question.question_helpfulness}</a>)   |  <a style={{"textDecoration":"underline"}} onClick ={() => {setbuttonPopup(true); settypeofbutton('answer'); setquestionId(question.question_id)}}>Add Answer</a>
-              |  <a style={{"textDecoration":"underline"}} onClick = {() => questionReport(props, question.question_id)}>Report</a>
+            <div className="Question-helpful" style={{float: "right"}}>Helpful? YES(<a className = 'question-help-btn' style={{"textDecoration":"underline"}} onClick = {(e) => helpful(e, props, question.question_id)}>{question.question_helpfulness}</a>)&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a className = 'question-add-answer-btn' style={{"textDecoration":"underline"}} onClick ={() => {setbuttonPopup(true); settypeofbutton('answer'); setquestionId(question.question_id)}}>Add Answer</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;<a className = 'question-report-btn' style={{"textDecoration":"underline"}} onClick = {() => questionReport(props, question.question_id)}>Report</a>
             </div>
             <br />
               <div>
-                <AnswerModal answer = {question.answers} answerHelpfulList = {props.answerHelpfulList} answerHelpful = {(e) => props.answerHelpful(e)} answerReport = {(e) => props.answerReport(e)}/>
                 <br />
+                <AnswerModal answer = {question.answers} answerHelpfulList = {props.answerHelpfulList} answerHelpful = {(e) => props.answerHelpful(e)} answerReport = {(e) => props.answerReport(e)}/>
               </div>
           </div>
         )
@@ -108,7 +110,7 @@ const IndividualQuestion = (props) => {
       {/* <input type="text" id="searchBar" placeholder = "Have a question? Search for answers..." onChange = {(e) => handleSearch(e, props) } style={{width: "80%", height:"30px",}}/> */}
       {props.question.length > loadingQuestion || props.question.length <= 2? show(props, true) : show(props)}
       {loading === false  ? showbutton(props) : collaspseButton()}
-      <button onClick ={() => {setbuttonPopup(true); settypeofbutton('question')}}>Add A Question</button>
+      <button className = 'addQuestionbtn' onClick ={() => {setbuttonPopup(true); settypeofbutton('question')}}>+ Add A Question</button>
       <AskNewQuestion trigger={buttonPopup} setTrigger={setbuttonPopup} questionParmer = {props.questionParmer} typeofbutton = {typeofbutton} questionId = {questionId}></AskNewQuestion>
     </div>
   )
