@@ -27,6 +27,18 @@ const postQuestion = (data) => {
             'Authorization': process.env.TOKEN
         }
     })
+    // var product_id = parseInt(data.product_id);
+    // let options = {
+    //     method: 'POST',
+    //     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions',
+    //     headers: {
+    //         'Authorization': process.env.TOKEN,
+    //     },
+    //     // eslint-disable-next-line camelcase
+    //     body: {'body': data.question, 'name': data.nickName, 'email': data.email, 'product_id': product_id }
+    //   };
+    // return axios(options);
+    // console.log(data);
 };
 
 const postAnswer = (data, questionId) => {
