@@ -53,7 +53,7 @@ class Card extends React.Component {
 
   getStyleInfo = async (id, name, price) => {
     try {
-      let discount = null;
+      let discount = 30;
       let results = await axios.get(`/products/${id}/styles`);
       let styles = results.data.results;
       let defaultStyle = styles.find(style => style['default?'] === true) || styles[0];
