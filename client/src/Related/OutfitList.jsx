@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import axios from 'axios';
+import { IoAdd } from "react-icons/io5";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosStarHalf } from "react-icons/io";
@@ -13,9 +14,9 @@ class OutfitList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: 123,
       outfits: [{ id: '000' }],
-      type: 'outfit'
+      type: 'outfit',
+      currentProduct: 59560
     }
   }
 
@@ -102,6 +103,12 @@ class OutfitList extends React.Component {
       <div data-testid='outfitContainer' className='related-container' >
         <h4 data-testid='outfitHeader' className='related-title' >YOUR OUTFIT</h4>
         <ul data-testid='outfitList' className='related-list'>
+          <li data-testid='add-card' className='related-card related-add' onClick={(product) => this.addClick(this.currentProduct)}>
+            <div id='add-text'>
+              <IoAdd id='add-icon' />
+              <p>Add to Outfit</p>
+            </div>
+          </li>
           {this.state.outfits.map(outfit => (
             < Card key={outfit.id} product={outfit} type={this.state.type}
               actionClick={this.xClick} addClick={this.addClick} />

@@ -15,8 +15,9 @@ class RelatedList extends React.Component {
     super(props);
     this.state = {
       type: 'related',
-      currentProductID: 59556,
-      currentProduct: {
+      products: [],
+      mainProductID: 59553,
+      mainProduct: {
         id: 123,
         name: 'Sample Product',
         category: 'example'
@@ -35,18 +36,19 @@ class RelatedList extends React.Component {
   }
 
   componentDidMount() {
+    this.getAllProducts();
     this.getRelatedIDs();
-    this.setCurrentProduct();
+    this.setMainProduct();
     this.setCompProduct(59553);
   }
 
-  // getAllProducts = () => {
-  //   $.get(`/products`, data => {
-  //     let products = JSON.parse(data);
-  //     this.setState({ products: products });
-  //     // console.log(this.state.products);
-  //   });
-  // };
+  getAllProducts = () => {
+    $.get(`/products`, data => {
+      let products = JSON.parse(data);
+      this.setState({ products: products });
+      // console.log(this.state.products);
+    });
+  };
 
   getSingleProduct = (id) => {
     $.get(`/products/${id}`, data => {
@@ -55,10 +57,10 @@ class RelatedList extends React.Component {
     })
   };
 
-  setCurrentProduct = () => {
-    $.get(`/products/${this.state.currentProductID}`, data => {
-      let currentProduct = JSON.parse(data);
-      this.setState({ currentProduct: currentProduct });
+  setMainProduct = () => {
+    $.get(`/products/${this.state.mainProductID}`, data => {
+      let mainProduct = JSON.parse(data);
+      this.setState({ mainProduct: mainProduct });
     })
   };
 
@@ -72,7 +74,7 @@ class RelatedList extends React.Component {
   getRelatedIDs = async () => {
     let relatedIDs = [];
     try {
-      let IDs = await axios.get(`/products/${this.state.currentProductID}/related`);
+      let IDs = await axios.get(`/products/${this.state.mainProductID}/related`);
       let data = IDs.data;
       data.forEach(id => {
         relatedIDs.push(id);
@@ -123,8 +125,7 @@ class RelatedList extends React.Component {
       if (e.target.parentNode.className === "action-btn") {
         var selected = 'star'
       } else {
-        selected = 'other'
-        console.log('other clicked')
+        selected = 'other';
       }
 
       if (selected != "star") {
@@ -143,14 +144,14 @@ class RelatedList extends React.Component {
           <ul data-testid='list' className='related-list'>
             {this.state.relatedProducts.map(product => (
               < Card key={product.id} product={product} type={this.state.type}
-                actionClick={this.starClick} />
+                actionClick={this.starClick} mainProduct={this.state.mainProduct} />
             ))
             }
           </ul >
           <IoIosArrowBack className='related-scroll left-scroll' />
           < IoIosArrowForward className='right-scroll related-scroll' />
           <div className='compare hide'>
-            <Compare className='show' currentItem={this.state.currentProduct} compProduct={this.state.compProduct} />
+            <Compare className='show' mainProduct={this.state.mainProduct} compProduct={this.state.compProduct} />
           </div>
 
         </div>

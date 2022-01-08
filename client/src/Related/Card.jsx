@@ -14,6 +14,7 @@ class Card extends React.Component {
     super(props);
     this.state = {
       actionName: TiDeleteOutline,
+      mainProduct: null,
       currentImage: null,
       salePrice: null,
       regPrice: null,
@@ -31,25 +32,14 @@ class Card extends React.Component {
   //   console.log(window.getComputedStyle(this.refs.card).getPropertyValue("width"));
   // }
 
+  setMainProduct = () => {
+    this.setState({ mainProduct: this.props.mainProduct })
+  }
+
   getType = () => {
     this.props.type === 'outfit' ? this.setState({ actionName: TiDeleteOutline }) :
       this.setState({ actionName: IoIosStarOutline })
   }
-
-  // getStyleInfo = (id, name) => {
-  //   axios.get(`/products/${id}/styles`)
-  //     .then(styles => {
-  //       if (styles.data.results[0].photos[0].thumbnail_url) {
-  //         this.setState({ currentImage: styles.data.results[0].photos[0].thumbnail_url })
-  //       } else {
-  //         let productLabel = name.toLowerCase().split(' ');
-  //         this.setState({ currentImage: `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}` });
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
 
   getStyleInfo = async (id, name, price) => {
     try {
@@ -67,12 +57,12 @@ class Card extends React.Component {
         let productLabel = name.toLowerCase().split(' ');
         this.setState({ currentImage: `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}` });
       }
-      console.log(name, price, defaultIndex);
-      // defaultStyle.sale_price ?
-      //   this.setState({salePrice: (price - defaultStyle.sale_price).toFixed(2), regPrice: price, sale: true }) : this.setState({ regPrice: price });
-      discount ?
-        this.setState({ salePrice: (price - discount).toFixed(2), regPrice: price, sale: true }) : this.setState({ regPrice: price });
-      console.log(this.state.salePrice, this.state.regPrice);
+      // console.log(name, price, defaultIndex);
+      defaultStyle.sale_price ?
+        this.setState({ salePrice: (price - defaultStyle.sale_price).toFixed(2), regPrice: price, sale: true }) : this.setState({ regPrice: price });
+      // discount ?
+      //   this.setState({ salePrice: (price - discount).toFixed(2), regPrice: price, sale: true }) : this.setState({ regPrice: price });
+      // console.log(this.state.salePrice, this.state.regPrice);
     } catch (err) {
       console.log(err);
     }
