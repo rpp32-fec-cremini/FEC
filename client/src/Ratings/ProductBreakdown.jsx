@@ -1,4 +1,5 @@
 import React from "react";
+import getClicks from "../getClicks.jsx";
 
 var ProductBar = ({desc, meta, charMap}) => {
   var perc = (meta.value/5) * 100
@@ -21,13 +22,13 @@ var ProductBar = ({desc, meta, charMap}) => {
   )
 }
 
-var ProductBreakdown = ({characteristics, charMap}) => {
+var ProductBreakdown = ({characteristics, charMap, clicked}) => {
   var chars = characteristics ? characteristics : {};
   return (
-    <div>
+    <div onClick={(e) => clicked(e)}>
       {Object.keys(chars).map(char => <ProductBar key={char} desc={char} meta={chars[char]} charMap={charMap}/>)}
     </div>
   )
 }
 
-export default ProductBreakdown;
+export default getClicks(ProductBreakdown);

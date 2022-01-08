@@ -23,6 +23,7 @@ class OutfitList extends React.Component {
     this.getOutfits();
   }
 
+  //Pull items from local storage once current product is set
   getOutfits = async () => {
     try {
       let outfits = await axios.get(`/products/${this.state.user}/outfits`);
@@ -34,7 +35,7 @@ class OutfitList extends React.Component {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   getStyles = async (id, product) => {
     try {
@@ -76,11 +77,24 @@ class OutfitList extends React.Component {
 
   addClick = (outfit) => {
     console.log(outfit.id);
+    this.setLocalStorage(outfit);
     console.log('BEFORE ', this.state.outfits.length);
     if (!this.state.outfits.find(obj => obj.id === outfit.id)) {
       this.setState({ outfits: [...this.state.outfits, outfit] });
     }
     console.log('AFTER ', this.state.outfits.length);
+  }
+
+  setLocalStorage = (outfit) => {
+    let storedOutfits = []
+    if (localStorage.getItem('outfits') === null) {
+      storedOutfits.push(outfit);
+      localStorage.setItem('outfits', JSON.stringify(storedOutfits));
+    } else {
+      storedOutfits = JSON.parse(localStorage.getItem('outfits'));
+      storedOutfits.push(outfit);
+      localStorage.setItem('outfits', JSON.stringify(storedOutfits));
+    }
   }
 
   render() {

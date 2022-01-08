@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from "react";
 import $, { error } from "jquery";
+import getClicks from "../getClicks.jsx";
 
 var rating;
 var Stars = (props) => {
@@ -86,10 +87,10 @@ var ReviewBody = (props) => {
   </div>)
 }
 
-var NewReview = ({productName, chars, product, product_id, submitReview, refreshModal, charMap}) => {
+var NewReview = ({clicked, productName, chars, product, product_id, submitReview, refreshModal, charMap}) => {
   var submitted = false;
   if (!Array.isArray(chars)) chars = [];
-  return <div className='newReview'>
+  return <div className='newReview' onClick={(e) => clicked(e)}>
     <div className='title'>Write Your Review</div>
     <div className='subtitle'>About {productName}</div>
 
@@ -139,7 +140,7 @@ var NewReview = ({productName, chars, product, product_id, submitReview, refresh
 
     <div id='submission'>
       <div id='btnBorder'>
-        <div id="submitBtn" onClick={(e) => {
+        <div id="submitBtn" className="RatingBtn" onClick={(e) => {
           var recCheck = $('input[name=recommended]:checked')[0];
           var recommend = recCheck ? JSON.parse(recCheck.id) : undefined;
           var summary = $("#summary").val();
@@ -179,10 +180,10 @@ var NewReview = ({productName, chars, product, product_id, submitReview, refresh
             };
             submitReview(data)
           }
-        }}>Submit</div>
+        }}> Submit Review </div>
       </div>
     </div>
   </div>
 }
 
-export default NewReview;
+export default getClicks(NewReview);
