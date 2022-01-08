@@ -19,8 +19,9 @@ class StyleSelector extends React.Component {
   }
 
   onClick(e) {
-    console.log(e.props)
-    console.log(e.target.value)
+    //console.log('Checking E ', e.target.props)
+    console.log('Checking Props', this.props)
+    //console.log('Target Value', e.target.dataset.value)
   }
 
 
@@ -40,7 +41,7 @@ class StyleSelector extends React.Component {
         <br></br>
       <div className = 'grid-4'>
         {this.props.styleList.map((style) =>
-      <Style product = {style} onClick = {this.onClick} name={style.name} pic = {style.photos[0].thumbnail_url} key ={style.style_id} />
+      <Style value = {style} onClick = {this.onClick} name={style.name} pic = {style.photos[0].thumbnail_url} key ={style.style_id} />
     )}
       </div>
       </div>
