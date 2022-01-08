@@ -1,8 +1,6 @@
 var aws = require('aws-sdk');
 var dotenv = require('dotenv');
-var crypto = require('crypto');
-var {promisify} = require("util");
-var randomBytes = promisify(crypto.randomBytes)
+var fs = require('fs');
 
 
 dotenv.config()
@@ -16,21 +14,22 @@ var s3 = new aws.S3({
   region,
   accessKeyId,
   secretAccessKey,
-  signatureVersion: 'v4'
+  // signatureVersion: 'v4'
 })
 
-async function generateUploadURL() {
-  var rawBytes = await randomBytes(16);
-  var imageName = rawBytes.toString('hex');
-
-  var params = ({
+// uploads a file to s3
+var uploadFile = function(file) {
+  var fileStream = fs.createReadStream(file.path)
+  var uploadParams = {
     Bucket: bucketName,
-    Key: imageName,
-    Expires: 60
-  })
+    Body: fileStream,
+    Key: file.filename,
+    ContentType: 'image/jpeg'
+  }
 
-  var uploadURL = await s3.getSignedUrlPromise('putObject', params)
-  return uploadURL
+  return s3.upload(uploadParams).promise()
 }
 
-module.exports = generateUploadURL;
+//downloads a file from s3
+
+module.exports.uploadFile = uploadFile;

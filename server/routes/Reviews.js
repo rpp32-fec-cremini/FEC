@@ -3,7 +3,9 @@ var router = express.Router();
 var authorization = process.env.TOKEN;
 var url = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/";
 var axios = require("axios");
-var generateUploadURL = require('./S3');
+var { uploadFile } = require('./S3');
+var multer = require('multer');
+var upload = multer({ dest: 'uploads/' })
 
 router.get("/", (req, res) => {
   // var exampleData = require("./ReviewsfakeData").fakeReviews;
@@ -33,9 +35,16 @@ router.get("/meta", (req, res) => {
     })
 })
 
-router.get("/url", async (req, res) => {
-  var url = await generateUploadURL()
-  res.send({url})
+router.post("/images", upload.single('image'), async (req, res) => {
+  var file = req.file;
+  // console.log(file)
+  try {
+    var result = await uploadFile(file);
+    console.log(result);
+    res.end('hello');
+  } catch (err) {
+    console.log(err)
+  }
 })
 
 router.post("/", (req, res) => {

@@ -9,10 +9,10 @@ import OutfitList from '../src/Related/OutfitList.jsx';
 
 var App = (props) => (
   <div id="app">
-    <Overview className='relatedCard' />
+    {/* <Overview className='relatedCard' />
     <RelatedList />
     <OutfitList />
-    <QandA />
+    <QandA /> */}
     <RatingContainer productId={59553} />
   </div>
 )

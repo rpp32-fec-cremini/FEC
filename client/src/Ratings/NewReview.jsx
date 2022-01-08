@@ -54,10 +54,12 @@ var Character = ({choice, theme, charMap}) => {
 }
 
 var photos = [];
+var fd = new FormData();
 var UploadImage = (props) => {
   return (
     <div>
       <input id="addImages" type='file' accept='image/png,image/jpg' onChange={(e) => {
+        fd.append('image', e.target.files[0]);
         //Displaying thumbnail and implementing max photo limitation
         var imagePath = URL.createObjectURL(e.target.files[0]);
         photos.push(e.target.files[0])
@@ -165,10 +167,18 @@ var NewReview = ({clicked, productName, chars, product, product_id, submitReview
               submitted = true;
             }
           } else {
-            //Image to URL (S3 Bucket approach)
-            //get secure url from our server
-            //post image directly to S3 bucket
-            // var file = photos[0];
+            // Image to URL (S3 Bucket approach)
+            // get secure url from our server
+            // post image directly to S3 bucket
+            $.ajax({
+              url: "/reviews/images",
+              method: "POST",
+              processData: false, // important
+              contentType: false, // important
+              dataType : 'json',
+              data: fd,
+              success: res => console.log(res)
+            })
             // var { url } = await fetch("/reviews/url").then(res => res.json())
             // console.log(url)
 
@@ -179,9 +189,11 @@ var NewReview = ({clicked, productName, chars, product, product_id, submitReview
             //   },
             //   body: file
             // })
-
             // var imageUrl = url.split('?')[0]
             // console.log(imageUrl)
+
+
+
 
             var data = {
               product_id,
