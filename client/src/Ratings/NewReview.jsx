@@ -167,9 +167,6 @@ var NewReview = ({clicked, productName, chars, product, product_id, submitReview
               submitted = true;
             }
           } else {
-            // Image to URL (S3 Bucket approach)
-            // get secure url from our server
-            // post image directly to S3 bucket
             $.ajax({
               url: "/reviews/images",
               method: "POST",
@@ -177,23 +174,8 @@ var NewReview = ({clicked, productName, chars, product, product_id, submitReview
               contentType: false, // important
               dataType : 'json',
               data: fd,
-              success: res => console.log(res)
+              success: urls => console.log(urls)
             })
-            // var { url } = await fetch("/reviews/url").then(res => res.json())
-            // console.log(url)
-
-            // await fetch(url, {
-            //   method: "PUT",
-            //   headers: {
-            //     "Content-Type": "multipart/form-data"
-            //   },
-            //   body: file
-            // })
-            // var imageUrl = url.split('?')[0]
-            // console.log(imageUrl)
-
-
-
 
             var data = {
               product_id,

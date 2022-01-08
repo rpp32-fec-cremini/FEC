@@ -53,7 +53,8 @@ router.get("/meta", (req, res) => {
 })
 
 router.post("/images", upload.array('image'), async (req, res) => {
-  res.end('success')
+  console.log('Uploaded!');
+  res.send(req.files);
 })
 
 router.post("/", (req, res) => {
