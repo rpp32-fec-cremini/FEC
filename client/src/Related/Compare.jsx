@@ -42,17 +42,14 @@ class Compare extends React.Component {
           mainList.push(feature.feature);
         }
       });
-      console.log(list);
     }
 
     if (compFeatures) {
       compFeatures.forEach(feature => {
         let name;
         if (feature.value) {
-          // list.push(`${feature.value} ${feature.feature}`);
           name = `${feature.value} ${feature.feature}`;
         } else {
-          // list.push(feature.feature);
           name = feature.feature;
         }
         compList.push(name);
@@ -65,10 +62,6 @@ class Compare extends React.Component {
     this.setState({ features: list });
     this.setState({ compFeatures: compList });
     this.setState({ mainFeatures: mainList });
-
-    console.log('FUNC', this.state.features);
-    console.log('MAIN', this.state.mainFeatures);
-    console.log('COMP', this.state.compFeatures);
   }
 
   render() {
