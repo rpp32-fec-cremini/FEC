@@ -166,11 +166,11 @@ class RelatedList extends React.Component {
     $('.related-container').parents('body').click((e) => {
       if (e.target.parentNode.className === "action-btn") {
         var selected = 'star'
-      } else {
-        selected = 'other';
+      } else if (e.target.className === "action-btn") {
+        selected = 'btn';
       }
 
-      if (selected != "star") {
+      if (selected != "star" && selected != "btn") {
         $('.compare').removeClass('show');
         $('.compare').addClass('hide');
         $('.related-container').parents('#root, body, html').css({ 'overflow': 'auto' });
@@ -193,9 +193,8 @@ class RelatedList extends React.Component {
           <IoIosArrowBack className='related-scroll left-scroll' />
           < IoIosArrowForward className='right-scroll related-scroll' />
           <div className='compare hide'>
-            <Compare className='show' mainProduct={this.state.mainProduct2} compProduct={this.state.compProduct} />
+            <Compare className='show' mainProduct={this.state.mainProduct} compProduct={this.state.compProduct} />
           </div>
-
         </div>
       </div>
     )

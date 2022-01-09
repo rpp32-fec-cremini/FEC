@@ -49,15 +49,12 @@ class Card extends React.Component {
       let defaultStyle = styles.find(style => style['default?'] === true) || styles[0];
       let defaultIndex = styles.findIndex(style => style['default?'] === true);
       defaultIndex = defaultIndex < 0 ? 0 : defaultIndex;
-      // console.log(name, defaultStyle.photos[0].thumbnail_url, defaultIndex);
-      // console.log(name, defaultStyle.sale_price, defaultIndex);
       if (defaultStyle.photos[0].thumbnail_url) {
         this.setState({ currentImage: defaultStyle.photos[0].thumbnail_url })
       } else {
         let productLabel = name.toLowerCase().split(' ');
         this.setState({ currentImage: `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}` });
       }
-      // console.log(name, price, defaultIndex);
       defaultStyle.sale_price ?
         this.setState({ salePrice: (price - defaultStyle.sale_price).toFixed(2), regPrice: price, sale: true }) : this.setState({ regPrice: price });
       // discount ?
@@ -98,7 +95,6 @@ class Card extends React.Component {
             <p className='card-category'>{this.props.product.category.toUpperCase()} </p>
             <p className='card-name'>{this.props.product.name}</p>
             <Price salePrice={this.state.salePrice} regPrice={this.state.regPrice} sale={this.state.sale} />
-            {/* <p className='card-price'> {`$${this.state.currentPrice}`}</p> */}
             <div className='card-stars'>
               <IoIosStarOutline className='card-star' />
               <IoIosStarOutline className='card-star' />
