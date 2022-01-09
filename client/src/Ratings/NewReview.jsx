@@ -54,15 +54,15 @@ var Character = ({choice, theme, charMap}) => {
 }
 
 var photos = [];
-// var form_data = new FormData();
+var fd = new FormData();
 var UploadImage = (props) => {
   return (
     <div>
-      <input id="addImages" type='file' accept='image/png,image/jpg' onChange={() => {
-        var imagePath = URL.createObjectURL($("#addImages")[0].files[0]);
-
-        // form_data.append("file", $("#addImages")[0].files[0]);
-        photos.push(imagePath)
+      <input id="addImages" type='file' accept='image/png,image/jpg' onChange={(e) => {
+        fd.append('image', e.target.files[0]);
+        //Displaying thumbnail and implementing max photo limitation
+        var imagePath = URL.createObjectURL(e.target.files[0]);
+        photos.push(e.target.files[0])
         var img = $(`<img src=${imagePath} width="50px" height="50px"></img>`)
         img.appendTo($('#display_images'))
         if (photos.length === 5) {
@@ -140,7 +140,7 @@ var NewReview = ({clicked, productName, chars, product, product_id, submitReview
 
     <div id='submission'>
       <div id='btnBorder'>
-        <div id="submitBtn" className="RatingBtn" onClick={(e) => {
+        <div id="submitBtn" className="RatingBtn" onClick={async (e) => {
           var recCheck = $('input[name=recommended]:checked')[0];
           var recommend = recCheck ? JSON.parse(recCheck.id) : undefined;
           var summary = $("#summary").val();
@@ -167,18 +167,29 @@ var NewReview = ({clicked, productName, chars, product, product_id, submitReview
               submitted = true;
             }
           } else {
-            var data = {
-              product_id,
-              rating,
-              summary,
-              body,
-              recommend,
-              name,
-              email,
-              photos,
-              characteristics
-            };
-            submitReview(data)
+            $.ajax({
+              url: "/reviews/images",
+              method: "POST",
+              processData: false, // important
+              contentType: false, // important
+              dataType : 'json',
+              data: fd,
+              success: files => {
+                var urls = files.map(file => file.location);
+                var data = {
+                  product_id,
+                  rating,
+                  summary,
+                  body,
+                  recommend,
+                  name,
+                  email,
+                  photos: urls,
+                  characteristics
+                };
+                submitReview(data)
+              }
+            })
           }
         }}> Submit Review </div>
       </div>
