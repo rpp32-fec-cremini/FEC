@@ -88,3 +88,47 @@
 .question-report-btn:hover {
   color:blue;
 }
+
+.upload-file-btn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid black;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: black;
+  /* background-color: black; */
+  text-align: center;
+  transition: all 0.5s;
+  margin-top: 15px;
+  width: 300px;
+}
+
+.upload-file-btn span{
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.upload-file-btn span:after{
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.upload-file-btn:hover span {
+  padding-right: 25px;
+}
+
+.upload-file-btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+

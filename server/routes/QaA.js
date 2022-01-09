@@ -71,15 +71,15 @@ router.post('/questions/:question_id/answers', (req, res) => {
   var endpoint = `/${id}/answers`;
   var questionBody = req.body;
   console.log('questionbody2', req.body, endpoint);
-  postAnswer(questionBody, endpoint)
-  .then(question=> {
-      console.log('answer create', res.statusCode)
-      res.end();
-  })
-  .catch((err) => {
-    console.log('post answer error');
-    res.end();
-  });
+  // postAnswer(questionBody, endpoint)
+  // .then(question=> {
+  //     console.log('answer create', res.statusCode)
+  //     res.end();
+  // })
+  // .catch((err) => {
+  //   console.log('post answer error');
+  //   res.end();
+  // });
 })
 
 router.put('/questions/:question_id/helpful', (req, res) => {

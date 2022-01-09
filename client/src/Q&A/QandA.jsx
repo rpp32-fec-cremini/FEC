@@ -80,10 +80,10 @@ class QA extends React.Component {
     var cloudinary_upload_preset = cloudinaryAPI;
     var allImages = [];
     var promises = [];
-    var formData = new FormData();
     // console.log('imgfile', imgfile[0]);
     if (imgfile[0] !== undefined) {
       for (let i = 0; i< imgfile[0].length; i++) {
+        var formData = new FormData();
         formData.append('file', imgfile[0][i]);
         formData.append('upload_preset', cloudinary_upload_preset);
         promises.push(
