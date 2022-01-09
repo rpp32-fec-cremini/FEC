@@ -1,44 +1,38 @@
 import React from 'react';
 import './related.css';
 import { IoMdCheckmark } from "react-icons/io";
+import Feature from './Feature.jsx'
 
 class Compare extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      features: []
+      features: ['rubber', 'nylon', 'drifit']
     }
   }
 
   componentDidMount() {
-    // this.getFeatures();
+    console.log('Mounted');
+    this.getFeatures();
   }
 
   getFeatures = () => {
     const { features } = this.props.mainProduct;
-    if (features) {
-      features.forEach(feature => console.log(feature));
-    }
-    // this.props.compProduct.features.forEach(feature => console.log(mainProduct.name, feature[1]));
-  }
-
-  render() {
-    const { features } = this.props.mainProduct;
     const compFeatures = this.props.compProduct.features;
     let list = [];
+    console.log(this.props.compProduct);
+    console.log(this.props.mainProduct);
     if (features) {
       features.forEach(feature => {
         if (feature.value) {
           list.push(`${feature.value} ${feature.feature}`);
-          console.log(`${feature.value} ${feature.feature}`);
         } else {
           list.push(feature.feature);
-          console.log(feature.feature);
         }
       });
-
+      console.log(list);
     }
+
     if (compFeatures) {
       compFeatures.forEach(feature => {
         let name;
@@ -54,8 +48,13 @@ class Compare extends React.Component {
         }
       });
     }
+    console.log('BEFORE ', list);
+    this.setState({ features: list });
+    console.log('AFTER ', list);
+    console.log('FUNC', this.state.features);
+  }
 
-    console.log(list);
+  render() {
     return (
       <div>
         <p className='modal-title'>COMPARING</p>
@@ -67,11 +66,9 @@ class Compare extends React.Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td> <IoMdCheckmark /> </td>
-              <td className='modal-text'> </td>
-              <td className='right-modal'> <IoMdCheckmark /> </td>
-            </tr>
+            {this.state.features.map(feature => (
+              <Feature feature={feature} />
+            ))}
           </tbody>
         </table>
       </div >

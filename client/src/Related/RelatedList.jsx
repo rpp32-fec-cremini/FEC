@@ -18,9 +18,25 @@ class RelatedList extends React.Component {
       products: [],
       mainProductID: 59553,
       mainProduct: {
-        id: 123,
-        name: 'Sample Product',
-        category: 'example'
+        id: 59553,
+        campus: 'hr-rpp',
+        name: 'Camo Onesie',
+        slogan: 'Blend in to your crowd',
+        description: 'The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.',
+        category: 'Jackets',
+        default_price: 140.00,
+        created_at: '2021-10-18T22:50:41.839Z',
+        updated_at: '2021-10-18T22:50:41.839Z',
+        features: [
+          {
+            feature: 'Fabric',
+            value: 'Canvas'
+          },
+          {
+            feature: 'Buttons',
+            value: 'Brass'
+          }
+        ]
       },
       compProduct: {
         id: 456,
@@ -38,8 +54,8 @@ class RelatedList extends React.Component {
   componentDidMount() {
     this.getAllProducts();
     this.getRelatedIDs();
-    this.setMainProduct();
-    this.setCompProduct(59553);
+    // this.setMainProduct();
+    this.setCompProduct(59555);
   }
 
   getAllProducts = () => {
@@ -69,6 +85,7 @@ class RelatedList extends React.Component {
       let compProduct = JSON.parse(data);
       this.setState({ compProduct: compProduct });
     })
+    // return compProduct;
   };
 
   getRelatedIDs = async () => {

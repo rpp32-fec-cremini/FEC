@@ -74,6 +74,10 @@ th {
   padding-top: 5px;
 }
 
+/* td {
+  background-color: coral;
+} */
+
 .right-modal {
   position: absolute;
   right: 1em;
