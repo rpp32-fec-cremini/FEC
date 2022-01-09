@@ -7,27 +7,39 @@ class Compare extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      features: ['rubber', 'nylon', 'drifit']
+      features: [],
+      compFeatures: [],
+      mainFeatures: [],
+      compID: null,
+      mainID: null
     }
   }
 
-  componentDidMount() {
-    console.log('Mounted');
-    this.getFeatures();
+  componentDidUpdate() {
+    if (this.props.compProduct.id !== this.state.compID) {
+      this.setState({ compID: this.props.compProduct.id });
+      this.getFeatures();
+    }
+    if (this.props.mainProduct.id !== this.state.mainID) {
+      this.setState({ mainID: this.props.mainProduct.id });
+      this.getFeatures();
+    }
   }
 
   getFeatures = () => {
     const { features } = this.props.mainProduct;
     const compFeatures = this.props.compProduct.features;
     let list = [];
-    console.log(this.props.compProduct);
-    console.log(this.props.mainProduct);
+    let compList = [];
+    let mainList = [];
     if (features) {
       features.forEach(feature => {
         if (feature.value) {
           list.push(`${feature.value} ${feature.feature}`);
+          mainList.push(`${feature.value} ${feature.feature}`);
         } else {
           list.push(feature.feature);
+          mainList.push(feature.feature);
         }
       });
       console.log(list);
@@ -43,15 +55,20 @@ class Compare extends React.Component {
           // list.push(feature.feature);
           name = feature.feature;
         }
+        compList.push(name);
         if (!list.includes(name)) {
           list.push(name);
         }
       });
     }
-    console.log('BEFORE ', list);
+
     this.setState({ features: list });
-    console.log('AFTER ', list);
+    this.setState({ compFeatures: compList });
+    this.setState({ mainFeatures: mainList });
+
     console.log('FUNC', this.state.features);
+    console.log('MAIN', this.state.mainFeatures);
+    console.log('COMP', this.state.compFeatures);
   }
 
   render() {
@@ -66,8 +83,8 @@ class Compare extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.features.map(feature => (
-              <Feature feature={feature} />
+            {this.state.features.map((feature, i) => (
+              <Feature key={i} feature={feature} mainFeatures={this.state.mainFeatures} compFeatures={this.state.compFeatures} />
             ))}
           </tbody>
         </table>

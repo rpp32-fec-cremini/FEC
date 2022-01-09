@@ -16,7 +16,7 @@ class RelatedList extends React.Component {
     this.state = {
       type: 'related',
       products: [],
-      mainProductID: 59553,
+      mainProductID: 59560,
       mainProduct: {
         id: 59553,
         campus: 'hr-rpp',
@@ -35,6 +35,31 @@ class RelatedList extends React.Component {
           {
             feature: 'Buttons',
             value: 'Brass'
+          }
+        ]
+      },
+      mainProduct2: {
+        id: 59553,
+        campus: 'hr-rpp',
+        name: 'YEasy 350',
+        slogan: 'Just jumped over jumpman',
+        description: 'These stretchy knit shoes show off asymmetrical lacing and a big sculpted rubber midsole. In a nod to adidas soccer heritage',
+        category: 'Kicks',
+        default_price: 450.00,
+        created_at: '2021-10-18T22:50:41.839Z',
+        updated_at: '2021-10-18T22:50:41.839Z',
+        features: [
+          {
+            feature: 'Sole',
+            value: 'Rubber'
+          },
+          {
+            feature: 'Material',
+            value: 'FullControlSkin'
+          },
+          {
+            feature: 'Stitching',
+            value: 'Double Stitch'
           }
         ]
       },
@@ -168,7 +193,7 @@ class RelatedList extends React.Component {
           <IoIosArrowBack className='related-scroll left-scroll' />
           < IoIosArrowForward className='right-scroll related-scroll' />
           <div className='compare hide'>
-            <Compare className='show' mainProduct={this.state.mainProduct} compProduct={this.state.compProduct} />
+            <Compare className='show' mainProduct={this.state.mainProduct2} compProduct={this.state.compProduct} />
           </div>
 
         </div>
