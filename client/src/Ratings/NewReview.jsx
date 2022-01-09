@@ -174,22 +174,22 @@ var NewReview = ({clicked, productName, chars, product, product_id, submitReview
               contentType: false, // important
               dataType : 'json',
               data: fd,
-              success: urls => console.log(urls)
+              success: files => {
+                var urls = files.map(file => file.location);
+                var data = {
+                  product_id,
+                  rating,
+                  summary,
+                  body,
+                  recommend,
+                  name,
+                  email,
+                  photos: urls,
+                  characteristics
+                };
+                submitReview(data)
+              }
             })
-
-            var data = {
-              product_id,
-              rating,
-              summary,
-              body,
-              recommend,
-              name,
-              email,
-              photos,
-              characteristics
-            };
-            console.log(data)
-            // submitReview(data)
           }
         }}> Submit Review </div>
       </div>

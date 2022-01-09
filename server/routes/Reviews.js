@@ -53,13 +53,11 @@ router.get("/meta", (req, res) => {
 })
 
 router.post("/images", upload.array('image'), async (req, res) => {
-  console.log('Uploaded!');
   res.send(req.files);
 })
 
 router.post("/", (req, res) => {
   var data = req.body;
-  console.log(data)
   axios.post(url + "reviews", data, { headers: { authorization } })
     .then((response) => res.end())
     .catch((error) => console.log(error))
