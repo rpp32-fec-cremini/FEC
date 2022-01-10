@@ -74,6 +74,15 @@ th {
   padding-top: 5px;
 }
 
+td {
+  line-height: 1.8em;
+}
+
+.left-modal {
+  position: absolute;
+  left: 1em;
+}
+
 .right-modal {
   position: absolute;
   right: 1em;

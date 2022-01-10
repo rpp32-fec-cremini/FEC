@@ -12,8 +12,8 @@ var App = (props) => (
     <Overview className='relatedCard' />
     <RelatedList />
     <OutfitList />
-    <RatingContainer productId={59553} />
     <QandA />
+    <RatingContainer productId={59553} />
   </div>
 )
 
