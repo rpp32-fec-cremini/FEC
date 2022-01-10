@@ -155,6 +155,7 @@
 <a name='L90'></a><a href='#L90'>90</a>
 <a name='L91'></a><a href='#L91'>91</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -220,7 +221,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -244,6 +244,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, {useState, useEffect} from 'react';
+import './AnswerModal.css';
 &nbsp;
 const AnswerModal = <span class="fstat-no" title="function not covered" >({</span>answer, answerHelpfulList, answerHelpful, answerReport}) =&gt; {
   const [loading, setloading] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
@@ -252,12 +253,12 @@ const AnswerModal = <span class="fstat-no" title="function not covered" >({</spa
 &nbsp;
   const showbutton = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    if (Object.keys(answer).length &gt; 2) {</span>
-<span class="cstat-no" title="statement not covered" >      return &lt;button onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >getMoreAnswer(answer)}</span>&gt;See more answers&lt;/button&gt;</span>
+<span class="cstat-no" title="statement not covered" >      return &lt;button className = 'answer-btn' onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >getMoreAnswer(answer)}</span>&gt;&lt;span&gt;See more answers&lt;/span&gt;&lt;/button&gt;</span>
     }
   }
 &nbsp;
   const collaspseButton = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    return &lt;button onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >collapsedAnswer()}</span>&gt;Collasped answer&lt;/button&gt;</span>
+<span class="cstat-no" title="statement not covered" >    return &lt;button className = 'answer-collaspse-btn' onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >collapsedAnswer()}</span>&gt;&lt;span&gt;Collasped answer&lt;/span&gt;&lt;/button&gt;</span>
   }
 &nbsp;
   const collapsedAnswer = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
@@ -300,13 +301,12 @@ const AnswerModal = <span class="fstat-no" title="function not covered" >({</spa
     }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return twoAnswer.map(<span class="fstat-no" title="function not covered" >an</span>swer =&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;div key={answer[1]['id']}&gt; A: {answer[1]['body']}</span>
+<span class="cstat-no" title="statement not covered" >      &lt;div class = 'answer-body' key={answer[1]['id']}&gt; A: {answer[1]['body']}</span>
         &lt;br /&gt;
         {answer[1]['photos'].length !== 0 ?
           answer[1]['photos'].map (<span class="fstat-no" title="function not covered" >pi</span>c =&gt;
 <span class="cstat-no" title="statement not covered" >            &lt;img src = {pic} style={{width: '80px', height:'80px'}}&gt;&lt;/img&gt;)</span> : ''}
-        &lt;div&gt;by {answer[1]['answerer_name']},{dateConvenver(answer[1]['date'])}  |  Helpful? YES (&lt;a style={{"textDecoration":"underline"}} onClick = {<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >helpful(e, answer[1]['id'])}</span>&gt;{answer[1]['helpfulness']}&lt;/a&gt;) | &lt;a style={{"textDecoration":"underline"}} onClick = {<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >report(e, answer[1]['id'])}</span>&gt;Report&lt;/a&gt;&lt;/div&gt;
-        &lt;br /&gt;
+        &lt;div class = "answer-title-button"&gt;by {answer[1]['answerer_name']},{dateConvenver(answer[1]['date'])}&amp;nbsp;&amp;nbsp;|&amp;nbsp;&amp;nbsp;Helpful? YES (&lt;a className = 'answer-helpful-btn' style={{"textDecoration":"underline"}} onClick = {<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >helpful(e, answer[1]['id'])}</span>&gt;{answer[1]['helpfulness']}&lt;/a&gt;)&amp;nbsp;&amp;nbsp;|&amp;nbsp;&amp;nbsp;&lt;a className = 'answer-report-btn' style={{"textDecoration":"underline"}} onClick = {<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >report(e, answer[1]['id'])}</span>&gt;Report&lt;/a&gt;&lt;/div&gt;
       &lt;/div&gt;
     )
   }
@@ -340,7 +340,7 @@ export default AnswerModal;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener">istanbul</a>
-                at Sat Jan 08 2022 14:24:48 GMT-0500 (Eastern Standard Time)
+                at Sun Jan 09 2022 19:35:01 GMT-0500 (Eastern Standard Time)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>
