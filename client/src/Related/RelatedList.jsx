@@ -9,6 +9,7 @@ import { IoIosStar } from "react-icons/io";
 import './related.css';
 import Card from './Card.jsx';
 import Compare from './Compare.jsx';
+import getClicks from "../getClicks.jsx";
 
 class RelatedList extends React.Component {
   constructor(props) {
@@ -192,4 +193,4 @@ class RelatedList extends React.Component {
   }
 };
 
-export default RelatedList;
+export default getClicks(RelatedList);

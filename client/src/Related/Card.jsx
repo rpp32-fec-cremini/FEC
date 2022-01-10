@@ -8,6 +8,7 @@ import { IoIosStarHalf } from "react-icons/io";
 import { IoIosStarOutline } from "react-icons/io";
 import { IoIosStar } from "react-icons/io";
 import { TiDeleteOutline } from "react-icons/ti";
+import getClicks from "../getClicks.jsx";
 
 class Card extends React.Component {
   constructor(props) {
@@ -93,4 +94,4 @@ class Card extends React.Component {
   }
 }
 
-export default Card;
+export default getClicks(Card);

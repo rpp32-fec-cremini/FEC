@@ -2,6 +2,7 @@ import React from 'react';
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import $ from 'jquery';
+import getClicks from "../getClicks.jsx";
 
 const Scroll extends React.Component{
   constructor(props) {
@@ -87,4 +88,4 @@ render() {
 
 
 
-export default Scroll;
+export default getClicks(Scroll);

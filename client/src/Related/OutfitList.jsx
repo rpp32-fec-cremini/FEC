@@ -9,6 +9,7 @@ import { IoIosStarOutline } from "react-icons/io";
 import { IoIosStar } from "react-icons/io";
 import './related.css';
 import Card from './Card.jsx';
+import getClicks from "../getClicks.jsx";
 
 class OutfitList extends React.Component {
   constructor(props) {
@@ -150,4 +151,4 @@ class OutfitList extends React.Component {
   }
 };
 
-export default OutfitList;
+export default getClicks(OutfitList);
