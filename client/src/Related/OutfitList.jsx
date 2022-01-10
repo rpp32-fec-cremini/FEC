@@ -14,29 +14,39 @@ class OutfitList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      outfits: [{ id: '000' }],
+      outfits: [],
       type: 'outfit',
-      currentProduct: 59560
+      currentProductId: 59554,
+      currentProduct: null
     }
   }
 
   componentDidMount() {
     this.getOutfits();
+    this.setCurrentProduct(this.state.currentProductId);
   }
 
   //Pull items from local storage once current product is set
-  getOutfits = async () => {
-    try {
-      let outfits = await axios.get(`/products/${this.state.user}/outfits`);
-      let data = outfits.data;
-      data.forEach(outfit => {
-        // this.getStyles(outfit.id, outfit);
-        this.setState({ outfits: [...this.state.outfits, outfit] })
-      });
-    } catch (err) {
-      console.log(err);
+  // getOutfits = async () => {
+  //   try {
+  //     let outfits = await axios.get(`/products/${this.state.user}/outfits`);
+  //     let data = outfits.data;
+  //     data.forEach(outfit => {
+  //       // this.getStyles(outfit.id, outfit);
+  //       this.setState({ outfits: [...this.state.outfits, outfit] })
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+  getOutfits = () => {
+    let outfits = JSON.parse(localStorage.getItem('outfits'));
+    if (localStorage.getItem('outfits') !== null) {
+      // let outfits = JSON.parse(localStorage.getItem('outfits'));
+      this.setState({ outfits: outfits });
+      console.log(true);
     }
-  };
+  }
 
   getStyles = async (id, product) => {
     try {
@@ -52,6 +62,19 @@ class OutfitList extends React.Component {
     }
     return product;
   }
+
+  setCurrentProduct = (id) => {
+    $.get(`/products/${id}`, data => {
+      console.log(JSON.parse(data).name.toUpperCase());
+      this.setState({ currentProduct: JSON.parse(data) });
+    })
+  };
+
+  getSingleProduct = (id) => {
+    $.get(`/products/${id}`, data => {
+      return JSON.parse(data);
+    })
+  };
 
   // getListPos = () => {
 
@@ -76,25 +99,29 @@ class OutfitList extends React.Component {
     this.setState({ outfits: filteredOutfits });
   }
 
-  addClick = (outfit) => {
-    console.log(outfit.id);
+  addClick = (id) => {
+    console.log(id);
+    this.setCurrentProduct(id);
+    let outfit = this.state.currentProduct;
     this.setLocalStorage(outfit);
     console.log('BEFORE ', this.state.outfits.length);
-    if (!this.state.outfits.find(obj => obj.id === outfit.id)) {
+    if (!this.state.outfits.find(obj => obj.id === id)) {
       this.setState({ outfits: [...this.state.outfits, outfit] });
     }
     console.log('AFTER ', this.state.outfits.length);
   }
 
   setLocalStorage = (outfit) => {
-    let storedOutfits = []
+    let storedOutfits = [];
     if (localStorage.getItem('outfits') === null) {
       storedOutfits.push(outfit);
       localStorage.setItem('outfits', JSON.stringify(storedOutfits));
     } else {
       storedOutfits = JSON.parse(localStorage.getItem('outfits'));
-      storedOutfits.push(outfit);
-      localStorage.setItem('outfits', JSON.stringify(storedOutfits));
+      if (!storedOutfits.find(obj => obj.id === outfit.id)) {
+        storedOutfits.push(outfit);
+        localStorage.setItem('outfits', JSON.stringify(storedOutfits));
+      }
     }
   }
 
@@ -103,7 +130,7 @@ class OutfitList extends React.Component {
       <div data-testid='outfitContainer' className='related-container' >
         <h4 data-testid='outfitHeader' className='related-title' >YOUR OUTFIT</h4>
         <ul data-testid='outfitList' className='related-list'>
-          <li data-testid='add-card' className='related-card related-add' onClick={(product) => this.addClick(this.currentProduct)}>
+          <li data-testid='add-card' className='related-card related-add' onClick={(id) => this.addClick(this.state.currentProductId)}>
             <div id='add-text'>
               <IoAdd id='add-icon' />
               <p>Add to Outfit</p>

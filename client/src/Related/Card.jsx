@@ -72,40 +72,26 @@ class Card extends React.Component {
   render() {
     let Action = this.state.actionName;
     let finalPrice = this.state.price;
-    if (this.state.sale) {
-
-    }
-    if (this.props.product.id === '000') {
-      return (
-        <li data-testid='card' className='related-card related-add' onClick={(product) => this.props.addClick(this.props.product)}>
-          <div id='add-text'>
-            <IoAdd id='add-icon' />
-            <p>Add to Outfit</p>
+    return (
+      <li data-testid='card' className='related-card'>
+        <img src={this.state.currentImage} className='related-img' />
+        <button className='action-btn' onClick={(e) => this.actionClick(e)}>
+          <Action />
+        </button>
+        <div className='card-text'>
+          <p className='card-category'>{this.props.product.category.toUpperCase()} </p>
+          <p className='card-name'>{this.props.product.name}</p>
+          <Price salePrice={this.state.salePrice} regPrice={this.state.regPrice} sale={this.state.sale} />
+          <div className='card-stars'>
+            <IoIosStarOutline className='card-star' />
+            <IoIosStarOutline className='card-star' />
+            <IoIosStarOutline className='card-star' />
+            <IoIosStarOutline className='card-star' />
+            <IoIosStarOutline className='card-star' />
           </div>
-        </li>
-      )
-    } else {
-      return (
-        <li data-testid='card' className='related-card'>
-          <img src={this.state.currentImage} className='related-img' />
-          <button className='action-btn' onClick={(e) => this.actionClick(e)}>
-            <Action />
-          </button>
-          <div className='card-text'>
-            <p className='card-category'>{this.props.product.category.toUpperCase()} </p>
-            <p className='card-name'>{this.props.product.name}</p>
-            <Price salePrice={this.state.salePrice} regPrice={this.state.regPrice} sale={this.state.sale} />
-            <div className='card-stars'>
-              <IoIosStarOutline className='card-star' />
-              <IoIosStarOutline className='card-star' />
-              <IoIosStarOutline className='card-star' />
-              <IoIosStarOutline className='card-star' />
-              <IoIosStarOutline className='card-star' />
-            </div>
-          </div>
-        </li>
-      )
-    }
+        </div>
+      </li>
+    )
   }
 }
 

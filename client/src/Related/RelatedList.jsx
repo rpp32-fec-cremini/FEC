@@ -16,7 +16,7 @@ class RelatedList extends React.Component {
     this.state = {
       type: 'related',
       products: [],
-      mainProductID: 59560,
+      mainProductID: 59553,
       mainProduct: {
         id: 59553,
         campus: 'hr-rpp',
@@ -91,12 +91,12 @@ class RelatedList extends React.Component {
     });
   };
 
-  getSingleProduct = (id) => {
-    $.get(`/products/${id}`, data => {
-      console.log(JSON.parse(data).name.toUpperCase());
-      return JSON.parse(data);
-    })
-  };
+  // getSingleProduct = (id) => {
+  //   $.get(`/products/${id}`, data => {
+  //     console.log(JSON.parse(data).name.toUpperCase());
+  //     return JSON.parse(data);
+  //   })
+  // };
 
   setMainProduct = () => {
     $.get(`/products/${this.state.mainProductID}`, data => {
