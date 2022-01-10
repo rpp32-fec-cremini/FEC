@@ -83,6 +83,4 @@ render() {
 }
 }
 
-
-
 export default getClicks(Scroll);

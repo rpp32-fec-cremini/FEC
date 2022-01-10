@@ -3,6 +3,7 @@ import axios from 'axios';
 import $ from 'jquery';
 import './related.css';
 import Price from './Price.jsx'
+import Rating from './Rating.jsx';
 import { IoAdd } from "react-icons/io5";
 import { IoIosStarHalf } from "react-icons/io";
 import { IoIosStarOutline } from "react-icons/io";
@@ -81,13 +82,7 @@ class Card extends React.Component {
           <p className='card-category'>{this.props.product.category.toUpperCase()} </p>
           <p className='card-name'>{this.props.product.name}</p>
           <Price salePrice={this.state.salePrice} regPrice={this.state.regPrice} sale={this.state.sale} />
-          <div className='card-stars'>
-            <IoIosStarOutline className='card-star' />
-            <IoIosStarOutline className='card-star' />
-            <IoIosStarOutline className='card-star' />
-            <IoIosStarOutline className='card-star' />
-            <IoIosStarOutline className='card-star' />
-          </div>
+          <Rating id={this.props.product.id} />
         </div>
       </li>
     )
