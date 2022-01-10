@@ -87,16 +87,8 @@ class RelatedList extends React.Component {
     $.get(`/products`, data => {
       let products = JSON.parse(data);
       this.setState({ products: products });
-      // console.log(this.state.products);
     });
   };
-
-  // getSingleProduct = (id) => {
-  //   $.get(`/products/${id}`, data => {
-  //     console.log(JSON.parse(data).name.toUpperCase());
-  //     return JSON.parse(data);
-  //   })
-  // };
 
   setMainProduct = () => {
     $.get(`/products/${this.state.mainProductID}`, data => {
@@ -110,7 +102,6 @@ class RelatedList extends React.Component {
       let compProduct = JSON.parse(data);
       this.setState({ compProduct: compProduct });
     })
-    // return compProduct;
   };
 
   getRelatedIDs = async () => {
@@ -139,20 +130,20 @@ class RelatedList extends React.Component {
     }
   };
 
-  getStyles = async (id, product) => {
-    try {
-      let styles = await axios.get(`/products/${id}/styles`);
-      if (styles.data.results[0].photos[0].thumbnail_url) {
-        product.img = styles.data.results[0].photos[0].thumbnail_url;
-      } else {
-        let productLabel = product.name.toLowerCase().split(' ');
-        product['img'] = `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}`;
-      }
-    } catch (err) {
-      console.log(err);
-    }
-    return product;
-  }
+  // getStyles = async (id, product) => {
+  //   try {
+  //     let styles = await axios.get(`/products/${id}/styles`);
+  //     if (styles.data.results[0].photos[0].thumbnail_url) {
+  //       product.img = styles.data.results[0].photos[0].thumbnail_url;
+  //     } else {
+  //       let productLabel = product.name.toLowerCase().split(' ');
+  //       product['img'] = `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}`;
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  //   return product;
+  // }
 
   starClick = (id, e) => {
     this.setCompProduct(id);

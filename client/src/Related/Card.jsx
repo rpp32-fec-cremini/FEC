@@ -59,7 +59,6 @@ class Card extends React.Component {
         this.setState({ salePrice: (price - defaultStyle.sale_price).toFixed(2), regPrice: price, sale: true }) : this.setState({ regPrice: price });
       // discount ?
       //   this.setState({ salePrice: (price - discount).toFixed(2), regPrice: price, sale: true }) : this.setState({ regPrice: price });
-      // console.log(this.state.salePrice, this.state.regPrice);
     } catch (err) {
       console.log(err);
     }
@@ -71,7 +70,6 @@ class Card extends React.Component {
 
   render() {
     let Action = this.state.actionName;
-    let finalPrice = this.state.price;
     return (
       <li data-testid='card' className='related-card'>
         <img src={this.state.currentImage} className='related-img' />

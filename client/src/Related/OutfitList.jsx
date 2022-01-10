@@ -16,7 +16,7 @@ class OutfitList extends React.Component {
     this.state = {
       outfits: [],
       type: 'outfit',
-      currentProductId: 59554,
+      currentProductId: 59553,
       currentProduct: null
     }
   }
@@ -25,6 +25,56 @@ class OutfitList extends React.Component {
     this.getOutfits();
     this.setCurrentProduct(this.state.currentProductId);
   }
+
+  getOutfits = () => {
+    let outfits = JSON.parse(localStorage.getItem('outfits'));
+    if (localStorage.getItem('outfits') !== null) {
+      this.setState({ outfits: outfits });
+    }
+  }
+
+  setCurrentProduct = () => {
+    $.get(`/products/${this.state.currentProductId}`, data => {
+      this.setState({ currentProduct: JSON.parse(data) });
+    })
+  };
+
+  xClick = (id) => {
+    let storedOutfits = JSON.parse(localStorage.getItem('outfits'));
+    let index = storedOutfits.findIndex(obj => obj.id === id);
+    storedOutfits.splice(index, 1);
+    localStorage.setItem('outfits', JSON.stringify(storedOutfits));
+    this.setState({ outfits: storedOutfits });
+  }
+
+  addClick = (id) => {
+    this.setCurrentProduct(id);
+    let outfit = this.state.currentProduct;
+    this.setLocalStorage(outfit);
+    if (!this.state.outfits.find(obj => obj.id === id)) {
+      this.setState({ outfits: [...this.state.outfits, outfit] });
+    }
+  }
+
+  setLocalStorage = (outfit) => {
+    let storedOutfits = [];
+    if (localStorage.getItem('outfits') === null) {
+      storedOutfits.push(outfit);
+      localStorage.setItem('outfits', JSON.stringify(storedOutfits));
+    } else {
+      storedOutfits = JSON.parse(localStorage.getItem('outfits'));
+      if (!storedOutfits.find(obj => obj.id === outfit.id)) {
+        storedOutfits.push(outfit);
+        localStorage.setItem('outfits', JSON.stringify(storedOutfits));
+      }
+    }
+  }
+
+  getSingleProduct = (id) => {
+    $.get(`/products/${id}`, data => {
+      return JSON.parse(data);
+    })
+  };
 
   //Pull items from local storage once current product is set
   // getOutfits = async () => {
@@ -39,42 +89,23 @@ class OutfitList extends React.Component {
   //     console.log(err);
   //   }
   // };
-  getOutfits = () => {
-    let outfits = JSON.parse(localStorage.getItem('outfits'));
-    if (localStorage.getItem('outfits') !== null) {
-      // let outfits = JSON.parse(localStorage.getItem('outfits'));
-      this.setState({ outfits: outfits });
-      console.log(true);
-    }
-  }
 
-  getStyles = async (id, product) => {
-    try {
-      let styles = await axios.get(`/products/${id}/styles`);
-      if (styles.data.results[0].photos[0].thumbnail_url) {
-        product['img'] = styles.data.results[0].photos[0].thumbnail_url;
-      } else {
-        let productLabel = product.name.toLowerCase().split(' ');
-        product['img'] = `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}`;
-      }
-    } catch (err) {
-      console.log(err);
-    }
-    return product;
-  }
+  // getStyles = async (id, product) => {
+  //   try {
+  //     let styles = await axios.get(`/products/${id}/styles`);
+  //     if (styles.data.results[0].photos[0].thumbnail_url) {
+  //       product['img'] = styles.data.results[0].photos[0].thumbnail_url;
+  //     } else {
+  //       let productLabel = product.name.toLowerCase().split(' ');
+  //       product['img'] = `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}`;
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  //   return product;
+  // }
 
-  setCurrentProduct = (id) => {
-    $.get(`/products/${id}`, data => {
-      console.log(JSON.parse(data).name.toUpperCase());
-      this.setState({ currentProduct: JSON.parse(data) });
-    })
-  };
 
-  getSingleProduct = (id) => {
-    $.get(`/products/${id}`, data => {
-      return JSON.parse(data);
-    })
-  };
 
   // getListPos = () => {
 
@@ -93,37 +124,7 @@ class OutfitList extends React.Component {
 
   // }
 
-  xClick = (id) => {
-    let outfit = this.state.outfits.find(obj => obj.id === id);
-    let filteredOutfits = this.state.outfits.filter(outfit => outfit.id !== id);
-    this.setState({ outfits: filteredOutfits });
-  }
 
-  addClick = (id) => {
-    console.log(id);
-    this.setCurrentProduct(id);
-    let outfit = this.state.currentProduct;
-    this.setLocalStorage(outfit);
-    console.log('BEFORE ', this.state.outfits.length);
-    if (!this.state.outfits.find(obj => obj.id === id)) {
-      this.setState({ outfits: [...this.state.outfits, outfit] });
-    }
-    console.log('AFTER ', this.state.outfits.length);
-  }
-
-  setLocalStorage = (outfit) => {
-    let storedOutfits = [];
-    if (localStorage.getItem('outfits') === null) {
-      storedOutfits.push(outfit);
-      localStorage.setItem('outfits', JSON.stringify(storedOutfits));
-    } else {
-      storedOutfits = JSON.parse(localStorage.getItem('outfits'));
-      if (!storedOutfits.find(obj => obj.id === outfit.id)) {
-        storedOutfits.push(outfit);
-        localStorage.setItem('outfits', JSON.stringify(storedOutfits));
-      }
-    }
-  }
 
   render() {
     return (
