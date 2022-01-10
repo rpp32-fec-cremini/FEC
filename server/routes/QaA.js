@@ -9,6 +9,9 @@ router.get('/questions', (req, res) => {
   var endpoint = `?product_id=59555`;
   getProducts(endpoint)
   .then(question=> {
+    // console.log('data recevied', question.data.results);
+    // console.log('fake data', fakeQaA.results);
+    // res.send(JSON.stringify(fakeQaA.results));
     res.send(JSON.stringify(question.data.results));
   })
   .catch(err => {
@@ -85,7 +88,7 @@ router.post('/questions/:question_id/answers', (req, res) => {
 router.put('/questions/:question_id/helpful', (req, res) => {
 
   var id = req.params.question_id;
-  console.log(id)
+  // console.log(id)
   var endpoint = `/${id}/helpful`;
   questionHelpfulandReport(endpoint)
   .then(question=> {
@@ -102,7 +105,7 @@ router.put('/questions/:question_id/helpful', (req, res) => {
 router.put('/questions/:question_id/report', (req, res) => {
 
   var id = req.params.question_id;
-  console.log(id)
+  // console.log(id)
   var endpoint = `/${id}/report`;
   questionHelpfulandReport(endpoint)
   .then(question=> {

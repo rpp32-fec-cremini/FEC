@@ -7,7 +7,7 @@ import AddQuestions from './AddQuestions.jsx';
 import IndividualQuestion from './IndividualQuestion.jsx';
 import SearchQuestions from './SearchQuestions.jsx';
 import "./QaA.css";
-import cloudinaryAPI from '../../../config.js';
+// import cloudinaryAPI from '../../../config.js';
 
 class QA extends React.Component {
   constructor(props) {
@@ -24,12 +24,12 @@ class QA extends React.Component {
 
 
   search(value) {
-    if (value.length >= 4) {
+    if (value.length >= 3) {
       this.setState ({
         searchTerm: value,
       }, () => {
         // console.log('sssssssssssssssthe answer', this.state.answers);
-        console.log('searchterm', value)
+        // console.log('searchterm', value)
       })
     } else {
       this.setState ({
@@ -77,7 +77,7 @@ class QA extends React.Component {
 
   imageToURL(imgfile) {
     var cloudinary_url = 'https://api.cloudinary.com/v1_1/dy91vvft0/upload';
-    var cloudinary_upload_preset = cloudinaryAPI;
+    var cloudinary_upload_preset = 'p9buobh3';
     var allImages = [];
     var promises = [];
     // console.log('imgfile', imgfile[0]);
@@ -158,11 +158,11 @@ class QA extends React.Component {
     .catch((err) => {
       console.log('err');
     })
-    console.log('helpful', answerId,);
+    // console.log('helpful', answerId,);
   }
 
   answerReport(answerId) {
-    console.log('report', answerId);
+    // console.log('report', answerId);
     axios({
       method: 'PUT',
       url: `/qa/answers/${answerId}/report`,
@@ -177,10 +177,10 @@ class QA extends React.Component {
 
 
   questionParmer(data) {
-    console.log('ssds', data);
+    // console.log('ssds', data);
     var self = this;
     var questionId = data['questionId'];
-    console.log('question parmer', data.files);
+    // console.log('question parmer', data.files);
     if (questionId === 0) {
       axios({
         method: 'POST',
@@ -200,7 +200,7 @@ class QA extends React.Component {
   } else {
     this.imageToURL(data.files)
     .then((file) => {
-      console.log('parmer', file);
+      // console.log('parmer', file);
       axios({
         method: 'POST',
         url: `/qa/questions/${questionId}/answers`,
@@ -227,7 +227,7 @@ class QA extends React.Component {
   render() {
     return (
       <div className='QaABox'>
-        <h2 className = 'Title'>QUESTION & ANSWERS</h2>
+        <h2 data-testid='Title' className = 'Title'>QUESTION & ANSWERS</h2>
         <SearchQuestions searchBar = {this.state.searchBar} search = {(e) => this.search(e)}/>
         <IndividualQuestion question = {this.state.question} questionHelpful = {(e) => this.questionHelpful(e)} questionReport = {(e) => this.questionReport(e)}
         answerHelpful = {(e) => this.answerHelpful(e)} questionHelpfulList = {this.state.questionHelpfulList}
