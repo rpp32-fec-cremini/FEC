@@ -15,11 +15,53 @@ class RelatedList extends React.Component {
     super(props);
     this.state = {
       type: 'related',
-      currentProductID: 59556,
-      currentProduct: {
-        id: 123,
-        name: 'Sample Product',
-        category: 'example'
+      products: [],
+      mainProductID: 59560,
+      mainProduct: {
+        id: 59553,
+        campus: 'hr-rpp',
+        name: 'Camo Onesie',
+        slogan: 'Blend in to your crowd',
+        description: 'The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.',
+        category: 'Jackets',
+        default_price: 140.00,
+        created_at: '2021-10-18T22:50:41.839Z',
+        updated_at: '2021-10-18T22:50:41.839Z',
+        features: [
+          {
+            feature: 'Fabric',
+            value: 'Canvas'
+          },
+          {
+            feature: 'Buttons',
+            value: 'Brass'
+          }
+        ]
+      },
+      mainProduct2: {
+        id: 59553,
+        campus: 'hr-rpp',
+        name: 'YEasy 350',
+        slogan: 'Just jumped over jumpman',
+        description: 'These stretchy knit shoes show off asymmetrical lacing and a big sculpted rubber midsole. In a nod to adidas soccer heritage',
+        category: 'Kicks',
+        default_price: 450.00,
+        created_at: '2021-10-18T22:50:41.839Z',
+        updated_at: '2021-10-18T22:50:41.839Z',
+        features: [
+          {
+            feature: 'Sole',
+            value: 'Rubber'
+          },
+          {
+            feature: 'Material',
+            value: 'FullControlSkin'
+          },
+          {
+            feature: 'Stitching',
+            value: 'Double Stitch'
+          }
+        ]
       },
       compProduct: {
         id: 456,
@@ -35,18 +77,19 @@ class RelatedList extends React.Component {
   }
 
   componentDidMount() {
+    this.getAllProducts();
     this.getRelatedIDs();
-    this.setCurrentProduct();
-    this.setCompProduct(59553);
+    // this.setMainProduct();
+    this.setCompProduct(59555);
   }
 
-  // getAllProducts = () => {
-  //   $.get(`/products`, data => {
-  //     let products = JSON.parse(data);
-  //     this.setState({ products: products });
-  //     // console.log(this.state.products);
-  //   });
-  // };
+  getAllProducts = () => {
+    $.get(`/products`, data => {
+      let products = JSON.parse(data);
+      this.setState({ products: products });
+      // console.log(this.state.products);
+    });
+  };
 
   getSingleProduct = (id) => {
     $.get(`/products/${id}`, data => {
@@ -55,10 +98,10 @@ class RelatedList extends React.Component {
     })
   };
 
-  setCurrentProduct = () => {
-    $.get(`/products/${this.state.currentProductID}`, data => {
-      let currentProduct = JSON.parse(data);
-      this.setState({ currentProduct: currentProduct });
+  setMainProduct = () => {
+    $.get(`/products/${this.state.mainProductID}`, data => {
+      let mainProduct = JSON.parse(data);
+      this.setState({ mainProduct: mainProduct });
     })
   };
 
@@ -67,12 +110,13 @@ class RelatedList extends React.Component {
       let compProduct = JSON.parse(data);
       this.setState({ compProduct: compProduct });
     })
+    // return compProduct;
   };
 
   getRelatedIDs = async () => {
     let relatedIDs = [];
     try {
-      let IDs = await axios.get(`/products/${this.state.currentProductID}/related`);
+      let IDs = await axios.get(`/products/${this.state.mainProductID}/related`);
       let data = IDs.data;
       data.forEach(id => {
         relatedIDs.push(id);
@@ -122,12 +166,11 @@ class RelatedList extends React.Component {
     $('.related-container').parents('body').click((e) => {
       if (e.target.parentNode.className === "action-btn") {
         var selected = 'star'
-      } else {
-        selected = 'other'
-        console.log('other clicked')
+      } else if (e.target.className === "action-btn") {
+        selected = 'btn';
       }
 
-      if (selected != "star") {
+      if (selected != "star" && selected != "btn") {
         $('.compare').removeClass('show');
         $('.compare').addClass('hide');
         $('.related-container').parents('#root, body, html').css({ 'overflow': 'auto' });
@@ -143,16 +186,15 @@ class RelatedList extends React.Component {
           <ul data-testid='list' className='related-list'>
             {this.state.relatedProducts.map(product => (
               < Card key={product.id} product={product} type={this.state.type}
-                actionClick={this.starClick} />
+                actionClick={this.starClick} mainProduct={this.state.mainProduct} />
             ))
             }
           </ul >
           <IoIosArrowBack className='related-scroll left-scroll' />
           < IoIosArrowForward className='right-scroll related-scroll' />
           <div className='compare hide'>
-            <Compare className='show' currentItem={this.state.currentProduct} compProduct={this.state.compProduct} />
+            <Compare className='show' mainProduct={this.state.mainProduct} compProduct={this.state.compProduct} />
           </div>
-
         </div>
       </div>
     )

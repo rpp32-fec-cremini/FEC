@@ -21,7 +21,7 @@ var overViewRouter = require('./routes/overviewRoutes/overviewProducts');
 app.use('/overview', overViewRouter);
 
 var questionRouter = require('./routes/QaA');
-app.use('/qa/questions', questionRouter);
+app.use('/qa', questionRouter);
 
 app.post('/interactions', (req, res) => {
   var data = req.body;

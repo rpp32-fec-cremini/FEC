@@ -1,20 +1,19 @@
 import React, {useState, useEffect} from 'react';
+import './AnswerModal.css';
 
-const AnswerModal = ({answer, answerHelpfulList, answerHelpful}) => {
+const AnswerModal = ({answer, answerHelpfulList, answerHelpful, answerReport}) => {
   const [loading, setloading] = useState(false);
   const [size, setsize] = useState(0);
   const [vote, setvote] = useState(false);
 
-  // console.log('this is answers', answer);
-  // console.log('this is anwer', answerHelpfulList);
   const showbutton = () => {
     if (Object.keys(answer).length > 2) {
-      return <button onClick={() => getMoreAnswer(answer)}>See more answers</button>
+      return <button className = 'answer-btn' onClick={() => getMoreAnswer(answer)}><span>See more answers</span></button>
     }
   }
 
   const collaspseButton = () => {
-    return <button onClick={() => collapsedAnswer()}>Collasped answer</button>
+    return <button className = 'answer-collaspse-btn' onClick={() => collapsedAnswer()}><span>Collasped answer</span></button>
   }
 
   const collapsedAnswer = () => {
@@ -42,14 +41,13 @@ const AnswerModal = ({answer, answerHelpfulList, answerHelpful}) => {
       var twoAnswer = answer
     }
 
-    const report = (e) => {
+    const report = (e, answerId) => {
       e.preventDefault()
       e.target.innerText = 'Reported';
+      answerReport(answerId);
     }
 
     const helpful = (e, answerId) => {
-      // e.preventDefault()
-      // console.log('this is answ4er id', answerId);
       if (answerHelpfulList.indexOf(answerId) === -1) {
         var numberofHelpful = Number(e.target.innerText) + 1;
         e.target.innerText = numberofHelpful;
@@ -58,13 +56,12 @@ const AnswerModal = ({answer, answerHelpfulList, answerHelpful}) => {
     }
 
     return twoAnswer.map(answer =>
-      <div key={answer[1]['id']}> A: {answer[1]['body']}
+      <div class = 'answer-body' key={answer[1]['id']}> A: {answer[1]['body']}
         <br />
         {answer[1]['photos'].length !== 0 ?
           answer[1]['photos'].map (pic =>
             <img src = {pic} style={{width: '80px', height:'80px'}}></img>) : ''}
-        <div>by {answer[1]['answerer_name']},{dateConvenver(answer[1]['date'])}  |  Helpful? YES (<a style={{"textDecoration":"underline"}} onClick = {(e) => helpful(e, answer[1]['id'])}>{answer[1]['helpfulness']}</a>) | <a style={{"textDecoration":"underline"}} onClick = {report}>Report</a></div>
-        <br />
+        <div class = "answer-title-button">by {answer[1]['answerer_name']},{dateConvenver(answer[1]['date'])}&nbsp;&nbsp;|&nbsp;&nbsp;Helpful? YES (<a className = 'answer-helpful-btn' style={{"textDecoration":"underline"}} onClick = {(e) => helpful(e, answer[1]['id'])}>{answer[1]['helpfulness']}</a>)&nbsp;&nbsp;|&nbsp;&nbsp;<a className = 'answer-report-btn' style={{"textDecoration":"underline"}} onClick = {(e) => report(e, answer[1]['id'])}>Report</a></div>
       </div>
     )
   }
