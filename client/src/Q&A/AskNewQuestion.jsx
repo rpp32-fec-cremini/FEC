@@ -81,12 +81,12 @@ const AskNewQuestion = (props) => {
   const handleImageChange = (e) => {
     // e.preventDefault;
     var file = e.target.files;
-    console.log (URL.createObjectURL(file[0]))
+    // console.log (URL.createObjectURL(file[0]))
     var img = [];
     var imgURLs = []
     // if (file.length > 5) {
     //   file.splice(5);
-    console.log('how many', file);
+    // console.log('how many', file);
     if (file.length > 5) {
       for (let i =0; i < 5; i++) {
         img.push(file[i])

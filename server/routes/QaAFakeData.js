@@ -30,7 +30,23 @@ let fakeQaA = {
             "body": "9 lives",
             "date": "2019-11-12T00:00:00.000Z",
             "answerer_name": "Seller",
-            "helpfulness": 31,
+            "helpfulness": 5,
+            "photos": [],
+          },
+          80: {
+            "id": 80,
+            "body": "10 lives",
+            "date": "2019-11-12T00:00:00.000Z",
+            "answerer_name": "Seller",
+            "helpfulness": 7,
+            "photos": [],
+          },
+          81: {
+            "id": 81,
+            "body": "11 lives",
+            "date": "2019-11-12T00:00:00.000Z",
+            "answerer_name": "Seller",
+            "helpfulness": 66,
             "photos": [],
           }
         }
@@ -71,7 +87,7 @@ let fakeQaA = {
       },
       {
         "question_id": 39,
-        "question_body": "How long does it last?",
+        "question_body": "what do you know about this test?",
         "question_date": "2019-06-28T00:00:00.000Z",
         "asker_name": "funnygirl",
         "question_helpfulness": 2,
@@ -97,7 +113,7 @@ let fakeQaA = {
       },
       {
         "question_id": 40,
-        "question_body": "How long does it last?",
+        "question_body": "SEE?",
         "question_date": "2019-06-28T00:00:00.000Z",
         "asker_name": "funnygirl",
         "question_helpfulness": 2,
@@ -122,8 +138,8 @@ let fakeQaA = {
         }
       },
       {
-        "question_id": 40,
-        "question_body": "How long does it last?",
+        "question_id": 41,
+        "question_body": "One more test?",
         "question_date": "2019-06-28T00:00:00.000Z",
         "asker_name": "funnygirl",
         "question_helpfulness": 2,
@@ -148,8 +164,8 @@ let fakeQaA = {
         }
       },
       {
-        "question_id": 40,
-        "question_body": "How long does it last?",
+        "question_id": 42,
+        "question_body": "another one?",
         "question_date": "2019-06-28T00:00:00.000Z",
         "asker_name": "funnygirl",
         "question_helpfulness": 2,
@@ -174,8 +190,8 @@ let fakeQaA = {
         }
       },
       {
-        "question_id": 40,
-        "question_body": "How long does it last?",
+        "question_id": 43,
+        "question_body": "43 test?",
         "question_date": "2019-06-28T00:00:00.000Z",
         "asker_name": "funnygirl",
         "question_helpfulness": 2,
