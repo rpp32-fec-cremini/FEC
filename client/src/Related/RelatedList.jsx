@@ -150,7 +150,7 @@ class RelatedList extends React.Component {
     $('.compare').removeClass('hide');
     $('.compare').addClass('show');
     $('.related-container').parents('#root, body, html').css({ 'overflow': 'hidden' });
-    this.hideModal();
+    this.hideModal(e);
   }
 
   hideModal = (e) => {
