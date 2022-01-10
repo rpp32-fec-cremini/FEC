@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import BsCheckSquare from "react-icons/io";
 
 const Style = (props) => {
-  console.log('\nall props recieved by Style component:', props);
+
   return (
     <div onClick={props.onClick}>
       <h5>{props.name}</h5>

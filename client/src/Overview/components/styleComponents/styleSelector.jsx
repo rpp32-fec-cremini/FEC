@@ -31,8 +31,7 @@ class StyleSelector extends React.Component {
         <br></br>
       <div className = 'grid-4'>
         {this.props.styleList.map((style) =>
-        /* var onClickHandler = (e) => {console.log('BEHOLD, THE STYLE HATH BEEN CLICKETHD', this.props)} */
-      <Style onClick = {(e) => {console.log('BEHOLD, THE STYLE HATH BEEN CLICKETHD', style)}} name={style.name} pic = {style.photos[0].thumbnail_url} key ={style.style_id} />
+      <Style onClick = {() => this.props.changeStyle(style)} name={style.name} pic = {style.photos[0].thumbnail_url} key ={style.style_id} />
     )}
       </div>
       </div>

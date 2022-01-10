@@ -29,8 +29,8 @@ class ProductInfo extends React.Component {
     var category = this.props.current.category;
     var price =  !this.props.currentStyle.sale_price ? <div>{this.props.currentStyle.original_price}</div> : <div><b style = {{color: 'red'}}>{this.props.currentStyle.sale_price}</b> <b style = {{'text-decoration': 'line-through'}}>{this.props.currentStyle.original_price}</b></div>;
     var id = this.props.current.id;
-    console.log('Props??', this.props)
-    console.log('BEHOLD, THE ID ', id);
+    /* console.log('Props??', this.props)
+    console.log('BEHOLD, THE ID ', id); */
 
     if (!this.state.current) {
       return (
