@@ -43,7 +43,7 @@ const IndividualQuestion = (props) => {
 
   const questionReport = (props, questionId) => {
     props.questionReport(questionId);
-    console.log('quesion id', questionId);
+    // console.log('quesion id', questionId);
   }
   // const questionReport = (props, question.question_id) => {
   //   // e.preventDefault()
