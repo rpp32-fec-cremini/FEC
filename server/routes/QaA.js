@@ -6,13 +6,13 @@ const router = express.Router();
 
 router.get('/questions', (req, res) => {
   // console.log('this is product', getProducts.getProducts());
-  var endpoint = `?product_id=59555`;
+  var endpoint = `?product_id=59999`;
   getProducts(endpoint)
   .then(question=> {
     // console.log('data recevied', question.data.results);
     // console.log('fake data', fakeQaA.results);
-    // res.send(JSON.stringify(fakeQaA.results));
-    res.send(JSON.stringify(question.data.results));
+    res.send(JSON.stringify(fakeQaA.results));
+    // res.send(JSON.stringify(question.data.results));
   })
   .catch(err => {
     console.log(err.data);
@@ -37,15 +37,16 @@ router.get('/questions/:question_id/answers', (req, res) => {
 router.post('/questions', (req, res) => {
   var questionBody = req.body;
   console.log('questionbody1', req.body);
-  // postQuestion(questionBody)
-  // .then(question=> {
-  //   console.log('question create', res.statusCode);
-  //   res.end()
-  // })
-  // .catch((err) => {
-  //   console.log('post question error', err);
-  //   res.end()
-  // });
+    postQuestion(questionBody)
+    .then(question=> {
+      console.log('question post', question);
+      console.log('question create', res.statusCode);
+      res.end()
+    })
+    .catch((err) => {
+      console.log('post question error', err);
+      res.end()
+    });
   // getProducts()
   // // console.log('help', getProducts())
   // console.log(config);
