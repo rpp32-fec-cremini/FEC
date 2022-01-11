@@ -25,11 +25,15 @@ class Overview extends React.Component {
       }
 
     }
+    this.changeStyle = this.changeStyle.bind(this);
+  }
 
-  /*   this.getProducts = this.getProducts.bind(this);
-    this.getStyles = this.getStyles.bind(this);
-    this.getMetadata = this.getMetadata.bind(this);
-    this.runAll = this.runAll.bind(this); */
+  changeStyle(style) {
+    if (style !== this.state.currentStyle) {
+    this.setState({currentStyle: style})
+    console.log('Here\'s what the state looks like now ', this.state.currentStyle)
+    }
+    console.log('BEHOLD, THE CLICKED STYLE! ', style)
   }
 
   componentDidMount() {
@@ -54,7 +58,7 @@ class Overview extends React.Component {
                 productList: data,
                 current: data[0],
                 styleList: stylish.results,
-                currentStyle: stylish.results[2],
+                currentStyle: stylish.results[0],
                 reviewMeta: metaData,
                 currentPhotoUrl: stylish.results[0]
               },
@@ -101,10 +105,11 @@ class Overview extends React.Component {
 
         <ProductInfo className=' related relatedCard' productList={this.state.productList} styleList ={this.state.styleList} reviewMeta= {this.state.reviewMeta} current={this.state.current} currentStyle ={this.state.currentStyle}/>
 
+        <StyleSelector className=' grid-4-style' styleList={this.state.styleList} currentStyle = {this.state.currentStyle} changeStyle = {this.changeStyle} />
+
         {/* <AddToCart /> */}
         <br></br>
       </div>
-      <StyleSelector className=' related relatedCard' styleList={this.state.styleList} currentStyle = {this.state.currentStyle} />}
       </div>
     );
   }
