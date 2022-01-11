@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">54.54% </span>
+                <span class="strong">46.15% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/11</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">40% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>4/10</span>
+                <span class='fraction'>6/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">33.33% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>1/3</span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>4/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">54.54% </span>
+                <span class="strong">25% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>1/4</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">46.15% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/11</span>
+                <span class='fraction'>6/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -130,7 +130,11 @@
 <a name='L65'></a><a href='#L65'>65</a>
 <a name='L66'></a><a href='#L66'>66</a>
 <a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -146,11 +150,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -203,20 +209,22 @@ import { useState } from "react";
 import ReviewTile from "./ReviewTile.jsx";
 import AddReview from "./AddReview.jsx";
 import SortReviews from "./SortReviews.jsx";
+import getClicks from "../getClicks.jsx";
 &nbsp;
-var ReviewsList = ({productName, charMap, sortAndGet, reviews, shownReviews, moreReviews, addToVoted, voted, product, characteristics, product_id, submitReview}) =&gt; {
+var ReviewsList = ({clicked, reported, productName, charMap, sortAndGet, reviews, shownReviews, moreReviews, addToVoted, voted, product, characteristics, product_id, submitReview}) =&gt; {
 &nbsp;
-  var addBtn = reviews.length &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >shownReviews != reviews.length </span>? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;button onClick={moreReviews}&gt;More Reviews&lt;/button&gt; </span>: null;
+  var addBtn = reviews.length &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >shownReviews != reviews.length </span>? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;button className="RatingBtn" onClick={moreReviews}&gt;+  More Reviews&lt;/button&gt; </span>: null;
   var sortDropdown = reviews.length ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;SortReviews numReviews={reviews.length} sortAndGet={sortAndGet}/&gt; </span>: null;
   var scrollStyle = {
     "height": "48em",
     "overflowY": "scroll",
   }
   return (
-  &lt;div className="container-right"&gt;
+  &lt;div className="container-right" onClick={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >clicked(e)}</span>&gt;
     {sortDropdown}
-    &lt;div style={shownReviews &gt;= 3 ? <span class="branch-0 cbranch-no" title="branch not covered" >scrollStyle </span>: {"height": "48em"}} data-testid="scrolllist"&gt;
+    &lt;div className="scrollStyle" style={shownReviews &gt;= 3 ? <span class="branch-0 cbranch-no" title="branch not covered" >scrollStyle </span>: {"height": "48em"}} data-testid="scrolllist"&gt;
       {reviews.slice(0, shownReviews).map(<span class="fstat-no" title="function not covered" >re</span>view =&gt; {
+        var flagColor = <span class="cstat-no" title="statement not covered" >reported[review.review_id] ? 'red': 'grey';</span>
 <span class="cstat-no" title="statement not covered" >        return (</span>
           &lt;ReviewTile
             id={review.review_id}
@@ -232,6 +240,7 @@ var ReviewsList = ({productName, charMap, sortAndGet, reviews, shownReviews, mor
             helpfulness={review.helpfulness}
             addToVoted={addToVoted}
             voted={voted}
+            flagColor={flagColor}
           /&gt;
         )})
       }
@@ -264,14 +273,14 @@ var conformDate = <span class="fstat-no" title="function not covered" >(d</span>
 <span class="cstat-no" title="statement not covered" >  return `${months[month]} ${day[0] !== 0 ? day : day[1]}, ${year}`</span>
 }
 &nbsp;
-export default ReviewsList;</pre></td></tr></table></pre>
+export default getClicks(ReviewsList);</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener">istanbul</a>
-                at Wed Jan 05 2022 19:07:55 GMT-0800 (Pacific Standard Time)
+                at Tue Jan 11 2022 17:55:20 GMT-0500 (Eastern Standard Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>
