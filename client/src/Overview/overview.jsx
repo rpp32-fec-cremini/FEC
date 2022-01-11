@@ -29,17 +29,11 @@ class Overview extends React.Component {
   }
 
   changeStyle(style) {
-    console.log('BEHOLD, THE CLICKED STYLE!')
     if (style !== this.state.currentStyle) {
-    var copyStyle = this.state.styleList;
-    console.log('Copy style Here', copyStyle);
-    var chosenIndex = copyStyle.indexOf(style);
-    copyStyle[0] = style;
-    copyStyle[chosenIndex] = this.state.currentStyle;
-    console.log('Copy style Here after reassignment', copyStyle);
-    this.setState({currentStyle: style, styleList: copyStyle})
+    this.setState({currentStyle: style})
     console.log('Here\'s what the state looks like now ', this.state.currentStyle)
     }
+    console.log('BEHOLD, THE CLICKED STYLE! ', style)
   }
 
   componentDidMount() {
@@ -111,10 +105,11 @@ class Overview extends React.Component {
 
         <ProductInfo className=' related relatedCard' productList={this.state.productList} styleList ={this.state.styleList} reviewMeta= {this.state.reviewMeta} current={this.state.current} currentStyle ={this.state.currentStyle}/>
 
+        <StyleSelector className=' grid-4-style' styleList={this.state.styleList} currentStyle = {this.state.currentStyle} changeStyle = {this.changeStyle} />
+
         {/* <AddToCart /> */}
         <br></br>
       </div>
-      <StyleSelector className=' related relatedCard' styleList={this.state.styleList} currentStyle = {this.state.currentStyle} changeStyle = {this.changeStyle} />}
       </div>
     );
   }

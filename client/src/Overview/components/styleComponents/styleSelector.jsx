@@ -27,9 +27,9 @@ class StyleSelector extends React.Component {
       //console.log('Where props? ', this.props)
     return (
       <div>
-         <h1 data-testid = 'style'>Available Styles</h1>
-        <br></br>
-      <div className = 'grid-4'>
+         <h2 data-testid = 'style'>Available Styles</h2>
+        <h3>{this.props.currentStyle.name}</h3>
+      <div className = 'grid-4-style'>
         {this.props.styleList.map((style) =>
       <Style onClick = {() => this.props.changeStyle(style)} name={style.name} pic = {style.photos[0].thumbnail_url} key ={style.style_id} />
     )}
