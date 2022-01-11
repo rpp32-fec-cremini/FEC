@@ -9,14 +9,14 @@ import { IoIosStar } from "react-icons/io";
 import './related.css';
 import Card from './Card.jsx';
 import Compare from './Compare.jsx';
+import getClicks from "../getClicks.jsx";
 
 class RelatedList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       type: 'related',
-      products: [],
-      mainProductID: 59560,
+      mainProductID: 59553,
       mainProduct: {
         id: 59553,
         campus: 'hr-rpp',
@@ -35,31 +35,6 @@ class RelatedList extends React.Component {
           {
             feature: 'Buttons',
             value: 'Brass'
-          }
-        ]
-      },
-      mainProduct2: {
-        id: 59553,
-        campus: 'hr-rpp',
-        name: 'YEasy 350',
-        slogan: 'Just jumped over jumpman',
-        description: 'These stretchy knit shoes show off asymmetrical lacing and a big sculpted rubber midsole. In a nod to adidas soccer heritage',
-        category: 'Kicks',
-        default_price: 450.00,
-        created_at: '2021-10-18T22:50:41.839Z',
-        updated_at: '2021-10-18T22:50:41.839Z',
-        features: [
-          {
-            feature: 'Sole',
-            value: 'Rubber'
-          },
-          {
-            feature: 'Material',
-            value: 'FullControlSkin'
-          },
-          {
-            feature: 'Stitching',
-            value: 'Double Stitch'
           }
         ]
       },
@@ -87,15 +62,7 @@ class RelatedList extends React.Component {
     $.get(`/products`, data => {
       let products = JSON.parse(data);
       this.setState({ products: products });
-      // console.log(this.state.products);
     });
-  };
-
-  getSingleProduct = (id) => {
-    $.get(`/products/${id}`, data => {
-      console.log(JSON.parse(data).name.toUpperCase());
-      return JSON.parse(data);
-    })
   };
 
   setMainProduct = () => {
@@ -110,7 +77,6 @@ class RelatedList extends React.Component {
       let compProduct = JSON.parse(data);
       this.setState({ compProduct: compProduct });
     })
-    // return compProduct;
   };
 
   getRelatedIDs = async () => {
@@ -139,27 +105,27 @@ class RelatedList extends React.Component {
     }
   };
 
-  getStyles = async (id, product) => {
-    try {
-      let styles = await axios.get(`/products/${id}/styles`);
-      if (styles.data.results[0].photos[0].thumbnail_url) {
-        product.img = styles.data.results[0].photos[0].thumbnail_url;
-      } else {
-        let productLabel = product.name.toLowerCase().split(' ');
-        product['img'] = `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}`;
-      }
-    } catch (err) {
-      console.log(err);
-    }
-    return product;
-  }
+  // getStyles = async (id, product) => {
+  //   try {
+  //     let styles = await axios.get(`/products/${id}/styles`);
+  //     if (styles.data.results[0].photos[0].thumbnail_url) {
+  //       product.img = styles.data.results[0].photos[0].thumbnail_url;
+  //     } else {
+  //       let productLabel = product.name.toLowerCase().split(' ');
+  //       product['img'] = `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}`;
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  //   return product;
+  // }
 
   starClick = (id, e) => {
     this.setCompProduct(id);
     $('.compare').removeClass('hide');
     $('.compare').addClass('show');
     $('.related-container').parents('#root, body, html').css({ 'overflow': 'hidden' });
-    this.hideModal();
+    this.hideModal(e);
   }
 
   hideModal = (e) => {
@@ -201,4 +167,4 @@ class RelatedList extends React.Component {
   }
 };
 
-export default RelatedList;
+export default getClicks(RelatedList);
