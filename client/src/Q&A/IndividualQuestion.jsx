@@ -4,6 +4,7 @@ import AskNewQuestion from './AskNewQuestion.jsx';
 import './IndividualQuestion.css';
 
 const IndividualQuestion = (props) => {
+  console.log('questions all', props.question)
   const [loading, setloading] = useState(false);
   const [loadingQuestion, setloadingQuestion] = useState(2);
   const [buttonPopup, setbuttonPopup] = useState(false);
@@ -18,15 +19,18 @@ const IndividualQuestion = (props) => {
   }
 
   const collaspseButton = () => {
+    console.log('how many', loadingQuestion)
     return <button className = 'collaspedBtn' onClick={() => collapsedQuestion()}>Collasped Questions</button>
   }
 
   const collapsedQuestion = () => {
+    console.log('collapsedQuestion')
     setloading(false);
     setloadingQuestion(2);
   }
 
   const getMoreQuestion = (question) => {
+    console.log('getMoreQuestion')
     setloadingQuestion(loadingQuestion + 2);
     setloading(true);
   }
@@ -73,10 +77,9 @@ const IndividualQuestion = (props) => {
         } else if (question.question_body.toLowerCase().includes(props.searchTerm.toLowerCase())) {
           return question;
         }
-      }).map(question =>
-          <div className="Question-row" key = {question.question_id} >
-            {/* {answerForEachQuestion(question.question_id)} */}
-            <div className="Question-body" style={{float: "left"}}>Q: {question.question_body}</div>
+      }).map((question, i) =>
+          <div className="Question-row" key={question.question_id} data-testid='Questions-id'>
+            <div className="Question-body" data-testid={i} style={{float: "left"}}>Q: {question.question_body}</div>
             <div className="Question-helpful" style={{float: "right"}}>Helpful? YES(<a className = 'question-help-btn' style={{"textDecoration":"underline"}} onClick = {(e) => helpful(e, props, question.question_id)}>{question.question_helpfulness}</a>)&nbsp;&nbsp;|&nbsp;&nbsp;
             <a className = 'question-add-answer-btn' style={{"textDecoration":"underline"}} onClick ={() => {setbuttonPopup(true); settypeofbutton('answer'); setquestionId(question.question_id)}}>Add Answer</a>
             &nbsp;&nbsp;|&nbsp;&nbsp;<a className = 'question-report-btn' style={{"textDecoration":"underline"}} onClick = {() => questionReport(props, question.question_id)}>Report</a>
@@ -106,12 +109,14 @@ const IndividualQuestion = (props) => {
   };
 
   return (
-    <div className = "Questions" style={{overflowY: 'scroll', height:'500px'}}>
-      {/* <input type="text" id="searchBar" placeholder = "Have a question? Search for answers..." onChange = {(e) => handleSearch(e, props) } style={{width: "80%", height:"30px",}}/> */}
-      {props.question.length > loadingQuestion || props.question.length <= 2? show(props, true) : show(props)}
-      {loading === false  ? showbutton(props) : collaspseButton()}
-      <button className = 'addQuestionbtn' onClick ={() => {setbuttonPopup(true); settypeofbutton('question')}}>+ Add A Question</button>
-      <AskNewQuestion trigger={buttonPopup} setTrigger={setbuttonPopup} questionParmer = {props.questionParmer} typeofbutton = {typeofbutton} questionId = {questionId}></AskNewQuestion>
+    <div>
+      <div className = "Questions" style={{overflowY: 'scroll', height:'500px'}}>
+        {/* <input type="text" id="searchBar" placeholder = "Have a question? Search for answers..." onChange = {(e) => handleSearch(e, props) } style={{width: "80%", height:"30px",}}/> */}
+        {props.question.length > loadingQuestion || props.question.length <= 2? show(props, true) : show(props)}
+      </div>
+        {loadingQuestion < props.question.length ? showbutton(props) : collaspseButton()}
+        <button className = 'addQuestionbtn' onClick ={() => {setbuttonPopup(true); settypeofbutton('question')}}>+ Add A Question</button>
+        <AskNewQuestion trigger={buttonPopup} setTrigger={setbuttonPopup} questionParmer = {props.questionParmer} typeofbutton = {typeofbutton} questionId = {questionId}></AskNewQuestion>
     </div>
   )
 };
