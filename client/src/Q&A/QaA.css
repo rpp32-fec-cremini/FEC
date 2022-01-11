@@ -1,7 +1,27 @@
 .QaABox {
-  border: solid;
-  padding: 10px;
-  margin: 130px;
+  padding: 5px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.Title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  width: 160px;
+  text-align: center;
+  white-space: nowrap;
+  padding-bottom: 13px;
+}
+
+.Title:before {
+  background-color: #c50000;
+  content: "";
+  display: block;
+  height: 3px;
+  width: 75px;
+  margin-bottom: 5px;
 }
 
 /* .QaABox .Questions  */

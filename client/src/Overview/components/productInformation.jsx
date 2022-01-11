@@ -27,10 +27,10 @@ class ProductInfo extends React.Component {
     var product = this.props.current.name;
     var desc = this.props.current.description;
     var category = this.props.current.category;
-    var price =  !this.props.currentStyle.sale_price ? <div>{this.props.currentStyle.original_price}</div> : <div><b style = {{color: 'red'}}>{this.props.currentStyle.sale_price}</b> <b style = {{'text-decoration': 'line-through'}}>{this.props.currentStyle.original_price}</b></div>;
+    var price =  !this.props.currentStyle.sale_price ? <div>{this.props.currentStyle.original_price}</div> : <div><b style = {{color: 'red'}}>{this.props.currentStyle.sale_price}</b> <b style = {{'textDecorationLine': 'line-through'}}>{this.props.currentStyle.original_price}</b></div>;
     var id = this.props.current.id;
-    console.log('Props??', this.props)
-    console.log('BEHOLD, THE ID ', id);
+    /* console.log('Props??', this.props)
+    console.log('BEHOLD, THE ID ', id); */
 
     if (!this.state.current) {
       return (
@@ -48,7 +48,7 @@ class ProductInfo extends React.Component {
       return(
 
         <div>
-            <h3>{category} ::: {product} <ProductRating reviewMeta={this.props.reviewMeta} /><a href = '#container' style ={{'font-size': '12px'}}>Read all reviews</a></h3>
+            <h3>{category} ::: {product} <ProductRating reviewMeta={this.props.reviewMeta} /><a href = '#container' style ={{'fontSize': '12px'}}>Read all reviews</a></h3>
             <b>{price}</b>
             <h4>{desc}</h4>
         </div>

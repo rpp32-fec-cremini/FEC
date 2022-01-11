@@ -3,4 +3,9 @@ node_modules
 .DS_Store
 client/.DS_Store
 uploads
+<<<<<<< HEAD
 coverage
+=======
+coverage
+/coverage.data
+>>>>>>> b9127d1c88d034a075479480a2cf5416deb210b4
