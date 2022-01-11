@@ -4,15 +4,13 @@ const {getProducts, postQuestion, postAnswer, questionHelpfulandReport, answerHe
 // const postQuestion = require('../apiHelper/qandaAPI');
 const router = express.Router();
 
-router.get('/questions', (req, res) => {
-  // console.log('this is product', getProducts.getProducts());
-  var endpoint = `?product_id=59999`;
+router.get('/questions/:product_id', (req, res) => {
+  var productId = req.params.product_id;
+  var endpoint = `?product_id=${productId}`;
   getProducts(endpoint)
   .then(question=> {
-    // console.log('data recevied', question.data.results);
-    // console.log('fake data', fakeQaA.results);
-    res.send(JSON.stringify(fakeQaA.results));
-    // res.send(JSON.stringify(question.data.results));
+    // res.send(JSON.stringify(fakeQaA.results));
+    res.send(JSON.stringify(question.data.results));
   })
   .catch(err => {
     console.log(err.data);

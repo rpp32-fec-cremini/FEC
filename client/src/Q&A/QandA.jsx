@@ -19,6 +19,7 @@ class QA extends React.Component {
       questionHelpfulList:[],
       answerHelpfulList:[]
     };
+    this.productId = this.props.productId;
     this.individualAnswer = this.individualAnswer.bind(this);
   }
 
@@ -62,7 +63,8 @@ class QA extends React.Component {
     var self = this;
     axios({
       method: 'GET',
-      url: '/qa/questions'
+      url: `/qa/questions/${this.productId}`,
+      // data: this.productId,
     })
     .then((results) => {
       let question = results.data;
@@ -188,7 +190,7 @@ class QA extends React.Component {
         data: {question: data['question'],
         nickName: data['nickName'],
         email: data['email'],
-        product_id: '59999',
+        product_id: this.productId,
       }
     })
     .then((results) => {

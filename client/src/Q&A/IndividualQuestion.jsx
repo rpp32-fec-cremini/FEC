@@ -77,10 +77,9 @@ const IndividualQuestion = (props) => {
         } else if (question.question_body.toLowerCase().includes(props.searchTerm.toLowerCase())) {
           return question;
         }
-      }).map(question =>
-          <div className="Question-row" key={question.question_id} data-testid='Questions-body'>
-            {/* {answerForEachQuestion(question.question_id)} */}
-            <div className="Question-body" style={{float: "left"}}>Q: {question.question_body}</div>
+      }).map((question, i) =>
+          <div className="Question-row" key={question.question_id} data-testid='Questions-id'>
+            <div className="Question-body" data-testid={i} style={{float: "left"}}>Q: {question.question_body}</div>
             <div className="Question-helpful" style={{float: "right"}}>Helpful? YES(<a className = 'question-help-btn' style={{"textDecoration":"underline"}} onClick = {(e) => helpful(e, props, question.question_id)}>{question.question_helpfulness}</a>)&nbsp;&nbsp;|&nbsp;&nbsp;
             <a className = 'question-add-answer-btn' style={{"textDecoration":"underline"}} onClick ={() => {setbuttonPopup(true); settypeofbutton('answer'); setquestionId(question.question_id)}}>Add Answer</a>
             &nbsp;&nbsp;|&nbsp;&nbsp;<a className = 'question-report-btn' style={{"textDecoration":"underline"}} onClick = {() => questionReport(props, question.question_id)}>Report</a>
