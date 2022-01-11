@@ -15,17 +15,44 @@
   padding: 32px;
   width: 100%;
   max-width: 640px;
-  background-color: white
+  background-color: white;
 }
 
 .popup-inner .close-btn {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  color: #000;
-  font-size: 15px;
-  font-weight: bold;
+  top: -5px;
+  right: -5px;
+  color: white;
+	border: 2px solid #eef5df;
+	background-color: black;
+	border-radius: 50%;
 }
+
+.popup-inner .close-btn::before, .popup-inner .close-btn::after {
+	position: absolute;
+	top: 7px;
+	left: 3.5px;
+	width: 16px;
+	height: 4px;
+	content: "";
+	background-color: red;
+	display: none;
+}
+
+.popup-inner .close-btn::before {
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.popup-inner .close-btn::after {
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.popup-inner .close-btn:hover { cursor: pointer; }
+.popup-inner .close-btn:hover::before, .popup-inner .close-btn:hover::after { display: block; }
+
+
 
 .question-block {
   padding: 12px 200px;
@@ -52,7 +79,7 @@
 .max-word-length {
   font-size: 14px;
   position: absolute;
-  top: 170px;
+  top: 215px;
   left: 400px;
 }
 

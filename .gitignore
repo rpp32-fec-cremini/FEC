@@ -5,3 +5,4 @@ client/.DS_Store
 uploads
 coverage
 /coverage.data
+config.js

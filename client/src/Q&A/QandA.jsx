@@ -60,6 +60,7 @@ class QA extends React.Component {
   }
 
   individualQuestion() {
+    console.log('this is the productId', this.productId);
     var self = this;
     axios({
       method: 'GET',
