@@ -1,4 +1,5 @@
 import React from 'react';
+import getClicks from "../getClicks.jsx";
 
 const ActionBtn = (props) {
   return (
@@ -7,4 +8,4 @@ const ActionBtn = (props) {
   )
 };
 
-export default ActionBtn;
+export default getClicks(ActionBtn);
