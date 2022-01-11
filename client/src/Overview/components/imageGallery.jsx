@@ -33,7 +33,7 @@ class ImageGallery extends React.Component {
       )
     } else {
       //console.log('Photo render block? ', JSON.stringify(this.props.currentUrl.photos[0]))
-      console.log('Photo render block?', this.props.currentUrl.photos?.length && this.props.currentUrl.photos[0].url)
+      /* console.log('Photo render block?', this.props.currentUrl.photos?.length && this.props.currentUrl.photos[0].url) */
 
 
       return (

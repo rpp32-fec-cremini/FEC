@@ -161,6 +161,57 @@ td {
   padding: 0;
 }
 
+
+.part-star {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.part-star::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-weight: 900;
+  color: #b1b1b1;
+}
+
+.full-stars{
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  color: rgb(86, 86, 86);
+}
+
+.empty-stars:before,
+.full-stars:before {
+  content: "\2605  \2605  \2605  \2605  \2605";
+  font-size: 75%;
+}
+
+.empty-stars:before {
+  -webkit-text-stroke: 1px rgb(86, 86, 86);
+}
+
+.full-stars:before {
+  -webkit-text-stroke: 1px rgb(86, 86, 86);
+}
+
+.ratings {
+  position: relative;
+  vertical-align: middle;
+  display: inline-block;
+  color: white;
+  overflow: hidden;
+}
+
+.star {
+  fill: coral;
+}
+
 .related-scroll {
   position: absolute;
 	top: 50%;

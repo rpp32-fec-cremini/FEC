@@ -63,6 +63,19 @@ router.get('/:product_id/styles', (req, res) => {
     })
 })
 
+router.get('reviews/meta', (req, res) => {
+  let id = parseInt(req.params.product_id);
+
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta`, { params: req.query, headers: { authorization } })
+    .then(reviews => {
+      res.send(JSON.stringify(reviews.data));
+    })
+    .catch(err => {
+      console.log(err.data);
+      res.end()
+    })
+})
+
 router.get('/:user_id/outfits', (req, res) => {
   let user = parseInt(req.params.user_id);
   res.send(JSON.stringify(fakeOutfits));
