@@ -25,7 +25,7 @@ app.use('/qa', questionRouter);
 
 app.post('/interactions', (req, res) => {
   var data = req.body;
-  // console.log(data);
+  console.log(data);
   res.end()
   // axios.post(url + "interactions", data, { headers: { authorization } })
   //   .then((response) => res.end())
