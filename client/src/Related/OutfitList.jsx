@@ -143,7 +143,7 @@ class OutfitList extends React.Component {
           ))
           }
         </ul >
-        <IoIosArrowBack className='related-scroll left-scroll' />
+        <IoIosArrowBack className='related-scroll left-scroll hide' />
         < IoIosArrowForward className='related-scroll right-scroll' />
       </div>
     )

@@ -36,7 +36,7 @@ class RelatedList extends React.Component {
     this.setState({ relatedProducts: [] });
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentDidUpdate(nextProps) {
     if (nextProps.productId !== this.props.productId) {
       this.setState({ relatedProducts: [] });
       this.setMainProduct();
@@ -144,7 +144,7 @@ class RelatedList extends React.Component {
             ))
             }
           </ul >
-          <IoIosArrowBack className='related-scroll left-scroll' />
+          <IoIosArrowBack className='related-scroll left-scroll hide' />
           < IoIosArrowForward className='right-scroll related-scroll' />
           <div className='compare hide'>
             <Compare className='show' mainProduct={this.state.mainProduct} compProduct={this.state.compProduct} />
