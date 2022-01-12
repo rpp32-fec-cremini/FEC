@@ -49,6 +49,7 @@
   box-sizing: border-box;
   white-space: nowrap;
   overflow-x: auto;
+  overflow-y: hidden;
   /* background-color: aqua; */
 }
 
@@ -161,20 +162,13 @@ td {
   padding: 0;
 }
 
-
-.part-star {
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
+.ratings {
+  position: relative;
+  vertical-align: middle;
+  display: inline-block;
+  color: white;
   overflow: hidden;
-  width: 0;
-}
-
-.part-star::before {
-  content: "\f005 \f005 \f005 \f005 \f005";
-  font-weight: 900;
-  color: #b1b1b1;
+  margin-bottom: 2.5em;
 }
 
 .full-stars{
@@ -198,18 +192,6 @@ td {
 
 .full-stars:before {
   -webkit-text-stroke: 1px rgb(86, 86, 86);
-}
-
-.ratings {
-  position: relative;
-  vertical-align: middle;
-  display: inline-block;
-  color: white;
-  overflow: hidden;
-}
-
-.star {
-  fill: coral;
 }
 
 .related-scroll {

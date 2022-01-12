@@ -16,28 +16,7 @@ class RelatedList extends React.Component {
     super(props);
     this.state = {
       type: 'related',
-      mainProductID: 59553,
-      mainProduct: {
-        id: 59553,
-        campus: 'hr-rpp',
-        name: 'Camo Onesie',
-        slogan: 'Blend in to your crowd',
-        description: 'The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.',
-        category: 'Jackets',
-        default_price: 140.00,
-        created_at: '2021-10-18T22:50:41.839Z',
-        updated_at: '2021-10-18T22:50:41.839Z',
-        features: [
-          {
-            feature: 'Fabric',
-            value: 'Canvas'
-          },
-          {
-            feature: 'Buttons',
-            value: 'Brass'
-          }
-        ]
-      },
+      mainProduct: {},
       compProduct: {
         id: 456,
         name: 'Sample Comp Product',
@@ -48,14 +27,21 @@ class RelatedList extends React.Component {
       relatedProducts: [],
       relatedStyles: []
     }
-
   }
 
   componentDidMount() {
-    this.getAllProducts();
     this.getRelatedIDs();
-    // this.setMainProduct();
+    this.setMainProduct();
     this.setCompProduct(59555);
+    this.setState({ relatedProducts: [] });
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.productId !== this.props.productId) {
+      this.setState({ relatedProducts: [] });
+      this.setMainProduct();
+      this.getRelatedIDs();
+    }
   }
 
   getAllProducts = () => {
@@ -66,7 +52,7 @@ class RelatedList extends React.Component {
   };
 
   setMainProduct = () => {
-    $.get(`/products/${this.state.mainProductID}`, data => {
+    $.get(`/products/${this.props.productId}`, data => {
       let mainProduct = JSON.parse(data);
       this.setState({ mainProduct: mainProduct });
     })
@@ -82,7 +68,7 @@ class RelatedList extends React.Component {
   getRelatedIDs = async () => {
     let relatedIDs = [];
     try {
-      let IDs = await axios.get(`/products/${this.state.mainProductID}/related`);
+      let IDs = await axios.get(`/products/${this.props.productId}/related`);
       let data = IDs.data;
       data.forEach(id => {
         relatedIDs.push(id);
@@ -105,54 +91,56 @@ class RelatedList extends React.Component {
     }
   };
 
-  // getStyles = async (id, product) => {
-  //   try {
-  //     let styles = await axios.get(`/products/${id}/styles`);
-  //     if (styles.data.results[0].photos[0].thumbnail_url) {
-  //       product.img = styles.data.results[0].photos[0].thumbnail_url;
-  //     } else {
-  //       let productLabel = product.name.toLowerCase().split(' ');
-  //       product['img'] = `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}`;
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  //   return product;
-  // }
-
-  starClick = (id, e) => {
+  starClick = (id) => {
     this.setCompProduct(id);
     $('.compare').removeClass('hide');
     $('.compare').addClass('show');
     $('.related-container').parents('#root, body, html').css({ 'overflow': 'hidden' });
-    this.hideModal(e);
+    $('.related-list').css({ 'overflow-x': 'hidden' });
+    this.hideModal();
   }
 
-  hideModal = (e) => {
-    $('.related-container').parents('body').click((e) => {
-      if (e.target.parentNode.className === "action-btn") {
-        var selected = 'star'
-      } else if (e.target.className === "action-btn") {
-        selected = 'btn';
-      }
+  isStar = (e) => {
+    let isStar = false;
+    if (e.target.parentNode.className === "action-btn" ||
+      e.target.className === "action-btn") {
+      isStar = true;
+    }
 
-      if (selected != "star" && selected != "btn") {
+    return isStar;
+  }
+
+  hideModal = () => {
+    $('.related-container').parents('body').click((e) => {
+      let isStar = this.isStar(e);
+
+      if (!isStar) {
         $('.compare').removeClass('show');
         $('.compare').addClass('hide');
         $('.related-container').parents('#root, body, html').css({ 'overflow': 'auto' });
+        $('.related-list').css({ 'overflow-x': 'auto' });
       }
-    })
+    });
+  }
+
+  cardClick = (id) => {
+    $('.related-card').click((e) => {
+      let isStar = this.isStar(e);
+      if (!isStar) this.props.changePage(id);
+    });
   }
 
   render() {
+    console.log('RENDER', this.props.productId);
+    console.log(this.state.relatedIDs.length);
     return (
       <div>
         <div data-testid='listContainer' className='related-container top-container' >
           <h4 data-testid='listHeader' className='related-title' >RELATED PRODUCTS</h4>
           <ul data-testid='list' className='related-list'>
-            {this.state.relatedProducts.map(product => (
-              < Card key={product.id} product={product} type={this.state.type}
-                actionClick={this.starClick} mainProduct={this.state.mainProduct} />
+            {this.state.relatedProducts.map((product, i) => (
+              < Card key={product.id + i} product={product} type={this.state.type}
+                actionClick={this.starClick} mainProduct={this.state.mainProduct} cardClick={this.props.changePage} />
             ))
             }
           </ul >
