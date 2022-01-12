@@ -8,7 +8,7 @@ import getClicks from "../getClicks.jsx";
 
 var ReviewsList = ({clicked, reported, productName, charMap, sortAndGet, reviews, shownReviews, moreReviews, addToVoted, voted, product, characteristics, product_id, submitReview}) => {
 
-  var addBtn = reviews.length && shownReviews != reviews.length ? <button className="RatingBtn" onClick={moreReviews}>+  More Reviews</button> : null;
+  var addBtn = reviews.length && shownReviews != reviews.length ? <button className="RatingBtn" onClick={moreReviews} data-testid='more'>+  More Reviews</button> : null;
   var sortDropdown = reviews.length ? <SortReviews numReviews={reviews.length} sortAndGet={sortAndGet}/> : null;
   var scrollStyle = {
     "height": "48em",
