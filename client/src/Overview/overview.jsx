@@ -100,8 +100,8 @@ class Overview extends React.Component {
     } else {
       return (
       <div>
-        <div className='related relatedContainer'>
-        <ImageGallery className=' related relatedCard ' currentUrl={this.state.currentPhotoUrl}   />
+        <div className='related relatedContainer' style={{margin: 'auto', width:'90%', padding: '10px'}}>
+        <ImageGallery className=' related relatedCard '  currentUrl={this.state.currentPhotoUrl}   />
 
         <ProductInfo className=' related relatedCard' productList={this.state.productList} styleList ={this.state.styleList} reviewMeta= {this.state.reviewMeta} current={this.state.current} currentStyle ={this.state.currentStyle}/>
 

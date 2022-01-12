@@ -39,8 +39,14 @@ class ImageGallery extends React.Component {
       return (
 
       <div>
-        <h2 className = 'related relatedCard'>IMAGE GALLERY</h2>
-        <img src={imgSrc} style = {{height: '500px', width: '500px'}} ></img>
+        {/* <h2 className = 'related relatedCard'>IMAGE GALLERY</h2> */}
+        <img src={imgSrc} style = {{
+          height: '450px',
+          width: '450px',
+          display: 'block',
+          marginLeft: 'auto',
+          marginRight: 'auto'
+        }}></img>
       </div>
 
     )}
