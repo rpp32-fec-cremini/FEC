@@ -8,7 +8,7 @@ const Style = (props) => {
   return (
     <div onClick={props.onClick}>
       {/* <h5>{props.name}</h5> */}
-      <img className='styleThumbnail' src = {props.pic} style={{width: '65px', height:'65px'}} value = {JSON.stringify(props.value)} ></img>
+      <img className = {`${props.class}`} src = {props.pic} style={{width: `${props.width}`, height:`${props.height}`}} value = {JSON.stringify(props.value)} ></img>
     </div>
   )
 }

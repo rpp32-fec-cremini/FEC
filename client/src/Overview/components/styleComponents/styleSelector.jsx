@@ -31,7 +31,7 @@ class StyleSelector extends React.Component {
         <h3>{this.props.currentStyle.name}</h3>
       <div className = 'grid-4-style'>
         {this.props.styleList.map((style) =>
-      <Style onClick = {() => this.props.changeStyle(style)} name={style.name} pic = {style.photos[0].thumbnail_url} key ={style.style_id} />
+      <Style onClick = {() => this.props.changeStyle(style)} name={style.name} pic = {style.photos[0].thumbnail_url} key ={style.style_id} height = {'55px'} width={'55px'} class = {'styleThumbnail'} />
     )}
       </div>
       </div>

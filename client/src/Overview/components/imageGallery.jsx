@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import GalleryList from './galleryList.jsx'
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -32,21 +33,22 @@ class ImageGallery extends React.Component {
 
       )
     } else {
-      //console.log('Photo render block? ', JSON.stringify(this.props.currentUrl.photos[0]))
-      /* console.log('Photo render block?', this.props.currentUrl.photos?.length && this.props.currentUrl.photos[0].url) */
-
 
       return (
-
-      <div>
-        {/* <h2 className = 'related relatedCard'>IMAGE GALLERY</h2> */}
-        <img src={imgSrc} style = {{
-          height: '450px',
-          width: '450px',
-          display: 'block',
-          marginLeft: 'auto',
-          marginRight: 'auto'
-        }}></img>
+      <div style = {{padding: '0px 100px 0px 50px'}}>
+      <div style={{
+        backgroundImage: `url(${imgSrc})`,
+        height: '75vh',
+        width: '75vw',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center center',
+        backgroundSize: 'cover',
+        'border-style': 'double',
+        padding: '10px 100px 10px 10px'
+      }}>
+      <br></br>
+      </div>
+      <GalleryList changeImageGallery = {this.props.changeImageGallery} currentStyle = {this.props.currentStyle} styleList={this.props.styleList} />
       </div>
 
     )}

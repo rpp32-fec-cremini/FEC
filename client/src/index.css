@@ -44,6 +44,10 @@ html, body, #root {
   border-radius: 50%;
 }
 
+.galleryThumbnail {
+  border-style: double;
+}
+
 .grid-4 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

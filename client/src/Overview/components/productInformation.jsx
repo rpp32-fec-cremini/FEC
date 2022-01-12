@@ -43,6 +43,7 @@ class ProductInfo extends React.Component {
 
       )
     } else{
+      console.log('What are the props being passed down? ', this.props)
 
       //className = 'struckThru'
       return(
