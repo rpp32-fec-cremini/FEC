@@ -5,3 +5,5 @@ client/.DS_Store
 uploads
 coverage
 /coverage.data
+*.pem
+*run.sh
