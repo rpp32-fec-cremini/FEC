@@ -7,6 +7,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { IoIosStarHalf } from "react-icons/io";
 import { IoIosStarOutline } from "react-icons/io";
 import { IoIosStar } from "react-icons/io";
+import Scroll from './Scroll.jsx';
 import './related.css';
 import Card from './Card.jsx';
 import getClicks from "../getClicks.jsx";
@@ -76,34 +77,24 @@ class OutfitList extends React.Component {
     }
   }
 
-  //Pull items from local storage once current product is set
-  // getOutfits = async () => {
-  //   try {
-  //     let outfits = await axios.get(`/products/${this.state.user}/outfits`);
-  //     let data = outfits.data;
-  //     data.forEach(outfit => {
-  //       // this.getStyles(outfit.id, outfit);
-  //       this.setState({ outfits: [...this.state.outfits, outfit] })
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  getOffset = () => {
+    let $container = $('.related-container');
+    let $list = $('#outfit-list');
 
-  // getStyles = async (id, product) => {
-  //   try {
-  //     let styles = await axios.get(`/products/${id}/styles`);
-  //     if (styles.data.results[0].photos[0].thumbnail_url) {
-  //       product['img'] = styles.data.results[0].photos[0].thumbnail_url;
-  //     } else {
-  //       let productLabel = product.name.toLowerCase().split(' ');
-  //       product['img'] = `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}`;
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  //   return product;
-  // }
+    $list.scroll(() => {
+      console.log('list pos ', $list.position().left);
+      console.log('list offset ', $list.offset().left);
+    });
+
+    $container.scroll(() => {
+      console.log('container pos ', $list.position().left);
+      console.log('container offset ', $list.offset().left);
+    });
+    // console.log($list.position().left);
+    // console.log($list.offset().left);
+  }
+
+
 
 
 
@@ -127,10 +118,11 @@ class OutfitList extends React.Component {
 
 
   render() {
+    let list = '#outfit-list';
     return (
       <div data-testid='outfitContainer' className='related-container' >
         <h4 data-testid='outfitHeader' className='related-title' >YOUR OUTFIT</h4>
-        <ul data-testid='outfitList' className='related-list'>
+        <ul data-testid='outfitList' className='related-list' id='outfit-list'>
           <li data-testid='add-card' className='related-card related-add' onClick={(id) => this.addClick(this.props.productId)}>
             <div id='add-text'>
               <IoAdd id='add-icon' />
@@ -143,8 +135,11 @@ class OutfitList extends React.Component {
           ))
           }
         </ul >
-        <IoIosArrowBack className='related-scroll left-scroll hide' />
-        < IoIosArrowForward className='related-scroll right-scroll' />
+        <div className='arrows'>
+          <IoIosArrowBack className='related-scroll left-scroll' onClick={() => this.getOffset()} />
+          < IoIosArrowForward className='right-scroll related-scroll' onClick={() => this.getOffset()} />
+        </div >
+
       </div>
     )
   }

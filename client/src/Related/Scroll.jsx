@@ -7,15 +7,6 @@ import getClicks from "../getClicks.jsx";
 class Scroll extends React.Component {
   constructor(props) {
     super(props);
-    // super(props);
-    // this.state = {
-    //   scrollMargin: 20,
-    //   list: null,
-    //   viewSize: null,
-    //   listSize: null,
-    //   invisibleSize: null,
-    //   listPos: null
-    // }
 
     this.state = {
       cardSize: $('.related-card').outerWidth(true),
@@ -41,6 +32,7 @@ class Scroll extends React.Component {
     console.log(this.state.length);
     if (this.state.list !== this.props.list) {
       this.setState({ list: this.props.list });
+      this.scrollClick();
     }
     console.log(this.state.list);
   }
@@ -68,12 +60,20 @@ class Scroll extends React.Component {
   }
 
   scrollClick = () => {
+    console.log('scrollclick called');
     let scrollMargin = 30;
+    this.getListPos();
+    let listPos = this.state.listPos;
+    let hiddenList = this.state.listSize - this.state.visibleList;
+    let listOffset = hiddenList - scrollMargin;
+    console.log('POS ', listPos, 'MARGIN ', scrollMargin, 'OFFSET ', listOffset);
     $(this.state.list).on('scroll', () => {
-      this.getListPos();
-      let listPos = this.state.listPos;
-      let hiddenList = this.state.listSize - this.state.visibleList;
-      let listOffset = hiddenList - scrollMargin;
+      // this.getListPos();
+      // let listPos = this.state.listPos;
+      // let hiddenList = this.state.listSize - this.state.visibleList;
+      // let listOffset = hiddenList - scrollMargin;
+
+      console.log('POS ', listPos, 'MARGIN ', scrollMargin, 'OFFSET ', listOffset);
 
       if (listPos <= scrollMargin) {
         $('.left-scroll').addClass('hide');
@@ -93,16 +93,17 @@ class Scroll extends React.Component {
     console.log('left clicked');
     let scrollDuration = 300;
     let hiddenList = this.state.listSize - this.state.visibleList;
-    $('.left-scroll').on('click', function () {
-      $(this.state.list).animate({ scrollLeft: hiddenList }, scrollDuration);
+    $('.left-scroll').on('click', () => {
+      $(this.state.list).animate({ scrollLeft: '0' }, scrollDuration);
     });
   }
 
   scrollRight = () => {
     console.log('right clicked');
     let scrollDuration = 300;
-    $('.right-scroll').on('click', function () {
-      $(this.state.list).animate({ scrollLeft: '0' }, scrollDuration);
+    let hiddenList = this.state.listSize - this.state.visibleList;
+    $('.right-scroll').on('click', () => {
+      $(this.state.list).animate({ scrollLeft: hiddenList }, scrollDuration);
     });
   }
 

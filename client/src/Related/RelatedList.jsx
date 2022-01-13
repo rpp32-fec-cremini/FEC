@@ -10,6 +10,7 @@ import './related.css';
 import Card from './Card.jsx';
 import Compare from './Compare.jsx';
 import Scroll from './Scroll.jsx';
+import Arrows from './Arrows.jsx';
 import getClicks from "../getClicks.jsx";
 
 class RelatedList extends React.Component {
@@ -130,6 +131,15 @@ class RelatedList extends React.Component {
     });
   }
 
+
+  getOffset = () => {
+    let $container = $('.related-container');
+    let $list = $('#related-list');
+    console.log($container.attr('class'));
+    console.log($list.position().left);
+  }
+
+
   render() {
     const list = '#related-list';
 
@@ -144,7 +154,7 @@ class RelatedList extends React.Component {
             ))
             }
           </ul >
-          <Scroll list={list} length={this.state.relatedProducts.length} />
+          <Arrows list={list} length={this.state.relatedProducts.length} getOffset={this.getOffset} />
           <div className='compare hide'>
             <Compare className='show' mainProduct={this.state.mainProduct} compProduct={this.state.compProduct} />
           </div>
