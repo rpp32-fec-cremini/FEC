@@ -23,7 +23,7 @@ var App = (props) => {
 
   return (
     <div id="app">
-      <Overview className='relatedCard' />
+      <Overview className='relatedCard' productId={productId} />
       <RelatedList productId={productId} changePage={changePage} />
       <OutfitList productId={productId} />
       <QandA productId={productId} />
