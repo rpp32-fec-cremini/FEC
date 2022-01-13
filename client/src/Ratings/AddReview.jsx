@@ -20,10 +20,10 @@ var AddReviews = ({clicked, productName, charMap, product, characteristics, prod
     <button className="RatingBtn" onClick={(e) => {
       clicked(e)
       setDisplay("block")
-    }}>Add A Review
+    }} data-testid="addReview">Add A Review
       <div className="modal" style={{display}} id="newModal">
-        <div className="writing-modal">
-          <span className="close" onClick={(e) => {
+        <div className="writing-modal" data-testid="writing-modal">
+          <span className="close" style={{alignSelf: "flex-end"}} onClick={(e) => {
             refreshModal(e)
           }}>&times;</span>
           <div>

@@ -19,7 +19,7 @@ var App = (props) => {
       <RelatedList />
       <OutfitList />
       <QandA productId={productId}/>
-      <RatingContainer productId={59553} />
+      <RatingContainer productId={productId} />
     </div>
     )
 }
