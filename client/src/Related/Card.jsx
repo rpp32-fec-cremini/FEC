@@ -73,7 +73,8 @@ class Card extends React.Component {
   render() {
     let Action = this.state.actionName;
     return (
-      <li data-testid='card' className='related-card'>
+      <li data-testid='card' className='related-card' onClick={(e) => this.props.cardClick(this.props.product.id, e)}
+      >
         <img src={this.state.currentImage} className='related-img' />
         <button className='action-btn' onClick={(e) => this.actionClick(e)}>
           <Action />
@@ -84,7 +85,7 @@ class Card extends React.Component {
           <Price salePrice={this.state.salePrice} regPrice={this.state.regPrice} sale={this.state.sale} />
           <Rating id={this.props.product.id} />
         </div>
-      </li>
+      </li >
     )
   }
 }
