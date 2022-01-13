@@ -18,7 +18,7 @@ const SearchQuestion = (props) => {
     <div>
       <form className = "searchBox" onSubmit={onSubmit}>
         <label >
-          <input type="text" placeholder = "Have a question? Search for answers..." onChange = {(e) => handleSearch(e, props) } style={{width: "80%", height:"30px",}}/>
+          <input type="text" data-testid={'searchQuestion'} placeholder = "Have a question? Search for answers..." onChange = {(e) => handleSearch(e, props) } style={{width: "80%", height:"30px",}}/>
           <button className = "searchSubmitBtn" ><i className="fa fa-search"></i></button>
         </label>
       </form>

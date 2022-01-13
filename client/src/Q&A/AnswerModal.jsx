@@ -10,7 +10,7 @@ const AnswerModal = ({answer, answerHelpfulList, answerHelpful, answerReport}) =
 
   const showbutton = () => {
     if (Object.keys(answer).length > 2) {
-      return <button className = 'answer-btn' onClick={() => getMoreAnswer(answer)}><span>See more answers</span></button>
+      return <button className = 'answer-btn' data-testid = 'answer-btn' onClick={() => getMoreAnswer(answer)}><span>See more answers</span></button>
     }
   }
 
@@ -58,21 +58,13 @@ const AnswerModal = ({answer, answerHelpfulList, answerHelpful, answerReport}) =
     }
 
     const imgPopups = (imgURL) => {
-      // return (
-      //   <div className = 'imgPopUp'>
-      //     <div className = "imgpopup-inner">
-      //   </div>
-      // )
-
       return (
         <div className = 'imgPopUp'>
-            {/* <div className = "imgpopup-inner"> */}
             <div className = 'imgPopUp-inner' >
               <img className = 'imgEnlarge' src = {imgURL}>
               </img>
                 <button className = "img-close-btn" onClick={() => setimgPopup(false)}>X</button>
             </div>
-
         </div>
       )
     }
@@ -82,7 +74,9 @@ const AnswerModal = ({answer, answerHelpfulList, answerHelpful, answerReport}) =
         <br />
         {answer[1]['photos'].length !== 0 ?
          answer[1]['photos'].map((pic, i) => <img className = 'img' src = {pic} key = {i} onClick = {() => {setimgPopup(true); setimgURL(pic)}}></img>) : ''}
-        <div className = "answer-title-button">by {answer[1]['answerer_name']},{dateConvenver(answer[1]['date'])}&nbsp;&nbsp;|&nbsp;&nbsp;Helpful? YES (<a className = 'answer-helpful-btn' style={{"textDecoration":"underline"}} onClick = {(e) => helpful(e, answer[1]['id'])}>{answer[1]['helpfulness']}</a>)&nbsp;&nbsp;|&nbsp;&nbsp;<a className = 'answer-report-btn' style={{"textDecoration":"underline"}} onClick = {(e) => report(e, answer[1]['id'])}>Report</a></div>
+        <div className = "answer-title-button">by {answer[1]['answerer_name']}, {dateConvenver(answer[1]['date'])}&nbsp;&nbsp;|&nbsp;&nbsp;Helpful? YES
+        (<a className = 'answer-helpful-btn' style={{"textDecoration":"underline"}} onClick = {(e) => helpful(e, answer[1]['id'])}>{answer[1]['helpfulness']}</a>)&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a className = 'answer-report-btn' style={{"textDecoration":"underline"}}  data-testid={'answerReport '} onClick = {(e) => report(e, answer[1]['id'])}>Report</a></div>
         {imgPopup === true ? imgPopups(imgURL): ''}
       </div>
     )
@@ -101,7 +95,7 @@ const AnswerModal = ({answer, answerHelpfulList, answerHelpful, answerReport}) =
 
   return (
     <div>
-        <div>
+        <div className = 'answerBody'>
           {loading === false && size < 2 ? show(answer, true) : show(answer)}
         </div>
         {loading === false ? showbutton() : collaspseButton()}

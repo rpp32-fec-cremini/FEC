@@ -3,11 +3,10 @@ import axios from 'axios';
 import $ from 'jquery';
 
 import AnswerModal from './AnswerModal.jsx';
-import AddQuestions from './AddQuestions.jsx';
 import IndividualQuestion from './IndividualQuestion.jsx';
 import SearchQuestions from './SearchQuestions.jsx';
 import "./QaA.css";
-// import cloudinaryAPI from '../../../config.js';
+import cloudinaryAPI from '../../../config.js';
 
 class QA extends React.Component {
   constructor(props) {
@@ -80,7 +79,7 @@ class QA extends React.Component {
 
   imageToURL(imgfile) {
     var cloudinary_url = 'https://api.cloudinary.com/v1_1/dy91vvft0/upload';
-    var cloudinary_upload_preset = 'p9buobh3';
+    var cloudinary_upload_preset = cloudinaryAPI;
     var allImages = [];
     var promises = [];
     // console.log('imgfile', imgfile[0]);
@@ -132,7 +131,7 @@ class QA extends React.Component {
   }
 
   questionReport(questionId) {
-    // console.log('question report', questionId);
+    console.log('question report', questionId);
     axios({
       method: 'PUT',
       url: `/qa/questions/${questionId}/report`,
