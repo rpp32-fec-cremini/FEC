@@ -12,7 +12,14 @@
   cursor: pointer;
 }
 
+.container-left {
+  max-width: 30em;
+  display: flex;
+  flex-direction: column;
+}
+
 .container-right {
+  min-width: 50em;
   display: flex;
   flex-direction: column;
   margin-left: 3em;
@@ -190,8 +197,10 @@
   padding: 20px;
   border: 1px solid #888;
   width: 60%;
-  height: 84%;
-  overflow: auto;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
 }
 
 .warning {

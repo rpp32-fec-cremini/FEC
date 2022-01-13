@@ -77,7 +77,7 @@ var ReviewTile = ({clicked, flagColor, id, starRating, dateWritten, summary, bod
         &nbsp; &nbsp; | &nbsp; &nbsp;
         <a style={{"textDecoration":"underline"}} onClick={() => {
           addToVoted(id, 'report')
-        }}>Report</a><i style={{"marginLeft": "1em", "color": flagColor}} className="fas fa-flag"></i>
+        }}>Report</a><i style={{"marginLeft": "1em", "color": flagColor, "cursor": "pointer"}} className="fas fa-flag"></i>
       </div>
     </div>
   )

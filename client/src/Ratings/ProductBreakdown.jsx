@@ -5,7 +5,7 @@ var ProductBar = ({desc, meta, charMap}) => {
   var perc = (meta.value/5) * 100
   var descriptions = charMap[desc]
   return (
-    <div>
+    <div data-testid={desc}>
       <div>{desc}</div>
       <div className="productBars">
         <div className="charBar"></div>

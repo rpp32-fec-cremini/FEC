@@ -23,11 +23,11 @@ var App = (props) => {
 
   return (
     <div id="app">
-      <Overview className='relatedCard' productId={productId} />
-      <RelatedList />
-      <OutfitList />
-      <QandA productId={productId}/>
-      <RatingContainer productId={59553} />
+      <Overview className='relatedCard' />
+      <RelatedList productId={productId} changePage={changePage} />
+      <OutfitList productId={productId} />
+      <QandA productId={productId} />
+      <RatingContainer productId={productId} />
     </div>
   )
 }

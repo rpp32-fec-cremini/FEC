@@ -140,7 +140,7 @@ var NewReview = ({clicked, productName, chars, product, product_id, submitReview
 
     <div id='submission'>
       <div id='btnBorder'>
-        <div id="submitBtn" className="RatingBtn" onClick={async (e) => {
+        <div id="submitBtn" className="RatingBtn" data-testid="submitReview" onClick={async (e) => {
           var recCheck = $('input[name=recommended]:checked')[0];
           var recommend = recCheck ? JSON.parse(recCheck.id) : undefined;
           var summary = $("#summary").val();
@@ -152,7 +152,7 @@ var NewReview = ({clicked, productName, chars, product, product_id, submitReview
           body.length < 50 || !name.length || !email.length) {
             if (!submitted) {
               var errorMessage =
-                $(`<div id="error">
+                $(`<div id="error" data-testid="error">
                   <h5>You must enter the following:</h5>
                   <div>This error will occur if:</div>
                   <ul>
