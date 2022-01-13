@@ -27,7 +27,7 @@ const StyleSelector = (props) => {
             key ={style.style_id}
             height = {'30px'}
             width={'30px'}
-            class = {'galleryThumbnail'}
+            class = {'styleThumbnail'}
           />
     )}
       </div>

@@ -17,7 +17,7 @@ const ImageGallery =(props) => {
     } else {
 
       return (
-      <div style = {{padding: '0px 100px 0px 50px'}}>
+      <div style = {{padding: '0px 100px 0px 50px', backgroundColor: '#efeff5' }}>
       <div style={{ backgroundImage: `url(${imgSrc})`}} className = 'imageGallery' >
       <GalleryList changeImageGallery = {props.changeImageGallery} currentStyle = {props.currentStyle} styleList={props.styleList} />
       <br></br>

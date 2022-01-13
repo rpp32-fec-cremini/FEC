@@ -30,7 +30,7 @@ const ProductInfo = (props) => {
       //className = 'struckThru'
       return(
 
-        <div>
+        <div style={{padding:'10px 10px 10px 10px'}}>
             <h2>{product}<br></br>
             <b style ={{fontStyle: 'italic', 'fontSize': '14px'}}>{category}</b>
             <br></br>
