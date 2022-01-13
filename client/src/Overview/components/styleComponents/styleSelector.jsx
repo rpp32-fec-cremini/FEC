@@ -4,7 +4,7 @@ import Style from './style.jsx';
 import $ from 'jquery';
 
 
-const StyleSelector =(props) => {
+const StyleSelector = (props) => {
 
     if(!props) {
       return (
@@ -16,7 +16,7 @@ const StyleSelector =(props) => {
       //console.log('Where props? ', this.props)
     return (
       <div>
-         <h2 data-testid = 'style'>Available Styles</h2>
+         <h4 data-testid = 'style' style = {{'font': 'bold'}}>Available Styles</h4>
         <h3>{props.currentStyle.name}</h3>
       <div className = 'grid-4-style'>
 

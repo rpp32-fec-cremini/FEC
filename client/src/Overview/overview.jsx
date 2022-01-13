@@ -93,7 +93,7 @@ class Overview extends React.Component {
       return (
 
         <div>
-          <div className = 'related relatedCard'>
+          <div /* className = 'related relatedCard' */>
             Aint no data here. Don't see shit, capn
           </div>
         </div>
@@ -102,12 +102,22 @@ class Overview extends React.Component {
     } else {
       return (
       <div>
-        <div className='related relatedContainer' style={{margin: 'auto', width:'90%', padding: '10px'}}>
-        <ImageGallery className=' related relatedCard '  currentUrl={this.state.currentPhotoUrl} changeImageGallery = {this.changeImageGallery} currentStyle = {this.state.currentStyle} styleList={this.state.styleList}/>
+        <div /* className='related relatedContainer' */ style={{margin: 'auto', width:'90%', padding: '10px', display: 'flex'}}>
+        <ImageGallery className=' related relatedCard '
+          currentUrl={this.state.currentPhotoUrl}
+          changeImageGallery = {this.changeImageGallery}
+          currentStyle = {this.state.currentStyle}
+          styleList={this.state.styleList}
+        />
 
-        <ProductInfo className=' related relatedCard' productList={this.state.productList} styleList ={this.state.styleList} reviewMeta= {this.state.reviewMeta} current={this.state.current} currentStyle ={this.state.currentStyle}/>
-
-        <StyleSelector className=' grid-4-style' styleList={this.state.styleList} currentStyle = {this.state.currentStyle} changeStyle = {this.changeStyle} />
+        <ProductInfo className=' related relatedCard'
+         productList={this.state.productList}
+         styleList ={this.state.styleList}
+         reviewMeta= {this.state.reviewMeta}
+         current={this.state.current}
+         currentStyle ={this.state.currentStyle}
+         changeStyle = {this.changeStyle}
+        />
 
         {/* <AddToCart /> */}
         <br></br>

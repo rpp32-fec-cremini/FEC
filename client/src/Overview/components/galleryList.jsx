@@ -16,9 +16,11 @@ const GalleryList = (props) => {
       <div style={{height: '100px', width: '100px', position: 'relative'}}>
         <h2 data-testid = 'style'></h2>
       <div style={{
+
         display: 'grid',
-        'grid-template-columns': 'repeat(7, 1fr)',
+        'grid-template-columns': 'repeat(1, 1fr)',
         bottom: '0'
+
       }}>
         {props.styleList.map((style) =>
       <Style onClick = {() => props.changeImageGallery(style)}

@@ -12,7 +12,7 @@ const ProductInfo = (props) => {
     var desc = props.current.description;
     var category = props.current.category;
     var price =  !props.currentStyle.sale_price ? <div>{props.currentStyle.original_price}</div> : <div><b style = {{color: 'red'}}>{props.currentStyle.sale_price}</b> <b style = {{'textDecorationLine': 'line-through'}}>{props.currentStyle.original_price}</b></div>;
-    var id = this.props.current.id;
+    var id = props.current.id;
 
     if (!props) {
       return (
@@ -31,9 +31,17 @@ const ProductInfo = (props) => {
       return(
 
         <div>
-            <h3>{category} > {product} <ProductRating reviewMeta={props.reviewMeta} /><a href = '#container' style ={{'fontSize': '12px'}}>Read all reviews</a></h3>
+            <h2>{product}<br></br>
+            <b style ={{fontStyle: 'italic', 'fontSize': '14px'}}>{category}</b>
+            <br></br>
+            <ProductRating reviewMeta={props.reviewMeta} /><a href = '#container' style ={{'fontSize': '14px'}}>Read all reviews</a></h2>
             <b>{price}</b>
-            <h4>{desc}</h4>
+
+            <h6>{desc}</h6>
+            {/* <br></br> */}
+            <StyleSelector className=' grid-4-style' styleList={props.styleList} currentStyle = {props.currentStyle} changeStyle = {props.changeStyle} />
+
+
         </div>
 
       )}

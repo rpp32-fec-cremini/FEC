@@ -64,9 +64,8 @@ class ProductRating extends React.Component {
   render() {
 
     return (
-      <div>
-        <h5>{this.state.stars} </h5>
-      </div>
+      <b style={{fontSize: '14px'}}>{this.state.stars} </b>
+
 
     )
   }

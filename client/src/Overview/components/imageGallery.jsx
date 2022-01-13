@@ -19,9 +19,10 @@ const ImageGallery =(props) => {
       return (
       <div style = {{padding: '0px 100px 0px 50px'}}>
       <div style={{ backgroundImage: `url(${imgSrc})`}} className = 'imageGallery' >
+      <GalleryList changeImageGallery = {props.changeImageGallery} currentStyle = {props.currentStyle} styleList={props.styleList} />
       <br></br>
       </div>
-      <GalleryList changeImageGallery = {props.changeImageGallery} currentStyle = {props.currentStyle} styleList={props.styleList} />
+      {/* <GalleryList changeImageGallery = {props.changeImageGallery} currentStyle = {props.currentStyle} styleList={props.styleList} /> */}
       </div>
 
     )}
