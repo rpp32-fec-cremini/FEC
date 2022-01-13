@@ -3,28 +3,10 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import GalleryList from './galleryList.jsx'
 
-class ImageGallery extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentImage: '',
-      imageList: []
-    }
+const ImageGallery =(props) => {
 
-  }
-
-  componentDidMount() {
-    console.log('ImageGallery ', this.props)
-    console.log('Photos? ', this.props.currentUrl)
-  }
-
-
-
-
-  render() {
-
-    var imgSrc = this.props.currentUrl.photos?.length && this.props.currentUrl.photos[0].url
-    if (!this.props) {
+    var imgSrc = props.currentUrl.photos?.length && props.currentUrl.photos[0].url
+    if (!props) {
       return (
 
         <div>
@@ -36,23 +18,13 @@ class ImageGallery extends React.Component {
 
       return (
       <div style = {{padding: '0px 100px 0px 50px'}}>
-      <div style={{
-        backgroundImage: `url(${imgSrc})`,
-        height: '75vh',
-        width: '75vw',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center',
-        backgroundSize: 'cover',
-        'border-style': 'double',
-        padding: '10px 100px 10px 10px'
-      }}>
+      <div style={{ backgroundImage: `url(${imgSrc})`}} className = 'imageGallery' >
       <br></br>
       </div>
-      <GalleryList changeImageGallery = {this.props.changeImageGallery} currentStyle = {this.props.currentStyle} styleList={this.props.styleList} />
+      <GalleryList changeImageGallery = {props.changeImageGallery} currentStyle = {props.currentStyle} styleList={props.styleList} />
       </div>
 
     )}
-  }
 }
 
 export default ImageGallery;

@@ -21,7 +21,13 @@ const GalleryList = (props) => {
         bottom: '0'
       }}>
         {props.styleList.map((style) =>
-      <Style onClick = {() => props.changeImageGallery(style)} name={style.name} pic = {style.photos[0].url} key ={style.style_id} height ={'40px'} width={'40px'} class = {'galleryThumbnail'} />
+      <Style onClick = {() => props.changeImageGallery(style)}
+        name={style.name}
+        pic = {style.photos[0].url}
+        key ={style.style_id}
+        height ={'40px'}
+        width={'40px'}
+        class = {'galleryThumbnail'} />
   )}
     </div>
     </div>

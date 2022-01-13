@@ -4,20 +4,9 @@ import Style from './style.jsx';
 import $ from 'jquery';
 
 
-class StyleSelector extends React.Component {
-  constructor(props) {
-    super(props);
+const StyleSelector =(props) => {
 
-    this.state = {
-      styleList: [],
-      currentProduct: '',
-      currentStyle: ''
-    }
-  }
-
-
-  render () {
-    if(!this.props) {
+    if(!props) {
       return (
         <div>
           <h1>NO DATA HERE NANANANANAN BATMAN</h1>
@@ -28,17 +17,23 @@ class StyleSelector extends React.Component {
     return (
       <div>
          <h2 data-testid = 'style'>Available Styles</h2>
-        <h3>{this.props.currentStyle.name}</h3>
+        <h3>{props.currentStyle.name}</h3>
       <div className = 'grid-4-style'>
-        {this.props.styleList.map((style) =>
-      <Style onClick = {() => this.props.changeStyle(style)} name={style.name} pic = {style.photos[0].thumbnail_url} key ={style.style_id} height = {'55px'} width={'55px'} class = {'styleThumbnail'} />
+
+        {props.styleList.map((style) =>
+          <Style onClick = {() => props.changeStyle(style)}
+            name={style.name}
+            pic = {style.photos[0].thumbnail_url}
+            key ={style.style_id}
+            height = {'30px'}
+            width={'30px'}
+            class = {'galleryThumbnail'}
+          />
     )}
       </div>
       </div>
     )
   }
-}
-
 }
 
 export default StyleSelector;

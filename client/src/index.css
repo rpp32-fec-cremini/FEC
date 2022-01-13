@@ -35,13 +35,23 @@ html, body, #root {
 .grid-4-style {
   display: grid;
   grid-template-columns: repeat(4, 10px);
-  grid-template-rows: 15px 1fr;
-  grid-gap: 4rem;
+  grid-template-rows: 5px 5px;
+  grid-gap: 35px;
 
 }
 
 .styleThumbnail {
   border-radius: 50%;
+}
+
+.imageGallery {
+  height: 75vh;
+  width: 75vw;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  border-style: double;
+  padding: 10px 100px 10px 10px;
 }
 
 .galleryThumbnail {

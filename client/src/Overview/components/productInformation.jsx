@@ -6,33 +6,15 @@ import ImageGallery from './imageGallery.jsx'
 import ProductRating from './productRating.jsx'
 
 
-class ProductInfo extends React.Component {
-  constructor(props) {
-    super(props);
+const ProductInfo = (props) => {
 
-    this.state = {
-      productList: [],
-      current: {},
-      currentStyle: {},
-      productMeta: {}
-    }
-    /* this.getProducts = this.getProducts.bind(this);
-    this.getCurrentStyle = this.getC urrentStyle.bind(this); */
-
-  }
-
-
-
-  render() {
-    var product = this.props.current.name;
-    var desc = this.props.current.description;
-    var category = this.props.current.category;
-    var price =  !this.props.currentStyle.sale_price ? <div>{this.props.currentStyle.original_price}</div> : <div><b style = {{color: 'red'}}>{this.props.currentStyle.sale_price}</b> <b style = {{'textDecorationLine': 'line-through'}}>{this.props.currentStyle.original_price}</b></div>;
+    var product = props.current.name;
+    var desc = props.current.description;
+    var category = props.current.category;
+    var price =  !props.currentStyle.sale_price ? <div>{props.currentStyle.original_price}</div> : <div><b style = {{color: 'red'}}>{props.currentStyle.sale_price}</b> <b style = {{'textDecorationLine': 'line-through'}}>{props.currentStyle.original_price}</b></div>;
     var id = this.props.current.id;
-    /* console.log('Props??', this.props)
-    console.log('BEHOLD, THE ID ', id); */
 
-    if (!this.state.current) {
+    if (!props) {
       return (
 
         <div>
@@ -43,19 +25,18 @@ class ProductInfo extends React.Component {
 
       )
     } else{
-      console.log('What are the props being passed down? ', this.props)
+      console.log('What are the props being passed down? ', props)
 
       //className = 'struckThru'
       return(
 
         <div>
-            <h3>{category} ::: {product} <ProductRating reviewMeta={this.props.reviewMeta} /><a href = '#container' style ={{'fontSize': '12px'}}>Read all reviews</a></h3>
+            <h3>{category} > {product} <ProductRating reviewMeta={props.reviewMeta} /><a href = '#container' style ={{'fontSize': '12px'}}>Read all reviews</a></h3>
             <b>{price}</b>
             <h4>{desc}</h4>
         </div>
 
       )}
-    }
-}
+  }
 
 export default ProductInfo;
