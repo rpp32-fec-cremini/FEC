@@ -16,7 +16,7 @@ const StyleSelector = (props) => {
       //console.log('Where props? ', this.props)
     return (
       <div>
-         <h4 data-testid = 'style' style = {{'font': 'bold'}}>Available Styles</h4>
+         <h4 data-testid = 'style' style = {{'fontStyle': 'bold italic'}}> Available Styles </h4>
         <h3>{props.currentStyle.name}</h3>
       <div className = 'grid-4-style'>
 
