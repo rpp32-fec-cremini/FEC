@@ -53,23 +53,15 @@ html, body, #root {
   white-space: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .related-list::-webkit-scrollbar {
   display: none;
 }
 
-.modal-title {
-  font-weight: lighter;
-  font-size: xx-small;
-}
-
-.modal-text {
-  font-weight: lighter;
-  font-size: .7em;
-}
-
 .related-card {
+  display: inline-block;
   position: relative;
   display: inline-block;
   width: 193px;
@@ -77,6 +69,7 @@ html, body, #root {
   padding: 0;
   margin: 0 9px;
   border: 1px solid black;
+  box-sizing: border-box;
 }
 
 ul li:first-child {
@@ -183,6 +176,7 @@ ul li:first-child {
 .related-scroll {
   position: absolute;
 	top: 50%;
+  width: 3em;
   color: black;
   right: 20px;
 }
@@ -209,6 +203,16 @@ ul li:first-child {
   border: .5px solid rgb(86, 86, 86);
   background-color: white;
   overflow: auto;
+}
+
+.modal-title {
+  font-weight: lighter;
+  font-size: xx-small;
+}
+
+.modal-text {
+  font-weight: lighter;
+  font-size: .7em;
 }
 
 th {
