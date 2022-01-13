@@ -81,3 +81,37 @@ test("Modal window pops up when user clicks on an image, and closes when the clo
   expect(queryAllByTestId('modal')[0].style._values.display).toBe("none")
 })
 
+test("Answer modal renders when Add a review is clicked and renders error message if no form fields are filled", async () => {
+  var { getByTestId, queryByTestId } = render(<RatingContainer/>)
+  await waitFor(() => getByTestId(5));
+  var addBtn = getByTestId('addReview');
+  expect(getByTestId('writing-modal').parentElement.style._values.display).toBe("none");
+  expect(queryByTestId('error')).not.toBeInTheDocument();
+  fireEvent.click(getByTestId('submitReview'))
+  expect(queryByTestId('error')).toBeInTheDocument();
+  fireEvent.click(addBtn);
+  expect(getByTestId('writing-modal').parentElement.style._values.display).toBe("block");
+
+})
+
+test("Rating Breakdown renders correct amount of stars", async () => {
+  var { getByTestId } = render(<RatingContainer/>)
+  await waitFor(() => getByTestId(5));
+  var stars = getByTestId('starRatings');
+  expect(stars.style._values.width).toBe('60%');
+})
+
+test("Product Breakdown renders the correct product characteristic bars", async () => {
+  var { getByTestId, queryByTestId } = render(<RatingContainer/>)
+  await waitFor(() => getByTestId(5));
+  expect(getByTestId('Size')).toBeInTheDocument();
+  expect(getByTestId('Width')).toBeInTheDocument();
+  expect(getByTestId('Comfort')).toBeInTheDocument();
+  expect(queryByTestId('Quality')).not.toBeInTheDocument();
+})
+
+// test("Sort Dropdown defaults to Relevance", async () => {
+
+// })
+
+

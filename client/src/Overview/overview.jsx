@@ -15,7 +15,6 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productList: [],
       current: {},
       styleList: [],
       currentStyle: {},
@@ -26,37 +25,40 @@ class Overview extends React.Component {
 
     }
     this.changeStyle = this.changeStyle.bind(this);
+    this.changeImageGallery = this.changeImageGallery.bind(this);
   }
 
   changeStyle(style) {
     if (style !== this.state.currentStyle) {
-    this.setState({currentStyle: style})
-    console.log('Here\'s what the state looks like now ', this.state.currentStyle)
+      this.setState({currentStyle: style})
     }
-    console.log('BEHOLD, THE CLICKED STYLE! ', style)
+  }
+
+  changeImageGallery(style) {
+    if (style.photos !== this.state.currentPhotoUrl.photos) {
+        this.setState({currentPhotoUrl: {photos: style.photos}})
+      }
+      console.log('BEHOLD, THE CLICKED STYLE! ', style.photos)
   }
 
   componentDidMount() {
-    return axios.get('overview/products')
+    return axios.get(`/products/${this.props.productId}`)
     .then(response => {
       let data = response.data;
 
       //Styles API Call
-      return axios.get(`overview/products/${data[0].id}/styles`)
+      return axios.get(`overview/products/${this.props.productId}/styles`)
         .then((styles) => {
           let stylish = styles.data
-          console.log('WE GOT STYLE ', stylish)
+          console.log('Checking data structure for style ', stylish)
 
           //Metadata API Call
-            return axios.get(`overview/reviews/meta/`, {params: {product_id: data[0].id}})
+            return axios.get(`overview/reviews/meta/`, {params: {product_id: this.props.productId}})
               .then(meta => {
               let metaData = meta.data
-              //this.setState({reviewMeta: data.ratings});
-              //console.log('OSHIT ITS METAKNIGHT ', metaData)
 
               this.setState({
-                productList: data,
-                current: data[0],
+                current: data,
                 styleList: stylish.results,
                 currentStyle: stylish.results[0],
                 reviewMeta: metaData,
@@ -91,7 +93,7 @@ class Overview extends React.Component {
       return (
 
         <div>
-          <div className = 'related relatedCard'>
+          <div /* className = 'related relatedCard' */>
             Aint no data here. Don't see shit, capn
           </div>
         </div>
@@ -100,12 +102,22 @@ class Overview extends React.Component {
     } else {
       return (
       <div>
-        <div className='related relatedContainer'>
-        <ImageGallery className=' related relatedCard ' currentUrl={this.state.currentPhotoUrl}   />
+        <div /* className='related relatedContainer' */ style={{margin: 'auto', width:'90%', padding: '10px', display: 'flex'}}>
+        <ImageGallery className=' related relatedCard '
+          currentUrl={this.state.currentPhotoUrl}
+          changeImageGallery = {this.changeImageGallery}
+          currentStyle = {this.state.currentStyle}
+          styleList={this.state.styleList}
+        />
 
-        <ProductInfo className=' related relatedCard' productList={this.state.productList} styleList ={this.state.styleList} reviewMeta= {this.state.reviewMeta} current={this.state.current} currentStyle ={this.state.currentStyle}/>
-
-        <StyleSelector className=' grid-4-style' styleList={this.state.styleList} currentStyle = {this.state.currentStyle} changeStyle = {this.changeStyle} />
+        <ProductInfo className=' related relatedCard'
+         productList={this.state.productList}
+         styleList ={this.state.styleList}
+         reviewMeta= {this.state.reviewMeta}
+         current={this.state.current}
+         currentStyle ={this.state.currentStyle}
+         changeStyle = {this.changeStyle}
+        />
 
         {/* <AddToCart /> */}
         <br></br>
