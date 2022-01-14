@@ -9,7 +9,6 @@ import { IoIosStar } from "react-icons/io";
 import './related.css';
 import Card from './Card.jsx';
 import Compare from './Compare.jsx';
-import Scroll from './Scroll.jsx';
 import Arrows from './Arrows.jsx';
 import getClicks from "../getClicks.jsx";
 
