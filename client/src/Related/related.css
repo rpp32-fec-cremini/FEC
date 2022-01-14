@@ -26,7 +26,6 @@ html, body, #root {
 
 .top-container {
   margin-top: 5em;
-  width: 1045px;
 }
 
 .related-container {
@@ -34,7 +33,7 @@ html, body, #root {
   color: rgb(86, 86, 86);
   box-sizing: border-box;
   position: relative;
-  width: 1042px;
+  width: 1047px;
   height: 345px;
   margin-left: 10%;
   margin-bottom: 40px;
@@ -46,6 +45,7 @@ html, body, #root {
         -10px 0px 10px -5px rgba(0,0,0,0.5) inset; */
 }
 
+
 .related-list {
   position: relative;
   /* margin-bottom: 0px; */
@@ -54,7 +54,8 @@ html, body, #root {
   padding: 0;
   box-sizing: border-box;
   white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
+  /* -webkit-overflow-scrolling: touch; */
+  transition: 0.5s all ease-out;
 }
 
 .related-list::-webkit-scrollbar {
@@ -72,6 +73,7 @@ html, body, #root {
   margin: 0 9px;
   border: 1px solid black;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 ul li:first-child {
@@ -124,10 +126,6 @@ ul li:first-child {
   text-decoration: line-through;
 }
 
-/* .card-stars {
-
-} */
-
 .action-btn {
   position: absolute;
 	top: 5px;
@@ -135,6 +133,7 @@ ul li:first-child {
   color: black;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .card-star {
@@ -185,15 +184,11 @@ ul li:first-child {
 }
 
 #related-back-scroll, #outfit-back-scroll {
-	left: .2rem;
+	left: .5rem;
 }
 #related-fwd-scroll, #outfit-fwd-scroll {
-	right: .2rem;
+	right: .5rem;
 }
-
-/* .hidden {
-
-} */
 
 .compare {
   display: inline-block;
@@ -247,10 +242,4 @@ td {
 .show {
   z-index: 1;
   position: fixed;
-}
-
-.grid3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem;
 }

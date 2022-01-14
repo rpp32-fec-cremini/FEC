@@ -85,7 +85,6 @@ class RelatedList extends React.Component {
     try {
       let product = await axios.get(`/products/${id}`);
       let data = product.data;
-      // this.getStyles(id, data);
       this.setState({ relatedProducts: [...this.state.relatedProducts, data] });
     } catch (err) {
       console.log(err);
@@ -139,7 +138,6 @@ class RelatedList extends React.Component {
 
 
   render() {
-    const list = '#related-list';
     return (
       <div>
         <div data-testid='listContainer' className='related-container top-container' >

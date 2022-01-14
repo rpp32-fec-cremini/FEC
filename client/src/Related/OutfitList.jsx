@@ -77,46 +77,6 @@ class OutfitList extends React.Component {
     }
   }
 
-  getOffset = () => {
-    let $container = $('.related-container');
-    let $list = $('#outfit-list');
-
-    $list.scroll(() => {
-      console.log('list pos ', $list.position().left);
-      console.log('list offset ', $list.offset().left);
-    });
-
-    $container.scroll(() => {
-      console.log('container pos ', $list.position().left);
-      console.log('container offset ', $list.offset().left);
-    });
-    // console.log($list.position().left);
-    // console.log($list.offset().left);
-  }
-
-
-
-
-
-  // getListPos = () => {
-
-
-  // }
-
-  // showArrows = () => {
-
-  // }
-
-  // leftPaddleScroll = () => {
-
-  // }
-
-  // rightPaddleScroll = () => {
-
-  // }
-
-
-
   render() {
     let list = '#outfit-list';
     return (

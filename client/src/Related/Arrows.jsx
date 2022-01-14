@@ -15,6 +15,10 @@ const Arrows = (props) => {
     setArrows();
   }, [props.productId]);
 
+  useEffect(() => {
+    setList();
+  }, [$(`#outfit-list`)]);
+
   let $container = $('.related-container');
   let $list = $(`#${props.type}-list`);
   let $card = $('.related-card');
@@ -24,13 +28,12 @@ const Arrows = (props) => {
   let $fwdBtn = $(`#${fwdScrollId}`);
   let children = props.type === 'related' ? $list.children().length + 1 : $list.children().length;
   let scrollPos = 0;
-  let scrollAmount = $card.width() + 20;
   let viewWidth = $container.width();
-  let listWidth = ($card.width() + 17) * children;
+  let listWidth = (($card.width() + 20) * children) - 10;
+  let scrollAmount = listWidth / children;
   let extraWidth = listWidth - viewWidth;
 
   const setArrows = () => {
-    console.log('WIDTHS ', listWidth, viewWidth, extraWidth);
     scrollPos = 0;
     $list.css('left', '0');
     if (listWidth <= viewWidth) {
@@ -42,17 +45,18 @@ const Arrows = (props) => {
     }
   }
 
+  const setList = () => {
+    listWidth = (($card.width() + 20) * children) - 10;
+  }
+
   const backClick = () => {
-    console.log('pos amt ', scrollPos, scrollAmount);
     if (scrollPos === 0) {
       $backBtn.addClass('hide');
       $fwdBtn.removeClass('hide');
     }
 
-    console.log(scrollPos + scrollAmount);
     if ((scrollPos + scrollAmount) < extraWidth) {
       if (extraWidth < scrollAmount) {
-        console.log('BACK pos < EW & EW < card');
         scrollPos = 0;
         $backBtn.addClass('hide');
         $fwdBtn.removeClass('hide');
@@ -70,41 +74,37 @@ const Arrows = (props) => {
         }
       }
     } else {
-      console.log('BACK pos > EW');
       scrollPos = 0;
       $backBtn.addClass('hide');
       $fwdBtn.removeClass('hide');
     }
-    console.log(scrollPos);
     $list.css('left', `${scrollPos}px`);
   }
 
   const fwdClick = () => {
-    console.log('EXtra width start: ', extraWidth);
     if (-(scrollPos - scrollAmount) < extraWidth) {
       if (extraWidth < scrollAmount) {
-        console.log('pos < EW & EW < card');
         scrollPos -= extraWidth;
         $backBtn.removeClass('hide');
         $fwdBtn.addClass('hide');
       } else {
-        console.log('pos < EW & EW > card');
         $backBtn.removeClass('hide');
         scrollPos -= scrollAmount;
+        if (-(scrollPos - scrollAmount) >= extraWidth) {
+          scrollPos = -extraWidth;
+          $fwdBtn.addClass('hide');
+        }
       }
     } else {
-      console.log('pos > EW');
-      scrollPos = -extraWidth + 3;
+      scrollPos = -extraWidth;
       $backBtn.removeClass('hide');
       $fwdBtn.addClass('hide');
     }
-    console.log(scrollPos);
     $list.css('left', `${scrollPos}px`);
   }
 
   return (
     <div className='arrows'>
-      {console.log('POS ', scrollPos)}
       {setArrows()}
       <IoIosArrowBack className='related-scroll' id={backScrollId} onClick={() => backClick()} />
       < IoIosArrowForward className='related-scroll' id={fwdScrollId} onClick={() => fwdClick()} />
