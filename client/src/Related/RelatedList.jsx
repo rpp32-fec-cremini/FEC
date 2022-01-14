@@ -141,7 +141,6 @@ class RelatedList extends React.Component {
 
   render() {
     const list = '#related-list';
-
     return (
       <div>
         <div data-testid='listContainer' className='related-container top-container' >
@@ -153,7 +152,7 @@ class RelatedList extends React.Component {
             ))
             }
           </ul >
-          <Arrows list={list} length={this.state.relatedProducts.length} getOffset={this.getOffset} />
+          <Arrows productId={this.props.productId} type='related' />
           <div className='compare hide'>
             <Compare className='show' mainProduct={this.state.mainProduct} compProduct={this.state.compProduct} />
           </div>

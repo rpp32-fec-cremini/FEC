@@ -7,7 +7,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { IoIosStarHalf } from "react-icons/io";
 import { IoIosStarOutline } from "react-icons/io";
 import { IoIosStar } from "react-icons/io";
-import Scroll from './Scroll.jsx';
+import Arrows from './Arrows.jsx';
 import './related.css';
 import Card from './Card.jsx';
 import getClicks from "../getClicks.jsx";
@@ -135,10 +135,7 @@ class OutfitList extends React.Component {
           ))
           }
         </ul >
-        <div className='arrows'>
-          <IoIosArrowBack className='related-scroll left-scroll' onClick={() => this.getOffset()} />
-          < IoIosArrowForward className='right-scroll related-scroll' onClick={() => this.getOffset()} />
-        </div >
+        <Arrows productId={this.props.productId} type='outfit' />
 
       </div>
     )

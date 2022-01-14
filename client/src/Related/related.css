@@ -2,6 +2,7 @@ html, body, #root {
   height: 100%;
   width: 100%;
   overflow: auto;
+  box-sizing: border-box;
 }
 
 #root {
@@ -25,16 +26,17 @@ html, body, #root {
 
 .top-container {
   margin-top: 5em;
+  width: 1045px;
 }
 
 .related-container {
   font-family: 'adobe-clean', sans-serif;
   color: rgb(86, 86, 86);
+  box-sizing: border-box;
   position: relative;
-  max-width: 80%;
+  width: 1042px;
   height: 345px;
   margin-left: 10%;
-  /* margin-right: 10%; */
   margin-bottom: 40px;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -47,12 +49,11 @@ html, body, #root {
 .related-list {
   position: relative;
   /* margin-bottom: 0px; */
-  margin-left: 0;
-  padding-left: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -64,6 +65,7 @@ html, body, #root {
   display: inline-block;
   position: relative;
   display: inline-block;
+  box-sizing: border-box;
   width: 193px;
   height: 291px;
   padding: 0;
@@ -176,16 +178,17 @@ ul li:first-child {
 .related-scroll {
   position: absolute;
 	top: 50%;
-  width: 3em;
   color: black;
-  right: 20px;
+  background-color: rgba(240, 240, 240, 0.2);
+  cursor: pointer;
+  transition: 1s;
 }
 
-.left-scroll {
-	left: 0;
+#related-back-scroll, #outfit-back-scroll {
+	left: .2rem;
 }
-.right-scroll {
-	right: 0;
+#related-fwd-scroll, #outfit-fwd-scroll {
+	right: .2rem;
 }
 
 /* .hidden {
@@ -239,7 +242,6 @@ td {
 
 .hide {
 	display: none;
-  z-index: -1;
 }
 
 .show {
