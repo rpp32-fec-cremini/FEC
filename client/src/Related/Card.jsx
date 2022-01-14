@@ -70,10 +70,16 @@ class Card extends React.Component {
     this.props.actionClick(this.props.product.id, e);
   }
 
+  changePage = (id, e) => {
+    (e.target.parentNode.className === "action-btn" ||
+      e.target.className === "action-btn") ? null :
+      this.props.setproductId(id);
+  }
+
   render() {
     let Action = this.state.actionName;
     return (
-      <li data-testid='card' className='related-card' onClick={(e) => this.props.cardClick(this.props.product.id, e)}
+      <li data-testid='card' className='related-card' onClick={(e) => this.changePage(this.props.product.id, e)}
       >
         <img src={this.state.currentImage} className='related-img' />
         <button className='action-btn' onClick={(e) => this.actionClick(e)}>

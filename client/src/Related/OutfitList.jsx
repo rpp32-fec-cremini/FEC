@@ -91,7 +91,7 @@ class OutfitList extends React.Component {
           </li>
           {this.state.outfits.map(outfit => (
             < Card key={outfit.id} product={outfit} type={this.state.type}
-              actionClick={this.xClick} cardClick={() => { }} />
+              actionClick={this.xClick} setproductId={this.props.setproductId} />
           ))
           }
         </ul >
