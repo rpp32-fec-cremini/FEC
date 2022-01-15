@@ -26,11 +26,11 @@ const Arrows = (props) => {
   let fwdScrollId = `${props.type}-fwd-scroll`;
   let $backBtn = $(`#${backScrollId}`);
   let $fwdBtn = $(`#${fwdScrollId}`);
-  let children = props.type === 'related' ? $list.children().length + 1 : $list.children().length;
+  let children = props.listLength;
   let scrollPos = 0;
   let viewWidth = $container.width();
-  let listWidth = (($card.width() + 20) * children) - 10;
-  let scrollAmount = listWidth / children;
+  let listWidth = (($card.width() + 20) * children) - 9;
+  let scrollAmount = Math.ceil(listWidth / children);
   let extraWidth = listWidth - viewWidth;
 
   const setArrows = () => {
@@ -68,12 +68,14 @@ const Arrows = (props) => {
         scrollPos += scrollAmount;
         $backBtn.removeClass('hide');
         $fwdBtn.removeClass('hide');
-        if (scrollPos + scrollAmount >= scrollAmount) {
+        if (-scrollPos < scrollAmount) {
+          console.log('else if', scrollPos, extraWidth, scrollAmount);
           $backBtn.addClass('hide');
           scrollPos = 0;
         }
       }
     } else {
+      console.log('second else', scrollPos, extraWidth, scrollAmount);
       scrollPos = 0;
       $backBtn.addClass('hide');
       $fwdBtn.removeClass('hide');
@@ -89,13 +91,15 @@ const Arrows = (props) => {
         $fwdBtn.addClass('hide');
       } else {
         $backBtn.removeClass('hide');
-        scrollPos -= scrollAmount;
-        if (-(scrollPos - scrollAmount) >= extraWidth) {
+        scrollPos = scrollPos - scrollAmount;
+        if (-(scrollPos) > extraWidth) {
+          console.log('else if', scrollPos, extraWidth, scrollAmount);
           scrollPos = -extraWidth;
           $fwdBtn.addClass('hide');
         }
       }
     } else {
+      console.log('second else', scrollPos, extraWidth, scrollAmount);
       scrollPos = -extraWidth;
       $backBtn.removeClass('hide');
       $fwdBtn.addClass('hide');
@@ -103,6 +107,7 @@ const Arrows = (props) => {
     $list.css('left', `${scrollPos}px`);
   }
 
+  console.log(props.type, props.listLength, children);
   return (
     <div className='arrows'>
       {setArrows()}

@@ -95,7 +95,7 @@ class OutfitList extends React.Component {
           ))
           }
         </ul >
-        <Arrows productId={this.props.productId} type='outfit' />
+        <Arrows productId={this.props.productId} type='outfit' listLength={this.state.outfits.length + 1} />
 
       </div>
     )

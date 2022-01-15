@@ -122,12 +122,6 @@ class RelatedList extends React.Component {
     });
   }
 
-  // changePage = (id, e) => {
-  //   (e.target.parentNode.className === "action-btn" ||
-  //     e.target.className === "action-btn") ? null :
-  //     this.props.setproductId(id);
-  // }
-
   render() {
     return (
       <div>
@@ -136,11 +130,11 @@ class RelatedList extends React.Component {
           <ul data-testid='list' className='related-list' id='related-list'>
             {this.state.relatedProducts.map((product, i) => (
               < Card key={product.id + i} product={product} type={this.state.type}
-                actionClick={this.starClick} mainProduct={this.state.mainProduct} setproductId={this.props.setproductId} cardClick={this.changePage} />
+                actionClick={this.starClick} mainProduct={this.state.mainProduct} setproductId={this.props.setproductId} />
             ))
             }
           </ul >
-          <Arrows productId={this.props.productId} type='related' />
+          <Arrows productId={this.props.productId} type='related' listLength={this.state.relatedIDs.length} />
           <div className='compare hide'>
             <Compare className='show' mainProduct={this.state.mainProduct} compProduct={this.state.compProduct} />
           </div>
