@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import $ from 'jquery';
 import RatingContainer from '../src/Ratings/RatingContainer.jsx';
 import RelatedList from '../src/Related/RelatedList.jsx';
 import Overview from './Overview/overview.jsx';
@@ -13,15 +14,22 @@ var App = (props) => {
   const randomProductId = Math.floor(Math.random() * (max - min + 1)) + min;
   const [productId, setproductId] = useState(randomProductId);
 
+  const changePage = (id, e) => {
+    (e.target.parentNode.className === "action-btn" ||
+      e.target.className === "action-btn") ? null :
+      setproductId(id);
+  }
+
+
   return (
     <div id="app">
-      <Overview className='relatedCard' />
-      <RelatedList />
-      <OutfitList />
-      <QandA productId={productId}/>
-      <RatingContainer productId={59553} />
+      <Overview className='relatedCard' productId={productId} />
+      <RelatedList productId={productId} changePage={changePage} />
+      <OutfitList productId={productId} />
+      <QandA productId={productId} />
+      <RatingContainer productId={productId} />
     </div>
-    )
+  )
 }
 
 ReactDOM.render(<App className="App" />, document.getElementById('root'));

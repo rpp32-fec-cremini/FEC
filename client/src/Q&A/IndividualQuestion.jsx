@@ -4,7 +4,7 @@ import AskNewQuestion from './AskNewQuestion.jsx';
 import './IndividualQuestion.css';
 
 const IndividualQuestion = (props) => {
-  // console.log('questions all', props.question)
+  
   const [loading, setloading] = useState(false);
   const [loadingQuestion, setloadingQuestion] = useState(2);
   const [buttonPopup, setbuttonPopup] = useState(false);
@@ -19,7 +19,6 @@ const IndividualQuestion = (props) => {
   }
 
   const collaspseButton = (props) => {
-    console.log('how many', loadingQuestion)
     if (props.question.length <= 2) {
       return '';
     }
@@ -27,35 +26,29 @@ const IndividualQuestion = (props) => {
   }
 
   const collapsedQuestion = () => {
-    console.log('collapsedQuestion')
     setloading(false);
     setloadingQuestion(2);
   }
 
   const getMoreQuestion = (question) => {
-    console.log('getMoreQuestion')
     setloadingQuestion(loadingQuestion + 2);
     setloading(true);
   }
 
   const helpful = (e, props, questionId) => {
-    // e.preventDefault()
-    // console.log('sssssssss', props.questionHelpfulList)
+
     if (props.questionHelpfulList.indexOf(questionId) === -1) {
       var numberofHelpful = parseInt(e.target.innerText) + 1;
       e.target.innerText = numberofHelpful;
       props.questionHelpful(questionId);
     }
-    console.log('helpful btn clicked', e.target.innerText);
-    // return e.target.innerText
-      // console.log('this question', props.questionHelpfulList, questionId);
+
   }
 
   const questionReport = (e, props, questionId) => {
     e.preventDefault()
     props.questionReport(questionId);
     e.target.innerText = 'Reported';
-    // console.log('quesion id', questionId);
   }
 
   const show = (props, moreThanTwo) => {
@@ -64,24 +57,24 @@ const IndividualQuestion = (props) => {
       return (b['question_helpfulness']) - (a['question_helpfulness']);
     });
 
-    if (moreThanTwo === true) {
+    if (moreThanTwo === true && props.searchTerm === '') {
       var twoQuestion = question.slice(0, loadingQuestion);
-      // console.log('this is two question', question);
     } else {
-      // var loadTwoMoreQuestion = setloadingQuestion(loadingQuestion + 2);
-      // var twoQuestion = question.slice(0, loadTwoMoreQuestion);
       var twoQuestion = question;
     }
 
     return (
       twoQuestion.filter((question) => {
-        if (props.searchTerm === '') {
+        let searchTerm = props.searchTerm;
+        let questionBody = question.question_body;
+        if (searchTerm === '') {
           return question;
-        } else if (question.question_body.toLowerCase().includes(props.searchTerm.toLowerCase())) {
+        } else if (questionBody.toLowerCase().includes(searchTerm.toLowerCase())) {
           return question;
         }
       }).map((question, i) =>
           <div className = "Question-row" key = {question.question_id} data-testid = 'Questions-id'>
+            {/* <div className = "Question-body" data-testid={'question ' + i} style = {{float: "left"}}>Q: {question.question_body.slice(0, 1)}<span style = {{"background-color": "#FFFF00"}}>{question.question_body.slice(1, 4)}</span>{question.question_body.slice(5)}</div> */}
             <div className = "Question-body" data-testid={'question ' + i} style = {{float: "left"}}>Q: {question.question_body}</div>
             <div className = "Question-helpful" style = {{float: "right", left: "10px"}}>Helpful? YES(<a className = 'question-help-btn' data-testid = {'questionHelpful ' + i} style = {{"textDecoration":"underline"}}
             onClick = {(e) => {helpful(e, props, question.question_id)}}>{question.question_helpfulness}</a>)&nbsp;&nbsp;|&nbsp;&nbsp;

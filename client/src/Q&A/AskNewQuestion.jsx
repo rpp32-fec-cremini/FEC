@@ -98,11 +98,10 @@ const AskNewQuestion = (props) => {
 
   const renderPreviewImage = (image) => {
     var image = Object.values(image);
-      return image.map((img) => {
-        return <img className = 'preview-img' style={{width: '40px', height:'40px'}} src={img} key={img}/>
-      })
+    return image.map((img) => {
+      return <img className = 'preview-img' style={{width: '40px', height:'40px'}} src={img} key={img}/>
+    })
   }
-
 
   return (props.trigger) ? (
     <div className = "popup">

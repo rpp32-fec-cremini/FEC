@@ -5,6 +5,7 @@ const {getProducts, postQuestion, postAnswer, questionHelpfulandReport, answerHe
 const router = express.Router();
 
 router.get('/questions/:product_id', (req, res) => {
+
   var productId = req.params.product_id;
   var endpoint = `?product_id=${productId}`;
   getProducts(endpoint)
@@ -35,35 +36,14 @@ router.get('/questions/:question_id/answers', (req, res) => {
 router.post('/questions', (req, res) => {
   var questionBody = req.body;
   console.log('questionbody1', req.body);
-    postQuestion(questionBody)
-    .then(question=> {
-      console.log('question post', question);
-      console.log('question create', res.statusCode);
-      res.end()
-    })
-    .catch((err) => {
-      console.log('post question error', err);
-      res.end()
-    });
-  // getProducts()
-  // // console.log('help', getProducts())
-  // console.log(config);
- /*  getProducts()
+  postQuestion(questionBody)
   .then(question=> {
-    // console.log('data', question.data.results[0].answers);
-    //res.send(JSON.stringify(question.data.results));
-    console.log('Hello');
+    res.end()
   })
-  .catch(err => {
-    console.log(err);
-  }) */
-  // .catch(err => {
-  //   console.log('err', err)
-  // })
-  // console.log(getProducts(token))
-  // let question = fakeQaA;
-  // console.log('this is question', question.results);
-  // res.send(JSON.stringify(question.results));
+  .catch((err) => {
+    console.log('post question error', err);
+    res.end()
+  });
 })
 
 router.post('/questions/:question_id/answers', (req, res) => {
@@ -73,21 +53,20 @@ router.post('/questions/:question_id/answers', (req, res) => {
   var endpoint = `/${id}/answers`;
   var questionBody = req.body;
   console.log('questionbody2', req.body, endpoint);
-  // postAnswer(questionBody, endpoint)
-  // .then(question=> {
-  //     console.log('answer create', res.statusCode)
-  //     res.end();
-  // })
-  // .catch((err) => {
-  //   console.log('post answer error');
-  //   res.end();
-  // });
+  postAnswer(questionBody, endpoint)
+  .then(question=> {
+      console.log('answer create', res.statusCode)
+      res.end();
+  })
+  .catch((err) => {
+    console.log('post answer error');
+    res.end();
+  });
 })
 
 router.put('/questions/:question_id/helpful', (req, res) => {
 
   var id = req.params.question_id;
-  // console.log(id)
   var endpoint = `/${id}/helpful`;
   questionHelpfulandReport(endpoint)
   .then(question=> {

@@ -23,13 +23,13 @@ var getAverage = function(ratings={}) {
 }
 
 
-var FractinalStars = ({avg}) => {
+var FractionalStars = ({avg}) => {
   var average = avg - (avg % 0.25);
   var starPerc = (average/5) * 100;
   $(".stars-inner").css('width', `${starPerc}%`)
   return (
     <div className="stars-outer">
-      <div className="stars-inner"></div>
+      <div className="stars-inner" data-testid="starRatings"></div>
     </div>
   )
 }
@@ -73,7 +73,7 @@ var RatingBreakdown = ({meta, changeFilter, filters, clicked}) => {
       <h1 className="Rating-Title">Rating & Reviews</h1>
       <div className="ratingBreakdown">
         <div className="ratingHeader">{average || 0}</div>
-        <FractinalStars avg={average}/>
+        <FractionalStars avg={average}/>
       </div><br></br>
       {filters.length ? <FilterInfo filters={filters} changeFilter={changeFilter}/> : <div className="filterInfo"></div>}
       <div>

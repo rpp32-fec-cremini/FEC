@@ -219,10 +219,9 @@ const fakeQaASevenQuestions = {
   ]
 }
 
-const fakeAnswer = {
-  "answers": {
-    68: {
-      "id": 68,
+const fakeAnswer = [
+    {
+      "answer_id": 68,
       "body": "We are selling it here without any markup from the middleman!",
       "date": "2018-08-18T00:00:00.000Z",
       "answerer_name": "Seller",
@@ -230,40 +229,39 @@ const fakeAnswer = {
       "photos": []
       // ...
     },
-    70: {
-      "id": 70,
+    {
+      "answer_id": 70,
       "body": "Some of the seams started splitting the first time I wore it!",
       "date": "2019-11-28T00:00:00.000Z",
       "answerer_name": "sillyguy",
       "helpfulness": 6,
       "photos": [],
     },
-    78: {
-      "id": 78,
+    {
+      "answer_id": 78,
       "body": "9 lives",
       "date": "2019-11-12T00:00:00.000Z",
       "answerer_name": "Seller",
       "helpfulness": 5,
       "photos": [],
     },
-    80: {
-      "id": 80,
+    {
+      "answer_id": 80,
       "body": "10 lives",
       "date": "2019-11-12T00:00:00.000Z",
       "answerer_name": "Seller",
       "helpfulness": 7,
       "photos": [],
     },
-    81: {
-      "id": 81,
+    {
+      "answer_id": 81,
       "body": "11 lives",
       "date": "2019-11-12T00:00:00.000Z",
       "answerer_name": "Seller",
       "helpfulness": 66,
       "photos": [],
     }
-  }
-}
+]
 
 module.exports = {
   fakeQaASevenQuestions,

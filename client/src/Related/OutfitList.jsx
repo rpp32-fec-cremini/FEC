@@ -17,14 +17,19 @@ class OutfitList extends React.Component {
     this.state = {
       outfits: [],
       type: 'outfit',
-      currentProductId: 59553,
       currentProduct: null
     }
   }
 
   componentDidMount() {
     this.getOutfits();
-    this.setCurrentProduct(this.state.currentProductId);
+    this.setCurrentProduct(this.props.productId);
+  }
+
+  componentDidUpdate() {
+    if (this.state.currentProduct === null || this.props.productId !== this.state.currentProduct.id) {
+      this.setCurrentProduct();
+    }
   }
 
   getOutfits = () => {
@@ -35,7 +40,7 @@ class OutfitList extends React.Component {
   }
 
   setCurrentProduct = () => {
-    $.get(`/products/${this.state.currentProductId}`, data => {
+    $.get(`/products/${this.props.productId}`, data => {
       this.setState({ currentProduct: JSON.parse(data) });
     })
   };
@@ -70,12 +75,6 @@ class OutfitList extends React.Component {
       }
     }
   }
-
-  getSingleProduct = (id) => {
-    $.get(`/products/${id}`, data => {
-      return JSON.parse(data);
-    })
-  };
 
   //Pull items from local storage once current product is set
   // getOutfits = async () => {
@@ -132,7 +131,7 @@ class OutfitList extends React.Component {
       <div data-testid='outfitContainer' className='related-container' >
         <h4 data-testid='outfitHeader' className='related-title' >YOUR OUTFIT</h4>
         <ul data-testid='outfitList' className='related-list'>
-          <li data-testid='add-card' className='related-card related-add' onClick={(id) => this.addClick(this.state.currentProductId)}>
+          <li data-testid='add-card' className='related-card related-add' onClick={(id) => this.addClick(this.props.productId)}>
             <div id='add-text'>
               <IoAdd id='add-icon' />
               <p>Add to Outfit</p>
@@ -140,11 +139,11 @@ class OutfitList extends React.Component {
           </li>
           {this.state.outfits.map(outfit => (
             < Card key={outfit.id} product={outfit} type={this.state.type}
-              actionClick={this.xClick} addClick={this.addClick} />
+              actionClick={this.xClick} cardClick={() => { }} />
           ))
           }
         </ul >
-        <IoIosArrowBack className='related-scroll left-scroll' />
+        <IoIosArrowBack className='related-scroll left-scroll hide' />
         < IoIosArrowForward className='related-scroll right-scroll' />
       </div>
     )

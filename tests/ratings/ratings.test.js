@@ -2,12 +2,13 @@ import React from 'react';
 import { rest } from "msw";
 import { setupServer } from "msw/node"
 import { render, fireEvent, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom';
 
 import RatingContainer from '../../client/src/Ratings/RatingContainer';
 
 var mockReviews = require("../../server/routes/ReviewsfakeData").fakeReviews;
 var mockMeta = require("../../server/routes/ReviewsfakeData").fakeMetaData;
+var mockProductData = require("../../server/routes/ReviewsfakeData").fakeProductData;
 
 var server = setupServer(
   rest.get("/reviews", (req, res, ctx) => {
@@ -18,6 +19,16 @@ var server = setupServer(
   rest.get("/reviews/meta", (req, res, ctx) => {
     return res(
       ctx.json(JSON.stringify(mockMeta))
+    )
+  }),
+  rest.get("/products/:product_id", (req, res, ctx) => {
+    return res(
+      ctx.json(JSON.stringify(mockProductData))
+    )
+  }),
+  rest.post("/interactions", (req, res, ctx) => {
+    return res(
+      ctx.json(JSON.stringify('success'))
     )
   })
 )
@@ -37,9 +48,9 @@ test('ReviewsList renders components based on server response', async () => {
 })
 
 test('Only 2 reviews should be rendered initially until "More Reviews" button is clicked', async () => {
-  var { getByText, getByTestId, queryByTestId } = render(<RatingContainer/>)
+  var { getByRole, getByTestId, queryByTestId } = render(<RatingContainer/>)
   await waitFor(() => getByTestId(5))
-  var buttonEl = getByText("More Reviews")
+  var buttonEl = getByTestId('more')
   expect(queryByTestId(5)).toBeInTheDocument()
   expect(queryByTestId(3)).toBeInTheDocument()
   expect(queryByTestId(1)).not.toBeInTheDocument()
@@ -50,7 +61,7 @@ test('Only 2 reviews should be rendered initially until "More Reviews" button is
 test('Scroll bar appears after review module contains more than 3 review tiles', async () => {
   var { getByText, getByTestId, queryByTestId } = render(<RatingContainer/>)
   await waitFor(() => getByTestId(5))
-  var buttonEl = getByText("More Reviews")
+  var buttonEl = getByTestId('more')
   var scrollEl = getByTestId("scrolllist")
   expect(scrollEl.style._values['overflow-y']).toEqual(undefined)
   fireEvent.click(buttonEl)
@@ -69,3 +80,38 @@ test("Modal window pops up when user clicks on an image, and closes when the clo
   expect(queryAllByTestId('modal')[0].style._values.display).not.toBe("block")
   expect(queryAllByTestId('modal')[0].style._values.display).toBe("none")
 })
+
+test("Answer modal renders when Add a review is clicked and renders error message if no form fields are filled", async () => {
+  var { getByTestId, queryByTestId } = render(<RatingContainer/>)
+  await waitFor(() => getByTestId(5));
+  var addBtn = getByTestId('addReview');
+  expect(getByTestId('writing-modal').parentElement.style._values.display).toBe("none");
+  expect(queryByTestId('error')).not.toBeInTheDocument();
+  fireEvent.click(getByTestId('submitReview'))
+  expect(queryByTestId('error')).toBeInTheDocument();
+  fireEvent.click(addBtn);
+  expect(getByTestId('writing-modal').parentElement.style._values.display).toBe("block");
+
+})
+
+test("Rating Breakdown renders correct amount of stars", async () => {
+  var { getByTestId } = render(<RatingContainer/>)
+  await waitFor(() => getByTestId(5));
+  var stars = getByTestId('starRatings');
+  expect(stars.style._values.width).toBe('60%');
+})
+
+test("Product Breakdown renders the correct product characteristic bars", async () => {
+  var { getByTestId, queryByTestId } = render(<RatingContainer/>)
+  await waitFor(() => getByTestId(5));
+  expect(getByTestId('Size')).toBeInTheDocument();
+  expect(getByTestId('Width')).toBeInTheDocument();
+  expect(getByTestId('Comfort')).toBeInTheDocument();
+  expect(queryByTestId('Quality')).not.toBeInTheDocument();
+})
+
+// test("Sort Dropdown defaults to Relevance", async () => {
+
+// })
+
+
