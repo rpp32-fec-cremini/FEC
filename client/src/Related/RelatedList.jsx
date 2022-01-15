@@ -9,6 +9,7 @@ import { IoIosStar } from "react-icons/io";
 import './related.css';
 import Card from './Card.jsx';
 import Compare from './Compare.jsx';
+import Arrows from './Arrows.jsx';
 import getClicks from "../getClicks.jsx";
 
 class RelatedList extends React.Component {
@@ -84,7 +85,6 @@ class RelatedList extends React.Component {
     try {
       let product = await axios.get(`/products/${id}`);
       let data = product.data;
-      // this.getStyles(id, data);
       this.setState({ relatedProducts: [...this.state.relatedProducts, data] });
     } catch (err) {
       console.log(err);
@@ -106,7 +106,6 @@ class RelatedList extends React.Component {
       e.target.className === "action-btn") {
       isStar = true;
     }
-
     return isStar;
   }
 
@@ -123,29 +122,19 @@ class RelatedList extends React.Component {
     });
   }
 
-  cardClick = (id) => {
-    $('.related-card').click((e) => {
-      let isStar = this.isStar(e);
-      if (!isStar) this.props.changePage(id);
-    });
-  }
-
   render() {
-    console.log('RENDER', this.props.productId);
-    console.log(this.state.relatedIDs.length);
     return (
       <div>
         <div data-testid='listContainer' className='related-container top-container' >
           <h4 data-testid='listHeader' className='related-title' >RELATED PRODUCTS</h4>
-          <ul data-testid='list' className='related-list'>
+          <ul data-testid='list' className='related-list' id='related-list'>
             {this.state.relatedProducts.map((product, i) => (
               < Card key={product.id + i} product={product} type={this.state.type}
-                actionClick={this.starClick} mainProduct={this.state.mainProduct} cardClick={this.props.changePage} />
+                actionClick={this.starClick} mainProduct={this.state.mainProduct} setproductId={this.props.setproductId} />
             ))
             }
           </ul >
-          <IoIosArrowBack className='related-scroll left-scroll hide' />
-          < IoIosArrowForward className='right-scroll related-scroll' />
+          <Arrows productId={this.props.productId} type='related' listLength={this.state.relatedIDs.length} />
           <div className='compare hide'>
             <Compare className='show' mainProduct={this.state.mainProduct} compProduct={this.state.compProduct} />
           </div>

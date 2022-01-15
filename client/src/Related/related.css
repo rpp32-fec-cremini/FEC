@@ -2,6 +2,7 @@ html, body, #root {
   height: 100%;
   width: 100%;
   overflow: auto;
+  box-sizing: border-box;
 }
 
 #root {
@@ -30,11 +31,11 @@ html, body, #root {
 .related-container {
   font-family: 'adobe-clean', sans-serif;
   color: rgb(86, 86, 86);
+  box-sizing: border-box;
   position: relative;
-  max-width: 80%;
+  width: 1047px;
   height: 345px;
   margin-left: 10%;
-  /* margin-right: 10%; */
   margin-bottom: 40px;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -44,39 +45,39 @@ html, body, #root {
         -10px 0px 10px -5px rgba(0,0,0,0.5) inset; */
 }
 
+
 .related-list {
   position: relative;
   /* margin-bottom: 0px; */
-  margin-left: 0;
-  padding-left: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
+  /* -webkit-overflow-scrolling: touch; */
+  transition: 0.5s all ease-out;
 }
 
 .related-list::-webkit-scrollbar {
   display: none;
 }
 
-.modal-title {
-  font-weight: lighter;
-  font-size: xx-small;
-}
-
-.modal-text {
-  font-weight: lighter;
-  font-size: .7em;
+.related-add {
+  position: fixed;
 }
 
 .related-card {
+  display: inline-block;
   position: relative;
   display: inline-block;
+  box-sizing: border-box;
   width: 193px;
   height: 291px;
   padding: 0;
   margin: 0 9px;
   border: 1px solid black;
+  box-sizing: border-box;
+  cursor: pointer;
 }
 
 ul li:first-child {
@@ -129,10 +130,6 @@ ul li:first-child {
   text-decoration: line-through;
 }
 
-/* .card-stars {
-
-} */
-
 .action-btn {
   position: absolute;
 	top: 5px;
@@ -140,6 +137,7 @@ ul li:first-child {
   color: black;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .card-star {
@@ -184,19 +182,17 @@ ul li:first-child {
   position: absolute;
 	top: 50%;
   color: black;
-  right: 20px;
+  background-color: rgba(240, 240, 240, 0.2);
+  cursor: pointer;
+  transition: 1s;
 }
 
-.left-scroll {
-	left: 0;
+#related-back-scroll, #outfit-back-scroll {
+	left: .5rem;
 }
-.right-scroll {
-	right: 0;
+#related-fwd-scroll, #outfit-fwd-scroll {
+	right: .5rem;
 }
-
-/* .hidden {
-
-} */
 
 .compare {
   display: inline-block;
@@ -209,6 +205,16 @@ ul li:first-child {
   border: .5px solid rgb(86, 86, 86);
   background-color: white;
   overflow: auto;
+}
+
+.modal-title {
+  font-weight: lighter;
+  font-size: xx-small;
+}
+
+.modal-text {
+  font-weight: lighter;
+  font-size: .7em;
 }
 
 th {
@@ -235,16 +241,9 @@ td {
 
 .hide {
 	display: none;
-  z-index: -1;
 }
 
 .show {
   z-index: 1;
   position: fixed;
-}
-
-.grid3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem;
 }

@@ -7,6 +7,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { IoIosStarHalf } from "react-icons/io";
 import { IoIosStarOutline } from "react-icons/io";
 import { IoIosStar } from "react-icons/io";
+import Arrows from './Arrows.jsx';
 import './related.css';
 import Card from './Card.jsx';
 import getClicks from "../getClicks.jsx";
@@ -76,61 +77,12 @@ class OutfitList extends React.Component {
     }
   }
 
-  //Pull items from local storage once current product is set
-  // getOutfits = async () => {
-  //   try {
-  //     let outfits = await axios.get(`/products/${this.state.user}/outfits`);
-  //     let data = outfits.data;
-  //     data.forEach(outfit => {
-  //       // this.getStyles(outfit.id, outfit);
-  //       this.setState({ outfits: [...this.state.outfits, outfit] })
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // getStyles = async (id, product) => {
-  //   try {
-  //     let styles = await axios.get(`/products/${id}/styles`);
-  //     if (styles.data.results[0].photos[0].thumbnail_url) {
-  //       product['img'] = styles.data.results[0].photos[0].thumbnail_url;
-  //     } else {
-  //       let productLabel = product.name.toLowerCase().split(' ');
-  //       product['img'] = `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}`;
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  //   return product;
-  // }
-
-
-
-  // getListPos = () => {
-
-
-  // }
-
-  // showArrows = () => {
-
-  // }
-
-  // leftPaddleScroll = () => {
-
-  // }
-
-  // rightPaddleScroll = () => {
-
-  // }
-
-
-
   render() {
+    let list = '#outfit-list';
     return (
       <div data-testid='outfitContainer' className='related-container' >
         <h4 data-testid='outfitHeader' className='related-title' >YOUR OUTFIT</h4>
-        <ul data-testid='outfitList' className='related-list'>
+        <ul data-testid='outfitList' className='related-list' id='outfit-list'>
           <li data-testid='add-card' className='related-card related-add' onClick={(id) => this.addClick(this.props.productId)}>
             <div id='add-text'>
               <IoAdd id='add-icon' />
@@ -139,12 +91,12 @@ class OutfitList extends React.Component {
           </li>
           {this.state.outfits.map(outfit => (
             < Card key={outfit.id} product={outfit} type={this.state.type}
-              actionClick={this.xClick} cardClick={() => { }} />
+              actionClick={this.xClick} setproductId={this.props.setproductId} />
           ))
           }
         </ul >
-        <IoIosArrowBack className='related-scroll left-scroll hide' />
-        < IoIosArrowForward className='related-scroll right-scroll' />
+        <Arrows productId={this.props.productId} type='outfit' listLength={this.state.outfits.length + 1} />
+
       </div>
     )
   }
