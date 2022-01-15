@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import AnswerModal from './AnswerModal.jsx';
-import AskNewQuestion from './AskNewQuestion.jsx';
-import './IndividualQuestion.css';
+import AskNewQuestionOrAnswer from './AskNewQuestionOrAnswer.jsx';
+import './QuestionModal.css';
 
-const IndividualQuestion = (props) => {
-  
+const QuestionModal = (props) => {
+
   const [loading, setloading] = useState(false);
   const [loadingQuestion, setloadingQuestion] = useState(2);
   const [buttonPopup, setbuttonPopup] = useState(false);
@@ -63,6 +63,7 @@ const IndividualQuestion = (props) => {
       var twoQuestion = question;
     }
 
+    //Filter by searchTerm
     return (
       twoQuestion.filter((question) => {
         let searchTerm = props.searchTerm;
@@ -101,9 +102,9 @@ const IndividualQuestion = (props) => {
         {loadingQuestion < props.question.length ? showbutton(props) : collaspseButton(props)}
         <button className = 'addQuestionbtn' onClick = {() => {setbuttonPopup(true); settypeofbutton('question')}}>+ Add A Question</button>
       </div>
-        <AskNewQuestion trigger = {buttonPopup} setTrigger = {setbuttonPopup} questionParmer = {props.questionParmer} typeofbutton = {typeofbutton} questionId = {questionId}></AskNewQuestion>
+        <AskNewQuestionOrAnswer trigger = {buttonPopup} setTrigger = {setbuttonPopup} questionParmer = {props.questionParmer} typeofbutton = {typeofbutton} questionId = {questionId}></AskNewQuestionOrAnswer>
     </div>
   )
 };
 
-export default IndividualQuestion;
+export default QuestionModal;

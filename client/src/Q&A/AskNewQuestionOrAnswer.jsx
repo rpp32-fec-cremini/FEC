@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
-import './AskNewQuestion.css';
+import './AskNewQuestionOrAnswer.css';
 
-const AskNewQuestion = (props) => {
+const AskNewQuestionOrAnswer = (props) => {
   const [size, setsize] = useState(0);
   const [question, setquestion] = useState('');
   const [nickName, setnickName] = useState('');
@@ -152,4 +152,4 @@ const AskNewQuestion = (props) => {
   ) : "";
 };
 
-export default AskNewQuestion;
+export default AskNewQuestionOrAnswer;

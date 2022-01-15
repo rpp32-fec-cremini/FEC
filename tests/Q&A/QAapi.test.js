@@ -4,10 +4,10 @@ import { setupServer } from "msw/node";
 import { render, fireEvent, screen, cleanup, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Question from '../../client/src/Q&A/QandA.jsx';
-import IndividualQuestion from '../../client/src/Q&A/IndividualQuestion.jsx';
+import IndividualQuestion from '../../client/src/Q&A/QuestionModal.jsx';
 import SearchQuestions from '../../client/src/Q&A/SearchQuestions.jsx';
 import AnswerModal from '../../client/src/Q&A/AnswerModal.jsx';
-import AskNewQuestion from '../../client/src/Q&A/AskNewQuestion.jsx';
+import AskNewQuestion from '../../client/src/Q&A/AskNewQuestionOrAnswer.jsx';
 
 var QaAFakeDataSevenQuestion = require("../../server/routes/QaAFakeData").fakeQaASevenQuestions;
 var fakeAnswer = require("../../server/routes/QaAFakeData").fakeAnswer;

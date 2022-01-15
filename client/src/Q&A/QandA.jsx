@@ -3,12 +3,14 @@ import axios from 'axios';
 import $ from 'jquery';
 
 import AnswerModal from './AnswerModal.jsx';
-import IndividualQuestion from './IndividualQuestion.jsx';
+import QuestionModal from './QuestionModal.jsx';
 import SearchQuestions from './SearchQuestions.jsx';
 import "./QaA.css";
-import cloudinaryAPI from '../../../config.js';
+// import cloudinaryAPI from '../../../config.js';
 
 class QA extends React.Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -45,14 +47,14 @@ class QA extends React.Component {
       url: `/qa/questions/${result}/answers`
     })
     .then((results) => {
-      let answer = results.data;
-      if (this.state.answers !== answer) {
-        self.setState ({
-          answers: answer
-        }, () => {
-          // console.log('sssssssssssssssthe answer', this.state.answers);
-        })
-      }
+      // let answer = results.data;
+      // if (this.state.answers !== answer) {
+      //   self.setState ({
+      //     answers: answer
+      //   }, () => {
+      //     // console.log('sssssssssssssssthe answer', this.state.answers);
+      //   })
+      // }
     })
   }
 
@@ -65,7 +67,7 @@ class QA extends React.Component {
     })
     .then((results) => {
       let question = results.data;
-      console.log('question will be ', question);
+      // console.log('question will be ', question);
       self.individualAnswer(question);
       self.setState ({
         question: question,
@@ -77,7 +79,7 @@ class QA extends React.Component {
 
   imageToURL(imgfile) {
     var cloudinary_url = 'https://api.cloudinary.com/v1_1/dy91vvft0/upload';
-    var cloudinary_upload_preset = cloudinaryAPI;
+    var cloudinary_upload_preset = 'p9buobh3';
     var allImages = [];
     var promises = [];
     if (imgfile[0] !== undefined) {
@@ -170,7 +172,6 @@ class QA extends React.Component {
     })
   }
 
-
   questionParmer(data) {
     var self = this;
     var questionId = data['questionId'];
@@ -214,7 +215,8 @@ class QA extends React.Component {
   }
 }
 
-  componentWillMount() {
+  componentDidMount() {
+    this._isMounted = false;
     this.individualQuestion();
   }
 
@@ -223,7 +225,7 @@ class QA extends React.Component {
       <div className='QaABox'>
         <h2 data-testid='Title' className = 'Title'>QUESTION & ANSWERS</h2>
         <SearchQuestions searchBar = {this.state.searchBar} search = {(e) => this.search(e)}/>
-        <IndividualQuestion question = {this.state.question} questionHelpful = {(e) => this.questionHelpful(e)} questionReport = {(e) => this.questionReport(e)}
+        <QuestionModal question = {this.state.question} questionHelpful = {(e) => this.questionHelpful(e)} questionReport = {(e) => this.questionReport(e)}
         answerHelpful = {(e) => this.answerHelpful(e)} questionHelpfulList = {this.state.questionHelpfulList}
         answerHelpfulList = {this.state.answerHelpfulList} questionParmer = {(e) => this.questionParmer(e)} answerReport = {(e) => this.answerReport(e)}
         searchTerm = {this.state.searchTerm}/>

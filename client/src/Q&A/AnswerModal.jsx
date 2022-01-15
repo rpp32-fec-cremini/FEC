@@ -74,7 +74,7 @@ const AnswerModal = ({answer, answerHelpfulList, answerHelpful, answerReport}) =
         <br />
         {answer[1]['photos'].length !== 0 ?
          answer[1]['photos'].map((pic, j) => <img className = 'img' src = {pic} key = {j} onClick = {() => {setimgPopup(true); setimgURL(pic)}}></img>) : ''}
-        <div className = "answer-title-button" >by <a style={{"font-weight": answer[1]['answerer_name'] === 'Seller' ? "bold" : ''}}>{answer[1]['answerer_name']}</a>, {dateConvenver(answer[1]['date'])}&nbsp;&nbsp;|&nbsp;&nbsp;Helpful? YES
+        <div className = "answer-title-button" >by <a style={{"fontweight": answer[1]['answerer_name'] === 'Seller' ? "bold" : ''}}>{answer[1]['answerer_name']}</a>, {dateConvenver(answer[1]['date'])}&nbsp;&nbsp;|&nbsp;&nbsp;Helpful? YES
         (<a className = 'answer-helpful-btn' style = {{"textDecoration":"underline"}} onClick = {(e) => helpful(e, answer[1]['id'])}>{answer[1]['helpfulness']}</a>)&nbsp;&nbsp;|&nbsp;&nbsp;
         <a className = 'answer-report-btn' style = {{"textDecoration":"underline"}}  data-testid = {'answerReport'} onClick = {(e) => report(e, answer[1]['id'])}>Report</a></div>
         {imgPopup === true ? imgPopups(imgURL): ''}
@@ -95,7 +95,7 @@ const AnswerModal = ({answer, answerHelpfulList, answerHelpful, answerReport}) =
 
   return (
     <div>
-        <div className = 'answerBody'>
+        <div className = 'answerBody' >
           {loading === false && size < 2 ? show(answer, true) : show(answer)}
         </div>
         {loading === false ? showbutton() : collaspseButton()}
