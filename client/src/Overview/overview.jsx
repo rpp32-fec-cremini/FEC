@@ -21,16 +21,29 @@ class Overview extends React.Component {
       reviewMeta: {},
       currentPhotoUrl: {
         photos: [{url: 'yeah whatever'}]
+      },
+      cartItem:
+        {
+         currentSize: '',
+         currentQuantity: ''
+        }
       }
+      this.changeStyle = this.changeStyle.bind(this);
+      this.changeImageGallery = this.changeImageGallery.bind(this);
 
     }
-    this.changeStyle = this.changeStyle.bind(this);
-    this.changeImageGallery = this.changeImageGallery.bind(this);
-  }
+
+
 
   changeStyle(style) {
     if (style !== this.state.currentStyle) {
       this.setState({currentStyle: style})
+    }
+  }
+
+  selectSizeQuantity(size, quantity) {
+    if ({size, quantity} !== this.state.cartItem) {
+      this.setState({cartItem: {currentSize: size, currentQuantity: quantity}})
     }
   }
 
@@ -118,10 +131,10 @@ class Overview extends React.Component {
          currentStyle ={this.state.currentStyle}
          changeStyle = {this.changeStyle}
         />
-
-        {/* <AddToCart /> */}
         <br></br>
+
       </div>
+      {/* <AddToCart /> */}
       </div>
     );
   }
