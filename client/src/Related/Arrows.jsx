@@ -91,8 +91,10 @@ const Arrows = (props) => {
         $fwdBtn.addClass('hide');
       } else {
         $backBtn.removeClass('hide');
+        console.log('full card before', scrollPos);
         scrollPos = scrollPos - scrollAmount;
-        if (-(scrollPos) > extraWidth) {
+        console.log('full card after', scrollPos);
+        if (-(scrollPos - scrollAmount) > extraWidth) {
           console.log('else if', scrollPos, extraWidth, scrollAmount);
           scrollPos = -extraWidth;
           $fwdBtn.addClass('hide');
