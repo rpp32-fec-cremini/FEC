@@ -41,7 +41,7 @@ class Rating extends React.Component {
     let sum = 0;
     let avg = 0;
     for (let key in ratings) {
-      let value = parseInt(ratings[key]);
+      let value = ratings[key] ? parseInt(ratings[key]) : 0;
       let subSum = key * value;
       count += value;
       sum += subSum;

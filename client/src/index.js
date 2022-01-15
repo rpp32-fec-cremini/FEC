@@ -14,18 +14,11 @@ var App = (props) => {
   const randomProductId = Math.floor(Math.random() * (max - min + 1)) + min;
   const [productId, setproductId] = useState(randomProductId);
 
-  const changePage = (id, e) => {
-    (e.target.parentNode.className === "action-btn" ||
-      e.target.className === "action-btn") ? null :
-      setproductId(id);
-  }
-
-
   return (
     <div id="app">
       <Overview className='relatedCard' productId={productId} />
-      <RelatedList productId={productId} changePage={changePage} />
-      <OutfitList productId={productId} />
+      <RelatedList productId={productId} setproductId={setproductId} />
+      <OutfitList productId={productId} setproductId={setproductId} />
       <QandA productId={productId} />
       <RatingContainer productId={productId} />
     </div>
