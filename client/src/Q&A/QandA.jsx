@@ -3,11 +3,10 @@ import axios from 'axios';
 import $ from 'jquery';
 
 import AnswerModal from './AnswerModal.jsx';
-import AddQuestions from './AddQuestions.jsx';
 import IndividualQuestion from './IndividualQuestion.jsx';
 import SearchQuestions from './SearchQuestions.jsx';
 import "./QaA.css";
-// import cloudinaryAPI from '../../../config.js';
+import cloudinaryAPI from '../../../config.js';
 
 class QA extends React.Component {
   constructor(props) {
@@ -23,13 +22,11 @@ class QA extends React.Component {
     this.individualAnswer = this.individualAnswer.bind(this);
   }
 
-
   search(value) {
     if (value.length >= 3) {
       this.setState ({
         searchTerm: value,
       }, () => {
-        // console.log('sssssssssssssssthe answer', this.state.answers);
         // console.log('searchterm', value)
       })
     } else {
@@ -68,6 +65,7 @@ class QA extends React.Component {
     })
     .then((results) => {
       let question = results.data;
+      console.log('question will be ', question);
       self.individualAnswer(question);
       self.setState ({
         question: question,
@@ -79,10 +77,9 @@ class QA extends React.Component {
 
   imageToURL(imgfile) {
     var cloudinary_url = 'https://api.cloudinary.com/v1_1/dy91vvft0/upload';
-    var cloudinary_upload_preset = 'p9buobh3';
+    var cloudinary_upload_preset = cloudinaryAPI;
     var allImages = [];
     var promises = [];
-    // console.log('imgfile', imgfile[0]);
     if (imgfile[0] !== undefined) {
       for (let i = 0; i< imgfile[0].length; i++) {
         var formData = new FormData();
@@ -108,7 +105,6 @@ class QA extends React.Component {
     return Promise.all(promises).then(() => {
       return allImages;
     })
-    // return allImages;
 
   }
 
@@ -131,7 +127,6 @@ class QA extends React.Component {
   }
 
   questionReport(questionId) {
-    // console.log('question report', questionId);
     axios({
       method: 'PUT',
       url: `/qa/questions/${questionId}/report`,
@@ -160,11 +155,9 @@ class QA extends React.Component {
     .catch((err) => {
       console.log('err');
     })
-    // console.log('helpful', answerId,);
   }
 
   answerReport(answerId) {
-    // console.log('report', answerId);
     axios({
       method: 'PUT',
       url: `/qa/answers/${answerId}/report`,
@@ -179,10 +172,8 @@ class QA extends React.Component {
 
 
   questionParmer(data) {
-    // console.log('ssds', data);
     var self = this;
     var questionId = data['questionId'];
-    // console.log('question parmer', data.files);
     if (questionId === 0) {
       axios({
         method: 'POST',
@@ -195,6 +186,7 @@ class QA extends React.Component {
     })
     .then((results) => {
       console.log('data send')
+      self.individualQuestion();
     })
     .catch((err) => {
       console.log('err');
@@ -202,7 +194,6 @@ class QA extends React.Component {
   } else {
     this.imageToURL(data.files)
     .then((file) => {
-      // console.log('parmer', file);
       axios({
         method: 'POST',
         url: `/qa/questions/${questionId}/answers`,
@@ -213,6 +204,7 @@ class QA extends React.Component {
         }
       })
       .then((results) => {
+          self.individualQuestion();
           console.log('data send')
         })
       })

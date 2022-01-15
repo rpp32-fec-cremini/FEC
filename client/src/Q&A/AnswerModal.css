@@ -27,7 +27,6 @@
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   color: black;
-  /* background-color: black; */
   text-align: center;
   transition: all 0.5s;
   margin-top: 15px;
@@ -73,3 +72,72 @@
 .answer-report-btn:hover{
   color:blue;
 }
+
+.img{
+  margin-right: 10px;
+  width: 120px;
+  height: 120px;
+}
+
+.img:hover{
+  cursor: pointer;
+}
+
+.imgPopUp {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgPopUp-inner {
+  position: relative;
+  padding: 32px;
+  max-width: 640px;
+  background-color: white;
+
+}
+
+.imgEnlarge {
+  width: 600px;
+  height: 600px;
+}
+
+.img-close-btn {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  color: white;
+	border: 2px solid #eef5df;
+	background-color: black;
+	border-radius: 50%;
+}
+
+.img-close-btn::before, .img-close-btn::after {
+	position: absolute;
+	top: 7px;
+	left: 3.5px;
+	width: 16px;
+	height: 4px;
+	content: "";
+	background-color: red;
+	display: none;
+}
+
+.img-close-btn::before {
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.img-close-btn::after {
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.img-close-btn:hover { cursor: pointer; }
+.img-close-btn:hover::before, .img-close-btn:hover::after { display: block; }
