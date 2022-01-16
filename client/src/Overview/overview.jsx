@@ -33,7 +33,11 @@ class Overview extends React.Component {
 
     }
 
-
+ /*  componentDidUpdate(prevProps) {
+    if(prevProps !== this.props) {
+      this.setState
+    }
+  } */
 
   changeStyle(style) {
     if (style !== this.state.currentStyle) {
