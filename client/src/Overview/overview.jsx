@@ -39,6 +39,10 @@ class Overview extends React.Component {
     }
   } */
 
+  // const [style', changeStyle ] = useState('Blue')
+  //changeStyle ('red')
+  //onClick = {changeStyle(e.target.value)}
+
   changeStyle(style) {
     if (style !== this.state.currentStyle) {
       this.setState({currentStyle: style})
