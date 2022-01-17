@@ -5,10 +5,12 @@ const AnswerModal = ({answer, answerHelpfulList, answerHelpful, answerReport}) =
   const [loading, setloading] = useState(false);
   const [size, setsize] = useState(0);
   const [vote, setvote] = useState(false);
+  const [imgPopup, setimgPopup] = useState(false);
+  const [imgURL, setimgURL] = useState('');
 
   const showbutton = () => {
     if (Object.keys(answer).length > 2) {
-      return <button className = 'answer-btn' onClick={() => getMoreAnswer(answer)}><span>See more answers</span></button>
+      return <button className = 'answer-btn' data-testid = 'answer-btn' onClick={() => getMoreAnswer(answer)}><span>See more answers</span></button>
     }
   }
 
@@ -55,13 +57,27 @@ const AnswerModal = ({answer, answerHelpfulList, answerHelpful, answerReport}) =
       }
     }
 
+    const imgPopups = (imgURL) => {
+      return (
+        <div className = 'imgPopUp'>
+            <div className = 'imgPopUp-inner' >
+              <img className = 'imgEnlarge' src = {imgURL}>
+              </img>
+                <button className = "img-close-btn" onClick={() => setimgPopup(false)}>X</button>
+            </div>
+        </div>
+      )
+    }
+
     return twoAnswer.map(answer =>
-      <div class = 'answer-body' key={answer[1]['id']}> A: {answer[1]['body']}
+      <div className = 'answer-body' key = {answer[1]['id']}> A: {answer[1]['body']}
         <br />
         {answer[1]['photos'].length !== 0 ?
-          answer[1]['photos'].map (pic =>
-            <img src = {pic} style={{width: '80px', height:'80px'}}></img>) : ''}
-        <div class = "answer-title-button">by {answer[1]['answerer_name']},{dateConvenver(answer[1]['date'])}&nbsp;&nbsp;|&nbsp;&nbsp;Helpful? YES (<a className = 'answer-helpful-btn' style={{"textDecoration":"underline"}} onClick = {(e) => helpful(e, answer[1]['id'])}>{answer[1]['helpfulness']}</a>)&nbsp;&nbsp;|&nbsp;&nbsp;<a className = 'answer-report-btn' style={{"textDecoration":"underline"}} onClick = {(e) => report(e, answer[1]['id'])}>Report</a></div>
+         answer[1]['photos'].map((pic, j) => <img className = 'img' src = {pic} key = {j} onClick = {() => {setimgPopup(true); setimgURL(pic)}}></img>) : ''}
+        <div className = "answer-title-button" >by <a style={{"fontweight": answer[1]['answerer_name'] === 'Seller' ? "bold" : ''}}>{answer[1]['answerer_name']}</a>, {dateConvenver(answer[1]['date'])}&nbsp;&nbsp;|&nbsp;&nbsp;Helpful? YES
+        (<a className = 'answer-helpful-btn' style = {{"textDecoration":"underline"}} onClick = {(e) => helpful(e, answer[1]['id'])}>{answer[1]['helpfulness']}</a>)&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a className = 'answer-report-btn' style = {{"textDecoration":"underline"}}  data-testid = {'answerReport'} onClick = {(e) => report(e, answer[1]['id'])}>Report</a></div>
+        {imgPopup === true ? imgPopups(imgURL): ''}
       </div>
     )
   }
@@ -79,7 +95,7 @@ const AnswerModal = ({answer, answerHelpfulList, answerHelpful, answerReport}) =
 
   return (
     <div>
-        <div>
+        <div className = 'answerBody' >
           {loading === false && size < 2 ? show(answer, true) : show(answer)}
         </div>
         {loading === false ? showbutton() : collaspseButton()}

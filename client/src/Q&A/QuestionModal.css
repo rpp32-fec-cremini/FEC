@@ -54,7 +54,7 @@
 
 .Question-body {
   font-weight: bold;
-  font-family: "Font Awesome 5 Free";
+  /* font-family: "italic"; */
   font-size: 20px;
 }
 
@@ -101,7 +101,6 @@
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   color: black;
-  /* background-color: black; */
   text-align: center;
   transition: all 0.5s;
   margin-top: 15px;
@@ -132,3 +131,20 @@
   right: 0;
 }
 
+.questionTitle {
+  font-size: 24px;
+  font-weight: bolder;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.answerTitle {
+  font-size: 24px;
+  font-weight: bolder;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.question-btns-block {
+  margin-top: 15px;
+}
