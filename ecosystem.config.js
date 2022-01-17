@@ -11,7 +11,7 @@ module.exports = {
       ref: 'origin/main',
       repo: 'https://github.com/rpp32-fec-cremini/FEC.git',
       path: '/home/ubuntu/FEC',
-      'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js'
+      'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js --env production'
     }
   }
 }
