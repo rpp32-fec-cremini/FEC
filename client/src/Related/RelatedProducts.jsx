@@ -26,26 +26,28 @@ class RelatedProducts extends React.Component {
   }
 
   componentDidMount() {
-    this.getRelatedIDs();
     this.setMainProduct();
+    // this.setBackoff();
+    this.getRelatedIDs();
     this.setCompProduct(59555);
-    this.setState({ relatedProducts: [] });
+    // this.setState({ relatedProducts: [] });
   }
 
   componentDidUpdate(nextProps) {
     if (nextProps.productId !== this.props.productId) {
-      this.setState({ relatedProducts: [] });
       this.setMainProduct();
+      this.setState({ relatedProducts: [] });
+      // this.setBackoff();
       this.getRelatedIDs();
     }
   }
 
-  getAllProducts = () => {
-    $.get(`/products`, data => {
-      let products = JSON.parse(data);
-      this.setState({ products: products });
-    });
-  };
+  // getAllProducts = () => {
+  //   $.get(`/products`, data => {
+  //     let products = JSON.parse(data);
+  //     this.setState({ products: products });
+  //   });
+  // };
 
   setMainProduct = () => {
     $.get(`/products/${this.props.productId}`, data => {
@@ -60,6 +62,22 @@ class RelatedProducts extends React.Component {
       this.setState({ compProduct: compProduct });
     })
   };
+
+  // delay = retryCount =>
+  //   new Promise(resolve => setTimeout(resolve, 10 ** retryCount));
+
+  // setBackoff = (retryCount = 0) =>
+  //   this.getRelatedIDs().catch(() => delay(retryCount).then(() => getResource(retryCount + 1)));
+
+  // setBackoff = async (id, retryCount = 0, lastError = 'ratings failed') => {
+  //   if (retryCount > 5) throw new Error(lastError);
+  //   try {
+  //     this.getRelatedIDs();
+  //   } catch (err) {
+  //     await delay(retryCount);
+  //     return getRatings(retryCount + 1, e);
+  //   }
+  // }
 
   getRelatedIDs = async () => {
     let relatedIDs = [];

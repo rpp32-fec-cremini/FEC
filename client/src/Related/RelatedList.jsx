@@ -1,6 +1,5 @@
 import React from 'react';
 import $ from 'jquery';
-import axios from 'axios';
 import './related.css';
 import Card from './Card.jsx';
 import getClicks from "../getClicks.jsx";

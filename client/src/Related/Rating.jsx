@@ -17,12 +17,22 @@ class Rating extends React.Component {
     this.getRatings(this.props.id);
   }
 
-  // getRatings = (id) => {
-  //   $.get('reviews/meta', { product_id: id }, data => {
-  //     this.setState({ ratings: JSON.parse(data).ratings });
-  //     this.setAvg();
-  //   });
+  // delay = retryCount =>
+  //   new Promise(resolve => setTimeout(resolve, 10 ** retryCount));
+
+  // setBackoff = (id, retryCount = 0) =>
+  //   this.getRatings(id).catch(() => delay(retryCount).then(() => getResource(retryCount + 1)));
+
+  // setBackoff = async (id, retryCount = 0, lastError = 'ratings failed') => {
+  //   if (retryCount > 5) throw new Error(lastError);
+  //   try {
+  //     this.getRatings(id);
+  //   } catch (err) {
+  //     await delay(retryCount);
+  //     return getRatings(retryCount + 1, e);
+  //   }
   // }
+
   getRatings = async (id) => {
     try {
       let data = await axios.get(`reviews/meta?product_id=${id}`);
