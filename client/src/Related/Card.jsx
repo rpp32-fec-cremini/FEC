@@ -16,7 +16,7 @@ class Card extends React.Component {
     super(props);
     this.state = {
       actionName: TiDeleteOutline,
-      mainProduct: null,
+      // mainProduct: null,
       currentImage: null,
       salePrice: null,
       regPrice: null,
@@ -34,9 +34,9 @@ class Card extends React.Component {
   //   console.log(window.getComputedStyle(this.refs.card).getPropertyValue("width"));
   // }
 
-  setMainProduct = () => {
-    this.setState({ mainProduct: this.props.mainProduct })
-  }
+  // setMainProduct = () => {
+  //   this.setState({ mainProduct: this.props.mainProduct })
+  // }
 
   getType = () => {
     this.props.type === 'outfit' ? this.setState({ actionName: TiDeleteOutline }) :

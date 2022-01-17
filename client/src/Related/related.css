@@ -12,7 +12,6 @@ html, body, #root {
 .related {
   font-family: 'adobe-clean', sans-serif;
   color: rgb(86, 86, 86);
-  /* box-sizing: border-box; */
   margin: 0;
   padding: 0;
   overflow-y: hidden;
@@ -45,16 +44,17 @@ html, body, #root {
         -10px 0px 10px -5px rgba(0,0,0,0.5) inset; */
 }
 
+#outfit-container {
+  white-space: nowrap;
+}
+
 
 .related-list {
   position: relative;
-  /* margin-bottom: 0px; */
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   white-space: nowrap;
-  /* -webkit-overflow-scrolling: touch; */
   transition: 0.5s all ease-out;
 }
 
@@ -62,14 +62,22 @@ html, body, #root {
   display: none;
 }
 
-.related-add {
-  position: fixed;
+.related-add, #outfit-list {
+  display: inline-block;
+  vertical-align: top;
+  background-color: white;
+}
+
+#related-add {
+  margin: 0;
+  margin-right: 18px;
+  background-color: white;
+  z-index: 2;
 }
 
 .related-card {
   display: inline-block;
   position: relative;
-  display: inline-block;
   box-sizing: border-box;
   width: 193px;
   height: 291px;
@@ -140,11 +148,13 @@ ul li:first-child {
   cursor: pointer;
 }
 
-.card-star {
+/* .card-star {
+  content: "\2605";
+  -webkit-text-stroke: 1px rgb(86, 86, 86);
   transform:scale(0.9);
   margin: 0;
   padding: 0;
-}
+} */
 
 .ratings {
   position: relative;
@@ -152,7 +162,7 @@ ul li:first-child {
   display: inline-block;
   color: white;
   overflow: hidden;
-  margin-bottom: 2.5em;
+  margin-bottom: .5em;
 }
 
 .full-stars{
@@ -187,11 +197,24 @@ ul li:first-child {
   transition: 1s;
 }
 
-#related-back-scroll, #outfit-back-scroll {
-	left: .5rem;
+#related-back-scroll{
+  left: .8rem;
+}
+
+ #outfit-back-scroll {
+	left: 215px;
 }
 #related-fwd-scroll, #outfit-fwd-scroll {
-	right: .5rem;
+	right: .8rem;
+}
+
+.action-btn:hover::before, .related-scroll:hover::before {
+  transform: scale(1.1);
+  /* box-shadow: 0 0 15px #ffee10; */
+}
+
+.action-btn:hover, .related-scroll:hover {
+  color: rgb(255, 221, 0);
 }
 
 .compare {
@@ -227,6 +250,7 @@ th {
 
 td {
   line-height: 1.8em;
+  margin: auto;
 }
 
 .left-modal {
@@ -244,6 +268,6 @@ td {
 }
 
 .show {
-  z-index: 1;
+  z-index: 5;
   position: fixed;
 }

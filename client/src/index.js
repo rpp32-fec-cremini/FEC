@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import RatingContainer from '../src/Ratings/RatingContainer.jsx';
-import RelatedList from '../src/Related/RelatedList.jsx';
+import RelatedProducts from '../src/Related/RelatedProducts.jsx';
 import Overview from './Overview/overview.jsx';
 import "./index.css"
 import QandA from '../src/Q&A/QandA.jsx';
@@ -17,7 +17,7 @@ var App = (props) => {
   return (
     <div id="app">
       <Overview className='relatedCard' productId={productId} />
-      <RelatedList productId={productId} setproductId={setproductId} />
+      <RelatedProducts productId={productId} setproductId={setproductId} />
       <OutfitList productId={productId} setproductId={setproductId} />
       <QandA productId={productId} />
       <RatingContainer productId={productId} />

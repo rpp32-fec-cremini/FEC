@@ -5,12 +5,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import getClicks from "../getClicks.jsx";
 import './related.css';
 
-// class Arrows extends React.Component {
-//   constructor(props) {
-//     super(props);
-//   }
 const Arrows = (props) => {
-
   useEffect(() => {
     setArrows();
   }, [props.productId]);
@@ -27,15 +22,17 @@ const Arrows = (props) => {
   let $backBtn = $(`#${backScrollId}`);
   let $fwdBtn = $(`#${fwdScrollId}`);
   let children = props.listLength;
-  let scrollPos = 0;
-  let viewWidth = $container.width();
+  let start = 0;
+  let scrollPos = start;
+  let viewWidth = props.type === 'outfit' ? $container.width() - 211 : $container.width();
   let listWidth = (($card.width() + 20) * children) - 9;
-  let scrollAmount = Math.ceil(listWidth / children);
+  let scrollAmount = Math.ceil(listWidth / children) + 1;
   let extraWidth = listWidth - viewWidth;
+  let index = Math.floor(Math.abs(scrollPos) / scrollAmount);
 
   const setArrows = () => {
-    scrollPos = 0;
-    $list.css('left', '0');
+    scrollPos = start;
+    $list.css('left', start);
     if (listWidth <= viewWidth) {
       $backBtn.addClass('hide');
       $fwdBtn.addClass('hide');
@@ -47,36 +44,66 @@ const Arrows = (props) => {
 
   const setList = () => {
     listWidth = (($card.width() + 20) * children) - 10;
+    extraWidth = listWidth - viewWidth;
+
+    if (props.type === 'outfit') {
+      console.log(props.type, 'passed length', props.listLength, 'children', children);
+      console.log('list width', listWidth, 'extra width', extraWidth, 'pos', index);
+    }
+  }
+
+  const getIndex = () => Math.floor(Math.abs(scrollPos) / scrollAmount);
+
+  const fadeItem = () => {
+    let index = getIndex();
+    // console.log('index', index);
+    let $item = $list.find('li').eq(index);
+    let $first = $list.find('li').eq(0);
+    // console.log('items', $item);
+    let end = $('#related-add').offset().left + 100;
+    let distance = $item.offset().left;
+    let opacity = 1;
+
+    console.log('end', end, 'distance', distance);
+
+    // if (distance > end) {
+    //   $item.css("opacity", 1 - end / 210);
+    // }
   }
 
   const backClick = () => {
-    if (scrollPos === 0) {
+    if (scrollPos === start) {
       $backBtn.addClass('hide');
       $fwdBtn.removeClass('hide');
     }
 
     if ((scrollPos + scrollAmount) < extraWidth) {
       if (extraWidth < scrollAmount) {
-        scrollPos = 0;
+        scrollPos = start;
+        fadeItem();
         $backBtn.addClass('hide');
         $fwdBtn.removeClass('hide');
-      } else if (scrollPos + scrollAmount >= scrollAmount) {
-        scrollPos = 0;
+      } else if ((scrollPos + scrollAmount) >= scrollAmount) {
+        scrollPos = start;
+        fadeItem();
         $backBtn.addClass('hide');
         $fwdBtn.removeClass('hide');
       } else {
         scrollPos += scrollAmount;
+        fadeItem();
         $backBtn.removeClass('hide');
         $fwdBtn.removeClass('hide');
-        if (-scrollPos < scrollAmount) {
-          console.log('else if', scrollPos, extraWidth, scrollAmount);
+        if (-(scrollPos - 10) < scrollAmount) {
+          console.log('back else if', scrollPos, scrollAmount);
           $backBtn.addClass('hide');
-          scrollPos = 0;
+          scrollPos = start;
+          fadeItem();
         }
       }
     } else {
       console.log('second else', scrollPos, extraWidth, scrollAmount);
-      scrollPos = 0;
+      scrollPos = start;
+      fadeItem();
       $backBtn.addClass('hide');
       $fwdBtn.removeClass('hide');
     }
@@ -87,22 +114,24 @@ const Arrows = (props) => {
     if (-(scrollPos - scrollAmount) < extraWidth) {
       if (extraWidth < scrollAmount) {
         scrollPos -= extraWidth;
+        fadeItem();
         $backBtn.removeClass('hide');
         $fwdBtn.addClass('hide');
       } else {
         $backBtn.removeClass('hide');
-        console.log('full card before', scrollPos);
         scrollPos = scrollPos - scrollAmount;
-        console.log('full card after', scrollPos);
-        if (-(scrollPos - scrollAmount) > extraWidth) {
-          console.log('else if', scrollPos, extraWidth, scrollAmount);
-          scrollPos = -extraWidth;
+        fadeItem();
+        if (-((scrollPos - scrollAmount) + 10) > extraWidth) {
+          console.log('fwd else if', scrollPos, scrollAmount, extraWidth);
+          scrollPos = -(extraWidth + 3);
+          fadeItem();
           $fwdBtn.addClass('hide');
         }
       }
     } else {
       console.log('second else', scrollPos, extraWidth, scrollAmount);
-      scrollPos = -extraWidth;
+      scrollPos = -(extraWidth + 3);
+      fadeItem();
       $backBtn.removeClass('hide');
       $fwdBtn.addClass('hide');
     }
