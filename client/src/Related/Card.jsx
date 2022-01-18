@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import $ from 'jquery';
 import './related.css';
 import Price from './Price.jsx'
 import Rating from './Rating.jsx';
@@ -16,7 +15,6 @@ class Card extends React.Component {
     super(props);
     this.state = {
       actionName: TiDeleteOutline,
-      // mainProduct: null,
       currentImage: null,
       salePrice: null,
       regPrice: null,
@@ -25,18 +23,9 @@ class Card extends React.Component {
   };
 
   componentDidMount() {
-    // this.displayWidth();
     this.getType();
     this.getStyleInfo(this.props.product.id, this.props.product.name, this.props.product.default_price);
   }
-
-  // displayWidth = () => {
-  //   console.log(window.getComputedStyle(this.refs.card).getPropertyValue("width"));
-  // }
-
-  // setMainProduct = () => {
-  //   this.setState({ mainProduct: this.props.mainProduct })
-  // }
 
   getType = () => {
     this.props.type === 'outfit' ? this.setState({ actionName: TiDeleteOutline }) :
@@ -58,17 +47,17 @@ class Card extends React.Component {
         this.setState({ currentImage: `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}` });
       }
       defaultStyle.sale_price ?
-        this.setState({ salePrice: (price - defaultStyle.sale_price).toFixed(2), regPrice: price, sale: true }) : this.setState({ regPrice: price });
-      // discount ?
-      //   this.setState({ salePrice: (price - discount).toFixed(2), regPrice: price, sale: true }) : this.setState({ regPrice: price });
+        this.setState(
+          {
+            salePrice: (price - defaultStyle.sale_price).toFixed(2),
+            regPrice: price,
+            sale: true
+          })
+        : this.setState({ regPrice: price });
     } catch (err) {
       console.log(err);
     }
   };
-
-  actionClick = (e) => {
-    this.props.actionClick(this.props.product.id, e);
-  }
 
   changePage = (id, e) => {
     (e.target.parentNode.className === "action-btn" ||
@@ -82,7 +71,7 @@ class Card extends React.Component {
       <li data-testid='card' className='related-card' onClick={(e) => this.changePage(this.props.product.id, e)}
       >
         <img src={this.state.currentImage} className='related-img' />
-        <button className='action-btn' onClick={(e) => this.actionClick(e)}>
+        <button className='action-btn' onClick={(id) => this.props.actionClick(this.props.product.id)}>
           <Action />
         </button>
         <div className='card-text'>
