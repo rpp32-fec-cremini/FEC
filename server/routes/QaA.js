@@ -11,6 +11,8 @@ router.get('/questions/:product_id', (req, res) => {
   getProducts(endpoint)
   .then(question=> {
     // res.send(JSON.stringify(fakeQaASevenQuestions.results));
+    question.data.results.push(process.env.CLOUDINARY);
+    // console.log('get requestion from question', question.data.results.length);
     res.send(JSON.stringify(question.data.results));
   })
   .catch(err => {

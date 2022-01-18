@@ -16,28 +16,47 @@ class QA extends React.Component {
     this.state = {
       searchTerm: '',
       question: [],
+      questionRender: [],
       answers:[],
       questionHelpfulList:[],
-      answerHelpfulList:[]
+      answerHelpfulList:[],
+      cloudinary_upload_preset: '',
     };
     this.productId = this.props.productId;
     this.individualAnswer = this.individualAnswer.bind(this);
   }
 
   search(value) {
+    var questionsaved = this.state.question;
     if (value.length >= 3) {
       this.setState ({
         searchTerm: value,
       }, () => {
-        // console.log('searchterm', value)
+        var temp = [];
+        // var questionsaved = this.state.question;
+        for (var i = 0; i < this.state.questionRender.length; i++) {
+          if (this.state.questionRender[i].question_body.toLowerCase().includes(value.toLowerCase())) {
+            temp.push(this.state.questionRender[i]);
+          }
+        }
+        if (temp.length > 0) {
+          this.setState ({
+            questionRender: temp
+          }, () => {
+          })
+        } else {
+          this.setState ({
+            questionRender: []
+          })
+        }
       })
     } else {
       this.setState ({
         searchTerm: '',
+        questionRender: questionsaved,
       })
     }
   };
-
 
   individualAnswer(result) {
     result = result[0]['question_id']
@@ -59,6 +78,7 @@ class QA extends React.Component {
   }
 
   individualQuestion() {
+    console.log('productid', this.productId);
     var self = this;
     axios({
       method: 'GET',
@@ -67,19 +87,29 @@ class QA extends React.Component {
     })
     .then((results) => {
       let question = results.data;
-      // console.log('question will be ', question);
-      self.individualAnswer(question);
+      let cloudinary_upload_preset = question[question.length -1];
+      question.pop();
       self.setState ({
-        question: question,
+        cloudinary_upload_preset: cloudinary_upload_preset,
       }, () => {
-        // console.log('the question', this.state.question);
+        self.setState ({
+          question: question,
+          questionRender: question,
+        }, () => {
+        })
+        self.individualAnswer(question);
+        self.setState ({
+          question: question,
+          questionRender: question,
+        }, () => {
+        })
       })
     })
   }
 
   imageToURL(imgfile) {
     var cloudinary_url = 'https://api.cloudinary.com/v1_1/dy91vvft0/upload';
-    var cloudinary_upload_preset = 'p9buobh3';
+    var cloudinary_upload_preset = this.cloudinary_upload_preset;
     var allImages = [];
     var promises = [];
     if (imgfile[0] !== undefined) {
@@ -225,7 +255,7 @@ class QA extends React.Component {
       <div className='QaABox'>
         <h2 data-testid='Title' className = 'Title'>QUESTION & ANSWERS</h2>
         <SearchQuestions searchBar = {this.state.searchBar} search = {(e) => this.search(e)}/>
-        <QuestionModal question = {this.state.question} questionHelpful = {(e) => this.questionHelpful(e)} questionReport = {(e) => this.questionReport(e)}
+        <QuestionModal question = {this.state.questionRender} questionHelpful = {(e) => this.questionHelpful(e)} questionReport = {(e) => this.questionReport(e)}
         answerHelpful = {(e) => this.answerHelpful(e)} questionHelpfulList = {this.state.questionHelpfulList}
         answerHelpfulList = {this.state.answerHelpfulList} questionParmer = {(e) => this.questionParmer(e)} answerReport = {(e) => this.answerReport(e)}
         searchTerm = {this.state.searchTerm}/>
