@@ -28,7 +28,8 @@ const Arrows = (props) => {
   let listWidth = (($card.width() + 20) * children) - 9;
   let scrollAmount = props.type === 'outfit' ? Math.ceil(listWidth / children) + 1 : Math.ceil(listWidth / children);
   let extraWidth = listWidth - viewWidth;
-  let index = Math.floor(Math.abs(scrollPos) / scrollAmount);
+  let ariaBack = `${props.type} list back arrow`;
+  let ariaFwd = `${props.type} list forward arrow`;
 
   const setArrows = () => {
     scrollPos = start;
@@ -104,8 +105,8 @@ const Arrows = (props) => {
   return (
     <div className='arrows'>
       {setArrows()}
-      <IoIosArrowBack className='related-scroll' id={backScrollId} onClick={() => backClick()} />
-      < IoIosArrowForward className='related-scroll' id={fwdScrollId} onClick={() => fwdClick()} />
+      <IoIosArrowBack aria-label={ariaBack} className='related-scroll' id={backScrollId} onClick={() => backClick()} />
+      < IoIosArrowForward aria-label={ariaFwd} className='related-scroll' id={fwdScrollId} onClick={() => fwdClick()} />
     </div >
   )
 }

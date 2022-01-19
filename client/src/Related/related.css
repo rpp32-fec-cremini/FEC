@@ -11,6 +11,8 @@ html, body, #root {
 
 .top-container {
   margin-top: 5em;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .related-container {
@@ -47,6 +49,11 @@ html, body, #root {
   padding: 0;
   white-space: nowrap;
   transition: 0.5s all ease-out;
+}
+
+body::-webkit-scrollbar,
+.related-list::-webkit-scrollbar {
+  display: none;
 }
 
 .related-add, #outfit-list {

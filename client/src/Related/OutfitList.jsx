@@ -20,8 +20,8 @@ class OutfitList extends React.Component {
     this.setCurrentProduct(this.props.productId);
   }
 
-  componentDidUpdate() {
-    if (this.state.currentProduct === null || this.props.productId !== this.state.currentProduct.id) {
+  componentDidUpdate(nextProps) {
+    if (nextProps.productId !== this.props.productId) {
       this.setCurrentProduct();
     }
   }
@@ -32,12 +32,6 @@ class OutfitList extends React.Component {
       this.setState({ outfits: outfits });
     }
   }
-
-  // setCurrentProduct = () => {
-  //   $.get(`/products/${this.props.productId}`, data => {
-  //     this.setState({ currentProduct: JSON.parse(data) });
-  //   })
-  // };
 
   setCurrentProduct = () => {
     axios.get(`/products/${this.props.productId}`)
@@ -76,8 +70,8 @@ class OutfitList extends React.Component {
     let list = '#outfit-list';
     return (
       <div data-testid='outfitContainer' className='related-container' id='outfit-container'>
-        <h4 data-testid='outfitHeader' className='related-title' >YOUR OUTFIT</h4>
-        <div data-testid='add-card' className='related-card' id='related-add' onClick={(id) => this.addClick(this.props.productId)}>
+        <p data-testid='outfitHeader' className='related-title' >YOUR OUTFIT</p>
+        <div aria-label='add to your outfit' data-testid='add-card' className='related-card' id='related-add' onClick={(id) => this.addClick(this.props.productId)}>
           <div id='add-text'>
             <IoAdd id='add-icon' />
             <p>Add to Outfit</p>

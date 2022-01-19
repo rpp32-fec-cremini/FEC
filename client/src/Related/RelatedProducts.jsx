@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './related.css';
-import RelatedList from './RelatedList.jsx';
+import List from './List.jsx';
 import Compare from './Compare.jsx';
 import Arrows from './Arrows.jsx';
 import getClicks from "../getClicks.jsx";
@@ -96,8 +96,8 @@ class RelatedProducts extends React.Component {
     return (
       <div>
         <div data-testid='listContainer' className='related-container top-container' >
-          <h4 data-testid='listHeader' className='related-title' >RELATED PRODUCTS</h4>
-          <RelatedList
+          <p data-testid='listHeader' className='related-title' >RELATED PRODUCTS</p>
+          <List
             relatedProducts={this.state.relatedProducts}
             actionClick={this.starClick}
             mainProduct={this.state.mainProduct}

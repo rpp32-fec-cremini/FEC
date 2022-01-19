@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import $ from 'jquery';
 import './related.css';
 import Card from './Card.jsx';
 import getClicks from "../getClicks.jsx";
 
-const RelatedList = (props) => {
+const List = (props) => {
+
+  // const [modalOpen, setmodalOpen] = useState(false);
 
   const starClick = (id) => {
+    // setmodalOpen(true);
     props.setCompProduct(id);
     $('.compare').removeClass('hide');
     $('.compare').addClass('show');
@@ -28,6 +31,7 @@ const RelatedList = (props) => {
         $('.compare').addClass('hide');
         $('.related-container').parents('#root, body, html').css({ 'overflow': 'auto' });
         $('.related-list').css({ 'overflow-x': 'auto' });
+        // setmodalOpen(true);
       }
     });
   }
@@ -36,10 +40,12 @@ const RelatedList = (props) => {
     <ul data-testid='list' className='related-list' id='related-list'>
       {props.relatedProducts.map((product, i) => (
         < Card key={product.id + i}
-          product={product} type='related'
+          product={product}
+          type='related'
           actionClick={(id) => starClick(id)}
-          mainProduct={props.mainProduct}
           setproductId={props.setproductId}
+        // setmodalOpen={setmodalOpen}
+        // modalOpen={modalOpen}
         />
       ))
       }
@@ -47,4 +53,4 @@ const RelatedList = (props) => {
   )
 }
 
-export default getClicks(RelatedList);
+export default getClicks(List);
