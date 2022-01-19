@@ -19,7 +19,7 @@ var App = (props) => {
       <Overview className='relatedCard' productId={productId} />
       <RelatedProducts productId={productId} setproductId={setproductId} />
       <OutfitList productId={productId} setproductId={setproductId} />
-      <QandA productId={59630} />
+      <QandA productId={productId} />
       <RatingContainer productId={productId} />
     </div>
   )

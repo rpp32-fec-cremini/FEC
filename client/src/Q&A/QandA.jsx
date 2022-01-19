@@ -66,14 +66,6 @@ class QA extends React.Component {
       url: `/qa/questions/${result}/answers`
     })
     .then((results) => {
-      // let answer = results.data;
-      // if (this.state.answers !== answer) {
-      //   self.setState ({
-      //     answers: answer
-      //   }, () => {
-      //     // console.log('sssssssssssssssthe answer', this.state.answers);
-      //   })
-      // }
     })
   }
 

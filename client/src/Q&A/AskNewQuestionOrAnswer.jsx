@@ -117,15 +117,15 @@ const AskNewQuestionOrAnswer = (props) => {
             <br />
             {questionError ? <div style = {{fontSize:12, color:"red"}}>{questionError}</div> : null}
           </div>
-          <div className = "nickname-block">
+          <div className = "nickname-block" >
             <label><b>Nickname:</b></label>
             <br />
-            <input className = "nickname-input-box" value={nickName} type = "text" maxLength = {60} onChange = {(e) => handleNickNameChange(e)} placeholder = "Example: jackson11!" />
+            <input className = "nickname-input-box" data-testid={'name-input-box'} value = {nickName} type = "text" maxLength = {60} onChange = {(e) => handleNickNameChange(e)} placeholder = "Example: jackson11!" />
             <br />
             {nameError ? <div style={{fontSize:12, color:"red"}}>{nameError}</div> : null}
             <p className = "warning">For privacy reasons, do not use your full name or email address</p>
           </div >
-          <div className = "email-block">
+          <div className = "email-block" data-testid={'email-input-box'}>
             <label><b>Email:</b></label>
             <br />
             <input className = "email-input-box" value = {email} type = "text" maxLength = {60} onChange={(e) => handleEmailChange(e)} placeholder = "Example: jackson11@email.com" />

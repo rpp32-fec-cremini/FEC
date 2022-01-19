@@ -6,7 +6,7 @@ import '@testing-library/jest-dom';
 import Question from '../../client/src/Q&A/QandA.jsx';
 import IndividualQuestion from '../../client/src/Q&A/QuestionModal.jsx';
 import SearchQuestions from '../../client/src/Q&A/SearchQuestions.jsx';
-import AnswerModal from '../../client/src/Q&A/AnswerModal.jsx'; 
+import AnswerModal from '../../client/src/Q&A/AnswerModal.jsx';
 import AskNewQuestion from '../../client/src/Q&A/AskNewQuestionOrAnswer.jsx';
 
 var QaAFakeDataSevenQuestion = require("../../server/routes/QaAFakeData").fakeQaASevenQuestions;
@@ -39,7 +39,6 @@ test('Show 2 more questions when click more Answer Question?', () => {
   fireEvent.click(moreQuestion);
   expect(queryByTestId('question 3')).toBeTruthy();
 })
-
 
 test('More Question button changed to collasped questions button after 3 clicks?', () => {
   const { getByTestId, queryByTestId, getByText } = render(<IndividualQuestion question={QaAFakeDataSevenQuestion.results} searchTerm={''} />);
@@ -89,6 +88,20 @@ test('It should show a warning when submit a empty question or answer', () => {
   fireEvent.change(newQA , { target: { value: 'What is the quesion' } });
   fireEvent.click(submutNewQA);
   expect(askNewQAbox).not.toHaveTextContent('This field can not be blank');
+})
+
+test('It should show a warning when submit a question or answer without a Nickname', () => {
+  const { getByTestId, queryByTestId, getByText } = render(<AskNewQuestion trigger = {true}/>);
+  const newQA = queryByTestId('question-input-box');
+  const newEmail = queryByTestId('email-input-box');
+  const newName = queryByTestId('name-input-box');
+  const submutNewQA = getByTestId('submitnewQA');
+  const askNewQAbox = getByTestId('question-block');
+
+  fireEvent.change(newQA , { target: { value: 'What is the quesion' } });
+  fireEvent.change(newName , { target: { value: 'Glen' } });
+  fireEvent.click(submutNewQA);
+  expect(newEmail).toHaveTextContent('The email address provided is not in correct email format');
 })
 
 test('"See more answers button become "Collasped answer" button after click', () => {
