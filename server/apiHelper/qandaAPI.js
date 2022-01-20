@@ -27,18 +27,6 @@ const postQuestion = (data) => {
             'Authorization': process.env.TOKEN
         }
     })
-    // var product_id = parseInt(data.product_id);
-    // let options = {
-    //     method: 'POST',
-    //     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions',
-    //     headers: {
-    //         'Authorization': process.env.TOKEN,
-    //     },
-    //     // eslint-disable-next-line camelcase
-    //     body: {'body': data.question, 'name': data.nickName, 'email': data.email, 'product_id': product_id }
-    //   };
-    // return axios(options);
-    // console.log(data);
 };
 
 const postAnswer = (data, questionId) => {
@@ -92,19 +80,6 @@ const answerHelpfulandReport = (endPoint) => {
 //     }
 //     return axios(options);
 // };
-// getProducts('?product_id=59553')
-// .then(question=> {
-//     // console.log('question', question.data)
-//   console.log('data', question.data.results[0].answers);
-// //   res.send(JSON.stringify(question.data.results));
-// })
-
-// var result = {
-//     question: 'what is the size of this products?',
-//     nickName: 'Glen',
-//     email: 'Glen@gmail.com',
-//     product_id: 59555
-// }
 
 
 

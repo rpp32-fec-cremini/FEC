@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import "./QaA.css";
 import './SearchQuestions.css';
+import getClicks from "../getClicks.jsx";
 
 
-const SearchQuestion = (props) => {
+const SearchQuestion = (props, {clicked}) => {
 
   const [searchWord, setsearchWord] = useState('')
 
@@ -18,7 +19,7 @@ const SearchQuestion = (props) => {
   };
 
   return (
-    <div>
+    <div onClick={(e) => props.clicked(e)}>
       <form className = "searchBox" onSubmit={onSubmit}>
         <label >
           <input type = "text" data-testid = 'searchQuestion' value = {searchWord} placeholder = "Have a question? Search for answers..." onChange = {(e) => handleSearch(e, props) } style={{width: "80%", height:"30px",}}/>
@@ -29,4 +30,4 @@ const SearchQuestion = (props) => {
   )
 };
 
-export default SearchQuestion;
+export default getClicks(SearchQuestion);

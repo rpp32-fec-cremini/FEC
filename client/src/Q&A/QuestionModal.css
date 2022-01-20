@@ -54,7 +54,7 @@
 
 .Question-body {
   font-weight: bold;
-  /* font-family: "italic"; */
+  font-family: "font-variant", normal;
   font-size: 20px;
 }
 
