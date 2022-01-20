@@ -2,8 +2,9 @@ import React, {useState, useEffect} from 'react';
 import AnswerModal from './AnswerModal.jsx';
 import AskNewQuestionOrAnswer from './AskNewQuestionOrAnswer.jsx';
 import './QuestionModal.css';
+import getClicks from "../getClicks.jsx";
 
-const QuestionModal = (props) => {
+const QuestionModal = (props, {clicked}) => {
   const [loading, setloading] = useState(false);
   const [loadingQuestion, setloadingQuestion] = useState(2);
   const [buttonPopup, setbuttonPopup] = useState(false);
@@ -14,7 +15,11 @@ const QuestionModal = (props) => {
 
   const showbutton = (props) => {
     if (props.question.length > loadingQuestion) {
-      return <button data-testid="moreQuestionBtn" className = 'moreAnswerBtn' onClick={() => getMoreQuestion()}>+ More Answered Questions</button>
+      return <button
+                data-testid="moreQuestionBtn"
+                className = 'moreAnswerBtn'
+                onClick={() => getMoreQuestion()}>+ More Answered Questions
+             </button>
     }
   }
 
@@ -36,13 +41,11 @@ const QuestionModal = (props) => {
   }
 
   const helpful = (e, props, questionId) => {
-
     if (props.questionHelpfulList.indexOf(questionId) === -1) {
       var numberofHelpful = parseInt(e.target.innerText) + 1;
       e.target.innerText = numberofHelpful;
       props.questionHelpful(questionId);
     }
-
   }
 
   const questionReport = (e, props, questionId) => {
@@ -67,7 +70,6 @@ const QuestionModal = (props) => {
           temp.push(question[i]);
         }
       }
-      // setafterFilter(temp);
       if (temp.length > 2) {
         var twoQuestion = temp.slice(0, loadingQuestion);
       } else {
@@ -80,18 +82,11 @@ const QuestionModal = (props) => {
 
     function highlight(props, questionBody) {
       var search = props.searchTerm;
-      // console.log('dfsaqweq', search)
       if (search.length === 0) {
         return questionBody;
       }
       let newString = questionBody.replace(new RegExp(search, "gi"), g => `<mark>${g}</mark>`);
-      // var re = new RegExp(search,"g");
-      // let newString = questionBody.replace(re, <mark>{search}</mark>)
-      // var result = dangerouslySetInnerHTML={{ __html: newString }}
-      // console.log('newString', newString);
-      // return questionBody;
       return <span dangerouslySetInnerHTML={{ __html: newString }}></span>;
-      // return <mark>ffff</mark>
     }
 
     //Filter by searchTerm
@@ -108,15 +103,30 @@ const QuestionModal = (props) => {
       }).map((question, i) =>
           <div className = "Question-row" key = {question.question_id} data-testid = 'Questions-id'>
             <div className = "Question-body" data-testid={'question ' + i} style = {{float: "left"}}>Q: {highlight(props, question.question_body)}</div>
-            <div className = "Question-helpful" style = {{float: "right", left: "10px"}}>Helpful? YES(<a className = 'question-help-btn' data-testid = {'questionHelpful ' + i} style = {{"textDecoration":"underline"}}
-            onClick = {(e) => {helpful(e, props, question.question_id)}}>{question.question_helpfulness}</a>)&nbsp;&nbsp;|&nbsp;&nbsp;
-            <a className = 'question-add-answer-btn' style = {{"textDecoration":"underline"}} onClick ={() => {setbuttonPopup(true); settypeofbutton('answer'); setquestionId(question.question_id)}}>Add Answer</a>
-            &nbsp;&nbsp;|&nbsp;&nbsp;<a className = 'question-report-btn' style = {{"textDecoration":"underline"}} onClick = {(e) => questionReport(e, props, question.question_id)}>Report</a>
+            <div className = "Question-helpful" style = {{float: "right", left: "10px"}}>Helpful? YES(
+              <a className = 'question-help-btn' data-testid = {'questionHelpful ' + i} style = {{"textDecoration":"underline"}}
+                onClick = {(e) => {helpful(e, props, question.question_id)}}>{question.question_helpfulness}
+              </a>
+                )&nbsp;&nbsp;|&nbsp;&nbsp;
+              <a className = 'question-add-answer-btn'
+                style = {{"textDecoration":"underline"}}
+                onClick ={() => {setbuttonPopup(true); settypeofbutton('answer'); setquestionId(question.question_id)}}>Add Answer
+              </a>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+              <a  className = 'question-report-btn'
+                style = {{"textDecoration":"underline"}}
+                onClick = {(e) => questionReport(e, props, question.question_id)}>Report
+              </a>
             </div>
             <br />
               <div>
                 <br />
-                <AnswerModal answer = {question.answers} answerHelpfulList = {props.answerHelpfulList} answerHelpful = {(e) => props.answerHelpful(e)} answerReport = {(e) => props.answerReport(e)}/>
+                <AnswerModal
+                  answer = {question.answers}
+                  answerHelpfulList = {props.answerHelpfulList}
+                  answerHelpful = {(e) => props.answerHelpful(e)}
+                  answerReport = {(e) => props.answerReport(e)}
+                />
               </div>
           </div>
         )
@@ -124,18 +134,31 @@ const QuestionModal = (props) => {
   };
 
   return (
-    <div>
-      <div className = "Questions" style = {props.question.length < 2 ? props.question.length < 1 ? {overflowY: 'scroll', height:'50px'} : {overflowY: 'scroll', height:'250px'} : {overflowY: 'scroll', height:'500px'}}>
-        {/* <input type="text" id="searchBar" placeholder = "Have a question? Search for answers..." onChange = {(e) => handleSearch(e, props) } style={{width: "80%", height:"30px",}}/> */}
-        {props.question.length > loadingQuestion || props.question.length <= 2? show(props, true) : show(props)}
+    <div onClick={(e) => props.clicked(e)}>
+
+      <div className = "Questions"
+        style = {props.question.length < 2 ? props.question.length < 1 ?
+                {overflowY: 'scroll', height:'50px'} : {overflowY: 'scroll', height:'250px'} : {overflowY: 'scroll', height:'500px'}}>
+                {props.question.length > loadingQuestion || props.question.length <= 2? show(props, true) : show(props)}
       </div>
+
       <div className = 'question-btns-block' data-testid="questionBtn">
         {loadingQuestion < props.question.length? showbutton(props) : collaspseButton(props)}
-        <button className = 'addQuestionbtn' onClick = {() => {setbuttonPopup(true); settypeofbutton('question')}}>+ Add A Question</button>
+        <button className = 'addQuestionbtn' onClick = {() => {setbuttonPopup(true); settypeofbutton('question')}}>
+          + Add A Question
+        </button>
       </div>
-        <AskNewQuestionOrAnswer trigger = {buttonPopup} setTrigger = {setbuttonPopup} questionParmer = {props.questionParmer} typeofbutton = {typeofbutton} questionId = {questionId}></AskNewQuestionOrAnswer>
+
+      <AskNewQuestionOrAnswer
+        trigger = {buttonPopup}
+        setTrigger = {setbuttonPopup}
+        questionParmer = {props.questionParmer}
+        typeofbutton = {typeofbutton}
+        questionId = {questionId}>
+      </AskNewQuestionOrAnswer>
+
     </div>
   )
 };
 
-export default QuestionModal;
+export default getClicks(QuestionModal);

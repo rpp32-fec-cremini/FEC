@@ -5,7 +5,9 @@ import $ from 'jquery';
 import AnswerModal from './AnswerModal.jsx';
 import QuestionModal from './QuestionModal.jsx';
 import SearchQuestions from './SearchQuestions.jsx';
+import getClicks from "../getClicks.jsx";
 import "./QaA.css";
+
 // import cloudinaryAPI from '../../../config.js';
 
 class QA extends React.Component {
@@ -33,7 +35,6 @@ class QA extends React.Component {
         searchTerm: value,
       }, () => {
         var temp = [];
-        // var questionsaved = this.state.question;
         for (var i = 0; i < this.state.questionRender.length; i++) {
           if (this.state.questionRender[i].question_body.toLowerCase().includes(value.toLowerCase())) {
             temp.push(this.state.questionRender[i]);
@@ -59,30 +60,32 @@ class QA extends React.Component {
   };
 
   individualAnswer(result) {
-    result = result[0]['question_id']
-    var self = this;
-    axios({
-      method: 'GET',
-      url: `/qa/questions/${result}/answers`
-    })
-    .then((results) => {
-    })
+    if (result.length !== 0) {
+      result = result[0]['question_id']
+      var self = this;
+      axios({
+        method: 'GET',
+        url: `/qa/questions/${result}/answers`
+      })
+      .then((results) => {
+      })
+    }
   }
 
   individualQuestion() {
-    console.log('productid', this.productId);
+    // console.log('productid', this.productId);
     var self = this;
     axios({
       method: 'GET',
       url: `/qa/questions/${this.productId}`,
-      // data: this.productId,
     })
     .then((results) => {
       let question = results.data;
-      let cloudinary_upload_preset = question[question.length -1];
-      question.pop();
+      let cloudinary_upload_preset = question.pop();
+      // console.log('the results', cloudinary_upload_preset);
+      // question.pop();
       self.setState ({
-        cloudinary_upload_preset: cloudinary_upload_preset,
+        cloudinary_upload_preset: cloudinary_upload_preset['CloundinaryAPI'],
       }, () => {
         self.setState ({
           question: question,
@@ -101,7 +104,8 @@ class QA extends React.Component {
 
   imageToURL(imgfile) {
     var cloudinary_url = 'https://api.cloudinary.com/v1_1/dy91vvft0/upload';
-    var cloudinary_upload_preset = this.cloudinary_upload_preset;
+    var cloudinary_upload_preset = this.state.cloudinary_upload_preset;
+    console.log('the api', cloudinary_upload_preset);
     var allImages = [];
     var promises = [];
     if (imgfile[0] !== undefined) {
@@ -143,7 +147,7 @@ class QA extends React.Component {
       url: `/qa/questions/${questionId}/helpful`,
     })
     .then((results) => {
-      console.log('data send')
+      // console.log('data send')
     })
     .catch((err) => {
       console.log('err');
@@ -156,7 +160,7 @@ class QA extends React.Component {
       url: `/qa/questions/${questionId}/report`,
     })
     .then((results) => {
-      console.log('data send')
+      // console.log('data send')
     })
     .catch((err) => {
       console.log('err');
@@ -174,7 +178,7 @@ class QA extends React.Component {
       url: `/qa/answers/${answerId}/helpful`,
     })
     .then((results) => {
-      console.log('data send')
+      // console.log('data send')
     })
     .catch((err) => {
       console.log('err');
@@ -187,7 +191,7 @@ class QA extends React.Component {
       url: `/qa/answers/${answerId}/report`,
     })
     .then((results) => {
-      console.log('data send')
+      // console.log('data send')
     })
     .catch((err) => {
       console.log('err');
@@ -244,16 +248,23 @@ class QA extends React.Component {
 
   render() {
     return (
-      <div className='QaABox'>
+      <div className='QaABox' onClick={(e) => this.props.clicked(e)}>
         <h2 data-testid='Title' className = 'Title'>QUESTION & ANSWERS</h2>
         <SearchQuestions searchBar = {this.state.searchBar} search = {(e) => this.search(e)}/>
-        <QuestionModal question = {this.state.questionRender} questionHelpful = {(e) => this.questionHelpful(e)} questionReport = {(e) => this.questionReport(e)}
-        answerHelpful = {(e) => this.answerHelpful(e)} questionHelpfulList = {this.state.questionHelpfulList}
-        answerHelpfulList = {this.state.answerHelpfulList} questionParmer = {(e) => this.questionParmer(e)} answerReport = {(e) => this.answerReport(e)}
-        searchTerm = {this.state.searchTerm}/>
+        <QuestionModal
+          question = {this.state.questionRender}
+          questionHelpful = {(e) => this.questionHelpful(e)}
+          questionReport = {(e) => this.questionReport(e)}
+          answerHelpful = {(e) => this.answerHelpful(e)}
+          questionHelpfulList = {this.state.questionHelpfulList}
+          answerHelpfulList = {this.state.answerHelpfulList}
+          questionParmer = {(e) => this.questionParmer(e)}
+          answerReport = {(e) => this.answerReport(e)}
+          searchTerm = {this.state.searchTerm}
+        />
       </div>
     )
   }
 }
 
-export default QA;
+export default getClicks(QA);

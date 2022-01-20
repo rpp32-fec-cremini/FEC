@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import './AskNewQuestionOrAnswer.css';
+import getClicks from "../getClicks.jsx";
 
 const AskNewQuestionOrAnswer = (props) => {
   const [size, setsize] = useState(0);
@@ -104,14 +105,37 @@ const AskNewQuestionOrAnswer = (props) => {
   }
 
   return (props.trigger) ? (
-    <div className = "popup">
-      <div className = "popup-inner">
-        {props.typeofbutton === 'answer' ? <div className='questionTitle'>Answer This Question</div> : <div className='answerTitle'>Ask A New Question</div>}
+    <div className = "popup" >
+      <div className = "popup-inner" onClick={(e) => props.clicked(e)}>
+        {props.typeofbutton === 'answer' ?
+          <div
+            className='questionTitle'>Answer This Question
+          </div>
+             :
+          <div
+            className='answerTitle'>Ask A New Question
+          </div>
+        }
         <form >
           <div className = "question-block" data-testid={'question-block'}>
-            {props.typeofbutton === 'answer' ? <label><b>Answer:</b></label> : <label><b>Question:</b></label>}
+            {props.typeofbutton === 'answer' ?
+            <label>
+              <b>Answer:</b>
+            </label>
+              :
+            <label>
+              <b>Question:</b>
+            </label>}
             <br />
-            <textarea className = "question-input-box"  data-testid={'question-input-box'}  value = {question} type = "text" maxLength = {1000} onChange = {(e) => handlequestionChange(e)} placeholder = "Why did you like the product or not?" />
+            <textarea
+              className = "question-input-box"
+              data-testid={'question-input-box'}
+              value = {question}
+              type = "text"
+              maxLength = {1000}
+              onChange = {(e) => handlequestionChange(e)}
+              placeholder = "Why did you like the product or not?"
+            />
             <p className = "max-word-length">{size}/1000</p>
             <br />
             <br />
@@ -120,23 +144,46 @@ const AskNewQuestionOrAnswer = (props) => {
           <div className = "nickname-block" >
             <label><b>Nickname:</b></label>
             <br />
-            <input className = "nickname-input-box" data-testid={'name-input-box'} value = {nickName} type = "text" maxLength = {60} onChange = {(e) => handleNickNameChange(e)} placeholder = "Example: jackson11!" />
+            <input
+              className = "nickname-input-box"
+              data-testid={'name-input-box'}
+              value = {nickName}
+              type = "text"
+              maxLength = {60}
+              onChange = {(e) => handleNickNameChange(e)}
+              placeholder = "Example: jackson11!"
+            />
             <br />
-            {nameError ? <div style={{fontSize:12, color:"red"}}>{nameError}</div> : null}
+            {nameError ?<div style={{fontSize:12, color:"red"}}>{nameError}</div> : null}
             <p className = "warning">For privacy reasons, do not use your full name or email address</p>
           </div >
           <div className = "email-block" data-testid={'email-input-box'}>
             <label><b>Email:</b></label>
             <br />
-            <input className = "email-input-box" value = {email} type = "text" maxLength = {60} onChange={(e) => handleEmailChange(e)} placeholder = "Example: jackson11@email.com" />
+            <input
+              className = "email-input-box"
+              value = {email}
+              type = "text"
+              maxLength = {60}
+              onChange={(e) => handleEmailChange(e)}
+              placeholder = "Example: jackson11@email.com"
+            />
             <br />
             {emailError ? <div style = {{fontSize:12, color:"red"}}>{emailError}</div> : null}
             <p className = "warning">For authentication reasons, you will not be emailed</p>
             { props.typeofbutton === 'answer' ?
                 <div className = 'imageUpload'  data-testid = 'imageUpload'>
                   <br />
-                  <label><b>Upload Image:</b></label>
-                  <input ref = {fileRef} style = {{display: "none"}} type = "file" accept = "image/gif,image/jpeg,image/jpg,image/png"  multiple onChange = {(e) => handleImageChange(e)} />
+                  <label>
+                    <b>Upload Image:</b>
+                  </label>
+                  <input
+                    ref = {fileRef}
+                    style = {{display: "none"}}
+                    type = "file"
+                    accept = "image/gif,image/jpeg,image/jpg,image/png"
+                    multiple onChange = {(e) => handleImageChange(e)}
+                  />
                   <button className = "upload-file-btn" onClick = {(e) => {e.preventDefault(); fileRef.current.click()}}>
                     <span>Choose Images(max 5 photos)</span>
                   </button>
@@ -152,4 +199,4 @@ const AskNewQuestionOrAnswer = (props) => {
   ) : "";
 };
 
-export default AskNewQuestionOrAnswer;
+export default getClicks(AskNewQuestionOrAnswer);

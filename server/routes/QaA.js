@@ -1,7 +1,6 @@
 const express = require('express');
 const { fakeQaASevenQuestions } = require('./QaAFakeData');
 const {getProducts, postQuestion, postAnswer, questionHelpfulandReport, answerHelpfulandReport} = require('../apiHelper/qandaAPI');
-// const postQuestion = require('../apiHelper/qandaAPI');
 const router = express.Router();
 
 router.get('/questions/:product_id', (req, res) => {
@@ -10,9 +9,8 @@ router.get('/questions/:product_id', (req, res) => {
   var endpoint = `?product_id=${productId}`;
   getProducts(endpoint)
   .then(question=> {
-    // res.send(JSON.stringify(fakeQaASevenQuestions.results));
-    question.data.results.push(process.env.CLOUDINARY);
-    // console.log('get requestion from question', question.data.results.length);
+    question.data.results.push({'CloundinaryAPI': process.env.CLOUDINARY});
+    console.log('get requestion from question', question.data.results.length);
     res.send(JSON.stringify(question.data.results));
   })
   .catch(err => {
