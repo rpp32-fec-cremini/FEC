@@ -170,7 +170,7 @@ ul li:first-child {
   position: absolute;
 	top: 50%;
   color: black;
-  background-color: rgba(240, 240, 240, 0.2);
+  background-color: rgba(240, 240, 240, 0.5);
   cursor: pointer;
   transition: 1s;
 }

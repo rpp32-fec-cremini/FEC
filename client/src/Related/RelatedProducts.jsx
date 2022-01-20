@@ -74,7 +74,6 @@ class RelatedProducts extends React.Component {
   getRelatedIds = () => {
     axios.get(`/products/${this.props.productId}/related`)
       .then(ids => {
-        // this.setState({ relatedIds: ids.data });
         this.setRelatedProducts(ids.data);
       })
       .catch(err => console.log('related products request failed'));
@@ -100,7 +99,7 @@ class RelatedProducts extends React.Component {
           <List
             relatedProducts={this.state.relatedProducts}
             actionClick={this.starClick}
-            mainProduct={this.state.mainProduct}
+            mainProductId={this.props.productId}
             setCompProduct={this.setCompProduct}
             setproductId={this.props.setproductId}
           />
