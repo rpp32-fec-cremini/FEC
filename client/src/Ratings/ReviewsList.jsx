@@ -6,47 +6,87 @@ import AddReview from "./AddReview.jsx";
 import SortReviews from "./SortReviews.jsx";
 import getClicks from "../getClicks.jsx";
 
-var ReviewsList = ({clicked, reported, productName, charMap, sortAndGet, reviews, shownReviews, moreReviews, addToVoted, voted, product, characteristics, product_id, submitReview}) => {
-
-  var addBtn = reviews.length && shownReviews != reviews.length ? <button className="RatingBtn" onClick={moreReviews} data-testid='more'>+  More Reviews</button> : null;
-  var sortDropdown = reviews.length ? <SortReviews numReviews={reviews.length} sortAndGet={sortAndGet}/> : null;
+var ReviewsList = ({
+  clicked,
+  reported,
+  productName,
+  charMap,
+  sortAndGet,
+  reviews,
+  shownReviews,
+  moreReviews,
+  addToVoted,
+  voted,
+  product,
+  characteristics,
+  product_id,
+  submitReview,
+  writing,
+  setWriting,
+  display,
+  setDisplay,
+}) => {
+  var addBtn =
+    reviews.length && shownReviews != reviews.length ? (
+      <button className="RatingBtn" onClick={moreReviews} data-testid="more">
+        + More Reviews
+      </button>
+    ) : null;
+  var sortDropdown = reviews.length ? (
+    <SortReviews numReviews={reviews.length} sortAndGet={sortAndGet} />
+  ) : null;
   var scrollStyle = {
-    "height": "48em",
-    "overflowY": "scroll",
-  }
+    height: "48em",
+    overflowY: "scroll",
+  };
   return (
-  <div className="container-right" onClick={(e) => clicked(e)}>
-    {sortDropdown}
-    <div className="scrollStyle" style={shownReviews >= 3 ? scrollStyle : {"height": "48em"}} data-testid="scrolllist">
-      {reviews.slice(0, shownReviews).map(review => {
-        var flagColor = reported[review.review_id] ? 'red': 'grey';
-        return (
-          <ReviewTile
-            id={review.review_id}
-            key={review.review_id}
-            starRating={review.rating}
-            dateWritten={conformDate(review.date)}
-            summary={review.summary}
-            body={review.body}
-            images={review.photos}
-            recommend={review.recommend}
-            name={review.reviewer_name}
-            response={review.response}
-            helpfulness={review.helpfulness}
-            addToVoted={addToVoted}
-            voted={voted}
-            flagColor={flagColor}
-          />
-        )})
-      }
+    <div className="container-right" onClick={(e) => clicked(e)}>
+      {sortDropdown}
+      <div
+        className="scrollStyle"
+        style={shownReviews >= 3 ? scrollStyle : { height: "48em" }}
+        data-testid="scrolllist"
+      >
+        {reviews.slice(0, shownReviews).map((review) => {
+          var flagColor = reported[review.review_id] ? "red" : "grey";
+          return (
+            <ReviewTile
+              id={review.review_id}
+              key={review.review_id}
+              starRating={review.rating}
+              dateWritten={conformDate(review.date)}
+              summary={review.summary}
+              body={review.body}
+              images={review.photos}
+              recommend={review.recommend}
+              name={review.reviewer_name}
+              response={review.response}
+              helpfulness={review.helpfulness}
+              addToVoted={addToVoted}
+              voted={voted}
+              flagColor={flagColor}
+            />
+          );
+        })}
+      </div>
+      <div className="buttons">
+        {addBtn}
+        <AddReview
+          productName={productName}
+          charMap={charMap}
+          product={product}
+          characteristics={characteristics}
+          product_id={product_id}
+          submitReview={submitReview}
+          writing={writing}
+          setWriting={setWriting}
+          display={display}
+          setDisplay={setDisplay}
+        />
+      </div>
     </div>
-    <div className="buttons">
-      { addBtn }
-      <AddReview productName={productName} charMap={charMap} product={product} characteristics={characteristics} product_id={product_id} submitReview={submitReview}/>
-    </div>
-  </div>
-  )
-}
+  );
+};
 
 var conformDate = (date) => {
   var months = {
@@ -59,13 +99,13 @@ var conformDate = (date) => {
     "07": "July",
     "08": "August",
     "09": "September",
-    "10": "October",
-    "11": "November",
-    "12": "December",
-  }
+    10: "October",
+    11: "November",
+    12: "December",
+  };
   var d = date.substring(0, 10);
   var [year, month, day] = d.split("-");
-  return `${months[month]} ${day[0] !== 0 ? day : day[1]}, ${year}`
-}
+  return `${months[month]} ${day[0] !== 0 ? day : day[1]}, ${year}`;
+};
 
 export default getClicks(ReviewsList);
