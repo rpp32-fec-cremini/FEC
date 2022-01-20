@@ -1,4 +1,6 @@
 import React from 'react';
+import './related.css';
+import getClicks from '../getClicks.jsx';
 
 const Price = (props) => {
   if (props.sale) {
@@ -16,4 +18,4 @@ const Price = (props) => {
     )
   }
 }
-export default Price;
+export default getClicks(Price);

@@ -26,6 +26,10 @@ var getClicks = WrappedComponent => props => {
     'SortReviews': 'Ratings',
     'NewReview': 'Ratings',
     'ReviewTile': 'Ratings',
+    'AnswerModal': 'QA',
+    'AskNewQuestionOrAnswer': 'QA',
+    'QuestionModal': 'QA',
+    'SearchQuestions': 'QA',
   }
   var clicked = (e) => {
     e.stopPropagation();

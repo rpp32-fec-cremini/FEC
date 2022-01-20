@@ -9,22 +9,10 @@ html, body, #root {
   display: grid;
 }
 
-.related {
-  font-family: 'adobe-clean', sans-serif;
-  color: rgb(86, 86, 86);
-  margin: 0;
-  padding: 0;
-  overflow-y: hidden;
-}
-
-.related-title {
-  font-weight: lighter;
-  font-size: small;
-  margin-top: 0;
-}
-
 .top-container {
   margin-top: 5em;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .related-container {
@@ -48,6 +36,11 @@ html, body, #root {
   white-space: nowrap;
 }
 
+.related-title {
+  font-weight: lighter;
+  font-size: small;
+  margin-top: 0;
+}
 
 .related-list {
   position: relative;
@@ -58,6 +51,7 @@ html, body, #root {
   transition: 0.5s all ease-out;
 }
 
+body::-webkit-scrollbar,
 .related-list::-webkit-scrollbar {
   display: none;
 }
@@ -65,12 +59,11 @@ html, body, #root {
 .related-add, #outfit-list {
   display: inline-block;
   vertical-align: top;
-  background-color: white;
 }
 
 #related-add {
   margin: 0;
-  margin-right: 18px;
+  margin-right: 16px;
   background-color: white;
   z-index: 2;
 }
@@ -89,7 +82,7 @@ html, body, #root {
 }
 
 ul li:first-child {
-  margin-left: 0;
+  margin-left: 2px;
 }
 
 #add-text {
@@ -148,14 +141,6 @@ ul li:first-child {
   cursor: pointer;
 }
 
-/* .card-star {
-  content: "\2605";
-  -webkit-text-stroke: 1px rgb(86, 86, 86);
-  transform:scale(0.9);
-  margin: 0;
-  padding: 0;
-} */
-
 .ratings {
   position: relative;
   vertical-align: middle;
@@ -178,13 +163,6 @@ ul li:first-child {
 .full-stars:before {
   content: "\2605  \2605  \2605  \2605  \2605";
   font-size: 75%;
-}
-
-.empty-stars:before {
-  -webkit-text-stroke: 1px rgb(86, 86, 86);
-}
-
-.full-stars:before {
   -webkit-text-stroke: 1px rgb(86, 86, 86);
 }
 
@@ -210,7 +188,6 @@ ul li:first-child {
 
 .action-btn:hover::before, .related-scroll:hover::before {
   transform: scale(1.1);
-  /* box-shadow: 0 0 15px #ffee10; */
 }
 
 .action-btn:hover, .related-scroll:hover {
