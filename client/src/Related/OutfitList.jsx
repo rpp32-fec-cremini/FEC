@@ -58,44 +58,42 @@ class OutfitList extends React.Component {
     this.setCurrentProduct(id);
     let outfit = this.state.currentProduct;
     this.setLocalStorage(outfit);
-    if (!this.state.outfits.find(obj => obj.id === id)) {
-      this.setState({ outfits: [...this.state.outfits, outfit] });
-    }
   }
 
   setLocalStorage = (outfit) => {
     let storedOutfits = [];
     if (localStorage.getItem('outfits') === null) {
       storedOutfits.push(outfit);
-      localStorage.setItem('outfits', JSON.stringify(storedOutfits));
     } else {
       storedOutfits = JSON.parse(localStorage.getItem('outfits'));
       if (!storedOutfits.find(obj => obj.id === outfit.id)) {
-        storedOutfits.push(outfit);
-        localStorage.setItem('outfits', JSON.stringify(storedOutfits));
+        storedOutfits.unshift(outfit);
       }
     }
+    localStorage.setItem('outfits', JSON.stringify(storedOutfits));
+    this.setState({ outfits: storedOutfits });
+    console.log(outfit.name, 'added');
   }
 
   render() {
     let list = '#outfit-list';
     return (
-      <div data-testid='outfitContainer' className='related-container' >
+      <div data-testid='outfitContainer' className='related-container' id='outfit-container'>
         <h4 data-testid='outfitHeader' className='related-title' >YOUR OUTFIT</h4>
+        <div data-testid='add-card' className='related-card' id='related-add' onClick={(id) => this.addClick(this.props.productId)}>
+          <div id='add-text'>
+            <IoAdd id='add-icon' />
+            <p>Add to Outfit</p>
+          </div>
+        </div>
         <ul data-testid='outfitList' className='related-list' id='outfit-list'>
-          <li data-testid='add-card' className='related-card related-add' onClick={(id) => this.addClick(this.props.productId)}>
-            <div id='add-text'>
-              <IoAdd id='add-icon' />
-              <p>Add to Outfit</p>
-            </div>
-          </li>
           {this.state.outfits.map(outfit => (
             < Card key={outfit.id} product={outfit} type={this.state.type}
               actionClick={this.xClick} setproductId={this.props.setproductId} />
           ))
           }
         </ul >
-        <Arrows productId={this.props.productId} type='outfit' listLength={this.state.outfits.length + 1} />
+        <Arrows productId={this.props.productId} type='outfit' listLength={this.state.outfits.length} />
 
       </div>
     )
