@@ -3,6 +3,9 @@ module.exports = {
     name: 'FEC',
     script: 'server/server.js'
   }],
+  env_production: {
+    NODE_ENV: "production",
+  },
   deploy: {
     production: {
       user: 'ubuntu',
@@ -11,7 +14,7 @@ module.exports = {
       ref: 'origin/main',
       repo: 'https://github.com/rpp32-fec-cremini/FEC.git',
       path: '/home/ubuntu/FEC',
-      'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js --env production'
+      'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js'
     }
   }
 }
