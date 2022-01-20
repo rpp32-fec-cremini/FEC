@@ -35,16 +35,20 @@ var ReviewsList = ({
   var sortDropdown = reviews.length ? (
     <SortReviews numReviews={reviews.length} sortAndGet={sortAndGet} />
   ) : null;
-  var scrollStyle = {
-    height: "48em",
-    overflowY: "scroll",
-  };
+  // var scrollStyle = {
+  //   height: "48em",
+  //   overflowY: "scroll",
+  // };
   return (
     <div className="container-right" onClick={(e) => clicked(e)}>
       {sortDropdown}
       <div
         className="scrollStyle"
-        style={shownReviews >= 3 ? scrollStyle : { height: "48em" }}
+        // style={
+        //   shownReviews >= 3
+        //     ? scrollStyle
+        //     : { height: "48em", overflowY: "scroll" }
+        // }
         data-testid="scrolllist"
       >
         {reviews.slice(0, shownReviews).map((review) => {
