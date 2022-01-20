@@ -35,22 +35,10 @@ var ReviewsList = ({
   var sortDropdown = reviews.length ? (
     <SortReviews numReviews={reviews.length} sortAndGet={sortAndGet} />
   ) : null;
-  // var scrollStyle = {
-  //   height: "48em",
-  //   overflowY: "scroll",
-  // };
   return (
     <div className="container-right" onClick={(e) => clicked(e)}>
       {sortDropdown}
-      <div
-        className="scrollStyle"
-        // style={
-        //   shownReviews >= 3
-        //     ? scrollStyle
-        //     : { height: "48em", overflowY: "scroll" }
-        // }
-        data-testid="scrolllist"
-      >
+      <div className="scrollStyle" data-testid="scrolllist">
         {reviews.slice(0, shownReviews).map((review) => {
           var flagColor = reported[review.review_id] ? "red" : "grey";
           return (
