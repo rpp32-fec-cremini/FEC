@@ -77,8 +77,8 @@ body::-webkit-scrollbar,
   cursor: pointer;
 }
 
-.related-list ul li:first-child {
-  margin-left: 2px;
+.related-list li:first-child {
+  margin-left: 1px;
 }
 
 #add-text {
