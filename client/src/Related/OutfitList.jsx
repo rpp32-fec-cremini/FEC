@@ -82,6 +82,7 @@ class OutfitList extends React.Component {
             < Card
               key={outfit.id}
               product={outfit}
+              mainId={this.props.pro}
               type='outfit'
               actionClick={this.xClick}
               setproductId={this.props.setproductId}
