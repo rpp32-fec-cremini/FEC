@@ -16,11 +16,11 @@ var App = (props) => {
 
   return (
     <div id="app">
-      {/* <Overview className='relatedCard' productId={productId} />
+      <Overview className='relatedCard' productId={productId} />
       <RelatedProducts productId={productId} setproductId={setproductId} />
-      <OutfitList productId={productId} setproductId={setproductId} /> */}
+      <OutfitList productId={productId} setproductId={setproductId} />
       <QandA productId={productId} />
-      {/* <RatingContainer productId={productId} /> */}
+      <RatingContainer productId={productId} />
     </div>
   )
 }
