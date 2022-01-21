@@ -103,7 +103,11 @@ class RelatedProducts extends React.Component {
             setCompProduct={this.setCompProduct}
             setproductId={this.props.setproductId}
           />
-          <Arrows productId={this.props.productId} type='related' listLength={this.state.relatedProducts.length} />
+          <Arrows
+            productId={this.props.productId}
+            type='related'
+            listLength={this.state.relatedProducts.length}
+          />
           <div className='compare hide'>
             <Compare className='show' mainProduct={this.state.mainProduct} compProduct={this.state.compProduct} />
           </div>

@@ -103,7 +103,7 @@ const Arrows = (props) => {
   }
 
   return (
-    <div className='arrows'>
+    <div data-testid='arrows' className='arrows'>
       {setArrows()}
       <IoIosArrowBack aria-label={ariaBack} className='related-scroll' id={backScrollId} onClick={() => backClick()} />
       < IoIosArrowForward aria-label={ariaFwd} className='related-scroll' id={fwdScrollId} onClick={() => fwdClick()} />
