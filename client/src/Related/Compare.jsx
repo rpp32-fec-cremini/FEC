@@ -61,22 +61,20 @@ class Compare extends React.Component {
 
   render() {
     return (
-      <div>
-        <p className='modal-title'>COMPARING</p>
-        <table>
-          <thead>
-            <tr>
-              <th>{this.props.mainProduct.name}</th>
-              <th className='right-modal'>{this.props.compProduct.name}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.features.map((feature, i) => (
-              <Feature key={i} feature={feature} mainFeatures={this.state.mainFeatures} compFeatures={this.state.compFeatures} />
-            ))}
-          </tbody>
-        </table>
-      </div >
+      <div className='table'>
+        <div className='thead'>
+          <p className='modal-head'>COMPARING</p>
+          <div className='modal-titles'>
+            <p className='left-title'>{this.props.mainProduct.name}</p>
+            <p className='right-title'>{this.props.compProduct.name}</p>
+          </div>
+        </div>
+        <ul className='modal-list'>
+          {this.state.features.map((feature, i) => (
+            <Feature key={i} feature={feature} mainFeatures={this.state.mainFeatures} compFeatures={this.state.compFeatures} />
+          ))}
+        </ul>
+      </div>
     )
   }
 };
