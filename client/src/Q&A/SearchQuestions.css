@@ -2,13 +2,13 @@
   padding: 10px;
   font-size: 17px;
   border: 1px solid grey;
-  background: #f1f1f1;
+  background: white;
 }
 
 .searchSubmitBtn {
   width: 15%;
   padding: 10px;
-  background: #2196F3;
+  background: royalblue;
   color: white;
   border: 1px solid grey;
   border-left: none;
@@ -16,7 +16,7 @@
 }
 
 .searchSubmitBtn:hover {
-  background: #0b7dda;
+  background: royalblue;
 }
 
 .searchSubmitBtn::after {

@@ -23,7 +23,7 @@ const SearchQuestion = (props, {clicked}) => {
       <form className = "searchBox" onSubmit={onSubmit}>
         <label >
           <input type = "text" data-testid = 'searchQuestion' value = {searchWord} placeholder = "Have a question? Search for answers..." onChange = {(e) => handleSearch(e, props) } style={{width: "80%", height:"30px",}}/>
-          <button className = "searchSubmitBtn" ><i className="fa fa-search"></i></button>
+          <button className = "searchSubmitBtn" ><i className="fa fa-search"></i>Search</button>
         </label>
       </form>
     </div>
