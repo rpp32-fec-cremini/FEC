@@ -18,87 +18,136 @@ class RatingContainer extends React.Component {
       product: "",
       meta: {},
       filters: [],
-      productName: ''
+      productName: "",
+      writing: false,
+      display: "none",
     };
     this.productId = this.props.productId;
     this.charMap = {
-      Size: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'],
-      Width: ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'],
-      Comfort: ['Uncomfortable', 'Slightly uncomfortable', 'Ok', 'Comfortable', 'Perfect'],
-      Quality: ['Poor', 'Below Average', 'What I expected', 'Pretty great', 'Perfect'],
-      Length: ['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
-      Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'],
-    }
+      Size: [
+        "A size too small",
+        "1/2 a size too small",
+        "Perfect",
+        "1/2 a size too big",
+        "A size too wide",
+      ],
+      Width: [
+        "Too narrow",
+        "Slightly narrow",
+        "Perfect",
+        "Slightly wide",
+        "Too wide",
+      ],
+      Comfort: [
+        "Uncomfortable",
+        "Slightly uncomfortable",
+        "Ok",
+        "Comfortable",
+        "Perfect",
+      ],
+      Quality: [
+        "Poor",
+        "Below Average",
+        "What I expected",
+        "Pretty great",
+        "Perfect",
+      ],
+      Length: [
+        "Runs short",
+        "Runs slightly short",
+        "Perfect",
+        "Runs slightly long",
+        "Runs long",
+      ],
+      Fit: [
+        "Runs tight",
+        "Runs slightly tight",
+        "Perfect",
+        "Runs slightly long",
+        "Runs long",
+      ],
+    };
+  }
+
+  setWriting(status) {
+    this.setState({ writing: status });
+  }
+
+  setDisplay(status) {
+    this.setState({ display: status });
   }
 
   changeFilter(filter) {
-    if (filter === 'removeAll') {
-      this.setState({filters: []})
+    if (filter === "removeAll") {
+      this.setState({ filters: [] });
     } else {
-      if (filter === '') return;
+      if (filter === "") return;
       var filters = [...this.state.filters];
       if (filters.includes(filter)) {
-        filters.splice(filters.indexOf(filter), 1)
+        filters.splice(filters.indexOf(filter), 1);
       } else {
-        filters.push(filter)
+        filters.push(filter);
       }
       this.setState({
-        filters
-      })
+        filters,
+      });
     }
   }
 
   submitReview(data) {
-    console.log(data)
     $.ajax({
       method: "POST",
       url: "/reviews",
       data: JSON.stringify(data),
       contentType: "application/json",
-      success: response => location.reload()
-    })
+      success: (response) => {
+        this.setState({
+          writing: false,
+          display: "none",
+        });
+      },
+    });
   }
 
   postVote(route, id, callback) {
     $.ajax({
       method: "POST",
       url: route,
-      data: JSON.stringify({id}),
+      data: JSON.stringify({ id }),
       contentType: "application/json",
-      success: response => callback()
-    })
+      success: (response) => callback(),
+    });
   }
 
   addToVoted(id, type) {
-    if (type === 'helpful') {
+    if (type === "helpful") {
       if (!this.state.voted[id]) {
         this.postVote("/reviews/helpful", id, () => {
           this.setState({
-            voted: {...this.state.voted, [id]: true}
-          })
+            voted: { ...this.state.voted, [id]: true },
+          });
         });
       }
-    } else if (type === 'report') {
+    } else if (type === "report") {
       if (!this.state.reported[id]) {
         this.postVote("/reviews/report", id, () => {
           this.setState({
-            reported: {...this.state.reported, [id]: true}
-          })
+            reported: { ...this.state.reported, [id]: true },
+          });
         });
       }
     }
   }
 
-
   moreReviews() {
     if (this.state.reviews.length - this.state.shownReviews > 1) {
       this.setState({
-        shownReviews: this.state.shownReviews + 2
-      })
+        shownReviews: this.state.shownReviews + 2,
+      });
     } else {
       this.setState({
-        shownReviews: this.state.shownReviews + 1
-      })
+        shownReviews: this.state.shownReviews + 1,
+      });
     }
   }
 
@@ -109,62 +158,73 @@ class RatingContainer extends React.Component {
       data: {
         page,
         sort,
-        product_id: this.productId
+        product_id: this.productId,
       },
       contentType: "application/json",
-      success: data => {
-        var product = JSON.parse(data).product
+      success: (data) => {
+        var product = JSON.parse(data).product;
         var reviews = JSON.parse(data).results;
-        var shownReviews = reviews.length < 2 ? reviews.length : 2
+        var shownReviews = reviews.length < 2 ? reviews.length : 2;
         $.ajax({
           method: "GET",
           url: "/reviews/meta",
           data: {
-            product_id: this.productId
+            product_id: this.productId,
           },
           contentType: "application/json",
-          success: data => {
+          success: (data) => {
             var meta = JSON.parse(data);
             $.ajax({
               method: "GET",
               url: `/products/${this.productId}`,
               contentType: "application/json",
-              success: data => {
-                var productName = JSON.parse(data).name
+              success: (data) => {
+                var productName = JSON.parse(data).name;
                 this.setState({
                   reviews,
                   shownReviews,
                   product,
                   meta,
-                  productName
-                })
-              }
-            })
-
-          }
-        })
-
-      }
-    })
+                  productName,
+                });
+              },
+            });
+          },
+        });
+      },
+    });
   }
 
   componentDidMount() {
-    this.sortAndGet(1, "relevant")
+    this.sortAndGet(1, "relevant");
   }
 
   render() {
     if (!this.state.filters.length) {
       var filteredReviews = [...this.state.reviews];
     } else {
-      var filteredReviews = this.state.reviews.filter(review => this.state.filters.includes('bar' + review.rating));
+      var filteredReviews = this.state.reviews.filter((review) =>
+        this.state.filters.includes("bar" + review.rating)
+      );
     }
 
     //metadata doesnt match actual data
     return (
-      <div className="container" id="container" onClick={(e) => this.props.clicked(e)}>
+      <div
+        className="container"
+        id="container"
+        onClick={(e) => this.props.clicked(e)}
+      >
         <div className="container-left">
-          <RatingBreakdown meta={this.state.meta} changeFilter={this.changeFilter.bind(this)} filters={this.state.filters}/>
-          <ProductBreakdown characteristics={this.state.meta.characteristics} charMap={this.charMap}/>
+          <RatingBreakdown
+            meta={this.state.meta}
+            changeFilter={this.changeFilter.bind(this)}
+            filters={this.state.filters}
+          />
+          <ProductBreakdown
+            characteristics={this.state.meta.characteristics}
+            charMap={this.charMap}
+          />
         </div>
         <ReviewsList
           sortAndGet={this.sortAndGet.bind(this)}
@@ -180,9 +240,13 @@ class RatingContainer extends React.Component {
           charMap={this.charMap}
           productName={this.state.productName}
           reported={this.state.reported}
+          writing={this.state.writing}
+          setWriting={this.setWriting.bind(this)}
+          display={this.state.display}
+          setDisplay={this.setDisplay.bind(this)}
         />
       </div>
-    )
+    );
   }
 }
 

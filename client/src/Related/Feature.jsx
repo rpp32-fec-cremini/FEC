@@ -8,11 +8,11 @@ const Feature = (props) => {
   rightCheck = props.compFeatures.includes(props.feature) ? <IoMdCheckmark /> : null;
 
   return (
-    <tr>
-      <td className='left-modal'> {leftCheck} </td>
-      <td className='modal-text center-modal'>{props.feature}</td>
-      <td className='right-modal'> {rightCheck} </td>
-    </tr>
+    <li className='modal-item'>
+      <span className='left-modal'> {leftCheck} </span>
+      <span className='modal-text center-modal'>{props.feature}</span>
+      <span className='right-modal'> {rightCheck} </span>
+    </li>
   )
 }
 

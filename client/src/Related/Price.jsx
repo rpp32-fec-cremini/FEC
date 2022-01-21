@@ -3,7 +3,7 @@ import './related.css';
 import getClicks from '../getClicks.jsx';
 
 const Price = (props) => {
-  if (props.sale) {
+  if (props.salePrice) {
     return (
       <div className='card-price'>
         <span className='sale'>{`$${props.salePrice} `}</span>

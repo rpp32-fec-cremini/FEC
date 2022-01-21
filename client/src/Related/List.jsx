@@ -9,7 +9,6 @@ const List = (props) => {
   // const [modalOpen, setmodalOpen] = useState(false);
 
   const starClick = (id) => {
-    // setmodalOpen(true);
     props.setCompProduct(id);
     $('.compare').removeClass('hide');
     $('.compare').addClass('show');
@@ -31,7 +30,6 @@ const List = (props) => {
         $('.compare').addClass('hide');
         $('.related-container').parents('#root, body, html').css({ 'overflow': 'auto' });
         $('.related-list').css({ 'overflow-x': 'auto' });
-        // setmodalOpen(true);
       }
     });
   }
@@ -44,8 +42,6 @@ const List = (props) => {
           type='related'
           actionClick={(id) => starClick(id)}
           setproductId={props.setproductId}
-        // setmodalOpen={setmodalOpen}
-        // modalOpen={modalOpen}
         />
       ))
       }
