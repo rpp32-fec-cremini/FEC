@@ -12,13 +12,13 @@ const AddToCart = (props) =>  {
   var quantities = [];
 
   const [ size, setSize ] = useState('');
-  const [ quantity, setQuantity ] = useState('1');
-  const [ buttonDisable, setButton ] = useState(false);
-  const [ quantityDisable, setQDropDown ] = useState(true);
+  const [ quantity, setQuantity ] = useState('');
+  const [ buttonDisable, setButton ] = useState(true);
+  const [ quantityDisable, setQDropDown ] = useState(false);
 
   function sizeHandler(e) {
     var value = document.getElementById('sizeSelect').value;
-    console.log('SIZE CLICKED!! ', value)
+    setQDropDown(true);
     setSize(value);
   }
 
@@ -26,19 +26,33 @@ const AddToCart = (props) =>  {
     setQuantity(e.target.value);
   }
 
+  function makeDropdown(size, sku) {
+    let quan = [];
+    for (var key in sku) {
+      if (sku[key].size === size) {
+        if (sku[key].quantity > 15) {
+          for(var i = 1; i <= 15; i++) {
+            quan.push(<option value = {i}>{i}</option>);
+          }
+        } else {
+          for(var j = 1; j <= sku[key].quantity; j++) {
+            quan.push(<option value = {j}>{j}</option>);
+          }}
+        }
+      }
+    return quan;
+  }
+
 
 
   for(var key in sku) {
-    //console.log (`SIZE HERE: ${sku[key].size}, and quantity here: ${sku[key].quantity}`)
     sizes.push(sku[key].size);
     quantities.push(sku[key].quantity)
     totalQuantity += sku[key].quantity
     if(totalQuantity === 0) {
       console.log('SOLD OUT!!');
     }
-  } console.log('HERES THE TOTAL ', totalQuantity)
-    console.log('Yo yo yo', size)
-
+  }
   const renderSelection = () => {
     ///////Checking to see if any props have been passed in
     if(!props) {
@@ -63,6 +77,7 @@ const AddToCart = (props) =>  {
     ///// If everything comes out right and with quantity
     } else {
       return <div>
+      <b hidden = {size !== ''}>Please select a size</b> <br></br>
       <select name ="Select Size" defaultValue = 'Select Size' className = "selectors spaceRight" id="sizeSelect" onChange = {sizeHandler}>
       <option value = "Select Size" hidden >Select Size</option>
        {sizes.map((sku) =>
@@ -70,9 +85,9 @@ const AddToCart = (props) =>  {
           )}
       </select>
 
-      <select name = "Select Quantity" defaultValue = 'Select Quantity' className = "selectors" disabled={quantityDisable}>
+      <select name = "Select Quantity" defaultValue = 'Select Quantity' className = "selectors" onClick ={()=> setButton(false)}>
       <option value = "Select Quantity" hidden>-</option>
-      {console.log('Current Quantity for SKU ', sku)}
+      {makeDropdown(size, sku)}
       </select>
 
       <br></br>

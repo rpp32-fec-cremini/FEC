@@ -26,9 +26,6 @@ const ProductInfo = (props) => {
 
       )
     } else{
-      console.log('What are the props being passed down? ', props)
-
-      //className = 'struckThru'
       return(
 
         <div style={{padding:'10px 10px 10px 10px'}}>

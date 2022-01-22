@@ -33,16 +33,6 @@ class Overview extends React.Component {
 
     }
 
- /*  componentDidUpdate(prevProps) {
-    if(prevProps !== this.props) {
-      this.setState
-    }
-  } */
-
-  // const [style', changeStyle ] = useState('Blue')
-  //changeStyle ('red')
-  //onClick = {changeStyle(e.target.value)}
-
   changeStyle(style) {
     if (style !== this.state.currentStyle) {
       this.setState({currentStyle: style})
@@ -59,7 +49,6 @@ class Overview extends React.Component {
     if (style.photos !== this.state.currentPhotoUrl.photos) {
         this.setState({currentPhotoUrl: {photos: style.photos}})
       }
-      console.log('BEHOLD, THE CLICKED STYLE! ', style.photos)
   }
 
   componentDidMount() {
@@ -71,7 +60,6 @@ class Overview extends React.Component {
       return axios.get(`overview/products/${this.props.productId}/styles`)
         .then((styles) => {
           let stylish = styles.data
-          console.log('Checking data structure for style ', stylish)
 
           //Metadata API Call
             return axios.get(`overview/reviews/meta/`, {params: {product_id: this.props.productId}})
@@ -86,10 +74,9 @@ class Overview extends React.Component {
                 currentPhotoUrl: stylish.results[0]
               },
                 ()=>{ //callback function to verify everything done
-                  console.log('Muahahahah done');
+                  console.log('All API Calls successful!');
               })
 
-              console.log('BEHOLD, THIS FRANKENSTEIN OF A STATE ', this.state)
             })
               .catch(error => { //error block for metadata call
                 console.log(error);
@@ -104,10 +91,6 @@ class Overview extends React.Component {
       })
   }
 
- /*  selectStyle() {
-
-  }
- */
 
   render() {
     if (!this.state.current) {
@@ -123,7 +106,7 @@ class Overview extends React.Component {
     } else {
       return (
       <div>
-        <div /* className='related relatedContainer' */ style={{margin: 'auto', width:'90%', padding: '10px', display: 'flex'}}>
+        <div style={{margin: 'auto', width:'90%', padding: '10px', display: 'flex'}}>
         <ImageGallery className=' related relatedCard '
           currentUrl={this.state.currentPhotoUrl}
           changeImageGallery = {this.changeImageGallery}
@@ -142,7 +125,6 @@ class Overview extends React.Component {
         <br></br>
 
       </div>
-      {/* <AddToCart /> */}
       </div>
     );
   }
