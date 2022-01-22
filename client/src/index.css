@@ -34,6 +34,14 @@ body,
   color: white;
 }
 
+.darkModeText {
+  color: whitesmoke;
+}
+
+.darkModeBackground {
+  background-color: rgb(149, 161, 168);
+}
+
 .related {
   box-sizing: border-box;
   margin: 0;
