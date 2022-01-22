@@ -1,7 +1,6 @@
 const express = require('express');
 const { fakeQaASevenQuestions } = require('./QaAFakeData');
 const {getProducts, postQuestion, postAnswer, questionHelpfulandReport, answerHelpfulandReport} = require('../apiHelper/qandaAPI');
-// const postQuestion = require('../apiHelper/qandaAPI');
 const router = express.Router();
 
 router.get('/questions/:product_id', (req, res) => {
@@ -10,13 +9,14 @@ router.get('/questions/:product_id', (req, res) => {
   var endpoint = `?product_id=${productId}`;
   getProducts(endpoint)
   .then(question=> {
-    // res.send(JSON.stringify(fakeQaASevenQuestions.results));
+    question.data.results.push({'CloundinaryAPI': process.env.CLOUDINARY});
     res.send(JSON.stringify(question.data.results));
   })
   .catch(err => {
     console.log(err.data);
     res.end()
   })
+
 })
 
 router.get('/questions/:question_id/answers', (req, res) => {
@@ -31,9 +31,11 @@ router.get('/questions/:question_id/answers', (req, res) => {
       console.log(err.data);
       res.end()
     })
+
 })
 
 router.post('/questions', (req, res) => {
+
   var questionBody = req.body;
   console.log('questionbody1', req.body);
   postQuestion(questionBody)
@@ -44,6 +46,7 @@ router.post('/questions', (req, res) => {
     console.log('post question error', err);
     res.end()
   });
+
 })
 
 router.post('/questions/:question_id/answers', (req, res) => {
@@ -62,6 +65,7 @@ router.post('/questions/:question_id/answers', (req, res) => {
     console.log('post answer error');
     res.end();
   });
+  
 })
 
 router.put('/questions/:question_id/helpful', (req, res) => {

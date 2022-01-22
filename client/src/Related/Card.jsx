@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import $ from 'jquery';
 import './related.css';
@@ -11,39 +11,17 @@ import { IoIosStar } from "react-icons/io";
 import { TiDeleteOutline } from "react-icons/ti";
 import getClicks from "../getClicks.jsx";
 
-class Card extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      actionName: TiDeleteOutline,
-      // mainProduct: null,
-      currentImage: null,
-      salePrice: null,
-      regPrice: null,
-      sale: false
-    }
-  };
+const Card = (props) => {
+  const [currentImage, setcurrentImage] = useState(null);
+  const [salePrice, setsalePrice] = useState(null);
+  const [regPrice, setregPrice] = useState(null);
 
-  componentDidMount() {
-    // this.displayWidth();
-    this.getType();
-    this.getStyleInfo(this.props.product.id, this.props.product.name, this.props.product.default_price);
-  }
+  useEffect(() => {
+    getStyleInfo(props.product.id, props.product.name,
+      props.product.default_price);
+  }, [props.product]);
 
-  // displayWidth = () => {
-  //   console.log(window.getComputedStyle(this.refs.card).getPropertyValue("width"));
-  // }
-
-  // setMainProduct = () => {
-  //   this.setState({ mainProduct: this.props.mainProduct })
-  // }
-
-  getType = () => {
-    this.props.type === 'outfit' ? this.setState({ actionName: TiDeleteOutline }) :
-      this.setState({ actionName: IoIosStarOutline })
-  }
-
-  getStyleInfo = async (id, name, price) => {
+  const getStyleInfo = async (id, name, price) => {
     try {
       let discount = 30;
       let results = await axios.get(`/products/${id}/styles`);
@@ -52,48 +30,50 @@ class Card extends React.Component {
       let defaultIndex = styles.findIndex(style => style['default?'] === true);
       defaultIndex = defaultIndex < 0 ? 0 : defaultIndex;
       if (defaultStyle.photos[0].thumbnail_url) {
-        this.setState({ currentImage: defaultStyle.photos[0].thumbnail_url })
+        let defaultImg = defaultStyle.photos[0].thumbnail_url[0] !== 'h' ?
+          defaultStyle.photos[0].thumbnail_url.slice(1) :
+          defaultStyle.photos[0].thumbnail_url;
+        setcurrentImage(defaultImg);
       } else {
         let productLabel = name.toLowerCase().split(' ');
-        this.setState({ currentImage: `https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}` });
+        setcurrentImage(`https://source.unsplash.com/230x330/?${productLabel[productLabel.length - 1]}`);
       }
-      defaultStyle.sale_price ?
-        this.setState({ salePrice: (price - defaultStyle.sale_price).toFixed(2), regPrice: price, sale: true }) : this.setState({ regPrice: price });
-      // discount ?
-      //   this.setState({ salePrice: (price - discount).toFixed(2), regPrice: price, sale: true }) : this.setState({ regPrice: price });
+      defaultStyle.sale_price ? (
+        setsalePrice((price - defaultStyle.sale_price).toFixed(2)),
+        setregPrice(price)
+      )
+        : setregPrice(price);
     } catch (err) {
       console.log(err);
     }
   };
 
-  actionClick = (e) => {
-    this.props.actionClick(this.props.product.id, e);
-  }
-
-  changePage = (id, e) => {
+  const changePage = (id, e) => {
     (e.target.parentNode.className === "action-btn" ||
       e.target.className === "action-btn") ? null :
-      this.props.setproductId(id);
+      props.setproductId(id);
   }
 
-  render() {
-    let Action = this.state.actionName;
-    return (
-      <li data-testid='card' className='related-card' onClick={(e) => this.changePage(this.props.product.id, e)}
-      >
-        <img src={this.state.currentImage} className='related-img' />
-        <button className='action-btn' onClick={(e) => this.actionClick(e)}>
-          <Action />
-        </button>
-        <div className='card-text'>
-          <p className='card-category'>{this.props.product.category.toUpperCase()} </p>
-          <p className='card-name'>{this.props.product.name}</p>
-          <Price salePrice={this.state.salePrice} regPrice={this.state.regPrice} sale={this.state.sale} />
-          <Rating id={this.props.product.id} />
-        </div>
-      </li >
-    )
-  }
+
+  let Action = props.type === 'outfit' ? TiDeleteOutline : IoIosStarOutline;
+  let aria = props.type === 'related' ? 'Compare' : 'Delete';
+  let alt = `${props.product.name}`;
+
+  return (
+    <li data-testid='card' className='related-card' onClick={(e) => changePage(props.product.id, e)}
+    >
+      <img src={currentImage} alt={alt} width='191' height='194' className='related-img' />
+      <button aria-label={aria} className='action-btn' onClick={(id) => props.actionClick(props.product.id)}>
+        <Action />
+      </button>
+      <div className='card-text'>
+        <p className='card-category'>{props.product.category.toUpperCase()} </p>
+        <p className='card-name'>{props.product.name}</p>
+        <Price salePrice={salePrice} regPrice={regPrice} />
+        <Rating id={props.product.id} />
+      </div>
+    </li >
+  )
 }
 
 export default getClicks(Card);

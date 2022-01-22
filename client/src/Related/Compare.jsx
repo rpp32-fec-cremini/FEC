@@ -1,7 +1,8 @@
 import React from 'react';
 import './related.css';
 import { IoMdCheckmark } from "react-icons/io";
-import Feature from './Feature.jsx'
+import Feature from './Feature.jsx';
+import getClicks from '../getClicks.jsx';
 
 class Compare extends React.Component {
   constructor(props) {
@@ -9,19 +10,15 @@ class Compare extends React.Component {
     this.state = {
       features: [],
       compFeatures: [],
-      mainFeatures: [],
-      compID: null,
-      mainID: null
+      mainFeatures: []
     }
   }
 
-  componentDidUpdate() {
-    if (this.props.compProduct.id !== this.state.compID) {
-      this.setState({ compID: this.props.compProduct.id });
+  componentDidUpdate(nextProps) {
+    if (nextProps.compProduct.id !== this.props.compProduct.id) {
       this.getFeatures();
     }
-    if (this.props.mainProduct.id !== this.state.mainID) {
-      this.setState({ mainID: this.props.mainProduct.id });
+    if (nextProps.mainProduct.id !== this.props.mainProduct.id) {
       this.getFeatures();
     }
   }
@@ -59,31 +56,27 @@ class Compare extends React.Component {
       });
     }
 
-    this.setState({ features: list });
-    this.setState({ compFeatures: compList });
-    this.setState({ mainFeatures: mainList });
+    this.setState({ features: list, compFeatures: compList, mainFeatures: mainList });
   }
 
   render() {
     return (
-      <div>
-        <p className='modal-title'>COMPARING</p>
-        <table>
-          <thead>
-            <tr>
-              <th>{this.props.mainProduct.name}</th>
-              <th className='right-modal'>{this.props.compProduct.name}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.features.map((feature, i) => (
-              <Feature key={i} feature={feature} mainFeatures={this.state.mainFeatures} compFeatures={this.state.compFeatures} />
-            ))}
-          </tbody>
-        </table>
-      </div >
+      <div className='table'>
+        <div className='thead'>
+          <p className='modal-head'>COMPARING</p>
+          <div className='modal-titles'>
+            <p className='left-title'>{this.props.mainProduct.name}</p>
+            <p className='right-title'>{this.props.compProduct.name}</p>
+          </div>
+        </div>
+        <ul className='modal-list'>
+          {this.state.features.map((feature, i) => (
+            <Feature key={i} feature={feature} mainFeatures={this.state.mainFeatures} compFeatures={this.state.compFeatures} />
+          ))}
+        </ul>
+      </div>
     )
   }
 };
 
-export default Compare;
+export default getClicks(Compare);

@@ -9,22 +9,10 @@ html, body, #root {
   display: grid;
 }
 
-.related {
-  font-family: 'adobe-clean', sans-serif;
-  color: rgb(86, 86, 86);
-  margin: 0;
-  padding: 0;
-  overflow-y: hidden;
-}
-
-.related-title {
-  font-weight: lighter;
-  font-size: small;
-  margin-top: 0;
-}
-
 .top-container {
   margin-top: 5em;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .related-container {
@@ -38,16 +26,17 @@ html, body, #root {
   margin-bottom: 40px;
   overflow-x: hidden;
   overflow-y: hidden;
-  /* background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 1) 240px, rgba(255, 255, 255, 1) 290px); */
-  /* background-color: lavender; */
-   /* box-shadow:  0px 100px 50px -50px #ffffff inset,
-        -10px 0px 10px -5px rgba(0,0,0,0.5) inset; */
 }
 
 #outfit-container {
   white-space: nowrap;
 }
 
+.related-title {
+  font-weight: lighter;
+  font-size: small;
+  margin-top: 0;
+}
 
 .related-list {
   position: relative;
@@ -58,6 +47,7 @@ html, body, #root {
   transition: 0.5s all ease-out;
 }
 
+body::-webkit-scrollbar,
 .related-list::-webkit-scrollbar {
   display: none;
 }
@@ -65,12 +55,11 @@ html, body, #root {
 .related-add, #outfit-list {
   display: inline-block;
   vertical-align: top;
-  background-color: white;
 }
 
 #related-add {
   margin: 0;
-  margin-right: 18px;
+  margin-right: 16px;
   background-color: white;
   z-index: 2;
 }
@@ -88,8 +77,8 @@ html, body, #root {
   cursor: pointer;
 }
 
-ul li:first-child {
-  margin-left: 0;
+.related-list li:first-child {
+  margin-left: 1px;
 }
 
 #add-text {
@@ -103,6 +92,7 @@ ul li:first-child {
 .related-img {
   height: 194px;
   width: 100%;
+  display: block;
 }
 
 .card-text {
@@ -148,14 +138,6 @@ ul li:first-child {
   cursor: pointer;
 }
 
-/* .card-star {
-  content: "\2605";
-  -webkit-text-stroke: 1px rgb(86, 86, 86);
-  transform:scale(0.9);
-  margin: 0;
-  padding: 0;
-} */
-
 .ratings {
   position: relative;
   vertical-align: middle;
@@ -178,13 +160,6 @@ ul li:first-child {
 .full-stars:before {
   content: "\2605  \2605  \2605  \2605  \2605";
   font-size: 75%;
-}
-
-.empty-stars:before {
-  -webkit-text-stroke: 1px rgb(86, 86, 86);
-}
-
-.full-stars:before {
   -webkit-text-stroke: 1px rgb(86, 86, 86);
 }
 
@@ -192,7 +167,7 @@ ul li:first-child {
   position: absolute;
 	top: 50%;
   color: black;
-  background-color: rgba(240, 240, 240, 0.2);
+  background-color: rgba(240, 240, 240, 0.5);
   cursor: pointer;
   transition: 1s;
 }
@@ -210,7 +185,6 @@ ul li:first-child {
 
 .action-btn:hover::before, .related-scroll:hover::before {
   transform: scale(1.1);
-  /* box-shadow: 0 0 15px #ffee10; */
 }
 
 .action-btn:hover, .related-scroll:hover {
@@ -218,7 +192,7 @@ ul li:first-child {
 }
 
 .compare {
-  display: inline-block;
+  /* display: inline-block; */
   margin: 0;
   padding: .5em;
   top: 26%;
@@ -227,40 +201,86 @@ ul li:first-child {
   height: 270px;
   border: .5px solid rgb(86, 86, 86);
   background-color: white;
-  overflow: auto;
+  /* overflow: auto; */
 }
 
-.modal-title {
+/* compare-box {
+  overflow-y: auto;
+} */
+
+thead {
+  background-color: white;
+  position: sticky;
+}
+
+.modal-head {
+  position: sticky;
   font-weight: lighter;
   font-size: xx-small;
+  background-color: white;
 }
 
-.modal-text {
-  font-weight: lighter;
-  font-size: .7em;
-}
-
-th {
+.modal-titles p {
+  display: inline-block;
+  position: absolute;
   line-height: 20%;
   font-size: .8em;
   font-weight: 600;
-  padding-bottom: 40px;
-  padding-top: 5px;
 }
 
-td {
+.left-title {
+  top: 2em;
+  left: 1em;
+}
+
+.right-title {
+  top: 2em;
+  right: 1em;
+}
+
+.modal-list {
+  list-style: none;
+  width: 350px;
+  height: 175px;
+  overflow-y: auto;
+  padding-left: 0;
+  margin-right: 0;
+  margin-top: 3em;
+}
+
+.modal-item {
+  display: grid;
+  grid-template-columns: 10% 80% 10% ;
+}
+
+.modal-item span {
   line-height: 1.8em;
   margin: auto;
 }
 
-.left-modal {
-  position: absolute;
-  left: 1em;
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-gap: 1rem;
 }
 
-.right-modal {
+/* .left-modal {
   position: absolute;
+  left: 1em;
+} */
+
+.center-modal {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* .right-modal {
   right: 1em;
+} */
+
+.modal-text {
+  font-weight: lighter;
+  font-size: .7em;
 }
 
 .hide {

@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import './AnswerModal.css';
+import getClicks from "../getClicks.jsx";
 
-const AnswerModal = ({answer, answerHelpfulList, answerHelpful, answerReport}) => {
+const AnswerModal = ({answer, answerHelpfulList, answerHelpful, answerReport, clicked}) => {
   const [loading, setloading] = useState(false);
   const [size, setsize] = useState(0);
   const [vote, setvote] = useState(false);
@@ -61,9 +62,8 @@ const AnswerModal = ({answer, answerHelpfulList, answerHelpful, answerReport}) =
       return (
         <div className = 'imgPopUp'>
             <div className = 'imgPopUp-inner' >
-              <img className = 'imgEnlarge' src = {imgURL}>
-              </img>
-                <button className = "img-close-btn" onClick={() => setimgPopup(false)}>X</button>
+              <img className = 'imgEnlarge' src = {imgURL} alt = "" />
+              <button className = "img-close-btn" onClick={() => setimgPopup(false)}>X</button>
             </div>
         </div>
       )
@@ -73,11 +73,36 @@ const AnswerModal = ({answer, answerHelpfulList, answerHelpful, answerReport}) =
       <div className = 'answer-body' key = {answer[1]['id']}> A: {answer[1]['body']}
         <br />
         {answer[1]['photos'].length !== 0 ?
-         answer[1]['photos'].map((pic, j) => <img className = 'img' src = {pic} key = {j} onClick = {() => {setimgPopup(true); setimgURL(pic)}}></img>) : ''}
-        <div className = "answer-title-button" >by <a style={{"fontweight": answer[1]['answerer_name'] === 'Seller' ? "bold" : ''}}>{answer[1]['answerer_name']}</a>, {dateConvenver(answer[1]['date'])}&nbsp;&nbsp;|&nbsp;&nbsp;Helpful? YES
-        (<a className = 'answer-helpful-btn' style = {{"textDecoration":"underline"}} onClick = {(e) => helpful(e, answer[1]['id'])}>{answer[1]['helpfulness']}</a>)&nbsp;&nbsp;|&nbsp;&nbsp;
-        <a className = 'answer-report-btn' style = {{"textDecoration":"underline"}}  data-testid = {'answerReport'} onClick = {(e) => report(e, answer[1]['id'])}>Report</a></div>
-        {imgPopup === true ? imgPopups(imgURL): ''}
+         answer[1]['photos'].map((pic, j) =>
+          <div className = 'imgDiv' key = {j}>
+            <img
+              className = 'img'
+              src = {pic}
+              onClick = {() => {setimgPopup(true); setimgURL(pic)}}
+              alt = ""
+            />
+          </div>
+        ) : ''}
+        <div className = "answer-title-button" >by&nbsp;&nbsp;
+          <span
+            style={{"fontweight": answer[1]['answerer_name'] === 'Seller' ? "bold" : ''}}>
+            {answer[1]['answerer_name']}
+          </span>
+            , {dateConvenver(answer[1]['date'])}&nbsp;&nbsp;|&nbsp;&nbsp;Helpful? YES(
+          <span
+            className = 'answer-helpful-btn'
+            style = {{"textDecoration":"underline"}}
+            onClick = {(e) => helpful(e, answer[1]['id'])}>{answer[1]['helpfulness']}
+          </span>
+            )&nbsp;&nbsp;|&nbsp;&nbsp;
+          <span
+            className = 'answer-report-btn'
+            style = {{"textDecoration":"underline"}}
+            data-testid = {'answerReport'}
+            onClick = {(e) => report(e, answer[1]['id'])}>Report
+          </span>
+        </div>
+          {imgPopup === true ? imgPopups(imgURL): ''}
       </div>
     )
   }
@@ -94,7 +119,7 @@ const AnswerModal = ({answer, answerHelpfulList, answerHelpful, answerReport}) =
   }
 
   return (
-    <div>
+    <div onClick={(e) => clicked(e)}>
         <div className = 'answerBody' >
           {loading === false && size < 2 ? show(answer, true) : show(answer)}
         </div>
@@ -104,4 +129,4 @@ const AnswerModal = ({answer, answerHelpfulList, answerHelpful, answerReport}) =
 
 };
 
-export default AnswerModal;
+export default getClicks(AnswerModal);

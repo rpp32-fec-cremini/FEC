@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
       res.send(JSON.stringify(products.data));
     })
     .catch(err => {
-      console.log('Reviews request Failed ', res.status);
+      console.log('All products request Failed ', res.status);
       res.end()
     })
 })
@@ -31,7 +31,7 @@ router.get('/:product_id', (req, res) => {
       res.send(JSON.stringify(product.data));
     })
     .catch(err => {
-      console.log('Reviews request Failed ', res.status);
+      console.log('Single product request Failed ', res.status);
       res.end()
     })
 })
@@ -45,7 +45,7 @@ router.get('/:product_id/related', (req, res) => {
       res.send(JSON.stringify(products.data));
     })
     .catch(err => {
-      console.log('Reviews request Failed ', res.status);
+      console.log('Related products request Failed ', res.status);
       res.end()
     })
 })
@@ -58,7 +58,7 @@ router.get('/:product_id/styles', (req, res) => {
       res.send(JSON.stringify(styles.data));
     })
     .catch(err => {
-      console.log('Reviews request Failed ', res.status);
+      console.log('Styles request Failed ', res.status);
       res.end()
     })
 })

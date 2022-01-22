@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import $ from 'jquery';
-import axios from 'axios';
 import './related.css';
 import Card from './Card.jsx';
 import getClicks from "../getClicks.jsx";
 
-const RelatedList = (props) => {
+const List = (props) => {
+
+  // const [modalOpen, setmodalOpen] = useState(false);
 
   const starClick = (id) => {
     props.setCompProduct(id);
@@ -18,13 +19,13 @@ const RelatedList = (props) => {
 
   const hideModal = () => {
     $('.related-container').parents('body').click((e) => {
-      let isStar = false;
+      let star = false;
       if (e.target.parentNode.className === "action-btn" ||
         e.target.className === "action-btn") {
-        isStar = true;
+        star = true;
       }
 
-      if (!isStar) {
+      if (!star) {
         $('.compare').removeClass('show');
         $('.compare').addClass('hide');
         $('.related-container').parents('#root, body, html').css({ 'overflow': 'auto' });
@@ -33,24 +34,13 @@ const RelatedList = (props) => {
     });
   }
 
-  const isStar = (e) => {
-    console.log(e.className);
-    let isStar = false;
-    if (e.target.parentNode.className === "action-btn" ||
-      e.target.className === "action-btn") {
-      isStar = true;
-    }
-    return isStar;
-  }
-
-
   return (
     <ul data-testid='list' className='related-list' id='related-list'>
       {props.relatedProducts.map((product, i) => (
         < Card key={product.id + i}
-          product={product} type='related'
-          actionClick={starClick}
-          mainProduct={props.mainProduct}
+          product={product}
+          type='related'
+          actionClick={(id) => starClick(id)}
           setproductId={props.setproductId}
         />
       ))
@@ -59,4 +49,4 @@ const RelatedList = (props) => {
   )
 }
 
-export default getClicks(RelatedList);
+export default getClicks(List);
