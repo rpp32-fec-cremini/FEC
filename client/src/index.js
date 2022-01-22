@@ -20,14 +20,12 @@ var App = (props) => {
     <div id="app">
       <button className="darkBtn" onClick={() => {
         $('#root').toggleClass("darkMode", dark);
-        $('#top-container').toggleClass("darkModeText", dark);
-        $('#outfit-container').toggleClass("darkModeText", dark);
         setDark(!dark);
         setBtnText(!btnText)
       }}>{btnText ? 'Dark Mode' : "Light Mode"}</button>
       <Overview className='relatedCard' productId={productId} />
-      <RelatedProducts productId={productId} setproductId={setproductId} dark={dark} />
-      <OutfitList productId={productId} setproductId={setproductId} dark={dark} />
+      <RelatedProducts productId={productId} setproductId={setproductId} />
+      <OutfitList productId={productId} setproductId={setproductId} />
       <QandA productId={productId} />
       <RatingContainer productId={productId} />
     </div>

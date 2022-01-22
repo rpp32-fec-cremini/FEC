@@ -9,7 +9,7 @@ html, body, #root {
   display: grid;
 }
 
-#top-container {
+.top-container {
   margin-top: 5em;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -82,7 +82,6 @@ body::-webkit-scrollbar,
 }
 
 #add-text {
-  color: rgb(86, 86, 86);
   text-align: center;
   margin: 0;
   position: absolute;
@@ -202,7 +201,6 @@ body::-webkit-scrollbar,
   height: 270px;
   border: .5px solid rgb(86, 86, 86);
   background-color: white;
-  color: rgb(86, 86, 86);
   /* overflow: auto; */
 }
 
