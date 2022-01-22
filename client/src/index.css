@@ -40,6 +40,17 @@ html, body, #root {
 
 }
 
+.selectors {
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+}
+
+.spaceRight {
+  margin-right: 2.0em
+}
+
 .styleThumbnail {
   border-radius: 50%;
   border-style: double;
