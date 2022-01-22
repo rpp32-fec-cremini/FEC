@@ -72,7 +72,7 @@ class OutfitList extends React.Component {
       <div data-testid='outfitContainer' className='related-container' id='outfit-container'>
         <p data-testid='outfitHeader' className='related-title' >YOUR OUTFIT</p>
         <div aria-label='add to your outfit' data-testid='add-card' className='related-card' id='related-add' onClick={(id) => this.addClick(this.props.productId)}>
-          <div id='add-text'>
+          <div data-testid='add-text' id='add-text'>
             <IoAdd id='add-icon' />
             <p>Add to Outfit</p>
           </div>

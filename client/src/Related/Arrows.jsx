@@ -90,12 +90,12 @@ const Arrows = (props) => {
         $backBtn.removeClass('hide');
         scrollPos = scrollPos - scrollAmount;
         if (-((scrollPos - scrollAmount) + 10) > extraWidth) {
-          scrollPos = -(extraWidth + 3);
+          scrollPos = -(extraWidth + 2);
           $fwdBtn.addClass('hide');
         }
       }
     } else {
-      scrollPos = -(extraWidth + 3);
+      scrollPos = -(extraWidth + 2);
       $backBtn.removeClass('hide');
       $fwdBtn.addClass('hide');
     }
@@ -103,7 +103,7 @@ const Arrows = (props) => {
   }
 
   return (
-    <div className='arrows'>
+    <div data-testid='arrows' className='arrows'>
       {setArrows()}
       <IoIosArrowBack aria-label={ariaBack} className='related-scroll' id={backScrollId} onClick={() => backClick()} />
       < IoIosArrowForward aria-label={ariaFwd} className='related-scroll' id={fwdScrollId} onClick={() => fwdClick()} />
