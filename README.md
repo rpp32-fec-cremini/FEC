@@ -4,6 +4,7 @@ Team Cremini version
 
 ## Overview
 Project Atelier comprises a complete redesign of an outdated, client-facing retail portal designed to modernize the site. Thus new user interface allows customers to browse items in a retail catalog.
+![Overview](https://user-images.githubusercontent.com/82000132/150625406-008175d6-98ec-4950-b3ed-8954e7cd7ceb.gif)
 
 ### Details
 #### Overview Highlights
@@ -23,6 +24,7 @@ Project Atelier comprises a complete redesign of an outdated, client-facing reta
   -this list is unique to each user and persists in local storage on a page refresh
 * Each item in both lists is clickable and will route the user to that item's detail page
 * Each list is scrollable with interactive arrows which respond to list size
+![RelatedProducts](https://user-images.githubusercontent.com/82000132/150625410-b4416694-99e8-4802-9d63-4d2cc2831e5d.gif)
 
 #### Questions & Answers Highlights
 * Displays an expandable list of asked questions
@@ -31,6 +33,7 @@ Project Atelier comprises a complete redesign of an outdated, client-facing reta
 * Allows users to submit an answer with optional photos (email required)
 * Questions are filterable by a keyword search
 * Users are able to mark answers as helpful or report as inappropriate
+![QA](https://user-images.githubusercontent.com/82000132/150625416-71377225-3bb1-4253-9708-269558564034.gif)
 
 #### Ratings & Reviews Highlights
 * Ratings are dispalyed in numeric, star and bar graphics
@@ -41,6 +44,7 @@ Project Atelier comprises a complete redesign of an outdated, client-facing reta
  -reviews can optioanlly be filtered by relevance and most recent
 * Users can mark reviews as helpful or report inappropriate reviews
 * Users can submit reviews with a star rating and optional photos
+![Rating](https://user-images.githubusercontent.com/82000132/150625418-40981e4e-8e57-4dcb-a35c-02d82a28dd62.gif)
 
 
 ## Installation
