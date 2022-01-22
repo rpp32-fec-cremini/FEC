@@ -19,7 +19,7 @@ var App = (props) => {
   return (
     <div id="app">
       <button className="darkBtn" onClick={() => {
-        $('#root').toggleClass( "darkMode", dark );
+        $('#root').toggleClass("darkMode", dark);
         setDark(!dark);
         setBtnText(!btnText)
       }}>{btnText ? 'Dark Mode' : "Light Mode"}</button>

@@ -83,7 +83,7 @@ class RelatedProducts extends React.Component {
   render() {
     return (
       <div>
-        <div data-testid='listContainer' className='related-container top-container' >
+        <div data-testid='listContainer' className='related-container' id='top-container' >
           <p data-testid='listHeader' className='related-title' >RELATED PRODUCTS</p>
           <List
             relatedProducts={this.state.relatedProducts}
@@ -91,6 +91,7 @@ class RelatedProducts extends React.Component {
             mainProductId={this.props.productId}
             setCompProduct={this.setCompProduct}
             setproductId={this.props.setproductId}
+            dark={this.props.dark}
           />
           <Arrows
             productId={this.props.productId}

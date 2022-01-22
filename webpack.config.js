@@ -5,7 +5,7 @@ var src_path = __dirname + '/client/src/index.js';
 var dist_path = __dirname + '/client/dist';
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   entry: src_path,
   output: {
     path: dist_path,
