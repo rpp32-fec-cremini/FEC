@@ -86,6 +86,7 @@ class OutfitList extends React.Component {
               type='outfit'
               actionClick={this.xClick}
               setproductId={this.props.setproductId}
+              dark={this.props.dark}
             />
           ))
           }

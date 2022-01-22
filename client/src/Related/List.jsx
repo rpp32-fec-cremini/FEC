@@ -39,6 +39,7 @@ const List = (props) => {
           type='related'
           actionClick={(id) => starClick(id)}
           setproductId={props.setproductId}
+          dark={props.dark}
         />
       ))
       }
