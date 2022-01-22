@@ -1,11 +1,45 @@
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   width: 100%;
   overflow: auto;
+  margin: 0;
+  padding: 0;
 }
 
 #root {
   display: grid;
+}
+
+.darkBtn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #ffffff;
+  margin: 1em;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: white;
+  background-color: black;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.darkMode {
+  background-color: #001f3f;
+  color: white;
+}
+
+.darkModeText {
+  color: whitesmoke;
+}
+
+.darkModeBackground {
+  background-color: rgb(149, 161, 168);
 }
 
 .related {
@@ -31,13 +65,11 @@ html, body, #root {
   grid-gap: 1rem;
 }
 
-
 .grid-4-style {
   display: grid;
   grid-template-columns: repeat(4, 10px);
   grid-template-rows: 5px 5px;
   grid-gap: 35px;
-
 }
 
 .selectors {
@@ -48,7 +80,7 @@ html, body, #root {
 }
 
 .spaceRight {
-  margin-right: 2.0em
+  margin-right: 2em;
 }
 
 .styleThumbnail {
@@ -82,7 +114,6 @@ html, body, #root {
   grid-gap: 1rem;
 }
 
-
 .flexContainer {
   display: flex;
   flex-wrap: nowrap;
@@ -101,5 +132,4 @@ html, body, #root {
   height: 100%;
   opacity: 0;
   background-color: transparent;
-
 }

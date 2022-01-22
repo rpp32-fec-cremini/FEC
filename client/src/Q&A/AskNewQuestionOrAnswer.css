@@ -27,6 +27,9 @@
 	background-color: black;
 	border-radius: 50%;
 }
+.questionTitle, .answerTitle,  .question-block, .max-word-length, .nickname-block, .email-block, .warning, .imageUpload{
+  color:black
+}
 
 .popup-inner .close-btn::before, .popup-inner .close-btn::after {
 	position: absolute;

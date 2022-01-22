@@ -8,7 +8,6 @@ import SearchQuestions from './SearchQuestions.jsx';
 import getClicks from "../getClicks.jsx";
 import "./QaA.css";
 
-// import cloudinaryAPI from '../../../config.js';
 
 class QA extends React.Component {
   _isMounted = false;
@@ -23,8 +22,8 @@ class QA extends React.Component {
       questionHelpfulList:[],
       answerHelpfulList:[],
       cloudinary_upload_preset: '',
+      productId: 60000,
     };
-    this.productId = this.props.productId;
     this.individualAnswer = this.individualAnswer.bind(this);
   }
 
@@ -73,11 +72,10 @@ class QA extends React.Component {
   }
 
   individualQuestion() {
-    console.log('productid', this.productId);
     var self = this;
     axios({
       method: 'GET',
-      url: `/qa/questions/${this.productId}`,
+      url: `/qa/questions/${this.state.productId}`,
     })
     .then((results) => {
       let question = results.data;
@@ -103,7 +101,6 @@ class QA extends React.Component {
   imageToURL(imgfile) {
     var cloudinary_url = 'https://api.cloudinary.com/v1_1/dy91vvft0/upload';
     var cloudinary_upload_preset = this.state.cloudinary_upload_preset;
-    console.log('the api', cloudinary_upload_preset);
     var allImages = [];
     var promises = [];
     if (imgfile[0] !== undefined) {
@@ -145,10 +142,8 @@ class QA extends React.Component {
       url: `/qa/questions/${questionId}/helpful`,
     })
     .then((results) => {
-      // console.log('data send')
     })
     .catch((err) => {
-      console.log('err');
     })
   }
 
@@ -158,10 +153,8 @@ class QA extends React.Component {
       url: `/qa/questions/${questionId}/report`,
     })
     .then((results) => {
-      // console.log('data send')
     })
     .catch((err) => {
-      console.log('err');
     })
   }
 
@@ -176,10 +169,8 @@ class QA extends React.Component {
       url: `/qa/answers/${answerId}/helpful`,
     })
     .then((results) => {
-      // console.log('data send')
     })
     .catch((err) => {
-      console.log('err');
     })
   }
 
@@ -189,10 +180,8 @@ class QA extends React.Component {
       url: `/qa/answers/${answerId}/report`,
     })
     .then((results) => {
-      // console.log('data send')
     })
     .catch((err) => {
-      console.log('err');
     })
   }
 
@@ -206,15 +195,13 @@ class QA extends React.Component {
         data: {question: data['question'],
         nickName: data['nickName'],
         email: data['email'],
-        product_id: this.productId,
+        product_id: this.state.productId,
       }
     })
     .then((results) => {
-      console.log('data send')
       self.individualQuestion();
     })
     .catch((err) => {
-      console.log('err');
     })
   } else {
     this.imageToURL(data.files)
@@ -230,24 +217,35 @@ class QA extends React.Component {
       })
       .then((results) => {
           self.individualQuestion();
-          console.log('data send')
         })
       })
     .catch((err) => {
-      console.log('err');
     })
   }
 }
 
   componentDidMount() {
     this._isMounted = false;
-    this.individualQuestion();
+    this.setState ({
+      productId: this.props.productId,
+    }, () => {
+      this.individualQuestion();
+    })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevProps.productId !== this.props.productId) {
+      this.setState ({
+        productId: this.props.productId,
+      }, () => {
+        this.individualQuestion();
+      })
+    }
   }
 
   render() {
     return (
       <div className='QaABox' onClick={(e) => this.props.clicked(e)}>
-
         <h2 data-testid='Title' className = 'Title'>QUESTION & ANSWERS</h2>
         <SearchQuestions searchBar = {this.state.searchBar} search = {(e) => this.search(e)}/>
         <QuestionModal

@@ -58,9 +58,10 @@ const Card = (props) => {
   let Action = props.type === 'outfit' ? TiDeleteOutline : IoIosStarOutline;
   let aria = props.type === 'related' ? 'Compare' : 'Delete';
   let alt = `${props.product.name}`;
+  let classList = props.dark ? 'related-card' : 'related-card darkModeBackground';
 
   return (
-    <li data-testid='card' className='related-card' onClick={(e) => changePage(props.product.id, e)}
+    <li data-testid='card' className={classList} onClick={(e) => changePage(props.product.id, e)}
     >
       <img src={currentImage} alt={alt} width='191' height='194' className='related-img' />
       <button aria-label={aria} className='action-btn' onClick={(id) => props.actionClick(props.product.id)}>

@@ -12,9 +12,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
-    new CompressionPlugin(
-
-    ),
+    new CompressionPlugin(),
     new BrotliPlugin({
       asset: '[path].br[query]',
       test: /\.(js|css|html|svg)$/,

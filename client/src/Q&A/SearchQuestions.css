@@ -1,8 +1,11 @@
 .searchBox {
   padding: 10px;
   font-size: 17px;
-  border: 1px solid grey;
-  background: white;
+  border: 2px solid;
+}
+
+.searchBar {
+  border: 2px solid;
 }
 
 .searchSubmitBtn {
