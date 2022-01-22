@@ -58,6 +58,7 @@ body::-webkit-scrollbar,
 }
 
 #related-add {
+  color: rgb(86, 86, 86);
   margin: 0;
   margin-right: 16px;
   background-color: white;
@@ -192,7 +193,6 @@ body::-webkit-scrollbar,
 }
 
 .compare {
-  /* display: inline-block; */
   margin: 0;
   padding: .5em;
   top: 26%;
@@ -201,12 +201,8 @@ body::-webkit-scrollbar,
   height: 270px;
   border: .5px solid rgb(86, 86, 86);
   background-color: white;
-  /* overflow: auto; */
+  color: rgb(86, 86, 86);
 }
-
-/* compare-box {
-  overflow-y: auto;
-} */
 
 thead {
   background-color: white;
