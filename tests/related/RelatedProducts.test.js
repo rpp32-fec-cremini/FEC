@@ -25,3 +25,5 @@ test('should have scroll arrows', () => {
   const arrows = getByTestId('arrows');
   expect(relatedContainer.children).toContainEqual(arrows);
 })
+
+//should contain all of the related items of a product
