@@ -5,16 +5,14 @@ var src_path = __dirname + '/client/src/index.js';
 var dist_path = __dirname + '/client/dist';
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: src_path,
   output: {
     path: dist_path,
     filename: 'bundle.js'
   },
   plugins: [
-    new CompressionPlugin(
-
-    ),
+    new CompressionPlugin(),
     new BrotliPlugin({
       asset: '[path].br[query]',
       test: /\.(js|css|html|svg)$/,
