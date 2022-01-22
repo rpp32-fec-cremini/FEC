@@ -51,7 +51,7 @@ class Overview extends React.Component {
       }
   }
 
-  componentDidMount() {
+  getAllInfo(){
     return axios.get(`/products/${this.props.productId}`)
     .then(response => {
       let data = response.data;
@@ -89,6 +89,16 @@ class Overview extends React.Component {
       .then(error => { //error block for productList call
         console.log(error);
       })
+  }
+
+  componentDidMount() {
+    this.getAllInfo();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.getAllInfo();
+    }
   }
 
 

@@ -18,6 +18,11 @@ var App = (props) => {
 
   return (
     <div id="app">
+<<<<<<< HEAD
+      <Overview className='relatedCard' productId={productId} setproductId={setproductId} />
+      <RelatedProducts productId={productId} setproductId={setproductId} />
+      <OutfitList productId={productId} setproductId={setproductId} />
+=======
       <button className="darkBtn" onClick={() => {
         $('#root').toggleClass("darkMode", dark);
         $('#top-container').toggleClass("darkModeText", dark);
@@ -28,6 +33,7 @@ var App = (props) => {
       <Overview className='relatedCard' productId={productId} />
       <RelatedProducts productId={productId} setproductId={setproductId} dark={dark} />
       <OutfitList productId={productId} setproductId={setproductId} dark={dark} />
+>>>>>>> 659818107fa9d39d70e2dc5519a82d8aca632591
       <QandA productId={productId} />
       <RatingContainer productId={productId} />
     </div>

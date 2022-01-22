@@ -5,8 +5,7 @@ import $ from 'jquery';
 
 
 const StyleSelector = (props) => {
-
-    if(!props) {
+  if(!props) {
       return (
         <div>
           <h1>NO DATA HERE NANANANANAN BATMAN</h1>
