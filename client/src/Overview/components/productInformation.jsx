@@ -4,6 +4,7 @@ import $ from 'jquery';
 import StyleSelector from './styleComponents/styleSelector.jsx';
 import ImageGallery from './imageGallery.jsx'
 import ProductRating from './productRating.jsx'
+import AddToCart from './cartComponents/addToCart.jsx';
 
 
 const ProductInfo = (props) => {
@@ -25,21 +26,27 @@ const ProductInfo = (props) => {
 
       )
     } else{
-      console.log('What are the props being passed down? ', props)
-
-      //className = 'struckThru'
       return(
 
         <div style={{padding:'10px 10px 10px 10px'}}>
             <h2>{product}<br></br>
             <b style ={{fontStyle: 'italic', 'fontSize': '14px'}}>{category}</b>
+
             <br></br>
+
             <ProductRating reviewMeta={props.reviewMeta} /><a href = '#container' style ={{'fontSize': '14px'}}>Read all reviews</a></h2>
+
             <b>{price}</b>
 
             <h6>{desc}</h6>
-            {/* <br></br> */}
+
             <StyleSelector className=' grid-4-style' styleList={props.styleList} currentStyle = {props.currentStyle} changeStyle = {props.changeStyle} />
+
+            <br></br>
+            <br></br>
+            <br></br>
+
+            <AddToCart currentStyle = {props.currentStyle} />
 
 
         </div>

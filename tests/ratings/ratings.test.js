@@ -40,7 +40,7 @@ afterAll(() => server.close())
 
 test('ReviewsList renders components based on server response', async () => {
   // https://testing-library.com/docs/react-testing-library/example-intro
-  var { getByTestId } = render(<RatingContainer/>)
+  var { getByTestId } = render(<RatingContainer />)
 
   await waitFor(() => getByTestId(5))
   var firstPost = mockReviews.results[0]
@@ -48,7 +48,7 @@ test('ReviewsList renders components based on server response', async () => {
 })
 
 test('Only 2 reviews should be rendered initially until "More Reviews" button is clicked', async () => {
-  var { getByRole, getByTestId, queryByTestId } = render(<RatingContainer/>)
+  var { getByRole, getByTestId, queryByTestId } = render(<RatingContainer />)
   await waitFor(() => getByTestId(5))
   var buttonEl = getByTestId('more')
   expect(queryByTestId(5)).toBeInTheDocument()
@@ -59,7 +59,7 @@ test('Only 2 reviews should be rendered initially until "More Reviews" button is
 })
 
 test('Scroll bar appears after review module contains more than 3 review tiles', async () => {
-  var { getByText, getByTestId, queryByTestId } = render(<RatingContainer/>)
+  var { getByText, getByTestId, queryByTestId } = render(<RatingContainer />)
   await waitFor(() => getByTestId(5))
   var buttonEl = getByTestId('more')
   var scrollEl = getByTestId("scrolllist")
@@ -69,7 +69,7 @@ test('Scroll bar appears after review module contains more than 3 review tiles',
 })
 
 test("Modal window pops up when user clicks on an image, and closes when the close button is clicked", async () => {
-  var { getAllByRole, getByTestId, queryAllByTestId } = render(<RatingContainer/>)
+  var { getAllByRole, getByTestId, queryAllByTestId } = render(<RatingContainer />)
   await waitFor(() => getByTestId(5))
   var firstImg = getAllByRole("img")[0];
   expect(queryAllByTestId('modal')[0].style._values.display).toBe("none")
@@ -82,7 +82,7 @@ test("Modal window pops up when user clicks on an image, and closes when the clo
 })
 
 test("Answer modal renders when Add a review is clicked and renders error message if no form fields are filled", async () => {
-  var { getByTestId, queryByTestId } = render(<RatingContainer/>)
+  var { getByTestId, queryByTestId } = render(<RatingContainer />)
   await waitFor(() => getByTestId(5));
   var addBtn = getByTestId('addReview');
   expect(getByTestId('writing-modal').parentElement.style._values.display).toBe("none");
@@ -95,14 +95,14 @@ test("Answer modal renders when Add a review is clicked and renders error messag
 })
 
 test("Rating Breakdown renders correct amount of stars", async () => {
-  var { getByTestId } = render(<RatingContainer/>)
+  var { getByTestId } = render(<RatingContainer />)
   await waitFor(() => getByTestId(5));
   var stars = getByTestId('starRatings');
   expect(stars.style._values.width).toBe('60%');
 })
 
 test("Product Breakdown renders the correct product characteristic bars", async () => {
-  var { getByTestId, queryByTestId } = render(<RatingContainer/>)
+  var { getByTestId, queryByTestId } = render(<RatingContainer />)
   await waitFor(() => getByTestId(5));
   expect(getByTestId('Size')).toBeInTheDocument();
   expect(getByTestId('Width')).toBeInTheDocument();
