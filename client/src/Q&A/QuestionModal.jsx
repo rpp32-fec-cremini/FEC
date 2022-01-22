@@ -91,32 +91,34 @@ const QuestionModal = (props, {clicked}) => {
 
     //Filter by searchTerm
     return (
-      twoQuestion.filter((question, index ) => {
-        let searchTerm = props.searchTerm;
-        var  count = 0;
-        let questionBody = question.question_body;
-        if (searchTerm === '') {
-          return question;
-        } else if (questionBody.toLowerCase().includes(searchTerm.toLowerCase())) {
-          return question;
-        }
-      }).map((question, i) =>
+      twoQuestion
+      // .filter((question, index ) => {
+      //   let searchTerm = props.searchTerm;
+      //   var  count = 0;
+      //   let questionBody = question.question_body;
+      //   if (searchTerm === '') {
+      //     return question;
+      //   } else if (questionBody.toLowerCase().includes(searchTerm.toLowerCase())) {
+      //     return question;
+      //   }
+      // })
+      .map((question, i) =>
           <div className = "Question-row" key = {question.question_id} data-testid = 'Questions-id'>
             <div className = "Question-body" data-testid={'question ' + i} style = {{float: "left"}}>Q: {highlight(props, question.question_body)}</div>
             <div className = "Question-helpful" style = {{float: "right", left: "10px"}}>Helpful? YES(
-              <a className = 'question-help-btn' data-testid = {'questionHelpful ' + i} style = {{"textDecoration":"underline"}}
+              <span className = 'question-help-btn' data-testid = {'questionHelpful ' + i} style = {{"textDecoration":"underline"}}
                 onClick = {(e) => {helpful(e, props, question.question_id)}}>{question.question_helpfulness}
-              </a>
+              </span>
                 )&nbsp;&nbsp;|&nbsp;&nbsp;
-              <a className = 'question-add-answer-btn'
+              <span className = 'question-add-answer-btn'
                 style = {{"textDecoration":"underline"}}
                 onClick ={() => {setbuttonPopup(true); settypeofbutton('answer'); setquestionId(question.question_id)}}>Add Answer
-              </a>
+              </span>
                 &nbsp;&nbsp;|&nbsp;&nbsp;
-              <a  className = 'question-report-btn'
+              <span  className = 'question-report-btn'
                 style = {{"textDecoration":"underline"}}
                 onClick = {(e) => questionReport(e, props, question.question_id)}>Report
-              </a>
+              </span>
             </div>
             <br />
               <div>
@@ -134,21 +136,19 @@ const QuestionModal = (props, {clicked}) => {
   };
 
   return (
-    <div onClick={(e) => props.clicked(e)}>
 
+    <div onClick={(e) => props.clicked(e)}>
       <div className = "Questions"
         style = {props.question.length < 2 ? props.question.length < 1 ?
                 {overflowY: 'scroll', height:'50px'} : {overflowY: 'scroll', height:'250px'} : {overflowY: 'scroll', height:'500px'}}>
                 {props.question.length > loadingQuestion || props.question.length <= 2? show(props, true) : show(props)}
       </div>
-
-      <div className = 'question-btns-block' data-testid="questionBtn">
+      {/* <div className = 'question-btns-block' data-testid="questionBtn"> */}
         {loadingQuestion < props.question.length? showbutton(props) : collaspseButton(props)}
         <button className = 'addQuestionbtn' onClick = {() => {setbuttonPopup(true); settypeofbutton('question')}}>
           + Add A Question
         </button>
-      </div>
-
+      {/* </div> */}
       <AskNewQuestionOrAnswer
         trigger = {buttonPopup}
         setTrigger = {setbuttonPopup}
@@ -156,7 +156,6 @@ const QuestionModal = (props, {clicked}) => {
         typeofbutton = {typeofbutton}
         questionId = {questionId}>
       </AskNewQuestionOrAnswer>
-
     </div>
   )
 };

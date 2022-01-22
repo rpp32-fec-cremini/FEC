@@ -10,13 +10,13 @@ router.get('/questions/:product_id', (req, res) => {
   getProducts(endpoint)
   .then(question=> {
     question.data.results.push({'CloundinaryAPI': process.env.CLOUDINARY});
-    console.log('get requestion from question', question.data.results.length);
     res.send(JSON.stringify(question.data.results));
   })
   .catch(err => {
     console.log(err.data);
     res.end()
   })
+
 })
 
 router.get('/questions/:question_id/answers', (req, res) => {
@@ -31,9 +31,11 @@ router.get('/questions/:question_id/answers', (req, res) => {
       console.log(err.data);
       res.end()
     })
+
 })
 
 router.post('/questions', (req, res) => {
+
   var questionBody = req.body;
   console.log('questionbody1', req.body);
   postQuestion(questionBody)
@@ -44,6 +46,7 @@ router.post('/questions', (req, res) => {
     console.log('post question error', err);
     res.end()
   });
+
 })
 
 router.post('/questions/:question_id/answers', (req, res) => {
@@ -62,6 +65,7 @@ router.post('/questions/:question_id/answers', (req, res) => {
     console.log('post answer error');
     res.end();
   });
+  
 })
 
 router.put('/questions/:question_id/helpful', (req, res) => {
