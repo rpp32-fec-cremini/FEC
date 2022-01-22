@@ -13,9 +13,16 @@ var App = (props) => {
   const min = 59553;
   const randomProductId = Math.floor(Math.random() * (max - min + 1)) + min;
   const [productId, setproductId] = useState(randomProductId);
+  const [dark, setDark] = useState(true);
+  const [btnText, setBtnText] = useState(true);
 
   return (
     <div id="app">
+      <button className="darkBtn" onClick={() => {
+        $('#root').toggleClass( "darkMode", dark );
+        setDark(!dark);
+        setBtnText(!btnText)
+      }}>{btnText ? 'Dark Mode' : "Light Mode"}</button>
       <Overview className='relatedCard' productId={productId} />
       <RelatedProducts productId={productId} setproductId={setproductId} />
       <OutfitList productId={productId} setproductId={setproductId} />
