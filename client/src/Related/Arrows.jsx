@@ -90,12 +90,12 @@ const Arrows = (props) => {
         $backBtn.removeClass('hide');
         scrollPos = scrollPos - scrollAmount;
         if (-((scrollPos - scrollAmount) + 10) > extraWidth) {
-          scrollPos = -(extraWidth + 3);
+          scrollPos = -(extraWidth + 2);
           $fwdBtn.addClass('hide');
         }
       }
     } else {
-      scrollPos = -(extraWidth + 3);
+      scrollPos = -(extraWidth + 2);
       $backBtn.removeClass('hide');
       $fwdBtn.addClass('hide');
     }

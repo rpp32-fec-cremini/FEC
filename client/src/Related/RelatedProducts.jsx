@@ -25,7 +25,6 @@ class RelatedProducts extends React.Component {
   componentDidMount() {
     this.setMainProduct();
     this.setBackoff();
-    // this.getRelatedIds();
   }
 
   componentDidUpdate(nextProps) {
@@ -33,15 +32,8 @@ class RelatedProducts extends React.Component {
       this.setMainProduct();
       this.setState({ relatedProducts: [] });
       this.setBackoff();
-      // this.getRelatedIds();
     }
   }
-
-  // getAllProducts = () => {
-  //   axios.get(`/products`)
-  //     .then(products => this.setState({ products: products.data }))
-  //     .catch(err => console.log('all products request failed'))
-  // }
 
   setMainProduct = () => {
     axios.get(`/products/${this.props.productId}`)
@@ -57,9 +49,6 @@ class RelatedProducts extends React.Component {
 
   delay = retryCount =>
     new Promise(resolve => setTimeout(resolve, 10 ** retryCount));
-
-  // setBackoff = (retryCount = 0) =>
-  //   this.getRelatedIds().catch(() => this.delay(retryCount).then(() => this.setBackoff(retryCount + 1)));
 
   setBackoff = async (id, retryCount = 0, lastError = 'related products failed') => {
     if (retryCount > 5) throw new Error(lastError);

@@ -5,9 +5,6 @@ import Card from './Card.jsx';
 import getClicks from "../getClicks.jsx";
 
 const List = (props) => {
-
-  // const [modalOpen, setmodalOpen] = useState(false);
-
   const starClick = (id) => {
     props.setCompProduct(id);
     $('.compare').removeClass('hide');
