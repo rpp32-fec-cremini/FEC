@@ -4,7 +4,7 @@ Team Cremini version
 
 ## Overview
 Project Atelier comprises a complete redesign of an outdated, client-facing retail portal designed to modernize the site. Thus new user interface allows customers to browse items in a retail catalog.
-![Overview](https://user-images.githubusercontent.com/82000132/150625406-008175d6-98ec-4950-b3ed-8954e7cd7ceb.gif)
+
 
 ### Details
 #### Overview Highlights
@@ -12,6 +12,7 @@ Project Atelier comprises a complete redesign of an outdated, client-facing reta
 * Dynamic pricing details
 * Style choices with additional details and images for each if available
 * Interactive size and quantity selectors
+![Overview](https://user-images.githubusercontent.com/82000132/150625406-008175d6-98ec-4950-b3ed-8954e7cd7ceb.gif)
 
 #### Related Products Highlights
 * A carousel list displaying products that are similar
