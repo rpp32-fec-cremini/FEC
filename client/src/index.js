@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import RatingContainer from '../src/Ratings/RatingContainer.jsx';
