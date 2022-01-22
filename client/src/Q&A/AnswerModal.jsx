@@ -62,9 +62,8 @@ const AnswerModal = ({answer, answerHelpfulList, answerHelpful, answerReport, cl
       return (
         <div className = 'imgPopUp'>
             <div className = 'imgPopUp-inner' >
-              <img className = 'imgEnlarge' src = {imgURL}>
-              </img>
-                <button className = "img-close-btn" onClick={() => setimgPopup(false)}>X</button>
+              <img className = 'imgEnlarge' src = {imgURL} alt = "" />
+              <button className = "img-close-btn" onClick={() => setimgPopup(false)}>X</button>
             </div>
         </div>
       )
@@ -75,31 +74,33 @@ const AnswerModal = ({answer, answerHelpfulList, answerHelpful, answerReport, cl
         <br />
         {answer[1]['photos'].length !== 0 ?
          answer[1]['photos'].map((pic, j) =>
-          <img
-            className = 'img'
-            src = {pic}
-            key = {j}
-            onClick = {() => {setimgPopup(true); setimgURL(pic)}}>
-          </img>
+          <div className = 'imgDiv' key = {j}>
+            <img
+              className = 'img'
+              src = {pic}
+              onClick = {() => {setimgPopup(true); setimgURL(pic)}}
+              alt = ""
+            />
+          </div>
         ) : ''}
-        <div className = "answer-title-button" >by
-          <a
+        <div className = "answer-title-button" >by&nbsp;&nbsp;
+          <span
             style={{"fontweight": answer[1]['answerer_name'] === 'Seller' ? "bold" : ''}}>
             {answer[1]['answerer_name']}
-          </a>
+          </span>
             , {dateConvenver(answer[1]['date'])}&nbsp;&nbsp;|&nbsp;&nbsp;Helpful? YES(
-          <a
+          <span
             className = 'answer-helpful-btn'
             style = {{"textDecoration":"underline"}}
             onClick = {(e) => helpful(e, answer[1]['id'])}>{answer[1]['helpfulness']}
-          </a>
+          </span>
             )&nbsp;&nbsp;|&nbsp;&nbsp;
-          <a
+          <span
             className = 'answer-report-btn'
             style = {{"textDecoration":"underline"}}
             data-testid = {'answerReport'}
             onClick = {(e) => report(e, answer[1]['id'])}>Report
-          </a>
+          </span>
         </div>
           {imgPopup === true ? imgPopups(imgURL): ''}
       </div>

@@ -73,7 +73,7 @@ class QA extends React.Component {
   }
 
   individualQuestion() {
-    // console.log('productid', this.productId);
+    console.log('productid', this.productId);
     var self = this;
     axios({
       method: 'GET',
@@ -82,8 +82,6 @@ class QA extends React.Component {
     .then((results) => {
       let question = results.data;
       let cloudinary_upload_preset = question.pop();
-      // console.log('the results', cloudinary_upload_preset);
-      // question.pop();
       self.setState ({
         cloudinary_upload_preset: cloudinary_upload_preset['CloundinaryAPI'],
       }, () => {
@@ -249,6 +247,7 @@ class QA extends React.Component {
   render() {
     return (
       <div className='QaABox' onClick={(e) => this.props.clicked(e)}>
+
         <h2 data-testid='Title' className = 'Title'>QUESTION & ANSWERS</h2>
         <SearchQuestions searchBar = {this.state.searchBar} search = {(e) => this.search(e)}/>
         <QuestionModal
