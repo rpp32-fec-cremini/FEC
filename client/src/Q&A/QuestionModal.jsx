@@ -91,18 +91,7 @@ const QuestionModal = (props, {clicked}) => {
 
     //Filter by searchTerm
     return (
-      twoQuestion
-      // .filter((question, index ) => {
-      //   let searchTerm = props.searchTerm;
-      //   var  count = 0;
-      //   let questionBody = question.question_body;
-      //   if (searchTerm === '') {
-      //     return question;
-      //   } else if (questionBody.toLowerCase().includes(searchTerm.toLowerCase())) {
-      //     return question;
-      //   }
-      // })
-      .map((question, i) =>
+      twoQuestion.map((question, i) =>
           <div className = "Question-row" key = {question.question_id} data-testid = 'Questions-id'>
             <div className = "Question-body" data-testid={'question ' + i} style = {{float: "left"}}>Q: {highlight(props, question.question_body)}</div>
             <div className = "Question-helpful" style = {{float: "right", left: "10px"}}>Helpful? YES(
@@ -143,12 +132,10 @@ const QuestionModal = (props, {clicked}) => {
                 {overflowY: 'scroll', height:'50px'} : {overflowY: 'scroll', height:'250px'} : {overflowY: 'scroll', height:'500px'}}>
                 {props.question.length > loadingQuestion || props.question.length <= 2? show(props, true) : show(props)}
       </div>
-      {/* <div className = 'question-btns-block' data-testid="questionBtn"> */}
         {loadingQuestion < props.question.length? showbutton(props) : collaspseButton(props)}
         <button className = 'addQuestionbtn' onClick = {() => {setbuttonPopup(true); settypeofbutton('question')}}>
           + Add A Question
         </button>
-      {/* </div> */}
       <AskNewQuestionOrAnswer
         trigger = {buttonPopup}
         setTrigger = {setbuttonPopup}
