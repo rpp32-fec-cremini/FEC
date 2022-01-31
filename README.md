@@ -72,6 +72,9 @@ In the terminal, run $ npm test
 
 ## Contributors
 Austin Cobb - Overview
+
 Bonnie Owens - Related Products
+
 Glen Li - Questions & Answers
+
 Joseph Nahm - Ratings & Reviews
