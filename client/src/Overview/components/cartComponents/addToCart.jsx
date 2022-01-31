@@ -92,7 +92,7 @@ const AddToCart = (props) =>  {
 
       <br></br>
       <br></br>
-      <button disabled={buttonDisable} >Add to Cart</button>
+      <button disabled={buttonDisable} data-testid ={'bawtun'} >Add to Cart</button>
       </div>
     }
   }

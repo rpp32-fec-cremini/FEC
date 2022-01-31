@@ -29,24 +29,24 @@ const ProductInfo = (props) => {
       return(
 
         <div style={{padding:'10px 10px 10px 10px'}}>
-            <h2>{product}<br></br>
+            <h2 data-testid = 'product'>{product}<br></br>
             <b style ={{fontStyle: 'italic', 'fontSize': '14px'}}>{category}</b>
 
             <br></br>
 
             <ProductRating reviewMeta={props.reviewMeta} /><a href = '#container' style ={{'fontSize': '14px'}}>Read all reviews</a></h2>
 
-            <b>{price}</b>
+            <b data-testid = "price">{price}</b>
 
-            <h6>{desc}</h6>
+            <h6 data-testid = "desc">{desc}</h6>
 
-            <StyleSelector className=' grid-4-style' styleList={props.styleList} currentStyle = {props.currentStyle} changeStyle = {props.changeStyle} />
+            <StyleSelector className=' grid-4-style' styleList={props.styleList} currentStyle = {props.currentStyle} changeStyle = {props.changeStyle} data-testid = 'styleSelectorr' />
 
             <br></br>
             <br></br>
             <br></br>
 
-            <AddToCart currentStyle = {props.currentStyle} />
+            <AddToCart currentStyle = {props.currentStyle} data-testid = 'cart' />
 
 
         </div>

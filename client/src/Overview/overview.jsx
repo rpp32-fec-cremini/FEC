@@ -73,7 +73,7 @@ class Overview extends React.Component {
                 reviewMeta: metaData,
                 currentPhotoUrl: stylish.results[0]
               },
-                ()=>{ //callback function to verify everything done
+                ()=>{ //callback function  to verify everything done
                   console.log('All API Calls successful!');
               })
 

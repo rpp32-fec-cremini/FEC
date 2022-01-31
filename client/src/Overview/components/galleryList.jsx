@@ -6,7 +6,7 @@ import {BsArrowUpCircleFill, BsArrowDownCircleFill, BsArrowLeftCircleFill, BsArr
 
 
 const GalleryList = (props) => {
-  console.log('StyleList here: ', props.styleList);
+  //console.log('StyleList here: ', props.styleList);
   const [arr, valueSet] = useState({start: 0, end: 7})
 
   let current = (props.styleList.length >= 7) ? props.styleList.slice(arr.start, arr.end) : props.styleList;
@@ -38,7 +38,7 @@ const GalleryList = (props) => {
         bottom: '0',
         cursor: 'pointer'
 
-      }}>
+      }} data-testid = {'gallery'}>
         <BsArrowUpCircleFill onClick = {upClick}/>
         {current.map((style) =>
       <Style onClick = {() => props.changeImageGallery(style)}

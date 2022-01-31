@@ -16,12 +16,12 @@ const ImageGallery =(props) => {
 
       )
     } else {
-      console.log('Checking props here ', props)
+      //console.log('Checking props here ', props)
       var imgSrc = props.currentUrl.photos?.length && props.currentUrl.photos[0].url
       return (
       <div><BsArrowLeftCircleFill onClick={() => changeIndex(index + 1)} style ={{display: 'flex'}}/>
       <div style = {{padding: '0px 100px 0px 50px', backgroundColor: '#efeff5' }}>
-      <div style={{ backgroundImage: `url(${imgSrc})`, cursor: 'zoom-in'}} className = 'imageGallery' >
+      <div style={{ backgroundImage: `url(${imgSrc})`, cursor: 'zoom-in'}} className = 'imageGallery' data-testid = "galleryList" >
       <GalleryList changeImageGallery = {props.changeImageGallery} currentStyle = {props.currentStyle} styleList={props.styleList} />
       <br></br>
       </div>

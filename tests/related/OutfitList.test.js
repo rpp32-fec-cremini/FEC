@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import { render, screen } from '@testing-library/react';
 import OutfitList from '../../client/src/Related/OutfitList.jsx';
 
@@ -54,4 +54,4 @@ test('should have scroll arrows', () => {
 //       expect.objectContaining({id: 2})
 //     ])
 //   );
-// });
+// }); */

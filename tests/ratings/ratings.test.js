@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import { rest } from "msw";
 import { setupServer } from "msw/node"
 import { render, fireEvent, waitFor } from '@testing-library/react';
@@ -115,3 +115,4 @@ test("Product Breakdown renders the correct product characteristic bars", async 
 // })
 
 
+ */

@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import { rest} from "msw";
 import { setupServer } from "msw/node";
 import { render, fireEvent, screen, cleanup, waitFor } from '@testing-library/react';
@@ -42,3 +42,4 @@ test('Should filter Q&A after filter by search Bar?', async () => {
   fireEvent.change(searchElement, {target: {value: 'long'}});
   expect(allQuestion).toBeDefined();
 })
+ */

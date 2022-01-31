@@ -57,10 +57,10 @@ let data = [
 ]
 
 let styles = {
-    "product_id": "59553",
+    "product_id": "64620",
     "results": [
         {
-            "style_id": 365413,
+            "style_id": 398195,
             "name": "Forest Green & Black",
             "original_price": "140.00",
             "sale_price": null,
@@ -92,34 +92,34 @@ let styles = {
                 }
             ],
             "skus": {
-                "2122777": {
+                "2313078": {
                     "quantity": 8,
                     "size": "XS"
                 },
-                "2122778": {
+                "2313079": {
                     "quantity": 16,
                     "size": "S"
                 },
-                "2122779": {
+                "2313080": {
                     "quantity": 17,
                     "size": "M"
                 },
-                "2122780": {
+                "2313081": {
                     "quantity": 10,
                     "size": "L"
                 },
-                "2122781": {
+                "2313082": {
                     "quantity": 15,
                     "size": "XL"
                 },
-                "2122782": {
+                "2313083": {
                     "quantity": 4,
                     "size": "XL"
                 }
             }
         },
         {
-            "style_id": 365414,
+            "style_id": 398196,
             "name": "Desert Brown & Tan",
             "original_price": "140.00",
             "sale_price": null,
@@ -151,34 +151,34 @@ let styles = {
                 }
             ],
             "skus": {
-                "2122783": {
+                "2313084": {
                     "quantity": 8,
                     "size": "XS"
                 },
-                "2122784": {
+                "2313085": {
                     "quantity": 16,
                     "size": "S"
                 },
-                "2122785": {
+                "2313086": {
                     "quantity": 17,
                     "size": "M"
                 },
-                "2122786": {
+                "2313087": {
                     "quantity": 10,
                     "size": "L"
                 },
-                "2122787": {
+                "2313088": {
                     "quantity": 15,
                     "size": "XL"
                 },
-                "2122788": {
+                "2313089": {
                     "quantity": 6,
                     "size": "XXL"
                 }
             }
         },
         {
-            "style_id": 365415,
+            "style_id": 398197,
             "name": "Ocean Blue & Grey",
             "original_price": "140.00",
             "sale_price": "100.00",
@@ -210,34 +210,34 @@ let styles = {
                 }
             ],
             "skus": {
-                "2122789": {
+                "2313090": {
                     "quantity": 8,
                     "size": "XS"
                 },
-                "2122790": {
+                "2313091": {
                     "quantity": 16,
                     "size": "S"
                 },
-                "2122791": {
+                "2313092": {
                     "quantity": 17,
                     "size": "M"
                 },
-                "2122792": {
+                "2313093": {
                     "quantity": 10,
                     "size": "L"
                 },
-                "2122793": {
+                "2313094": {
                     "quantity": 15,
                     "size": "XL"
                 },
-                "2122794": {
+                "2313095": {
                     "quantity": 6,
                     "size": "XXL"
                 }
             }
         },
         {
-            "style_id": 365416,
+            "style_id": 398198,
             "name": "Digital Red & Black",
             "original_price": "140.00",
             "sale_price": null,
@@ -269,34 +269,34 @@ let styles = {
                 }
             ],
             "skus": {
-                "2122795": {
+                "2313096": {
                     "quantity": 8,
                     "size": "XS"
                 },
-                "2122796": {
+                "2313097": {
                     "quantity": 16,
                     "size": "S"
                 },
-                "2122797": {
+                "2313098": {
                     "quantity": 17,
                     "size": "M"
                 },
-                "2122798": {
+                "2313099": {
                     "quantity": 10,
                     "size": "L"
                 },
-                "2122799": {
+                "2313100": {
                     "quantity": 15,
                     "size": "XL"
                 },
-                "2122800": {
+                "2313101": {
                     "quantity": 6,
                     "size": "XXL"
                 }
             }
         },
         {
-            "style_id": 365417,
+            "style_id": 398199,
             "name": "Sky Blue & White",
             "original_price": "140.00",
             "sale_price": "100.00",
@@ -328,34 +328,34 @@ let styles = {
                 }
             ],
             "skus": {
-                "2122801": {
+                "2313102": {
                     "quantity": 8,
                     "size": "XS"
                 },
-                "2122802": {
+                "2313103": {
                     "quantity": 16,
                     "size": "S"
                 },
-                "2122803": {
+                "2313104": {
                     "quantity": 17,
                     "size": "M"
                 },
-                "2122804": {
+                "2313105": {
                     "quantity": 10,
                     "size": "L"
                 },
-                "2122805": {
+                "2313106": {
                     "quantity": 15,
                     "size": "XL"
                 },
-                "2122806": {
+                "2313107": {
                     "quantity": 6,
                     "size": "XXL"
                 }
             }
         },
         {
-            "style_id": 365418,
+            "style_id": 398200,
             "name": "Dark Grey & Black",
             "original_price": "170.00",
             "sale_price": null,
@@ -387,27 +387,27 @@ let styles = {
                 }
             ],
             "skus": {
-                "2122807": {
+                "2313108": {
                     "quantity": 8,
                     "size": "XS"
                 },
-                "2122808": {
+                "2313109": {
                     "quantity": 16,
                     "size": "S"
                 },
-                "2122809": {
+                "2313110": {
                     "quantity": 17,
                     "size": "M"
                 },
-                "2122810": {
+                "2313111": {
                     "quantity": 10,
                     "size": "L"
                 },
-                "2122811": {
+                "2313112": {
                     "quantity": 15,
                     "size": "XL"
                 },
-                "2122812": {
+                "2313113": {
                     "quantity": 6,
                     "size": "XXL"
                 }

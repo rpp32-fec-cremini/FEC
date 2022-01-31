@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { rest } from "msw";
@@ -48,4 +48,4 @@ import List from '../../client/src/Related/List.jsx';
 
 // // test('it shoud contain the product\'s category', () => {
 
-// // })
+// // }) */

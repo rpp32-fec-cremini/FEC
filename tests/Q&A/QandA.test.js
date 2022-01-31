@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import { rest} from "msw";
 import { setupServer } from "msw/node";
 import { render, fireEvent, screen, cleanup, waitFor } from '@testing-library/react';
@@ -112,3 +112,4 @@ test('"See more answers button become "Collasped answer" button after click', ()
   expect(newImg.textContent).toBe('Collasped answer')
 })
 
+ */
