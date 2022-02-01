@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var port = 'http://100.27.26.163:3000/';
+var port = 'http://100.27.26.163:3000';
 var axios = require('axios');
 
 require('dotenv').config();
