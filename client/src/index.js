@@ -9,7 +9,7 @@ import QandA from '../src/Q&A/QandA.jsx';
 import OutfitList from '../src/Related/OutfitList.jsx';
 
 var App = (props) => {
-  const max = 64620;
+  const max = 64635;
   const min = 64620;
   const randomProductId = Math.floor(Math.random() * (max - min + 1)) + min;
   const [productId, setproductId] = useState(randomProductId);
